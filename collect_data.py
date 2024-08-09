@@ -180,7 +180,6 @@ def save_collected_data(file_path, data):
 def collect_data():
     paths_by_arch = {arch: mp.replace('/all', '').split(':') for arch, mp in config.modulepaths.items()}
     extracted_paths_by_arch = {arch: [(file, '/'.join(file.split('/')[-3:]).replace('.lua', '')) for path in paths for file in glob.glob(os.path.join(path, '*/*/*.lua'))] for arch, paths in paths_by_arch.items()}
-#    sorted_paths_by_arch = {arch: sorted(paths, key=lambda path: (path[1].split('/')[0], path[1].split('/')[1], [int(x) if x.isdigit() else x for x in re.split('(\d+)', path[1].split('/')[2])]), reverse=True) for arch, paths in extracted_paths_by_arch.items()}
     sorted_paths_by_arch = {
         arch: sorted(
             paths,
