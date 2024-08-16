@@ -49,6 +49,12 @@ After modifying the config.py file for your system:
  ./run.sh
  ./sync_stacks.sh
 
+Once confident that everythig is setup correctly. The whole workflow can be started with:
+
+.. code-block:: bash 
+
+ ./sync_stacks.sh
+
 
 config.py
 ---------
