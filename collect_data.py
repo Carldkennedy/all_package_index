@@ -24,7 +24,7 @@ def append_file(filepath, content):
 
 def process_broken_symlinks():
     if not os.path.exists(config.broken_symlinks_file):
-        print(f"No broken symlinks file found for date: {current_date}")
+        print(f"No broken symlinks file found for date: {config.current_date}")
         return
 
     with open(config.broken_symlinks_file, 'r') as file:
