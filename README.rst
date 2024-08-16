@@ -31,8 +31,6 @@ Scripts
  ├── config.yml       configuration for hpc-rocket
  ├── graph.py         creates markdown files for force directed graph in Obsidian
  ├── main.py          produces *.rst files, running collect_data.py if not already run today
- ├── results
- │   └── backups
  ├── run.sh
  ├── setup_local.sh   activates required environment, generating it if doesn't exist 
  ├── slurm.sh         job script run collect_data.py on hpc cluster

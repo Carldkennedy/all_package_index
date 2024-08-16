@@ -1,19 +1,18 @@
 #!/bin/bash
 
 # # Define directories
-BUILD_DIR="${HOME}/work/.build-all-package-index/"
+BUILD_DIR="${HOME}/.build-all-package-index/"
 REPO_DIR="${BUILD_DIR}/sheffield_hpc"
 BRANCH_NAME="all-packages-update-$(date +%Y%m%d)"
-RESULTS="results/"
 IMPORTS="referenceinfo/imports/stanage/packages/"
 SOFTWARE="stanage/software/stubs/"
 CUSTOM="referenceinfo/imports/stanage/packages/custom/"
 
-IMPORTS_NEW="${RESULTS}/${IMPORTS}"
+IMPORTS_NEW="${IMPORTS}"
 IMPORTS_EXISTING="${REPO_DIR}/${IMPORTS}"
-SOFTWARE_NEW="${RESULTS}/${SOFTWARE}"
+SOFTWARE_NEW="${SOFTWARE}"
 SOFTWARE_EXISTING="${REPO_DIR}/${SOFTWARE}"
-CUSTOM_NEW="${RESULTS}/${CUSTOM}"
+CUSTOM_NEW="${CUSTOM}"
 CUSTOM_EXISTING="${REPO_DIR}/${CUSTOM}"
 
 # Run automatic build to generate new files
@@ -33,7 +32,21 @@ git switch master
 git pull origin master
 
 # Create and switch to a new branch
-git checkout -b "$BRANCH_NAME"
+# Check if the branch already exists locally
+if git rev-parse --verify "$BRANCH_NAME" >/dev/null 2>&1; then
+  # Check if we are already on that branch
+  current_branch=$(git branch --show-current)
+  if [ "$current_branch" == "$BRANCH_NAME" ]; then
+    echo "Already on branch '$BRANCH_NAME'."
+  else
+    echo "Switching to existing branch '$BRANCH_NAME'."
+    git checkout "$BRANCH_NAME"
+  fi
+else
+  # Create and switch to the new branch
+  echo "Creating and switching to new branch '$BRANCH_NAME'."
+  git checkout -b "$BRANCH_NAME"
+fi
 popd
 
 mkdir -p "$IMPORTS_EXISTING" "$SOFTWARE_EXISTING" "$CUSTOM_EXISTING"
