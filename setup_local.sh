@@ -9,7 +9,9 @@ conda activate $ENV_NAME
 if [ $? -ne 0 ]; then
   echo "Conda environment '$ENV_NAME' not found. Creating it..."
   conda create -n $ENV_NAME python=3.9 -y
+  wait
   conda activate $ENV_NAME
+  wait
   echo "Installing required packages in '$ENV_NAME' ..."
   pip install lupa packaging hpc-rocket
 fi
