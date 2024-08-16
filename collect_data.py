@@ -229,7 +229,7 @@ def collect_data():
         'latest_version_info': latest_version_info_str_keys
     }
 
-    save_collected_data(config.DATA_FILE, collected_data)
+    save_collected_data(config.DATA_FILE_CLUSTER, collected_data)
 
 
 if __name__ == "__main__":
