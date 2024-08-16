@@ -2,11 +2,11 @@ import datetime
 
 current_date = datetime.datetime.now().strftime("%Y-%m-%d")
 
-broken_symlinks_file = f"broken-symlinks-{current_date}.log"
-log_file_path = f"log-collect-data-{current_date}.log"
-main_log_file= f"main-update-packages-{current_date}.log"
+broken_symlinks_file = f"broken-symlinks.log"
+log_file_path = f"log-collect-data.log"
+main_log_file= f"main-update-packages.log"
 
-DATA_FILE = f"collected-data-{current_date}.pkl"
+DATA_FILE = f"collected-data.pkl"
 STACKS_DIR = "stanage/software/stubs/"
 IMPORTS_DIR = "referenceinfo/imports/stanage/packages/"
 CUSTOM_DIR = "referenceinfo/imports/stanage/packages/custom/"

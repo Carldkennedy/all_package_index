@@ -1,7 +1,8 @@
+__pycache__/
+results/
 referenceinfo/
 stanage/
-__pycache__/
-
+.ssh/
 __init__.py
 *.pkl
 *.seff

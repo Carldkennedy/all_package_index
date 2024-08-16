@@ -24,11 +24,17 @@ TODO
 Scripts
 --------
 .
+├── README
 ├── collect_data.py  parses module files in modulepaths for each arch
 ├── config.py        configuration file
+├── config.yml       configuration for hpc-rocket
 ├── graph.py         creates markdown files for force directed graph in Obsidian
 ├── main.py          produces *.rst files, running collect_data.py if not already run today
-├── setup.sh         activatesi required environment, generating it if doesn't exist 
+├── results
+│   └── backups
+├── run.sh
+├── setup_local.sh   activates required environment, generating it if doesn't exist 
+├── slurm.sh         job script run collect_data.py on hpc cluster
 └── sync_stacks.sh   syncs *rst files into hpc docs repo
 
 Usage
@@ -36,9 +42,9 @@ Usage
 After modifying the config.py file for your system:
 
 ``` 
-chmod +x setup.sh sync_stacks.sh
+chmod +x run.sh setup.sh sync_stacks.sh
 ./setup.sh
-python main.py
+./run.sh
 ./sync_stacks.sh
 ```
 
