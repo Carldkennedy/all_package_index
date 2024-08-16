@@ -6,11 +6,10 @@ broken_symlinks_file = f"broken-symlinks.log"
 log_file_path = f"log-collect-data.log"
 main_log_file= f"main-update-packages.log"
 
-DATA_FILE_CLUSTER = "collected-data.pkl"
-DATA_FILE = f"results/{DATA_FILE_CLUSTER}"
-STACKS_DIR = "results/stanage/software/stubs/"
-IMPORTS_DIR = "results/referenceinfo/imports/stanage/packages/"
-CUSTOM_DIR = "results/referenceinfo/imports/stanage/packages/custom/"
+DATA_FILE = "collected-data.pkl"
+STACKS_DIR = "stanage/software/stubs/"
+IMPORTS_DIR = "referenceinfo/imports/stanage/packages/"
+CUSTOM_DIR = "referenceinfo/imports/stanage/packages/custom/"
 
 modulepaths = {
     'icelake': "/opt/apps/tuos/el9/modules/live/all:/opt/apps/tuos/common/modules/easybuild-only/all:/opt/apps/tuos/common/modules/live/all",

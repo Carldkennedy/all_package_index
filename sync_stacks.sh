@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # # Define directories
-BUILD_DIR="${HOME}/.build-all-package-index/"
+BUILD_DIR="${HOME}/work/.build-all-package-index/"
 REPO_DIR="${BUILD_DIR}/sheffield_hpc"
 BRANCH_NAME="all-packages-update-$(date +%Y%m%d)"
 RESULTS="results/"
