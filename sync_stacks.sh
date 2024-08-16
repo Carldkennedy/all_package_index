@@ -1,18 +1,12 @@
 #!/bin/bash
-#SBATCH --nodes=1
-#SBATCH --ntasks=4
-#SBATCH --mem=2G
-#SBATCH --time=00:15:00
-#SBATCH --mail-type=FAIL
-#SBATCH --mail-user=c.d.kennedy@sheffield.ac.uk
 
 # # Define directories
-# BUILD_DIR="${HOME}/build-all-packages/"
+# BUILD_DIR="${HOME}/.build-all-package-index/"
 # REPO_DIR="${BUILD_DIR}/sheffield_hpc"
 # BRANCH_NAME="all-packages-update-$(date +%Y%m%d)"
 
-REPO_DIR="${HOME}/repos/sheffield_hpc/"
-DOWNLOADS="/mnt/c/Users/your_user_name/Downloads/lua/"
+REPO_DIR="${HOME}/repos/API_build/sheffield_hpc/"
+DOWNLOADS="results/"
 IMPORTS="referenceinfo/imports/stanage/packages/"
 SOFTWARE="stanage/software/stubs/"
 CUSTOM="referenceinfo/imports/stanage/packages/custom/"
