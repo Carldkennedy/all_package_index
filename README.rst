@@ -98,7 +98,8 @@ Below are some of the main.py functions, which we may wish to customise:
 .. code-block:: python
 
  process_modulepath(modulepaths, title, output_dir)
- Processes data parsed from modulepaths which is then passed to the following functions: 
+ # Processes data parsed from modulepaths which is then passed to the following functions: 
+ 
  write_package_file(category_dir, category, package, output_dir)
  write_sidebar_file(package, category, latest_version_info, output_dir)
  write_description_file(package, latest_info, output_dir)
