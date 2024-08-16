@@ -23,30 +23,32 @@ TODO
 
 Scripts
 --------
-.
-├── README
-├── collect_data.py  parses module files in modulepaths for each arch
-├── config.py        configuration file
-├── config.yml       configuration for hpc-rocket
-├── graph.py         creates markdown files for force directed graph in Obsidian
-├── main.py          produces *.rst files, running collect_data.py if not already run today
-├── results
-│   └── backups
-├── run.sh
-├── setup_local.sh   activates required environment, generating it if doesn't exist 
-├── slurm.sh         job script run collect_data.py on hpc cluster
-└── sync_stacks.sh   syncs *rst files into hpc docs repo
+.. code-block::
 
+ ├── README
+ ├── collect_data.py  parses module files in modulepaths for each arch
+ ├── config.py        configuration file
+ ├── config.yml       configuration for hpc-rocket
+ ├── graph.py         creates markdown files for force directed graph in Obsidian
+ ├── main.py          produces *.rst files, running collect_data.py if not already run today
+ ├── results
+ │   └── backups
+ ├── run.sh
+ ├── setup_local.sh   activates required environment, generating it if doesn't exist 
+ ├── slurm.sh         job script run collect_data.py on hpc cluster
+ └── sync_stacks.sh   syncs *rst files into hpc docs repo
+ 
 Usage
 -----
 After modifying the config.py file for your system:
 
-``` 
-chmod +x run.sh setup.sh sync_stacks.sh
-./setup.sh
-./run.sh
-./sync_stacks.sh
-```
+.. code-block:: bash 
+ 
+ chmod +x run.sh setup.sh sync_stacks.sh
+ ./setup.sh
+ ./run.sh
+ ./sync_stacks.sh
+
 
 config.py
 ---------
@@ -60,22 +62,24 @@ CUSTOM_DIR = "referenceinfo/imports/stanage/packages/custom/"
 
 Input parameters such as the modulepaths which we wish to parse, title(s) for the stack(s) and output directories for each stack: 
 
-modulepaths = {
-    'icelake': "/opt/apps/tuos/el9/modules/live/all:/opt/apps/tuos/common/modules/easybuild-only/all:/opt/apps/tuos/common/modules/live/all",
-    'znver3': "/opt/apps/tuos/el9-znver3/modules/live/all:/opt/apps/tuos/common/modules/easybuild-only/all:/opt/apps/tuos/common/modules/live/all"
-}
-
-titles = [
-    "Icelake and Znver (OS: Rocky 9) Package Versions"
-]
-
-output_dirs = [
-    "el9-icelake-znver-stanage"
-]
+.. code-block:: python
+ 
+ modulepaths = {
+     'icelake': "/opt/apps/tuos/el9/modules/live/all:/opt/apps/tuos/common/modules/easybuild-only/all:/opt/apps/tuos/common/modules/live/all",
+     'znver3': "/opt/apps/tuos/el9-znver3/modules/live/all:/opt/apps/tuos/common/modules/easybuild-only/all:/opt/apps/tuos/common/modules/live/all"
+ }
+ 
+ titles = [
+     "Icelake and Znver (OS: Rocky 9) Package Versions"
+ ]
+ 
+ output_dirs = [
+     "el9-icelake-znver-stanage"
+ ]
 
 In this example, the directory which the category directories and package files will be stored:
 
-/stanage/software/stubs/el9-icelake-znver-stanage/{All,Bio,etc}
+``/stanage/software/stubs/el9-icelake-znver-stanage/{All,Bio,etc}``
 
 The title of the stack is 'Icelake and Znver (OS: Rocky 9) Package Versions'.
 
@@ -85,19 +89,23 @@ Functions
 ^^^^^^^^^
 Below are some of the main.py functions, which we may wish to customise:
 
-process_modulepath(modulepaths, title, output_dir)
-Processes data parsed from modulepaths which is then passed to the following functions: 
-write_package_file(category_dir, category, package, output_dir)
-write_sidebar_file(package, category, latest_version_info, output_dir)
-write_description_file(package, latest_info, output_dir)
-write_installation_file(package, latest_info, output_dir)
-write_custom_file(package, output_dir)
-write_dependencies(dependencies, output_dir, category, package, package_ref)
-write_ml_file(package, package_infos, output_dir)
+.. code-block:: python
+
+ process_modulepath(modulepaths, title, output_dir)
+ Processes data parsed from modulepaths which is then passed to the following functions: 
+ write_package_file(category_dir, category, package, output_dir)
+ write_sidebar_file(package, category, latest_version_info, output_dir)
+ write_description_file(package, latest_info, output_dir)
+ write_installation_file(package, latest_info, output_dir)
+ write_custom_file(package, output_dir)
+ write_dependencies(dependencies, output_dir, category, package, package_ref)
+ write_ml_file(package, package_infos, output_dir)
 
 Below are some of the main collect_data.py functions:
 
-collect_data():
-process_broken_symlinks():
-extract_lua_info(lua_file_path):
-extract_installer(file_path):
+.. code-block:: python
+
+ collect_data():
+ process_broken_symlinks():
+ extract_lua_info(lua_file_path):
+ extract_installer(file_path):
