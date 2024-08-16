@@ -16,15 +16,15 @@ copy:
 
 collect:
   - from: log-collect-data.log
-    to: results/log-collect-data.log
+    to: log-collect-data.log
     overwrite: true
 
   - from: collected-data.pkl
-    to: results/collected-data.pkl
+    to: collected-data.pkl
     overwrite: true
   
   - from: broken-symlinks.log
-    to: results/broken-symlinks.log
+    to: broken-symlinks.log
     overwrite: true
 
 clean:
