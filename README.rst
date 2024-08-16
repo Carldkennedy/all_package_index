@@ -40,21 +40,12 @@ Scripts
  
 Usage
 -----
-After modifying the config.py file for your system:
+After modifying config.py and config.yml file for your system:
 
 .. code-block:: bash 
  
- chmod +x run.sh setup.sh sync_stacks.sh
- ./setup.sh
- ./run.sh
+ chmod +x run.sh setup_local.sh sync_stacks.sh
  ./sync_stacks.sh
-
-Once confident that everythig is setup correctly. The whole workflow can be started with:
-
-.. code-block:: bash 
-
- ./sync_stacks.sh
-
 
 config.py
 ---------
@@ -62,9 +53,9 @@ The configuration setup in config.py includes:
 
 Output directories which will later be synced with the documentation repo:
 
-STACKS_DIR = "stanage/software/stubs/"
-IMPORTS_DIR = "referenceinfo/imports/stanage/packages/"
-CUSTOM_DIR = "referenceinfo/imports/stanage/packages/custom/"
+STACKS_DIR = "results/stanage/software/stubs/"
+IMPORTS_DIR = "results/referenceinfo/imports/stanage/packages/"
+CUSTOM_DIR = "results/referenceinfo/imports/stanage/packages/custom/"
 
 Input parameters such as the modulepaths which we wish to parse, title(s) for the stack(s) and output directories for each stack: 
 
