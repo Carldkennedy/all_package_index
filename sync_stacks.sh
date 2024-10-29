@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# # Define directories
+# Define directories
 BUILD_DIR="${HOME}/.build-all-package-index/"
 REPO_DIR="${BUILD_DIR}/sheffield_hpc"
 BRANCH_NAME="all-packages-update-$(date +%Y%m%d)"
@@ -9,14 +9,14 @@ SOFTWARE="stanage/software/stubs/"
 CUSTOM="referenceinfo/imports/stanage/packages/custom/"
 
 IMPORTS_NEW="${IMPORTS}"
-IMPORTS_EXISTING="${REPO_DIR}/${IMPORTS}"
 SOFTWARE_NEW="${SOFTWARE}"
-SOFTWARE_EXISTING="${REPO_DIR}/${SOFTWARE}"
 CUSTOM_NEW="${CUSTOM}"
+IMPORTS_EXISTING="${REPO_DIR}/${IMPORTS}"
+SOFTWARE_EXISTING="${REPO_DIR}/${SOFTWARE}"
 CUSTOM_EXISTING="${REPO_DIR}/${CUSTOM}"
 
 # Run automatic build to generate new files
-./run.sh
+# ./run.sh
 
 # Clone the repository if it doesn't exist
 if [ ! -d "$REPO_DIR/.git" ]; then
