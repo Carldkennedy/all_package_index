@@ -7,6 +7,7 @@ import argparse
 import pprint
 import config
 from utils import append_file, load_collected_data, make_reference, make_filename
+from parser.lmod import run_collect_data_script
 
 def write_log():
     with open(config.main_log_file, 'w') as log_file:
@@ -42,14 +43,6 @@ def write_package_file(package, output_dir, dependencies, moduleclass):
 ####################################################
 
 
-def run_collect_data_script():
-    try:
-        result = subprocess.run(['python', 'collect_data.py'], check=True)
-        return result.returncode == 0
-    except subprocess.CalledProcessError as e:
-        write_output(f"Failed to run collect_data.py: {e}")
-        print(f"Failed to run collect_data.py: {e}")
-        return False
 
 def process_modulepath(modulepaths, title, output_dir):
     # Run collect_data.py if data file doesn't exist
