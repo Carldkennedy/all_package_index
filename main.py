@@ -6,7 +6,7 @@ import datetime
 import argparse
 import config
 from packaging import version
-from utils import append_file, load_collected_data, make_reference, make_filename
+from utils import append_file, load_collected_data, make_reference, make_filename, write_file
 from parser.lmod import run_collect_data_script
 
 os.makedirs(config.IMPORTS_DIR, exist_ok=True)
@@ -25,9 +25,6 @@ def write_output(message):
     if verbose:
         print(message)
 
-def write_file(filepath, content):
-    with open(filepath, 'w') as file:
-        file.write(content)
 
 
 
