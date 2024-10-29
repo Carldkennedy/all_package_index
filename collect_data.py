@@ -6,6 +6,7 @@ import datetime
 import subprocess
 from lupa import LuaRuntime
 import config
+from utils import append_file
 
 def write_log(log_file_path):
     with open(log_file_path, 'w') as log_file:
@@ -18,9 +19,6 @@ def write_output(message):
         f.write(message + '\n')
     print(message)
 
-def append_file(filepath, content):
-    with open(filepath, 'a') as file:
-        file.write(content)
 
 def process_broken_symlinks():
     if not os.path.exists(config.broken_symlinks_file):
