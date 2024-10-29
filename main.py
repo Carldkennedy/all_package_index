@@ -7,6 +7,7 @@ import argparse
 import config
 from packaging import version
 from utils import append_file, load_collected_data, make_reference, make_filename
+from parser.lmod import run_collect_data_script
 
 os.makedirs(config.IMPORTS_DIR, exist_ok=True)
 os.makedirs(config.STACKS_DIR, exist_ok=True)
@@ -227,14 +228,6 @@ def write_ml_file(package, package_infos, output_dir):
 
 
 
-def run_collect_data_script():
-    try:
-        result = subprocess.run(['python', 'collect_data.py'], check=True)
-        return result.returncode == 0
-    except subprocess.CalledProcessError as e:
-        write_output(f"Failed to run collect_data.py: {e}")
-        print(f"Failed to run collect_data.py: {e}")
-        return False
 
 def process_modulepath(modulepaths, title, output_dir):
     # Run collect_data.py if data file doesn't exist
