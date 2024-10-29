@@ -6,7 +6,7 @@ import datetime
 import argparse
 import pprint
 import config
-from utils import append_file, load_collected_data
+from utils import append_file, load_collected_data, make_reference, make_filename
 
 def write_log():
     with open(config.main_log_file, 'w') as log_file:
@@ -25,11 +25,7 @@ def write_file(filepath, content):
         file.write(content)
 
 
-def make_reference(*args):
-    return '-'.join(args).replace(' ', '-').lower()
 
-def make_filename(*args):
-    return '-'.join(args).replace(' ', '-').lower()
 ####################################################
 def write_package_file(package, output_dir, dependencies, moduleclass):
     os.makedirs(output_dir, exist_ok=True)  # Ensure the output directory exists

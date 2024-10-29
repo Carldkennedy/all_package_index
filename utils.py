@@ -9,3 +9,8 @@ def load_collected_data(file_path):
         with open(file_path, 'rb') as f:
             return pickle.load(f)
     return None
+
+def make_reference(*args):
+    return '-'.join(args).replace(' ', '-').lower()
+# Alias
+make_filename = make_reference
