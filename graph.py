@@ -6,7 +6,7 @@ import datetime
 import argparse
 import pprint
 import config
-from utils import append_file, load_collected_data, make_reference, make_filename
+from utils import append_file, load_collected_data, make_reference, make_filename, write_file
 from parser.lmod import run_collect_data_script
 
 def write_log():
@@ -21,9 +21,6 @@ def write_output(message):
     if verbose:
         print(message)
 
-def write_file(filepath, content):
-    with open(filepath, 'w') as file:
-        file.write(content)
 
 
 
