@@ -1,4 +1,5 @@
 #!/bin/bash
+source ~/.bashrc
 ENV_NAME="lmod_env"
 
 # Activate the Conda environment

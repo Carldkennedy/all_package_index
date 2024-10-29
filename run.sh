@@ -2,8 +2,8 @@
 
 export REMOTE_HOST=stanage.shef.ac.uk
 export REMOTE_USER=cs1cdk
-
 export DATESTAMP=$(date +"%Y-%m-%d")
+
 rm -r stanage/ referenceinfo/ *.log *pkl
 
 # Submit job to SLURM

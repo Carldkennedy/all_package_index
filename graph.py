@@ -4,8 +4,8 @@ import pickle
 import subprocess
 import datetime
 import argparse
-import config
 import pprint
+import config
 
 def write_log():
     with open(config.main_log_file, 'w') as log_file:
