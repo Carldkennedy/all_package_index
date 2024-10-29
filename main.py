@@ -6,7 +6,7 @@ import datetime
 import argparse
 import config
 from packaging import version
-from utils import append_file, load_collected_data
+from utils import append_file, load_collected_data, make_reference, make_filename
 
 os.makedirs(config.IMPORTS_DIR, exist_ok=True)
 os.makedirs(config.STACKS_DIR, exist_ok=True)
@@ -29,11 +29,7 @@ def write_file(filepath, content):
         file.write(content)
 
 
-def make_reference(*args):
-    return '-'.join(args).replace(' ', '-').lower()
 
-def make_filename(*args):
-    return '-'.join(args).replace(' ', '-').lower()
 
 def write_package_file(category_dir, category, package, output_dir):
     package_file = os.path.join(category_dir, f"{package}.rst")
