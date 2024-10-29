@@ -6,7 +6,7 @@ import datetime
 import argparse
 import config
 from packaging import version
-from utils import append_file
+from utils import append_file, load_collected_data
 
 os.makedirs(config.IMPORTS_DIR, exist_ok=True)
 os.makedirs(config.STACKS_DIR, exist_ok=True)
@@ -230,11 +230,6 @@ def write_ml_file(package, package_infos, output_dir):
         imp_f.write(new_content)
 
 
-def load_collected_data(file_path):
-    if os.path.exists(file_path):
-        with open(file_path, 'rb') as f:
-            return pickle.load(f)
-    return None
 
 def run_collect_data_script():
     try:
