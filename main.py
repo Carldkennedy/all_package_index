@@ -6,6 +6,7 @@ import datetime
 import argparse
 import config
 from packaging import version
+from utils import append_file
 
 os.makedirs(config.IMPORTS_DIR, exist_ok=True)
 os.makedirs(config.STACKS_DIR, exist_ok=True)
@@ -27,9 +28,6 @@ def write_file(filepath, content):
     with open(filepath, 'w') as file:
         file.write(content)
 
-def append_file(filepath, content):
-    with open(filepath, 'a') as file:
-        file.write(content)
 
 def make_reference(*args):
     return '-'.join(args).replace(' ', '-').lower()

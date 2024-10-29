@@ -6,6 +6,7 @@ import datetime
 import argparse
 import pprint
 import config
+from utils import append_file
 
 def write_log():
     with open(config.main_log_file, 'w') as log_file:
@@ -23,9 +24,6 @@ def write_file(filepath, content):
     with open(filepath, 'w') as file:
         file.write(content)
 
-def append_file(filepath, content):
-    with open(filepath, 'a') as file:
-        file.write(content)
 
 def make_reference(*args):
     return '-'.join(args).replace(' ', '-').lower()
