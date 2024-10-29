@@ -6,7 +6,7 @@ import datetime
 import argparse
 import pprint
 import config
-from utils import append_file
+from utils import append_file, load_collected_data
 
 def write_log():
     with open(config.main_log_file, 'w') as log_file:
@@ -45,11 +45,6 @@ def write_package_file(package, output_dir, dependencies, moduleclass):
     append_file(package_file, content)
 ####################################################
 
-def load_collected_data(file_path):
-    if os.path.exists(file_path):
-        with open(file_path, 'rb') as f:
-            return pickle.load(f)
-    return None
 
 def run_collect_data_script():
     try:
