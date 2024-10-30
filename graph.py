@@ -1,23 +1,13 @@
 import os
-import re
-import pickle
-import subprocess
-import datetime
 import argparse
-import pprint
 import config
-from utils import append_file, load_collected_data, make_reference, make_filename, write_file, append_log
+from utils import append_file, load_collected_data, write_log, append_log
 from parser.lmod import run_collect_data_script
 
 def write_log():
     with open(config.main_log_file, 'w') as log_file:
         log_file.write("")
 
-
-
-
-
-####################################################
 def write_package_file(package, output_dir, dependencies, moduleclass):
     os.makedirs(output_dir, exist_ok=True)  # Ensure the output directory exists
     package_file = os.path.join(output_dir, f"{package}.md")
@@ -30,21 +20,18 @@ def write_package_file(package, output_dir, dependencies, moduleclass):
             content += f"[[{dep}]]\n"
     print(f"Writing to {package_file}")
     append_file(package_file, content)
-####################################################
-
-
 
 def process_modulepath(modulepaths, title, output_dir):
     # Run collect_data.py if data file doesn't exist
     if not os.path.exists(config.DATA_FILE):
         print("Collected data not found. Running collect_data.py...")
-        append_log("Collected data not found. Running collect_data.py...",main_log_file)
+        append_log("Collected data not found. Running collect_data.py...", config.main_log_file)
         run_collect_data_script()
 
     collected_data = load_collected_data(config.DATA_FILE)
     if not collected_data:
         print("No collected data found even after running collect_data.py.")
-        append_log("No collected data found even after running collect_data.py.")
+        append_log("No collected data found even after running collect_data.py.", config.main_log_file)
         return
 
     package_infos = collected_data.get('package_infos', {})
@@ -89,6 +76,7 @@ def process_modulepath(modulepaths, title, output_dir):
                 latest_version = latest_version_info[key][arch][1]
                 latest_versions[arch] = latest_version
 
+                module_info: object
                 module_info, creation_date, installer = latest_version_info[key][arch]
                 latest_creation_dates[arch] = creation_date
                 dependencies.update(module_info.get('Loaded Modules', []))
@@ -97,7 +85,7 @@ def process_modulepath(modulepaths, title, output_dir):
         latest_info = latest_version_info.get(key, {}).get(latest_info_arch, (None, None, None))[0]
 
         if latest_info is None:
-            append_log(f"Warning: Missing latest info for {primary_category} | {package}. Skipping.",main_log_file)
+            append_log(f"Warning: Missing latest info for {primary_category} | {package}. Skipping.",config.main_log_file)
             continue
 
         if package not in all_category_packages:
@@ -106,7 +94,7 @@ def process_modulepath(modulepaths, title, output_dir):
 
 def main():
 
-    write_log()
+    write_log(config.main_log_file)
 
     for title, output_dir in zip(config.titles, config.output_dirs):
         print(f"Processing {title} in directory {output_dir}")

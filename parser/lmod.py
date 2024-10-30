@@ -8,7 +8,7 @@ def run_collect_data_script():
         result = subprocess.run(['python', 'collect_data.py'], check=True) 
         return result.returncode == 0
     except subprocess.CalledProcessError as e:
-        append_log(f"Failed to run collect_data.py: {e}",main_log_file)
+        append_log(f"Failed to run collect_data.py: {e}", config.main_log_file)
         print(f"Failed to run collect_data.py: {e}")
         return False
 

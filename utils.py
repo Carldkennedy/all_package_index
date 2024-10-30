@@ -1,5 +1,4 @@
 import os
-import config
 import pickle
 
 def write_file(filepath, content):
