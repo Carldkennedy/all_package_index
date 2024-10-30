@@ -13,7 +13,7 @@ def write_log(log_file_path):
     with open(log_file_path, 'w') as log_file:
         log_file.write("")
 
-def write_output(message):
+def write_log(message):
     if message is None:
         message = ""
     with open(config.log_file_path, 'a') as f:
@@ -113,20 +113,20 @@ def extract_lua_info(lua_file_path):
         "EB Version": ebversion_var
     }
 
-    write_output(f"\nParsed: {lua_file_path}")
+    write_log(f"\nParsed: {lua_file_path}")
     for key, value in module_info.items():
-        write_output(f"\n{key}:")
+        write_log(f"\n{key}:")
         if isinstance(value, list):
             for item in value:
-                write_output(item)
+                write_log(item)
         elif isinstance(value, dict):
             for var, val in value.items():
                 if isinstance(val, dict):
-                    write_output(f"{var} = {val['value']} (variable: {val['var_name']})")
+                    write_log(f"{var} = {val['value']} (variable: {val['var_name']})")
                 else:
-                    write_output(f"{var} = {val}")
+                    write_log(f"{var} = {val}")
         else:
-            write_output(value)
+            write_log(value)
 
     creation_time = os.path.getctime(lua_file_path)
     creation_date = datetime.datetime.fromtimestamp(creation_time).strftime('%Y-%m-%d')
@@ -147,7 +147,7 @@ def extract_installer(file_path):
                     if user.startswith('sa_'):
                         return user[3:]
     except Exception as e:
-        write_output(f"Error extracting installer: {e}")
+        write_log(f"Error extracting installer: {e}")
     return None
 
 def save_collected_data(file_path, data):
@@ -180,7 +180,7 @@ def collect_data():
         for lua_file_path, extracted_path in paths:
             parts = extracted_path.split('/')
             if len(parts) != 3:
-                write_output(f"Unexpected path structure: {extracted_path}")
+                write_log(f"Unexpected path structure: {extracted_path}")
                 continue
 
             category, package, version = parts

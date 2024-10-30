@@ -6,7 +6,7 @@ import datetime
 import argparse
 import config
 from packaging import version
-from utils import append_file, load_collected_data, make_reference, make_filename, write_file
+from utils import append_file, load_collected_data, make_reference, make_filename, write_file, write_log
 from parser.lmod import run_collect_data_script
 from writer.rest import write_custom_file, write_dependencies, write_description_file, write_installation_file, write_ml_file, write_package_file, write_sidebar_file
 
@@ -18,25 +18,18 @@ def write_log():
     with open(config.main_log_file, 'w') as log_file:
         log_file.write("")
 
-def write_output(message):
-    if message is None:
-        message = ""
-    with open(config.main_log_file, 'a') as f:
-        f.write(message + '\n')
-    if verbose:
-        print(message)
 
 def process_modulepath(modulepaths, title, output_dir):
     # Run collect_data.py if data file doesn't exist
     if not os.path.exists(config.DATA_FILE):
         print("Collected data not found. Running collect_data.py...")
-        write_output("Collected data not found. Running collect_data.py...")
+        write_log("Collected data not found. Running collect_data.py...")
         run_collect_data_script()
 
     collected_data = load_collected_data(config.DATA_FILE)
     if not collected_data:
         print("No collected data found even after running collect_data.py.")
-        write_output("No collected data found even after running collect_data.py.")
+        write_log("No collected data found even after running collect_data.py.")
         return
 
     package_infos = collected_data.get('package_infos', {})
@@ -134,7 +127,7 @@ def process_modulepath(modulepaths, title, output_dir):
         latest_info = latest_version_info.get(key, {}).get(latest_info_arch, (None, None, None))[0]
 
         if latest_info is None:
-            write_output(f"Warning: Missing latest info for {primary_category} | {package}. Skipping.")
+            write_log(f"Warning: Missing latest info for {primary_category} | {package}. Skipping.")
             continue
 
         if package not in all_category_packages:

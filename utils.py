@@ -1,3 +1,7 @@
+import os
+import config
+import pickle
+
 def write_file(filepath, content):
     with open(filepath, 'w') as file:
         file.write(content)
@@ -16,3 +20,11 @@ def make_reference(*args):
     return '-'.join(args).replace(' ', '-').lower()
 # Alias
 make_filename = make_reference
+
+def write_log(message):
+    if message is None:
+        message = ""
+    with open(config.main_log_file, 'a') as f:
+        f.write(message + '\n')
+    if verbose:
+        print(message)
