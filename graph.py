@@ -6,7 +6,7 @@ import datetime
 import argparse
 import pprint
 import config
-from utils import append_file, load_collected_data, make_reference, make_filename, write_file, write_log
+from utils import append_file, load_collected_data, make_reference, make_filename, write_file, append_log
 from parser.lmod import run_collect_data_script
 
 def write_log():
@@ -38,13 +38,13 @@ def process_modulepath(modulepaths, title, output_dir):
     # Run collect_data.py if data file doesn't exist
     if not os.path.exists(config.DATA_FILE):
         print("Collected data not found. Running collect_data.py...")
-        write_log("Collected data not found. Running collect_data.py...")
+        append_log("Collected data not found. Running collect_data.py...",main_log_file)
         run_collect_data_script()
 
     collected_data = load_collected_data(config.DATA_FILE)
     if not collected_data:
         print("No collected data found even after running collect_data.py.")
-        write_log("No collected data found even after running collect_data.py.")
+        append_log("No collected data found even after running collect_data.py.")
         return
 
     package_infos = collected_data.get('package_infos', {})
@@ -97,7 +97,7 @@ def process_modulepath(modulepaths, title, output_dir):
         latest_info = latest_version_info.get(key, {}).get(latest_info_arch, (None, None, None))[0]
 
         if latest_info is None:
-            write_log(f"Warning: Missing latest info for {primary_category} | {package}. Skipping.")
+            append_log(f"Warning: Missing latest info for {primary_category} | {package}. Skipping.",main_log_file)
             continue
 
         if package not in all_category_packages:

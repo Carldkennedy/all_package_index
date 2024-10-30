@@ -5,22 +5,9 @@ import pickle
 import datetime
 import subprocess
 from lupa import LuaRuntime
-import config
-from utils import append_file
+from config import log_file_path, broken_symlinks_file, modulepaths, DATA_FILE
+from utils import append_file, append_log, write_log
 from parser.lmod import process_broken_symlinks
-
-def write_log(log_file_path):
-    with open(log_file_path, 'w') as log_file:
-        log_file.write("")
-
-def write_log(message):
-    if message is None:
-        message = ""
-    with open(config.log_file_path, 'a') as f:
-        f.write(message + '\n')
-    print(message)
-
-
 
 def extract_lua_info(lua_file_path):
     try:
@@ -29,12 +16,12 @@ def extract_lua_info(lua_file_path):
     except FileNotFoundError:
         log_message = f"{lua_file_path}\n"
         print(log_message.strip())
-        append_file(config.broken_symlinks_file, log_message)
+        append_file(broken_symlinks_file, log_message)
         return None, None, None
     except Exception as e:
         log_message = f"Error reading {lua_file_path}: {e}\n"
         print(log_message.strip())
-        append_file(config.broken_symlinks_file, log_message)
+        append_file(broken_symlinks_file, log_message)
         return None, None, None
 
     lua = LuaRuntime(unpack_returned_tuples=True)
@@ -113,20 +100,20 @@ def extract_lua_info(lua_file_path):
         "EB Version": ebversion_var
     }
 
-    write_log(f"\nParsed: {lua_file_path}")
+    append_log(f"\nParsed: {lua_file_path}",log_file_path)
     for key, value in module_info.items():
-        write_log(f"\n{key}:")
+        append_log(f"\n{key}:",log_file_path)
         if isinstance(value, list):
             for item in value:
-                write_log(item)
+                append_log(item,log_file_path)
         elif isinstance(value, dict):
             for var, val in value.items():
                 if isinstance(val, dict):
-                    write_log(f"{var} = {val['value']} (variable: {val['var_name']})")
+                    append_log(f"{var} = {val['value']} (variable: {val['var_name']})",log_file_path)
                 else:
-                    write_log(f"{var} = {val}")
+                    append_log(f"{var} = {val}",log_file_path)
         else:
-            write_log(value)
+            append_log(value,log_file_path)
 
     creation_time = os.path.getctime(lua_file_path)
     creation_date = datetime.datetime.fromtimestamp(creation_time).strftime('%Y-%m-%d')
@@ -147,7 +134,7 @@ def extract_installer(file_path):
                     if user.startswith('sa_'):
                         return user[3:]
     except Exception as e:
-        write_log(f"Error extracting installer: {e}")
+        append_log(f"Error extracting installer: {e}",log_file_path)
     return None
 
 def save_collected_data(file_path, data):
@@ -155,7 +142,7 @@ def save_collected_data(file_path, data):
         pickle.dump(data, f)
 
 def collect_data():
-    paths_by_arch = {arch: mp.replace('/all', '').split(':') for arch, mp in config.modulepaths.items()}
+    paths_by_arch = {arch: mp.replace('/all', '').split(':') for arch, mp in modulepaths.items()}
     extracted_paths_by_arch = {arch: [(file, '/'.join(file.split('/')[-3:]).replace('.lua', '')) for path in paths for file in glob.glob(os.path.join(path, '*/*/*.lua'))] for arch, paths in paths_by_arch.items()}
     sorted_paths_by_arch = {
         arch: sorted(
@@ -180,7 +167,7 @@ def collect_data():
         for lua_file_path, extracted_path in paths:
             parts = extracted_path.split('/')
             if len(parts) != 3:
-                write_log(f"Unexpected path structure: {extracted_path}")
+                append_log(f"Unexpected path structure: {extracted_path}",log_file_path)
                 continue
 
             category, package, version = parts
@@ -206,13 +193,13 @@ def collect_data():
         'latest_version_info': latest_version_info_str_keys
     }
 
-    save_collected_data(config.DATA_FILE, collected_data)
+    save_collected_data(DATA_FILE, collected_data)
 
 
 if __name__ == "__main__":
     
-    write_log(config.log_file_path)
-    write_log(config.broken_symlinks_file)
+    write_log(log_file_path)
+    write_log(broken_symlinks_file)
 
     collect_data()
 
