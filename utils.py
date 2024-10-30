@@ -21,10 +21,11 @@ def make_reference(*args):
 # Alias
 make_filename = make_reference
 
-def write_log(message):
+def append_log(message, logfile):
     if message is None:
         message = ""
-    with open(config.main_log_file, 'a') as f:
+    with open(log_file, 'a') as f:
         f.write(message + '\n')
     if verbose:
         print(message)
+
