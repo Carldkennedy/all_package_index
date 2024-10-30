@@ -1,12 +1,7 @@
 import os
-import re
-import pickle
-import subprocess
-import datetime
 import argparse
 import config
-from packaging import version
-from utils import append_file, load_collected_data, make_reference, make_filename, write_file, write_log
+from utils import load_collected_data, make_reference, write_file, append_file, write_log, append_log
 from parser.lmod import run_collect_data_script
 from writer.rest import write_custom_file, write_dependencies, write_description_file, write_installation_file, write_ml_file, write_package_file, write_sidebar_file
 
@@ -23,13 +18,13 @@ def process_modulepath(modulepaths, title, output_dir):
     # Run collect_data.py if data file doesn't exist
     if not os.path.exists(config.DATA_FILE):
         print("Collected data not found. Running collect_data.py...")
-        append_log("Collected data not found. Running collect_data.py...",main_log_file)
+        append_log("Collected data not found. Running collect_data.py...", config.main_log_file)
         run_collect_data_script()
 
     collected_data = load_collected_data(config.DATA_FILE)
     if not collected_data:
         print("No collected data found even after running collect_data.py.")
-        append_log("No collected data found even after running collect_data.py.",main_log_file)
+        append_log("No collected data found even after running collect_data.py.", config.main_log_file)
         return
 
     package_infos = collected_data.get('package_infos', {})
@@ -127,7 +122,8 @@ def process_modulepath(modulepaths, title, output_dir):
         latest_info = latest_version_info.get(key, {}).get(latest_info_arch, (None, None, None))[0]
 
         if latest_info is None:
-            append_log(f"Warning: Missing latest info for {primary_category} | {package}. Skipping.",main_log_file)
+            append_log(f"Warning: Missing latest info for {primary_category} | {package}. Skipping.",
+                       config.main_log_file)
             continue
 
         if package not in all_category_packages:
@@ -154,7 +150,7 @@ def process_modulepath(modulepaths, title, output_dir):
         file.writelines(links_for_main_index)
 def main():
 
-    write_log()
+    write_log(config.main_log_file)
 
     for title, output_dir in zip(config.titles, config.output_dirs):
         print(f"Processing {title} in directory {output_dir}")
