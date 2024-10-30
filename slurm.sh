@@ -25,5 +25,5 @@ if [ $? -ne 0 ]; then
 fi
 
 echo "Environment setup is complete."
-
+cd all-package-index
 python collect_data.py
