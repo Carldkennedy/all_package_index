@@ -5,21 +5,21 @@ import pickle
 import datetime
 import subprocess
 from lupa import LuaRuntime
-from config import log_file_path, broken_symlinks_file, modulepaths, DATA_FILE
+import config 
 from utils import append_file, append_log, write_log
 from parser.lmod import process_broken_symlinks
 
 def extract_lua_info(lua_file_path):
     try:
         with open(lua_file_path, 'r') as file:
-            lua_content = file.read()
+            lua_content: str = file.read()
     except FileNotFoundError:
-        log_message = f"{lua_file_path}\n"
+        log_message = f"{config.lua_file_path}\n"
         print(log_message.strip())
         append_file(broken_symlinks_file, log_message)
         return None, None, None
     except Exception as e:
-        log_message = f"Error reading {lua_file_path}: {e}\n"
+        log_message = f"Error reading {config.lua_file_path}: {e}\n"
         print(log_message.strip())
         append_file(broken_symlinks_file, log_message)
         return None, None, None
@@ -55,7 +55,7 @@ def extract_lua_info(lua_file_path):
 
         lua.execute(lua_content)
     except Exception as e:
-        log_message = f"Error executing Lua content in {lua_file_path}: {e}\n"
+        log_message = f"Error executing Lua content in {config.lua_file_path}: {e}\n"
         print(log_message.strip())
         append_file(log_file_path, log_message)
         return None, None, None
@@ -100,7 +100,7 @@ def extract_lua_info(lua_file_path):
         "EB Version": ebversion_var
     }
 
-    append_log(f"\nParsed: {lua_file_path}",log_file_path)
+    append_log(f"\nParsed: {config.lua_file_path}",log_file_path)
     for key, value in module_info.items():
         append_log(f"\n{key}:",log_file_path)
         if isinstance(value, list):
@@ -115,10 +115,10 @@ def extract_lua_info(lua_file_path):
         else:
             append_log(value,log_file_path)
 
-    creation_time = os.path.getctime(lua_file_path)
+    creation_time = os.path.getctime(config.lua_file_path)
     creation_date = datetime.datetime.fromtimestamp(creation_time).strftime('%Y-%m-%d')
 
-    installer = extract_installer(lua_file_path)
+    installer = extract_installer(config.lua_file_path)
 
     return module_info, creation_date, installer
 
@@ -164,7 +164,7 @@ def collect_data():
     latest_version_info = {}
 
     for arch, paths in sorted_paths_by_arch.items():
-        for lua_file_path, extracted_path in paths:
+        for config.lua_file_path, extracted_path in paths:
             parts = extracted_path.split('/')
             if len(parts) != 3:
                 append_log(f"Unexpected path structure: {extracted_path}",log_file_path)
@@ -177,14 +177,14 @@ def collect_data():
                 latest_version_info[(category, package)] = {}
 
             if arch not in latest_version_info[(category, package)]:
-                module_info, creation_date, installer = extract_lua_info(lua_file_path)
+                module_info, creation_date, installer = extract_lua_info(config.lua_file_path)
                 if module_info is None:
                     continue
 
                 latest_version_info[(category, package)][arch] = (module_info, creation_date, installer)
 
             if (category, package, version) not in package_infos[arch]:
-                package_infos[arch][(category, package, version)] = (lua_file_path, version)
+                package_infos[arch][(category, package, version)] = (config.lua_file_path, version)
 
     package_infos_str_keys = {arch: {f"{cat}|{pkg}|{ver}": val for (cat, pkg, ver), val in infos.items()} for arch, infos in package_infos.items()}
     latest_version_info_str_keys = {f"{cat}|{pkg}": {arch: val for arch, val in infos.items()} for (cat, pkg), infos in latest_version_info.items()}
