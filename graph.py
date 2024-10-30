@@ -4,10 +4,6 @@ import config
 from utils import append_file, load_collected_data, write_log, append_log
 from parser.lmod import run_collect_data_script
 
-def write_log():
-    with open(config.main_log_file, 'w') as log_file:
-        log_file.write("")
-
 def write_package_file(package, output_dir, dependencies, moduleclass):
     os.makedirs(output_dir, exist_ok=True)  # Ensure the output directory exists
     package_file = os.path.join(output_dir, f"{package}.md")
