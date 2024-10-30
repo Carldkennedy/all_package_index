@@ -1,6 +1,8 @@
 import subprocess
 import os
 import config
+from utils import append_file, append_log
+
 def run_collect_data_script():
     try:
         result = subprocess.run(['python', 'collect_data.py'], check=True) 
