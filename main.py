@@ -9,11 +9,6 @@ os.makedirs(config.IMPORTS_DIR, exist_ok=True)
 os.makedirs(config.STACKS_DIR, exist_ok=True)
 os.makedirs(config.CUSTOM_DIR, exist_ok=True)
 
-def write_log():
-    with open(config.main_log_file, 'w') as log_file:
-        log_file.write("")
-
-
 def process_modulepath(modulepaths, title, output_dir):
     # Run collect_data.py if data file doesn't exist
     if not os.path.exists(config.DATA_FILE):
