@@ -6,34 +6,29 @@ copy:
     to: slurm.sh
     overwrite: true
 
-  - from: collect_data.py
-    to: collect_data.py
-    overwrite: true
-
-  - from: config.py
-    to: config.py
+  - from: .
+    to: all-package-index/
     overwrite: true
 
 collect:
-  - from: log-collect-data.log
+  - from: all-package-index/log-collect-data.log
     to: log-collect-data.log
     overwrite: true
 
-  - from: collected-data.pkl
+  - from: all-package-index/collected-data.pkl
     to: collected-data.pkl
     overwrite: true
   
-  - from: broken-symlinks.log
+  - from: all-package-index/broken-symlinks.log
     to: broken-symlinks.log
+    overwrite: true
+
+  - from: slurm.out 
+    to: slurm.out
     overwrite: true
 
 clean:
   - slurm.sh
-  - config.py
-  - collect_data.py
-  - log-collect-data.log
-  - collected-data.pkl
-  - broken-symlinks.log
 
 sbatch: slurm.sh
 continue_if_job_fails: true
