@@ -16,16 +16,17 @@ def load_collected_data(file_path):
             return pickle.load(f)
     return None
 
-def make_reference(*args):
+def make_filename(*args):
     return '-'.join(args).replace(' ', '-').lower()
 # Alias
-make_filename = make_reference
+make_reference = make_filename
+
+def write_log(logfile):
+    with open(logfile, 'w') as log_file:
+        log_file.write("")
 
 def append_log(message, logfile):
     if message is None:
         message = ""
-    with open(log_file, 'a') as f:
+    with open(logfile, 'a') as f:
         f.write(message + '\n')
-    if verbose:
-        print(message)
-
