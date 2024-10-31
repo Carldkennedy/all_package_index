@@ -16,12 +16,12 @@ def extract_lua_info(lua_file_path):
     except FileNotFoundError:
         log_message = f"{config.lua_file_path}\n"
         print(log_message.strip())
-        append_file(broken_symlinks_file, log_message)
+        append_file(config.broken_symlinks_file, log_message)
         return None, None, None
     except Exception as e:
         log_message = f"Error reading {config.lua_file_path}: {e}\n"
         print(log_message.strip())
-        append_file(broken_symlinks_file, log_message)
+        append_file(config.broken_symlinks_file, log_message)
         return None, None, None
 
     lua = LuaRuntime(unpack_returned_tuples=True)
@@ -142,7 +142,7 @@ def save_collected_data(file_path, data):
         pickle.dump(data, f)
 
 def collect_data():
-    paths_by_arch = {arch: mp.replace('/all', '').split(':') for arch, mp in modulepaths.items()}
+    paths_by_arch = {arch: mp.replace('/all', '').split(':') for arch, mp in config.modulepaths.items()}
     extracted_paths_by_arch = {arch: [(file, '/'.join(file.split('/')[-3:]).replace('.lua', '')) for path in paths for file in glob.glob(os.path.join(path, '*/*/*.lua'))] for arch, paths in paths_by_arch.items()}
     sorted_paths_by_arch = {
         arch: sorted(
