@@ -10,7 +10,7 @@ The generated files for each package found on the given module paths includes:
 * Sidebar - Latest version available on each architecture, date module file was last modified, and URL.
 * Versions available - as module load commands in grouped tabs (for each architecture).
 * Notes - detailing how to view build logs, etc.
-* Dependencies - Shows the depenedenices for the latest version (across architectures), each is a link to it's respective page. 
+* Dependencies - Shows the dependencies for the latest version (across architectures), each is a link to it's respective page.
  
 Each of the above is imported into a package's page when built, this allows re-use of these imports 
 elsewhere in the documentation.

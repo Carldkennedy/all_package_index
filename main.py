@@ -27,16 +27,16 @@ def process_modulepath(modulepaths, title, output_dir):
 
     # Initialize a dictionary to hold the primary category for each package
     package_ref = {}
-    
+
     # Iterate over each key in the latest_version_info dictionary
     for key in latest_version_info.keys():
         categories = set()  # Initialize a new set for categories for each key
-        
+
         # Extract category and package for each architecture entry
         for arch in latest_version_info[key]:
             category, package = key.split('|')
             categories.add(category)  # Add category to the set
-    
+
         # Check if the package already has a category assigned
 #        if package not in package_ref:
 #            # Assign the first non-"All" category or "All" if none exists
@@ -56,7 +56,7 @@ def process_modulepath(modulepaths, title, output_dir):
                 non_all_category = next((cat for cat in categories if cat != "All"), None)
                 if non_all_category:
                     package_ref[package] = non_all_category
- 
+
     # Create stacks index file
     output_dir_path = os.path.join(config.STACKS_DIR, output_dir)
     os.makedirs(output_dir_path, exist_ok=True)
@@ -73,7 +73,7 @@ def process_modulepath(modulepaths, title, output_dir):
     all_category_dir = os.path.join(output_dir_path, all_category)
     os.makedirs(all_category_dir, exist_ok=True)
     all_category_index_file = os.path.join(all_category_dir, "index.rst")
-    module_class = "All module classes" 
+    module_class = "All module classes"
     all_category_title = f"{all_category}"
 
     if all_category_index_file not in added_indexes:
@@ -96,9 +96,9 @@ def process_modulepath(modulepaths, title, output_dir):
                 write_file(category_index_file, f".. _{make_reference(output_dir, primary_category, '')}:\n\n{category_title}\n{'^' * len(category_title)}\n\nModule class description: {module_class}\n\n.. toctree::\n    :maxdepth: 1\n    :glob:\n\n    ./*\n\n")
 #                append_file(stack_index_file, f"    {primary_category}/index.rst\n")
                 link_main_index = f"    {primary_category}/index.rst\n"
-                links_for_main_index.append(link_main_index) 
+                links_for_main_index.append(link_main_index)
                 added_indexes.add(category_index_file)
-        
+
         latest_versions = {}
         latest_creation_dates = {}
         dependencies = set()
@@ -133,7 +133,7 @@ def process_modulepath(modulepaths, title, output_dir):
             all_category_packages.add(package)
 
         link = f"* :ref:`{package} <{make_reference(package, primary_category, output_dir)}>`\n"
-        links_for_all_index.append(link) 
+        links_for_all_index.append(link)
 
     # Write sorted lines to the file
     links_for_all_index.sort(key=str.casefold)
@@ -143,6 +143,7 @@ def process_modulepath(modulepaths, title, output_dir):
     links_for_main_index.sort(key=str.casefold)
     with open(stack_index_file, 'a') as file:
         file.writelines(links_for_main_index)
+
 def main():
 
     write_log(config.main_log_file)
