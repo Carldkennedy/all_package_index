@@ -198,8 +198,8 @@ def collect_data():
 
 if __name__ == "__main__":
     
-    write_log(log_file_path)
-    write_log(broken_symlinks_file)
+    write_log(config.log_file_path)
+    write_log(config.broken_symlinks_file)
 
     collect_data()
 
