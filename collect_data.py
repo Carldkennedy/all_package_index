@@ -57,7 +57,7 @@ def extract_lua_info(lua_file_path):
     except Exception as e:
         log_message = f"Error executing Lua content in {config.lua_file_path}: {e}\n"
         print(log_message.strip())
-        append_file(log_file_path, log_message)
+        append_file(config.log_file_path, log_message)
         return None, None, None
 
     help_pattern = re.compile(r'help\(\[\=\=\[(.*?)\]\=\=\]\)', re.DOTALL)
@@ -100,20 +100,20 @@ def extract_lua_info(lua_file_path):
         "EB Version": ebversion_var
     }
 
-    append_log(f"\nParsed: {config.lua_file_path}",log_file_path)
+    append_log(f"\nParsed: {config.lua_file_path}",config.log_file_path)
     for key, value in module_info.items():
-        append_log(f"\n{key}:",log_file_path)
+        append_log(f"\n{key}:",config.log_file_path)
         if isinstance(value, list):
             for item in value:
-                append_log(item,log_file_path)
+                append_log(item,config.log_file_path)
         elif isinstance(value, dict):
             for var, val in value.items():
                 if isinstance(val, dict):
-                    append_log(f"{var} = {val['value']} (variable: {val['var_name']})",log_file_path)
+                    append_log(f"{var} = {val['value']} (variable: {val['var_name']})",config.log_file_path)
                 else:
-                    append_log(f"{var} = {val}",log_file_path)
+                    append_log(f"{var} = {val}",config.log_file_path)
         else:
-            append_log(value,log_file_path)
+            append_log(value,config.log_file_path)
 
     creation_time = os.path.getctime(config.lua_file_path)
     creation_date = datetime.datetime.fromtimestamp(creation_time).strftime('%Y-%m-%d')
@@ -134,7 +134,7 @@ def extract_installer(file_path):
                     if user.startswith('sa_'):
                         return user[3:]
     except Exception as e:
-        append_log(f"Error extracting installer: {e}",log_file_path)
+        append_log(f"Error extracting installer: {e}",config.log_file_path)
     return None
 
 def save_collected_data(file_path, data):
@@ -167,7 +167,7 @@ def collect_data():
         for config.lua_file_path, extracted_path in paths:
             parts = extracted_path.split('/')
             if len(parts) != 3:
-                append_log(f"Unexpected path structure: {extracted_path}",log_file_path)
+                append_log(f"Unexpected path structure: {extracted_path}",config.log_file_path)
                 continue
 
             category, package, version = parts
@@ -193,7 +193,7 @@ def collect_data():
         'latest_version_info': latest_version_info_str_keys
     }
 
-    save_collected_data(DATA_FILE, collected_data)
+    save_collected_data(config.DATA_FILE, collected_data)
 
 
 if __name__ == "__main__":
