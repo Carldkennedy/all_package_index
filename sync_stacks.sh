@@ -16,7 +16,7 @@ SOFTWARE_EXISTING="${REPO_DIR}/${SOFTWARE}"
 CUSTOM_EXISTING="${REPO_DIR}/${CUSTOM}"
 
 # Run automatic build to generate new files
-# ./run.sh
+./run.sh
 
 # Clone the repository if it doesn't exist
 if [ ! -d "$REPO_DIR/.git" ]; then
