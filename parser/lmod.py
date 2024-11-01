@@ -12,6 +12,17 @@ def run_collect_data_script():
         print(f"Failed to run collect_data.py: {e}")
         return False
 
+def process_modulepath(modulepaths, title, output_dir):
+    # Run collect_data.py if data file doesn't exist
+    collected_data = utils.ensure_data_collected()
+
+    if collected_data:
+        package_infos, latest_version_info, package_ref = lmod.extract_package_info(collected_data)
+    else:
+        package_infos, latest_version_info, package_ref = None, None, None
+
+    return package_infos, latest_version_info, package_ref
+
 def process_broken_symlinks():
     if not os.path.exists(config.broken_symlinks_file):
         print(f"No broken symlinks file found for date: {config.current_date}")
