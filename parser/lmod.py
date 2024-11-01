@@ -17,7 +17,7 @@ def process_modulepath(modulepaths, title, output_dir):
     collected_data = utils.ensure_data_collected()
 
     if collected_data:
-        package_infos, latest_version_info, package_ref = lmod.extract_package_info(collected_data)
+        package_infos, latest_version_info, package_ref = extract_package_info(collected_data)
     else:
         package_infos, latest_version_info, package_ref = None, None, None
 
