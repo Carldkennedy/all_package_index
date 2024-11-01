@@ -34,3 +34,41 @@ def process_broken_symlinks():
                 result = subprocess.run(['ls', '-lrath', target], capture_output=True, text=True)
                 append_file(config.broken_symlinks_file, result.stdout)
                 append_file(config.broken_symlinks_file, result.stderr)
+
+def extract_package_info(collected_data):
+    """
+    Extracts package information, latest version info, and categorizes each package
+    by its primary category from the collected data.
+
+    Args:
+        collected_data (dict): Dictionary containing `package_infos` and `latest_version_info`.
+
+    Returns:
+        tuple: A tuple containing:
+            - package_infos (dict): Information about each package.
+            - latest_version_info (dict): Latest version information for each package.
+            - package_ref (dict): A dictionary mapping each package to its primary category.
+    """
+    package_infos = collected_data.get('package_infos', {})
+    latest_version_info = collected_data.get('latest_version_info', {})
+
+    package_ref = {}
+
+    for key in latest_version_info.keys():
+        categories = set()
+
+        for arch in latest_version_info[key]:
+            category, package = key.split('|')
+            categories.add(category)
+
+        if package not in package_ref:
+            primary_category = next((cat for cat in categories if cat != "All"), "All")
+            package_ref[package] = primary_category
+        else:
+            if package_ref[package] == "All":
+                non_all_category = next((cat for cat in categories if cat != "All"), None)
+                if non_all_category:
+                    package_ref[package] = non_all_category
+
+    return package_infos, latest_version_info, package_ref
+
