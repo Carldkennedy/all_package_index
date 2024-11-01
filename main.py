@@ -59,7 +59,6 @@ def process_modulepath(modulepaths, title, output_dir):
                     package_ref[package] = non_all_category
 
 
-write_all_files(title, package_infos, output_dir, package_ref, latest_version_info)
 
 def main():
 
@@ -68,6 +67,7 @@ def main():
     for title, output_dir in zip(config.titles, config.output_dirs):
         print(f"Processing {title} in directory {output_dir}")
         process_modulepath(config.modulepaths, title, output_dir)
+        write_all_files(title, package_infos, output_dir, package_ref, latest_version_info)
 
     stacks_title = "All Packages Index"
     stacks_file = os.path.join(config.STACKS_DIR, "index.rst")
