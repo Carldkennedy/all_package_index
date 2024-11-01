@@ -2,7 +2,7 @@ import os
 import re
 from datetime import datetime
 import config
-from utils import make_filename, make_reference, write_file, append_file
+import utils
 
 # Functions to write rst files
 def setup_writer_directories():
@@ -69,7 +69,7 @@ def write_package_file(category_dir, category, package, output_dir):
         f".. include:: /{config.IMPORTS_DIR}/{make_filename(package, 'inst', output_dir)}.rst\n\n"
         f".. include:: /{config.IMPORTS_DIR}/{make_filename(package, 'dpnd', output_dir)}.rst\n\n"
     )
-    write_file(package_file, content)
+    utils.write_file(package_file, content)
 
 def write_sidebar_file(package, category, latest_version_info, output_dir):
     def extract_version(version_with_toolchain):
@@ -123,7 +123,7 @@ def write_sidebar_file(package, category, latest_version_info, output_dir):
         f"   :Installed on (Znver): {creation_date_znver}\n"
         f"   :URL: {homepage_url}\n"
     )
-    write_file(sdbr_file, content)
+    utils.write_file(sdbr_file, content)
 
 
 def write_description_file(package, latest_info, output_dir):
@@ -133,10 +133,10 @@ def write_description_file(package, latest_info, output_dir):
     description = "\n".join(line.strip() for line in description.split("\n")).strip() + '\n'
     description = description.replace('`time\'', '``time``')
     description = re.sub(r'Description:\s*', '', description)
-    write_file(dscr_file, f"{description}\n")
+    utils.write_file(dscr_file, f"{description}\n")
 
 def write_installation_file(package, latest_info, output_dir):
-    inst_file = os.path.join(config.IMPORTS_DIR, f"{make_filename(package, 'inst', output_dir)}.rst")
+    inst_file = os.path.join(config.IMPORTS_DIR, f"{utils.make_filename(package, 'inst', output_dir)}.rst")
     ebroot_var= latest_info.get('EB Variables', {}).get('EBROOT', {}).get('var_name', None)
     if ebroot_var is None:
         content = (
@@ -146,14 +146,14 @@ def write_installation_file(package, latest_info, output_dir):
         content = (
             f"{package} was installed using Easybuild, build details can be found in ``${ebroot_var}/easybuild`` with a given module loaded."
         )
-    append_file(inst_file, content + "\n")
+    utils.append_file(inst_file, content + "\n")
 
 def write_custom_file(package, output_dir):
-    cust_file = os.path.join(config.CUSTOM_DIR, f"{make_filename(package, 'cust', output_dir)}.rst")
+    cust_file = os.path.join(config.CUSTOM_DIR, f"{utils.make_filename(package, 'cust', output_dir)}.rst")
     write_file(cust_file, "")
 
 def write_dependencies(dependencies, output_dir, category, package, package_ref):
-    dpnd_file = os.path.join(config.IMPORTS_DIR, f"{make_filename(package, 'dpnd', output_dir)}.rst")
+    dpnd_file = os.path.join(config.IMPORTS_DIR, f"{utils.make_filename(package, 'dpnd', output_dir)}.rst")
     if dependencies:
         content = f".. dropdown:: Dependencies for latest version of {package}\n\n"
         def version_key(version):
