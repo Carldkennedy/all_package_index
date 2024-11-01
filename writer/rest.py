@@ -56,18 +56,18 @@ def write_note_file(imports_dir):
 def write_package_file(category_dir, category, package, output_dir):
     package_file = os.path.join(category_dir, f"{package}.rst")
     content = (
-        f".. _{make_reference(package, category, output_dir)}:\n\n"
+        f".. _{utils.make_reference(package, category, output_dir)}:\n\n"
         f"{package}\n{'=' * len(package)}\n\n"
-        f".. include:: /{config.IMPORTS_DIR}/{make_filename(package, 'sdbr', output_dir)}.rst\n\n"
-        f".. include:: /{config.IMPORTS_DIR}/{make_filename(package, 'dscr', output_dir)}.rst\n\n"
+        f".. include:: /{config.IMPORTS_DIR}/{utils.make_filename(package, 'sdbr', output_dir)}.rst\n\n"
+        f".. include:: /{config.IMPORTS_DIR}/{utils.make_filename(package, 'dscr', output_dir)}.rst\n\n"
         f".. include:: /{config.IMPORTS_DIR}/packages_note.rst\n\n"
         f".. include:: /referenceinfo/imports/scheduler/SLURM/common_commands/srun_start_interactive_session_import_stanage.rst\n\n"
         f"A version of {package} can then be made available with *one* of the following:\n\n"
-        f".. include:: /{config.IMPORTS_DIR}/{make_filename(package, 'ml', output_dir)}.rst\n\n"
-        f".. include:: /{config.CUSTOM_DIR}/{make_filename(package, 'cust', output_dir)}.rst\n\n"
+        f".. include:: /{config.IMPORTS_DIR}/{utils.make_filename(package, 'ml', output_dir)}.rst\n\n"
+        f".. include:: /{config.CUSTOM_DIR}/{utils.make_filename(package, 'cust', output_dir)}.rst\n\n"
         f"Notes\n-----\n\n"
-        f".. include:: /{config.IMPORTS_DIR}/{make_filename(package, 'inst', output_dir)}.rst\n\n"
-        f".. include:: /{config.IMPORTS_DIR}/{make_filename(package, 'dpnd', output_dir)}.rst\n\n"
+        f".. include:: /{config.IMPORTS_DIR}/{utils.make_filename(package, 'inst', output_dir)}.rst\n\n"
+        f".. include:: /{config.IMPORTS_DIR}/{utils.make_filename(package, 'dpnd', output_dir)}.rst\n\n"
     )
     utils.write_file(package_file, content)
 
@@ -114,7 +114,7 @@ def write_sidebar_file(package, category, latest_version_info, output_dir):
                 homepage_url = next((info.split(': ')[1] for info in znver_info[0].get('WhatIs Information', []) if info.startswith('URL:')), 'N/A')
 
     # Write sidebar file content
-    sdbr_file = os.path.join(config.IMPORTS_DIR, f"{make_filename(package, 'sdbr', output_dir)}.rst")
+    sdbr_file = os.path.join(config.IMPORTS_DIR, f"{utils.make_filename(package, 'sdbr', output_dir)}.rst")
     content = (
         f".. sidebar:: {package}\n\n"
         f"   :Latest Version (Icelake): {version_number_icelake}\n"
@@ -128,7 +128,7 @@ def write_sidebar_file(package, category, latest_version_info, output_dir):
 
 def write_description_file(package, latest_info, output_dir):
     description = next((info for info in latest_info.get('WhatIs Information', []) if 'Description:' in info), 'No description available')
-    dscr_file = os.path.join(config.IMPORTS_DIR, f"{make_filename(package, 'dscr', output_dir)}.rst")
+    dscr_file = os.path.join(config.IMPORTS_DIR, f"{utils.make_filename(package, 'dscr', output_dir)}.rst")
     description = description.replace('*', '')
     description = "\n".join(line.strip() for line in description.split("\n")).strip() + '\n'
     description = description.replace('`time\'', '``time``')
@@ -153,7 +153,7 @@ def write_custom_file(package, output_dir):
     utils.write_file(cust_file, "")
 
 def write_dependencies(dependencies, output_dir, category, package, package_ref):
-    dpnd_file = os.path.join(config.IMPORTS_DIR, f"{make_filename(package, 'dpnd', output_dir)}.rst")
+    dpnd_file = os.path.join(config.IMPORTS_DIR, f"{utils.make_filename(package, 'dpnd', output_dir)}.rst")
     if dependencies:
         content = f".. dropdown:: Dependencies for latest version of {package}\n\n"
         def version_key(version):
@@ -176,14 +176,14 @@ def write_dependencies(dependencies, output_dir, category, package, package_ref)
         for dep in sorted_dependencies:
             dep_package = dep.split('/')[0]
             ref_category = package_ref.get(dep_package, 'unknown')
-            dep_link = f":ref:`{dep} <{make_reference(dep_package, ref_category, output_dir)}>`"
+            dep_link = f":ref:`{dep} <{utils.make_reference(dep_package, ref_category, output_dir)}>`"
             content += f"   - {dep_link}\n"
     else:
         content = ""
     utils.write_file(dpnd_file, content)
 
 def write_ml_file(package, package_infos, output_dir):
-    import_file = os.path.join(config.IMPORTS_DIR, f"{make_filename(package, 'ml', output_dir)}.rst")
+    import_file = os.path.join(config.IMPORTS_DIR, f"{utils.make_filename(package, 'ml', output_dir)}.rst")
 
     # Initialize the file with .. tabs:: only if it's newly created
     if not os.path.exists(import_file):
@@ -253,7 +253,7 @@ def write_all_files(title, output_dir, package_infos, package_ref, latest_versio
     os.makedirs(output_dir_path, exist_ok=True)
     stack_index_file = os.path.join(output_dir_path, "index.rst")
     title_underline = "=" * len(title)
-    utils.write_file(stack_index_file, f".. _{make_reference(output_dir, '', '')}:\n\n{title}\n{title_underline}\n\n.. toctree::\n    :maxdepth: 1\n    :glob:\n\n")
+    utils.write_file(stack_index_file, f".. _{utils.make_reference(output_dir, '', '')}:\n\n{title}\n{title_underline}\n\n.. toctree::\n    :maxdepth: 1\n    :glob:\n\n")
 
     # Create All index file
     output_dir_path = os.path.join(config.STACKS_DIR, output_dir)
@@ -268,7 +268,7 @@ def write_all_files(title, output_dir, package_infos, package_ref, latest_versio
     all_category_title = f"{all_category}"
 
     if all_category_index_file not in added_indexes:
-        utils.write_file(all_category_index_file, f".. _{make_reference(output_dir, all_category, '')}:\n\n{all_category_title}\n{'^' * len(all_category_title)}\n\nModule class description: {module_class}\n\n.. toctree::\n    :maxdepth: 1\n    :glob:\n\n    ./*\n\n")
+        utils.write_file(all_category_index_file, f".. _{utils.make_reference(output_dir, all_category, '')}:\n\n{all_category_title}\n{'^' * len(all_category_title)}\n\nModule class description: {module_class}\n\n.. toctree::\n    :maxdepth: 1\n    :glob:\n\n    ./*\n\n")
         utils.append_file(stack_index_file, f"    {all_category}/index.rst\n\n")
         added_indexes.add(all_category_index_file)
 
@@ -284,7 +284,7 @@ def write_all_files(title, output_dir, package_infos, package_ref, latest_versio
             module_class = config.module_classes.get(primary_category.lower(), "")
             category_title = f"{primary_category}"
             if category_index_file not in added_indexes:
-                utils.write_file(category_index_file, f".. _{make_reference(output_dir, primary_category, '')}:\n\n{category_title}\n{'^' * len(category_title)}\n\nModule class description: {module_class}\n\n.. toctree::\n    :maxdepth: 1\n    :glob:\n\n    ./*\n\n")
+                utils.write_file(category_index_file, f".. _{utils.make_reference(output_dir, primary_category, '')}:\n\n{category_title}\n{'^' * len(category_title)}\n\nModule class description: {module_class}\n\n.. toctree::\n    :maxdepth: 1\n    :glob:\n\n    ./*\n\n")
                 #                append_file(stack_index_file, f"    {primary_category}/index.rst\n")
                 link_main_index = f"    {primary_category}/index.rst\n"
                 links_for_main_index.append(link_main_index)
@@ -323,7 +323,7 @@ def write_all_files(title, output_dir, package_infos, package_ref, latest_versio
 
             all_category_packages.add(package)
 
-        link = f"* :ref:`{package} <{make_reference(package, primary_category, output_dir)}>`\n"
+        link = f"* :ref:`{package} <{utils.make_reference(package, primary_category, output_dir)}>`\n"
         links_for_all_index.append(link)
 
     # Write sorted lines to the file
