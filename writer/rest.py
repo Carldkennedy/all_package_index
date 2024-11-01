@@ -199,3 +199,91 @@ def write_ml_file(package, package_infos, output_dir):
     # Write the final content back to the file
     with open(import_file, 'w') as imp_f:
         imp_f.write(new_content)
+
+def write_all_files(title, output_dir, package_infos, package_ref, latest_version_info):
+    # Create stacks index file
+    output_dir_path = os.path.join(config.STACKS_DIR, output_dir)
+    os.makedirs(output_dir_path, exist_ok=True)
+    stack_index_file = os.path.join(output_dir_path, "index.rst")
+    title_underline = "=" * len(title)
+    write_file(stack_index_file, f".. _{make_reference(output_dir, '', '')}:\n\n{title}\n{title_underline}\n\n.. toctree::\n    :maxdepth: 1\n    :glob:\n\n")
+
+    # Create All index file
+    output_dir_path = os.path.join(config.STACKS_DIR, output_dir)
+    current_category = ""
+    added_indexes = set()
+    all_category_packages = set()
+    all_category = "All"
+    all_category_dir = os.path.join(output_dir_path, all_category)
+    os.makedirs(all_category_dir, exist_ok=True)
+    all_category_index_file = os.path.join(all_category_dir, "index.rst")
+    module_class = "All module classes"
+    all_category_title = f"{all_category}"
+
+    if all_category_index_file not in added_indexes:
+        write_file(all_category_index_file, f".. _{make_reference(output_dir, all_category, '')}:\n\n{all_category_title}\n{'^' * len(all_category_title)}\n\nModule class description: {module_class}\n\n.. toctree::\n    :maxdepth: 1\n    :glob:\n\n    ./*\n\n")
+        append_file(stack_index_file, f"    {all_category}/index.rst\n\n")
+        added_indexes.add(all_category_index_file)
+
+    links_for_all_index = []
+    links_for_main_index = []
+    for package, primary_category in package_ref.items():
+        if primary_category != current_category:
+            current_category = primary_category
+            # Create other category indexes
+            category_dir = os.path.join(output_dir_path, primary_category)
+            os.makedirs(category_dir, exist_ok=True)
+            category_index_file = os.path.join(category_dir, "index.rst")
+            module_class = config.module_classes.get(primary_category.lower(), "")
+            category_title = f"{primary_category}"
+            if category_index_file not in added_indexes:
+                write_file(category_index_file, f".. _{make_reference(output_dir, primary_category, '')}:\n\n{category_title}\n{'^' * len(category_title)}\n\nModule class description: {module_class}\n\n.. toctree::\n    :maxdepth: 1\n    :glob:\n\n    ./*\n\n")
+                #                append_file(stack_index_file, f"    {primary_category}/index.rst\n")
+                link_main_index = f"    {primary_category}/index.rst\n"
+                links_for_main_index.append(link_main_index)
+                added_indexes.add(category_index_file)
+
+        latest_versions = {}
+        latest_creation_dates = {}
+        dependencies = set()
+
+        for arch in package_infos:
+            key = f"{primary_category}|{package}"
+            if key in latest_version_info and arch in latest_version_info[key]:
+                latest_version = latest_version_info[key][arch][1]
+                latest_versions[arch] = latest_version
+
+                module_info, creation_date, installer = latest_version_info[key][arch]
+                latest_creation_dates[arch] = creation_date
+                dependencies.update(module_info.get('Loaded Modules', []))
+
+        latest_info_arch = 'icelake' if latest_versions.get('icelake') else 'znver3'
+        latest_info = latest_version_info.get(key, {}).get(latest_info_arch, (None, None, None))[0]
+
+        if latest_info is None:
+            append_log(f"Warning: Missing latest info for {primary_category} | {package}. Skipping.",
+                       config.main_log_file)
+            continue
+
+        if package not in all_category_packages:
+            write_package_file(category_dir, primary_category, package, output_dir)
+            write_ml_file(package, package_infos, output_dir)
+            write_description_file(package, latest_info, output_dir)
+            write_sidebar_file(package, primary_category, latest_version_info, output_dir)
+            write_installation_file(package, latest_info, output_dir)
+            write_custom_file(package, output_dir)
+            write_dependencies(list(dependencies), output_dir, primary_category, package, package_ref)
+
+            all_category_packages.add(package)
+
+        link = f"* :ref:`{package} <{make_reference(package, primary_category, output_dir)}>`\n"
+        links_for_all_index.append(link)
+
+    # Write sorted lines to the file
+    links_for_all_index.sort(key=str.casefold)
+    with open(all_category_index_file, 'a') as file:
+        file.writelines(links_for_all_index)
+
+    links_for_main_index.sort(key=str.casefold)
+    with open(stack_index_file, 'a') as file:
+        file.writelines(links_for_main_index)
