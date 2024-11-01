@@ -23,7 +23,7 @@ def process_modulepath(modulepaths, title, output_dir):
 
 def main():
 
-    write_log(config.main_log_file)
+    utils.write_log(config.main_log_file)
 
     create_directories()
 
@@ -34,7 +34,7 @@ def main():
 
     stacks_title = "All Packages Index"
     stacks_file = os.path.join(config.STACKS_DIR, "index.rst")
-    write_file(stacks_file, f"{stacks_title}\n{'=' * len(stacks_title)}\n\nLast updated: {config.current_date}\n\n.. toctree::\n    :maxdepth: 1\n    :glob:\n\n")
+    utils.write_file(stacks_file, f"{stacks_title}\n{'=' * len(stacks_title)}\n\nLast updated: {config.current_date}\n\n.. toctree::\n    :maxdepth: 1\n    :glob:\n\n")
 
     for output_dir in config.output_dirs:
         utils.append_file(stacks_file, f"    {output_dir}/index\n")
