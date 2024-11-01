@@ -61,7 +61,7 @@ def write_package_file(category_dir, category, package, output_dir):
         f".. include:: /{config.IMPORTS_DIR}/{utils.make_filename(package, 'sdbr', output_dir)}.rst\n\n"
         f".. include:: /{config.IMPORTS_DIR}/{utils.make_filename(package, 'dscr', output_dir)}.rst\n\n"
         f".. include:: /{config.IMPORTS_DIR}/packages_note.rst\n\n"
-        f".. include:: /referenceinfo/imports/scheduler/SLURM/common_commands/srun_start_interactive_session_import_stanage.rst\n\n"
+        f".. include:: /{config.SLURM_INTERACTIVE_SESSION_IMPORT}\n\n"
         f"A version of {package} can then be made available with *one* of the following:\n\n"
         f".. include:: /{config.IMPORTS_DIR}/{utils.make_filename(package, 'ml', output_dir)}.rst\n\n"
         f".. include:: /{config.CUSTOM_DIR}/{utils.make_filename(package, 'cust', output_dir)}.rst\n\n"

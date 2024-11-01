@@ -24,6 +24,9 @@ output_dirs = [
     "el9-icelake-znver-stanage"
 ]
 
+# Define the path for the SLURM interactive session include file
+SLURM_INTERACTIVE_SESSION_IMPORT = "referenceinfo/imports/scheduler/SLURM/common_commands/srun_start_interactive_session_import_stanage.rst"
+
 module_classes = {
     "base": "Default module class",
     "ai": "Artificial Intelligence (incl. Machine Learning)",
