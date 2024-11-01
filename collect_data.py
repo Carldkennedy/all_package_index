@@ -118,8 +118,6 @@ def extract_lua_info(lua_file_path):
     creation_time = os.path.getctime(config.lua_file_path)
     creation_date = datetime.datetime.fromtimestamp(creation_time).strftime('%Y-%m-%d')
 
-    installer = extract_installer(config.lua_file_path)
-
     return module_info, creation_date, installer
 
 def extract_installer(file_path):
@@ -202,5 +200,5 @@ if __name__ == "__main__":
     write_log(config.broken_symlinks_file)
 
     collect_data()
-
+    installer = extract_installer(config.lua_file_path)
     process_broken_symlinks()
