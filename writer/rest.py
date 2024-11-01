@@ -150,10 +150,10 @@ def write_installation_file(package, latest_info, output_dir):
 
 def write_custom_file(package, output_dir):
     cust_file = os.path.join(config.CUSTOM_DIR, f"{utils.make_filename(package, 'cust', output_dir)}.rst")
-    write_file(cust_file, "")
+    utils.write_file(cust_file, "")
 
 def write_dependencies(dependencies, output_dir, category, package, package_ref):
-    dpnd_file = os.path.join(config.IMPORTS_DIR, f"{utils.make_filename(package, 'dpnd', output_dir)}.rst")
+    dpnd_file = os.path.join(config.IMPORTS_DIR, f"{make_filename(package, 'dpnd', output_dir)}.rst")
     if dependencies:
         content = f".. dropdown:: Dependencies for latest version of {package}\n\n"
         def version_key(version):
@@ -180,14 +180,14 @@ def write_dependencies(dependencies, output_dir, category, package, package_ref)
             content += f"   - {dep_link}\n"
     else:
         content = ""
-    write_file(dpnd_file, content)
+    utils.write_file(dpnd_file, content)
 
 def write_ml_file(package, package_infos, output_dir):
     import_file = os.path.join(config.IMPORTS_DIR, f"{make_filename(package, 'ml', output_dir)}.rst")
 
     # Initialize the file with .. tabs:: only if it's newly created
     if not os.path.exists(import_file):
-        write_file(import_file, ".. tabs::\n\n")
+        utils.write_file(import_file, ".. tabs::\n\n")
 
     with open(import_file, 'r') as imp_f:
         existing_content = imp_f.read()
@@ -253,7 +253,7 @@ def write_all_files(title, output_dir, package_infos, package_ref, latest_versio
     os.makedirs(output_dir_path, exist_ok=True)
     stack_index_file = os.path.join(output_dir_path, "index.rst")
     title_underline = "=" * len(title)
-    write_file(stack_index_file, f".. _{make_reference(output_dir, '', '')}:\n\n{title}\n{title_underline}\n\n.. toctree::\n    :maxdepth: 1\n    :glob:\n\n")
+    utils.write_file(stack_index_file, f".. _{make_reference(output_dir, '', '')}:\n\n{title}\n{title_underline}\n\n.. toctree::\n    :maxdepth: 1\n    :glob:\n\n")
 
     # Create All index file
     output_dir_path = os.path.join(config.STACKS_DIR, output_dir)
@@ -268,8 +268,8 @@ def write_all_files(title, output_dir, package_infos, package_ref, latest_versio
     all_category_title = f"{all_category}"
 
     if all_category_index_file not in added_indexes:
-        write_file(all_category_index_file, f".. _{make_reference(output_dir, all_category, '')}:\n\n{all_category_title}\n{'^' * len(all_category_title)}\n\nModule class description: {module_class}\n\n.. toctree::\n    :maxdepth: 1\n    :glob:\n\n    ./*\n\n")
-        append_file(stack_index_file, f"    {all_category}/index.rst\n\n")
+        utils.write_file(all_category_index_file, f".. _{make_reference(output_dir, all_category, '')}:\n\n{all_category_title}\n{'^' * len(all_category_title)}\n\nModule class description: {module_class}\n\n.. toctree::\n    :maxdepth: 1\n    :glob:\n\n    ./*\n\n")
+        utils.append_file(stack_index_file, f"    {all_category}/index.rst\n\n")
         added_indexes.add(all_category_index_file)
 
     links_for_all_index = []
@@ -284,7 +284,7 @@ def write_all_files(title, output_dir, package_infos, package_ref, latest_versio
             module_class = config.module_classes.get(primary_category.lower(), "")
             category_title = f"{primary_category}"
             if category_index_file not in added_indexes:
-                write_file(category_index_file, f".. _{make_reference(output_dir, primary_category, '')}:\n\n{category_title}\n{'^' * len(category_title)}\n\nModule class description: {module_class}\n\n.. toctree::\n    :maxdepth: 1\n    :glob:\n\n    ./*\n\n")
+                utils.write_file(category_index_file, f".. _{make_reference(output_dir, primary_category, '')}:\n\n{category_title}\n{'^' * len(category_title)}\n\nModule class description: {module_class}\n\n.. toctree::\n    :maxdepth: 1\n    :glob:\n\n    ./*\n\n")
                 #                append_file(stack_index_file, f"    {primary_category}/index.rst\n")
                 link_main_index = f"    {primary_category}/index.rst\n"
                 links_for_main_index.append(link_main_index)
