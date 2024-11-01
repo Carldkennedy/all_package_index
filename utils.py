@@ -1,5 +1,6 @@
 import os
 import pickle
+import config
 
 def make_filename(*args):
     return '-'.join(args).replace(' ', '-').lower()
