@@ -2,9 +2,8 @@ import os
 import argparse
 import config
 from utils import load_collected_data, make_reference, write_file, append_file, write_log, append_log
-from parser.lmod import run_collect_data_script
-from writer.rest import write_custom_file, write_dependencies, write_description_file, write_installation_file, \
-    write_ml_file, write_package_file, write_sidebar_file, write_all_files
+from parser import lmod
+from writer import rest
 
 os.makedirs(config.IMPORTS_DIR, exist_ok=True)
 os.makedirs(config.STACKS_DIR, exist_ok=True)
@@ -12,12 +11,13 @@ os.makedirs(config.CUSTOM_DIR, exist_ok=True)
 
 def process_modulepath(modulepaths, title, output_dir):
     # Run collect_data.py if data file doesn't exist
+
     if not os.path.exists(config.DATA_FILE):
         print("Collected data not found. Running collect_data.py...")
         append_log("Collected data not found. Running collect_data.py...", config.main_log_file)
-        run_collect_data_script()
+        lmod.run_collect_data_script()
 
-    collected_data = load_collected_data(config.DATA_FILE)
+    collected_data = utils.load_collected_data(config.DATA_FILE)
     if not collected_data:
         print("No collected data found even after running collect_data.py.")
         append_log("No collected data found even after running collect_data.py.", config.main_log_file)
@@ -67,7 +67,7 @@ def main():
     for title, output_dir in zip(config.titles, config.output_dirs):
         print(f"Processing {title} in directory {output_dir}")
         package_infos, latest_version_info, package_ref = process_modulepath(config.modulepaths, title, output_dir)
-        write_all_files(title, output_dir, package_infos, package_ref, latest_version_info)
+        rest.write_all_files(title, output_dir, package_infos, package_ref, latest_version_info)
 
     stacks_title = "All Packages Index"
     stacks_file = os.path.join(config.STACKS_DIR, "index.rst")
