@@ -1,6 +1,37 @@
 import os
 import pickle
 import config
+import logging
+
+def setup_logging(verbose, logfile=None):
+    """
+    Configures logging with different levels for console and file output.
+
+    Args:
+        verbose (bool): If True, sets console logging to DEBUG level; otherwise, INFO level.
+        logfile (str, optional): Path to a file for logging output. If provided, all logs are saved here at DEBUG level.
+    """
+    # Define the logging format
+    log_format = "%(asctime)s - %(levelname)s - %(message)s"
+
+    # Set up root logger to handle all logs
+    logging.basicConfig(level=logging.DEBUG, format=log_format)
+
+    # Console handler with level based on verbosity
+    console_handler = logging.StreamHandler()
+    console_level = logging.DEBUG if verbose else logging.INFO
+    console_handler.setLevel(console_level)
+    console_handler.setFormatter(logging.Formatter(log_format))
+
+    # File handler at DEBUG level to capture all logs
+    if logfile:
+        file_handler = logging.FileHandler(logfile, mode='w')
+        file_handler.setLevel(logging.DEBUG)
+        file_handler.setFormatter(logging.Formatter(log_format))
+        logging.getLogger().addHandler(file_handler)
+
+    # Attach only the console handler to the root logger
+    logging.getLogger().addHandler(console_handler)
 
 def make_filename(*args):
     return '-'.join(args).replace(' ', '-').lower()
