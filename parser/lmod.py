@@ -6,7 +6,7 @@ import pickle
 import datetime
 import subprocess
 from lupa import LuaRuntime
-from utils import append_file, append_log, write_log
+import utils
 from parser.common import extract_installer
 
 
@@ -110,12 +110,12 @@ def read_lua_file(lua_file_path):
     except FileNotFoundError:
         log_message = f"{lua_file_path} not found.\n"
         print(log_message.strip())
-        append_file(config.broken_symlinks_file, log_message)
+        utils.append_file(config.broken_symlinks_file, log_message)
         return None
     except Exception as e:
         log_message = f"Error reading {lua_file_path}: {e}\n"
         print(log_message.strip())
-        append_file(config.broken_symlinks_file, log_message)
+        utils.append_file(config.broken_symlinks_file, log_message)
         return None
 
 
@@ -151,6 +151,9 @@ def setup_lua_runtime() -> LuaRuntime:
 
         assert isinstance(lua, LuaRuntime), "Expected lua to be an instance of LuaRuntime"
         return lua
+    except Exception as e:
+        print(f"Error in Lua setup: {e}")
+        return None
 
 
 def execute_lua(lua, lua_content, lua_file_path):
@@ -171,7 +174,7 @@ def execute_lua(lua, lua_content, lua_file_path):
     except Exception as e:
         log_message = f"Error executing Lua content in {lua_file_path}: {e}\n"
         print(log_message.strip())
-        append_file(config.log_file_path, log_message)
+        utils.append_file(config.log_file_path, log_message)
         return None
 
 
@@ -222,17 +225,17 @@ def extract_module_info(lua_content, lua_globals):
 
 def log_module_info(module_info):
     """Logs module information to the configured log file."""
-    append_log(f"\nParsed: {config.lua_file_path}", config.log_file_path)
+    utils.append_log(f"\nParsed: {config.lua_file_path}", config.log_file_path)
     for key, value in module_info.items():
-        append_log(f"\n{key}:", config.log_file_path)
+        utils.append_log(f"\n{key}:", config.log_file_path)
         if isinstance(value, list):
             for item in value:
-                append_log(item, config.log_file_path)
+                utils.append_log(item, config.log_file_path)
         elif isinstance(value, dict):
             for var, val in value.items():
-                append_log(f"{var} = {val['value']} (variable: {val['var_name']})", config.log_file_path)
+                utils.append_log(f"{var} = {val['value']} (variable: {val['var_name']})", config.log_file_path)
         else:
-            append_log(value, config.log_file_path)
+            utils.append_log(value, config.log_file_path)
 
 
 def extract_lua_info(lua_file_path):
