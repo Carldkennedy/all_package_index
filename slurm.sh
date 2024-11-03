@@ -26,4 +26,4 @@ fi
 
 echo "Environment setup is complete."
 cd all-package-index
-python collect_data.py
+python collect_data.py --parser lmod
