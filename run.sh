@@ -13,9 +13,6 @@ export DATESTAMP=$(date +"%Y-%m-%d")
 # Submit job to SLURM
 hpc-rocket launch --watch config.yml
 
-# Wait for the job to finish
-wait
-
 # Run post-processing script on the returned data
 mkdir -p backups/
 # Backup pkl

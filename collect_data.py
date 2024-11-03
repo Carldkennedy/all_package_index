@@ -4,6 +4,17 @@ import argparse
 from utils import append_file, append_log, write_log
 import config
 import importlib
+import logging
+
+def load_module(module_type, module_name):
+    """
+    Dynamically loads a module from the specified type (writer or parser) and name.
+    """
+    try:
+        return importlib.import_module(f"{module_type}.{module_name}")
+    except ImportError as e:
+        logging.error(f"{module_type}.{module_name} module not found.")
+        raise e
 
 def collect_data(parser_module):
     """Collects and organizes Lua module data by architecture using the specified parser module."""
@@ -15,7 +26,7 @@ def collect_data(parser_module):
 
     # Process each architecture’s paths
     for arch, paths in sorted_paths_by_arch.items():
-        process_paths_for_architecture(paths, arch, parser_module, latest_version_info, package_infos)
+        parser_module.process_paths_for_architecture(paths, arch, parser_module, latest_version_info, package_infos)
 
     # Convert keys to strings for serialization
     package_infos_str_keys = {
@@ -43,14 +54,11 @@ def main(parser_module):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Run data collection with a specified parser module.")
-    parser.add_argument(
-        "--parser", default="parser.lmod",
-        help="Specify the parser module to use (e.g., 'parser.lmod' or 'parser.other')."
-    )
+    parser.add_argument("--parser", default="lmod", help="Choose the parser module to use")
     args = parser.parse_args()
 
     # Dynamically import the specified parser module
-    parser_module = importlib.import_module(args.parser)
+    parser_module = load_module("parser", args.parser)
 
     # Run main with the specified parser module
     main(parser_module)
