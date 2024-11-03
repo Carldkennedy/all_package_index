@@ -3,12 +3,9 @@ import re
 from datetime import datetime
 import config
 import utils
-
+from writer.common import setup_writer_directories
 # Functions to write rst files
-def setup_writer_directories():
-    os.makedirs(config.IMPORTS_DIR, exist_ok=True)
-    os.makedirs(config.STACKS_DIR, exist_ok=True)
-    os.makedirs(config.CUSTOM_DIR, exist_ok=True)
+
 
 def write_stacks_index(stacks_dir, current_date, output_dirs):
     """
@@ -51,7 +48,6 @@ def write_note_file(imports_dir):
     )
 
     utils.write_file(note_file, content)
-
 
 def write_package_file(category_dir, category, package, output_dir):
     package_file = os.path.join(category_dir, f"{package}.rst")
@@ -124,7 +120,6 @@ def write_sidebar_file(package, category, latest_version_info, output_dir):
         f"   :URL: {homepage_url}\n"
     )
     utils.write_file(sdbr_file, content)
-
 
 def write_description_file(package, latest_info, output_dir):
     description = next((info for info in latest_info.get('WhatIs Information', []) if 'Description:' in info), 'No description available')
@@ -334,3 +329,23 @@ def write_all_files(title, output_dir, package_infos, package_ref, latest_versio
     links_for_main_index.sort(key=str.casefold)
     with open(stack_index_file, 'a') as file:
         file.writelines(links_for_main_index)
+
+def write_global_files(config):
+    """
+    Writes global files that are needed only once, such as the stack index and note files.
+
+    Args:
+        config (module or dict-like object): Contains configuration settings, such as directories and dates.
+    """
+    stacks_dir = config.STACKS_DIR
+    imports_dir = config.IMPORTS_DIR
+    current_date = config.current_date
+    output_dirs = config.output_dirs
+
+    # Write stack index if the necessary fields are available
+    if stacks_dir and current_date and output_dirs:
+        write_stacks_index(stacks_dir, current_date, output_dirs)
+
+    # Write note file if imports directory is available
+    if imports_dir:
+        write_note_file(imports_dir)

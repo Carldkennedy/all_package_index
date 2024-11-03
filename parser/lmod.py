@@ -48,7 +48,7 @@ def process_broken_symlinks():
 
 def extract_package_info(collected_data):
     """
-    Extracts package information, latest version info, and categorizes each package
+    Extracts package information, latest version info, and categorises each package
     by its primary category from the collected data.
 
     Args:
