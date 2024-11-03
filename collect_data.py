@@ -1,204 +1,56 @@
 import os
-import re
-import glob
 import pickle
-import datetime
-import subprocess
-from lupa import LuaRuntime
-import config 
+import argparse
 from utils import append_file, append_log, write_log
-from parser.lmod import process_broken_symlinks
+import config
+import importlib
 
-def extract_lua_info(lua_file_path):
-    try:
-        with open(lua_file_path, 'r') as file:
-            lua_content: str = file.read()
-    except FileNotFoundError:
-        log_message = f"{config.lua_file_path}\n"
-        print(log_message.strip())
-        append_file(config.broken_symlinks_file, log_message)
-        return None, None, None
-    except Exception as e:
-        log_message = f"Error reading {config.lua_file_path}: {e}\n"
-        print(log_message.strip())
-        append_file(config.broken_symlinks_file, log_message)
-        return None, None, None
-
-    lua = LuaRuntime(unpack_returned_tuples=True)
-
-    try:
-        lua.execute('''
-        function help(msg) end
-        function whatis(msg) end
-        function prepend_path(var, value) end
-        function append_path(var, value) end
-        function setenv(var, value) _G.env_vars[var] = value end
-        function unsetenv(var) end
-        function load(module) end
-        function unload(module) end
-        function conflict(module) end
-        function family(module) end
-        function add_property(var, value) end
-        function remove_property(var) end
-        function isloaded(module) return false end
-        function pathJoin(...) return table.concat({...}, "/") end
-
-        setmetatable(_G, {
-            __index = function(_, key)
-                _G[key] = function(...) end
-                return _G[key]
-            end
-        })
-
-        _G.env_vars = {}
-        ''')
-
-        lua.execute(lua_content)
-    except Exception as e:
-        log_message = f"Error executing Lua content in {config.lua_file_path}: {e}\n"
-        print(log_message.strip())
-        append_file(config.log_file_path, log_message)
-        return None, None, None
-
-    help_pattern = re.compile(r'help\(\[\=\=\[(.*?)\]\=\=\]\)', re.DOTALL)
-    whatis_pattern = re.compile(r'whatis\(\[\=\=\[(.*?)\]\=\=\]\)', re.DOTALL)
-    load_pattern = re.compile(r'load\("(.*?)"\)')
-    env_pattern = re.compile(r'setenv\("([^"]+)",\s*"([^"]+)"\)')
-    root_pattern = re.compile(r'local root = "(.*?)"')
-
-    help_info = help_pattern.findall(lua_content)
-    whatis_info = whatis_pattern.findall(lua_content)
-    loaded_modules = load_pattern.findall(lua_content)
-    env_vars = env_pattern.findall(lua_content)
-
-    root_match = root_pattern.search(lua_content)
-    root = root_match.group(1) if root_match else None
-
-    env_vars_lua = lua.globals().env_vars
-    env_vars_dict = {key: env_vars_lua[key] for key in env_vars_lua.keys()}
-
-    for var, value in env_vars:
-        env_vars_dict[var] = value
-
-    package_suffix = next((key.split('EBROOT')[-1] for key in env_vars_dict if key.startswith('EBROOT')), '')
-
-    eb_vars = {
-        k.replace(package_suffix, ''): {
-            'value': v,
-            'var_name': k
-        }
-        for k, v in env_vars_dict.items() if k.startswith('EB')
-    }
-
-    ebversion_var = eb_vars.get('EBVERSION', {}).get('value', None)
-
-    module_info = {
-        "WhatIs Information": [info.strip() for info in whatis_info],
-        "Loaded Modules": loaded_modules,
-        "Root": root,
-        "EB Variables": eb_vars,
-        "EB Version": ebversion_var
-    }
-
-    append_log(f"\nParsed: {config.lua_file_path}",config.log_file_path)
-    for key, value in module_info.items():
-        append_log(f"\n{key}:",config.log_file_path)
-        if isinstance(value, list):
-            for item in value:
-                append_log(item,config.log_file_path)
-        elif isinstance(value, dict):
-            for var, val in value.items():
-                if isinstance(val, dict):
-                    append_log(f"{var} = {val['value']} (variable: {val['var_name']})",config.log_file_path)
-                else:
-                    append_log(f"{var} = {val}",config.log_file_path)
-        else:
-            append_log(value,config.log_file_path)
-
-    creation_time = os.path.getctime(config.lua_file_path)
-    creation_date = datetime.datetime.fromtimestamp(creation_time).strftime('%Y-%m-%d')
-
-    return module_info, creation_date, installer
-
-def extract_installer(file_path):
-    try:
-        result = subprocess.run(['ls', '-lrath', file_path], capture_output=True, text=True)
-        if result.returncode == 0:
-            lines = result.stdout.splitlines()
-            for line in lines:
-                parts = line.split()
-                if len(parts) > 2:
-                    user = parts[2]
-                    if user.startswith('sa_'):
-                        return user[3:]
-    except Exception as e:
-        append_log(f"Error extracting installer: {e}",config.log_file_path)
-    return None
-
-def save_collected_data(file_path, data):
-    with open(file_path, 'wb') as f:
-        pickle.dump(data, f)
-
-def collect_data():
-    paths_by_arch = {arch: mp.replace('/all', '').split(':') for arch, mp in config.modulepaths.items()}
-    extracted_paths_by_arch = {arch: [(file, '/'.join(file.split('/')[-3:]).replace('.lua', '')) for path in paths for file in glob.glob(os.path.join(path, '*/*/*.lua'))] for arch, paths in paths_by_arch.items()}
-    sorted_paths_by_arch = {
-        arch: sorted(
-            paths,
-            key=lambda path: (
-                path[1].split('/')[0].casefold(),
-                path[1].split('/')[1].casefold(),
-                # Negate the numbers for reverse sorting
-                [
-                    (-int(x) if x.isdigit() else x.casefold()) 
-                    for x in re.split('(\d+)', path[1].split('/')[2])
-                ]
-            )
-        )
-        for arch, paths in extracted_paths_by_arch.items()
-    }
+def collect_data(parser_module):
+    """Collects and organizes Lua module data by architecture using the specified parser module."""
+    paths_by_arch = parser_module.gather_lua_paths_by_arch()
+    sorted_paths_by_arch = parser_module.sort_paths(paths_by_arch)
 
     package_infos = {arch: {} for arch in paths_by_arch}
     latest_version_info = {}
 
+    # Process each architecture’s paths
     for arch, paths in sorted_paths_by_arch.items():
-        for config.lua_file_path, extracted_path in paths:
-            parts = extracted_path.split('/')
-            if len(parts) != 3:
-                append_log(f"Unexpected path structure: {extracted_path}",config.log_file_path)
-                continue
+        process_paths_for_architecture(paths, arch, parser_module, latest_version_info, package_infos)
 
-            category, package, version = parts
-            category = category.capitalize()
+    # Convert keys to strings for serialization
+    package_infos_str_keys = {
+        arch: {f"{cat}|{pkg}|{ver}": val for (cat, pkg, ver), val in infos.items()}
+        for arch, infos in package_infos.items()
+    }
+    latest_version_info_str_keys = {
+        f"{cat}|{pkg}": {arch: val for arch, val in infos.items()}
+        for (cat, pkg), infos in latest_version_info.items()
+    }
 
-            if (category, package) not in latest_version_info:
-                latest_version_info[(category, package)] = {}
-
-            if arch not in latest_version_info[(category, package)]:
-                module_info, creation_date, installer = extract_lua_info(config.lua_file_path)
-                if module_info is None:
-                    continue
-
-                latest_version_info[(category, package)][arch] = (module_info, creation_date, installer)
-
-            if (category, package, version) not in package_infos[arch]:
-                package_infos[arch][(category, package, version)] = (config.lua_file_path, version)
-
-    package_infos_str_keys = {arch: {f"{cat}|{pkg}|{ver}": val for (cat, pkg, ver), val in infos.items()} for arch, infos in package_infos.items()}
-    latest_version_info_str_keys = {f"{cat}|{pkg}": {arch: val for arch, val in infos.items()} for (cat, pkg), infos in latest_version_info.items()}
     collected_data = {
         'package_infos': package_infos_str_keys,
         'latest_version_info': latest_version_info_str_keys
     }
 
-    save_collected_data(config.DATA_FILE, collected_data)
+    parser.common.save_collected_data(config.DATA_FILE, collected_data)
 
-
-if __name__ == "__main__":
-    
+def main(parser_module):
     write_log(config.log_file_path)
     write_log(config.broken_symlinks_file)
 
-    collect_data()
-    installer = extract_installer(config.lua_file_path)
-    process_broken_symlinks()
+    collect_data(parser_module)
+    parser_module.process_broken_symlinks()
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Run data collection with a specified parser module.")
+    parser.add_argument(
+        "--parser", default="parser.lmod",
+        help="Specify the parser module to use (e.g., 'parser.lmod' or 'parser.other')."
+    )
+    args = parser.parse_args()
+
+    # Dynamically import the specified parser module
+    parser_module = importlib.import_module(args.parser)
+
+    # Run main with the specified parser module
+    main(parser_module)
