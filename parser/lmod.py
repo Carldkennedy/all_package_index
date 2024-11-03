@@ -9,14 +9,16 @@ from lupa import LuaRuntime
 from utils import append_file, append_log, write_log
 from parser.common import extract_installer
 
+
 def run_collect_data_script():
     try:
-        result = subprocess.run(['python', 'collect_data.py'], check=True) 
+        result = subprocess.run(['python', 'collect_data.py'], check=True)
         return result.returncode == 0
     except subprocess.CalledProcessError as e:
         utils.append_log(f"Failed to run collect_data.py: {e}", config.main_log_file)
         print(f"Failed to run collect_data.py: {e}")
         return False
+
 
 def process_modulepath(modulepaths, title, output_dir):
     # Run collect_data.py if data file doesn't exist
@@ -28,6 +30,7 @@ def process_modulepath(modulepaths, title, output_dir):
         package_infos, latest_version_info, package_ref = None, None, None
 
     return package_infos, latest_version_info, package_ref
+
 
 def process_broken_symlinks():
     if not os.path.exists(config.broken_symlinks_file):
@@ -51,6 +54,7 @@ def process_broken_symlinks():
                 result = subprocess.run(['ls', '-lrath', target], capture_output=True, text=True)
                 utils.append_file(config.broken_symlinks_file, result.stdout)
                 utils.append_file(config.broken_symlinks_file, result.stderr)
+
 
 def extract_package_info(collected_data):
     """
@@ -89,6 +93,7 @@ def extract_package_info(collected_data):
 
     return package_infos, latest_version_info, package_ref
 
+
 def read_lua_file(lua_file_path):
     """
     Reads the content of a Lua file. Logs and records any errors.
@@ -112,6 +117,7 @@ def read_lua_file(lua_file_path):
         print(log_message.strip())
         append_file(config.broken_symlinks_file, log_message)
         return None
+
 
 def setup_lua_runtime() -> LuaRuntime:
     lua = LuaRuntime(unpack_returned_tuples=True)
@@ -146,6 +152,7 @@ def setup_lua_runtime() -> LuaRuntime:
         assert isinstance(lua, LuaRuntime), "Expected lua to be an instance of LuaRuntime"
         return lua
 
+
 def execute_lua(lua, lua_content, lua_file_path):
     """
     Executes Lua content and logs errors if execution fails.
@@ -167,6 +174,7 @@ def execute_lua(lua, lua_content, lua_file_path):
         append_file(config.log_file_path, log_message)
         return None
 
+
 def extract_patterns(lua_content):
     """Extracts data using regex patterns from Lua content."""
     patterns = {
@@ -180,12 +188,14 @@ def extract_patterns(lua_content):
     extracted_data["root"] = extracted_data["root"][0] if extracted_data["root"] else None
     return extracted_data
 
+
 def process_env_vars(env_vars, lua_globals):
     """Processes environment variables from Lua and merges them with Lua globals."""
     env_vars_dict = {key: lua_globals[key] for key in lua_globals.keys()}
     for var, value in env_vars:
         env_vars_dict[var] = value
     return env_vars_dict
+
 
 def extract_module_info(lua_content, lua_globals):
     """Extracts and organizes module information from Lua content."""
@@ -209,6 +219,7 @@ def extract_module_info(lua_content, lua_globals):
         "EB Version": eb_vars.get('EBVERSION', {}).get('value', None)
     }
 
+
 def log_module_info(module_info):
     """Logs module information to the configured log file."""
     append_log(f"\nParsed: {config.lua_file_path}", config.log_file_path)
@@ -222,6 +233,7 @@ def log_module_info(module_info):
                 append_log(f"{var} = {val['value']} (variable: {val['var_name']})", config.log_file_path)
         else:
             append_log(value, config.log_file_path)
+
 
 def extract_lua_info(lua_file_path):
     """Extracts and returns module information from a Lua file."""
@@ -239,6 +251,7 @@ def extract_lua_info(lua_file_path):
     installer = extract_installer(lua_file_path)
     return module_info, creation_date, installer
 
+
 def gather_lua_paths_by_arch():
     """Gathers Lua file paths organized by architecture."""
     paths_by_arch = {arch: mp.replace('/all', '').split(':') for arch, mp in config.modulepaths.items()}
@@ -251,6 +264,7 @@ def gather_lua_paths_by_arch():
         for arch, paths in paths_by_arch.items()
     }
     return extracted_paths_by_arch
+
 
 def sort_paths(paths_by_arch):
     """Sorts Lua file paths for each architecture."""
@@ -269,6 +283,7 @@ def sort_paths(paths_by_arch):
         for arch, paths in paths_by_arch.items()
     }
     return sorted_paths_by_arch
+
 
 def process_paths_for_architecture(paths, arch, parser_module, latest_version_info, package_infos):
     """
@@ -301,10 +316,3 @@ def process_paths_for_architecture(paths, arch, parser_module, latest_version_in
         # Update package information if this version is not yet recorded
         if (category, package, version) not in package_infos[arch]:
             package_infos[arch][(category, package, version)] = (lua_file_path, version)
-
-
-
-
-
-
-
