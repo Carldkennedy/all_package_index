@@ -3,6 +3,7 @@ import re
 from datetime import datetime
 import config
 import utils
+from writer.common import setup_writer_directories
 
 def write_package_file(package, output_dir, dependencies, moduleclass):
     os.makedirs(output_dir, exist_ok=True)  # Ensure the output directory exists
@@ -15,9 +16,9 @@ def write_package_file(package, output_dir, dependencies, moduleclass):
         for dep in unique_sorted_dependencies_package_only:
             content += f"[[{dep}]]\n"
     print(f"Writing to {package_file}")
-    append_file(package_file, content)
+    utils.append_file(package_file, content)
 
-def write_all_files()(title, output_dir, package_infos, package_ref, latest_version_info)
+def write_all_files(title, output_dir, package_infos, package_ref, latest_version_info):
 
     current_category = ""
     added_indexes = set()
@@ -47,9 +48,21 @@ def write_all_files()(title, output_dir, package_infos, package_ref, latest_vers
         latest_info = latest_version_info.get(key, {}).get(latest_info_arch, (None, None, None))[0]
 
         if latest_info is None:
-            append_log(f"Warning: Missing latest info for {primary_category} | {package}. Skipping.",config.main_log_file)
+            utils.append_log(f"Warning: Missing latest info for {primary_category} | {package}. Skipping.",config.main_log_file)
             continue
 
         if package not in all_category_packages:
-            obsidian.write_package_file(package, output_dir, list(dependencies), moduleclass)
+            write_package_file(package, output_dir, list(dependencies), moduleclass)
             all_category_packages.add(package)
+
+def write_global_files(config):
+    """
+    Placeholder for writing global files in the obsidian writer.
+    
+    Currently, no global files are required for obsidian, but this function
+    is available for future needs.
+    
+    Args:
+        config (module or dict-like object): Contains configuration settings.
+    """
+    pass  # No action needed at this time
