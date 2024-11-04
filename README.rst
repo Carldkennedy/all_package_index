@@ -47,7 +47,7 @@ Scripts
 
 .. code-block:: bash 
  
- chmod +x run.sh setup_local.sh sync_stacks.sh
+ chmod +x run-hpc-rocket.sh setup_local.sh sync_stacks.sh
  ./sync_stacks.sh
 
 config.py
