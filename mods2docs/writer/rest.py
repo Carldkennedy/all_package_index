@@ -1,9 +1,8 @@
 import os
 import re
 from datetime import datetime
-import config
-import utils
-from writer.common import setup_writer_directories
+from mods2docs import config, utils
+from mods2docs.writer.common import setup_writer_directories
 # Functions to write rst files
 
 

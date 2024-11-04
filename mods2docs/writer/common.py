@@ -1,5 +1,5 @@
 #Common writer functions
-import config
+from mods2docs import config
 import os
 
 def setup_writer_directories():
