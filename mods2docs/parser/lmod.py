@@ -1,13 +1,12 @@
 import os
 import re
 import glob
-import config
+from mods2docs import config, utils
 import pickle
 import datetime
 import subprocess
 from lupa import LuaRuntime
-import utils
-from parser.common import extract_installer
+from mods2docs.parser.common import extract_installer
 
 
 def run_collect_data_script():

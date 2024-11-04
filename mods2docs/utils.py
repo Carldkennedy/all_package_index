@@ -1,6 +1,6 @@
 import os
 import pickle
-import config
+from mods2docs import config
 import logging
 
 def setup_logging(verbose, logfile=None):
