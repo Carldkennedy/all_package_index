@@ -2,8 +2,10 @@ __pycache__/
 backups/
 referenceinfo/
 stanage/
+el9-icelake-znver-stanage/
 .ssh/
 __init__.py
 *.pkl
 *.seff
 *.log
+*.out
