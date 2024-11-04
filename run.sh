@@ -11,7 +11,7 @@ export DATESTAMP=$(date +"%Y-%m-%d")
 [ -f "*.pkl" ] && rm -f "*.pkl"
 
 # Submit job to SLURM
-hpc-rocket launch --watch config.yml
+hpc-rocket launch --watch mods2docs/config.yml
 
 # Run post-processing script on the returned data
 mkdir -p backups/
@@ -19,4 +19,4 @@ mkdir -p backups/
 for file in *.{pkl,log}; do cp "$file" "${file}-$(date +%Y%m%d).bk" && echo "Backed up $file" ; done
 mv *.bk backups/
 
-python main.py --parser lmod --writer rest
+python -m mods2docs.main --parser lmod --writer rest
