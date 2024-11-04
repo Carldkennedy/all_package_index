@@ -6,6 +6,7 @@
 
 CONDA_MODULE="Anaconda3"
 ENV_NAME="lmod_env"
+DATA_FOLDER="data"
 
 echo "Purging modules and loading '$CONDA_MODULE' ..."
 module purge
@@ -25,4 +26,6 @@ if [ $? -ne 0 ]; then
 fi
 
 echo "Environment setup is complete."
+
+mkdir -p $DATA_FOLDER
 python -m mods2docs.collect_data --parser lmod
