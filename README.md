@@ -33,28 +33,30 @@ config.yml includes HPC-Rocket configuration for starting a batch job on cluster
 
 Output directories: Directories synced with the documentation repo:
 
-.. code-block:: python
+```python
 
     STACKS_DIR = "results/stanage/software/stubs/"
     IMPORTS_DIR = "results/referenceinfo/imports/stanage/packages/"
     CUSTOM_DIR = "results/referenceinfo/imports/stanage/packages/custom/"
+```
 
 Module Paths and Titles: Paths for module files to parse, titles for stacks, and output directories:
 
-.. code-block:: python
+```python
  
- modulepaths = {
-     'icelake': "/opt/apps/tuos/el9/modules/live/all:/opt/apps/tuos/common/modules/easybuild-only/all:/opt/apps/tuos/common/modules/live/all",
-     'znver3': "/opt/apps/tuos/el9-znver3/modules/live/all:/opt/apps/tuos/common/modules/easybuild-only/all:/opt/apps/tuos/common/modules/live/all"
- }
- 
- titles = [
-     "Icelake and Znver (OS: Rocky 9) Package Versions"
- ]
- 
- output_dirs = [
-     "el9-icelake-znver-stanage"
- ]
+    modulepaths = {
+        'icelake': "/opt/apps/tuos/el9/modules/live/all:/opt/apps/tuos/common/modules/easybuild-only/all:/opt/apps/tuos/common/modules/live/all",
+        'znver3': "/opt/apps/tuos/el9-znver3/modules/live/all:/opt/apps/tuos/common/modules/easybuild-only/all:/opt/apps/tuos/common/modules/live/all"
+    }
+    
+    titles = [
+        "Icelake and Znver (OS: Rocky 9) Package Versions"
+    ]
+    
+    output_dirs = [
+        "el9-icelake-znver-stanage"
+    ]
+```
 
 In this example, the directory which the category directories and package files will be stored:
 
@@ -68,7 +70,6 @@ The module files which are located in modulepaths are parsed, in this case one s
 
 The repository includes several scripts and modules organised under mods2docs, each with a specific role in the pipeline:
 
-.. code-block::
 
     |____ README
     |____ run-hpc-rocket.sh    initiates slurm job on cluster
@@ -90,17 +91,16 @@ The repository includes several scripts and modules organised under mods2docs, e
     | | |____ lmod.py          parses lua module files on modulepath
 
 
-
 ### Setting Up and Running Scripts
 
-.. code-block:: bash 
- 
+```bash 
    #Make scripts executable
    chmod +x run-hpc-rocket.sh setup_local.sh sync_stacks.sh
    # Set up local environment
    ./setup_local.sh
    # This script completes pipeline and pushes changes from a new branch to the remote repository
    ./sync_stacks.sh
+```
 
 ## Pipeline Overview
 
@@ -118,7 +118,7 @@ The primary script, start_pipeline.py, orchestrates the data parsing and documen
 
 Below are some of the mods2docs functions, which we may wish to customise:
 
-.. code-block:: python
+```python
 
  process_modulepath(modulepaths, title, output_dir)
  # Processes data parsed from modulepaths which is then passed to the following functions: 
@@ -130,6 +130,7 @@ Below are some of the mods2docs functions, which we may wish to customise:
  write_custom_file(package, output_dir)
  write_dependencies(dependencies, output_dir, category, package, package_ref)
  write_ml_file(package, package_infos, output_dir)
+```
 
 ### Parser Modules
 
