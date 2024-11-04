@@ -26,15 +26,15 @@ Scripts
 .. code-block::
 
  ├── README
- ├── collect_data.py  parses module files in modulepaths for each arch
- ├── config.py        configuration file
- ├── config.yml       configuration for hpc-rocket
- ├── graph.py         creates markdown files for force directed graph in Obsidian
- ├── run_pipeline.py  produces *.rst files, running collect_data.py if not already run today
+ ├── collect_data.py    parses module files in modulepaths for each arch
+ ├── config.py          configuration file
+ ├── config.yml         configuration for hpc-rocket
+ ├── graph.py           creates markdown files for force directed graph in Obsidian
+ ├── start_pipeline.py  produces *.rst files, running collect_data.py if not already run today
  ├── run.sh
- ├── setup_local.sh   activates required environment, generating it if doesn't exist 
- ├── slurm.sh         job script run collect_data.py on hpc cluster
- └── sync_stacks.sh   syncs *rst files into hpc docs repo
+ ├── setup_local.sh     activates required environment, generating it if doesn't exist
+ ├── slurm.sh           job script run collect_data.py on hpc cluster
+ └── sync_stacks.sh     syncs *rst files into hpc docs repo
  
 Usage
 -----
