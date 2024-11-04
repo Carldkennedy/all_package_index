@@ -57,9 +57,11 @@ The configuration setup in config.py includes:
 
 Output directories which will later be synced with the documentation repo:
 
-STACKS_DIR = "results/stanage/software/stubs/"
-IMPORTS_DIR = "results/referenceinfo/imports/stanage/packages/"
-CUSTOM_DIR = "results/referenceinfo/imports/stanage/packages/custom/"
+.. code-block:: python
+
+    STACKS_DIR = "results/stanage/software/stubs/"
+    IMPORTS_DIR = "results/referenceinfo/imports/stanage/packages/"
+    CUSTOM_DIR = "results/referenceinfo/imports/stanage/packages/custom/"
 
 Input parameters such as the modulepaths which we wish to parse, title(s) for the stack(s) and output directories for each stack: 
 
