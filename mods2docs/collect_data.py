@@ -1,8 +1,7 @@
 import os
 import pickle
 import argparse
-import utils 
-import config
+from mods2docs import utils, config
 import importlib
 import logging
 

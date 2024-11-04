@@ -1,7 +1,6 @@
 import argparse
 import importlib
-import config
-import utils
+from mods2docs import config, utils
 import logging
 
 def load_module(module_type, module_name):
