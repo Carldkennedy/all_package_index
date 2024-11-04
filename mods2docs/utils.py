@@ -1,7 +1,7 @@
 import os
 import pickle
-from mods2docs import config
 import logging
+from mods2docs import config
 
 def setup_logging(verbose, logfile=None):
     """
@@ -88,3 +88,12 @@ def save_collected_data(file_path, data):
     with open(file_path, 'wb') as f:
         pickle.dump(data, f)
 
+def load_module(module_type, module_name):
+    """
+    Dynamically loads a module from the specified type (writer or parser) and name.
+    """
+    try:
+        return importlib.import_module(f"mods2docs.{module_type}.{module_name}")
+    except ImportError as e:
+        logging.error(f"mods2docs.{module_type}.{module_name} module not found.")
+        raise e
