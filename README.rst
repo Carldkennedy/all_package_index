@@ -30,7 +30,7 @@ Scripts
  ├── config.py        configuration file
  ├── config.yml       configuration for hpc-rocket
  ├── graph.py         creates markdown files for force directed graph in Obsidian
- ├── main.py          produces *.rst files, running collect_data.py if not already run today
+ ├── run_pipeline.py  produces *.rst files, running collect_data.py if not already run today
  ├── run.sh
  ├── setup_local.sh   activates required environment, generating it if doesn't exist 
  ├── slurm.sh         job script run collect_data.py on hpc cluster
@@ -82,7 +82,7 @@ The module files which are located in modulepaths are parsed, in this case one s
 
 Functions
 ^^^^^^^^^
-Below are some of the main.py functions, which we may wish to customise:
+Below are some of the mods2docs functions, which we may wish to customise:
 
 .. code-block:: python
 

@@ -1,19 +1,10 @@
 import os
 import pickle
-import argparse
-from mods2docs import utils, config
-import importlib
 import logging
+import argparse
+import importlib
+from mods2docs import utils, config
 
-def load_module(module_type, module_name):
-    """
-    Dynamically loads a module from the specified type (writer or parser) and name.
-    """
-    try:
-        return importlib.import_module(f"mods2docs.{module_type}.{module_name}")
-    except ImportError as e:
-        logging.error(f"mods2docs.{module_type}.{module_name} module not found.")
-        raise e
 
 def collect_data(parser_module):
     """Collects and organises Lua module data by architecture using the specified parser module."""
@@ -57,7 +48,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     # Dynamically import the specified parser module
-    parser_module = load_module("parser", args.parser)
+    parser_module = utils.load_module("parser", args.parser)
 
     # Run main with the specified parser module
     main(parser_module)
