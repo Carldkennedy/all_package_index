@@ -1,9 +1,8 @@
 import os
 import re
 from datetime import datetime
-import config
-import utils
-from writer.common import setup_writer_directories
+from mods2docs import config, utils
+from mods2ocs.writer.common import setup_writer_directories
 
 def write_package_file(package, output_dir, dependencies, moduleclass):
     os.makedirs(output_dir, exist_ok=True)  # Ensure the output directory exists
