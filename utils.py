@@ -83,3 +83,8 @@ def ensure_data_collected():
 
     return collected_data
 
+def save_collected_data(file_path, data):
+    """Saves collected data as a pickle file."""
+    with open(file_path, 'wb') as f:
+        pickle.dump(data, f)
+

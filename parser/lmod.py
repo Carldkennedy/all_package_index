@@ -225,7 +225,7 @@ def extract_module_info(lua_content, lua_globals):
 
 def log_module_info(module_info):
     """Logs module information to the configured log file."""
-    utils.append_log(f"\nParsed: {config.lua_file_path}", config.log_file_path)
+    utils.append_log(f"\nParsed: {config.log_file_path}", config.log_file_path)
     for key, value in module_info.items():
         utils.append_log(f"\n{key}:", config.log_file_path)
         if isinstance(value, list):
