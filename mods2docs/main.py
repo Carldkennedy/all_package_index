@@ -4,7 +4,7 @@ import importlib
 from mods2docs import config, utils
 
 
-def run_pipeline(writer_module, parser_module):
+def execute_pipeline(writer_module, parser_module):
     logging.info("Starting process")
     utils.write_log(config.main_log_file)
     writer_module.setup_writer_directories()
@@ -36,5 +36,4 @@ if __name__ == "__main__":
     writer_module = utils.load_module("writer", args.writer)
     parser_module = utils.load_module("parser", args.parser)
 
-    # Run main
-    run_pipeline(writer_module, parser_module)
+    execute_pipeline(writer_module, parser_module)
