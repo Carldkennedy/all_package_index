@@ -19,9 +19,31 @@ def run_collect_data_script():
         return False
 
 
+def ensure_data_collected():
+    """
+    Ensures that the collected data is available by checking if the data file exists.
+    If not, it runs the data collection script and loads the data.
+
+    Returns:
+        dict or None: The collected data if available; otherwise, None.
+    """
+    if not os.path.exists(config.DATA_FILE):
+        print("Collected data not found. Running collect_data.py...")
+        utils.append_log("Collected data not found. Running collect_data.py...", config.main_log_file)
+        run_collect_data_script()
+
+    collected_data = utils.load_collected_data(config.DATA_FILE)
+    if not collected_data:
+        print("No collected data found even after running collect_data.py.")
+        utils.append_log("No collected data found even after running collect_data.py.", config.main_log_file)
+        return None
+
+    return collected_data
+
+
 def process_modulepath(modulepaths, title, output_dir):
     # Run collect_data.py if data file doesn't exist
-    collected_data = utils.ensure_data_collected()
+    collected_data = ensure_data_collected()
 
     if collected_data:
         package_infos, latest_version_info, package_ref = extract_package_info(collected_data)
