@@ -1,10 +1,8 @@
 __pycache__/
-backups/
-referenceinfo/
-stanage/
-el9-icelake-znver-stanage/
 .ssh/
-__init__.py
+# Keep data folder but not contents
+data/*
+!data/.gitkeep
 *.pkl
 *.seff
 *.log
