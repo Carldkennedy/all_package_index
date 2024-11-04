@@ -1,6 +1,7 @@
 import os
 import pickle
 import logging
+import importlib
 from mods2docs import config
 
 def setup_logging(verbose, logfile=None):
@@ -62,26 +63,6 @@ def load_collected_data(file_path):
             return pickle.load(f)
     return None
 
-def ensure_data_collected():
-    """
-    Ensures that the collected data is available by checking if the data file exists.
-    If not, it runs the data collection script and loads the data.
-
-    Returns:
-        dict or None: The collected data if available; otherwise, None.
-    """
-    if not os.path.exists(config.DATA_FILE):
-        print("Collected data not found. Running collect_data.py...")
-        utils.append_log("Collected data not found. Running collect_data.py...", config.main_log_file)
-        lmod.run_collect_data_script()
-
-    collected_data = load_collected_data(config.DATA_FILE)
-    if not collected_data:
-        print("No collected data found even after running collect_data.py.")
-        utils.append_log("No collected data found even after running collect_data.py.", config.main_log_file)
-        return None
-
-    return collected_data
 
 def save_collected_data(file_path, data):
     """Saves collected data as a pickle file."""
