@@ -23,12 +23,12 @@ CUSTOM_EXISTING="${REPO_DIR}/${CUSTOM}"
 # Clone the repository if it doesn't exist
 if [ ! -d "$REPO_DIR/.git" ]; then
     mkdir -p "$BUILD_DIR"
-    pushd "$BUILD_DIR"
+    pushd "$BUILD_DIR" || exit
     git clone git@github.com:rcgsheffield/sheffield_hpc.git
-    popd
+    popd || exit
 fi
 
-pushd "$REPO_DIR"
+pushd "$REPO_DIR" || exit
 # Pull the latest changes from the remote repository
 git switch master
 git pull origin master
@@ -49,7 +49,7 @@ else
   echo "Creating and switching to new branch '$BRANCH_NAME'."
   git checkout -b "$BRANCH_NAME"
 fi
-popd
+popd || exit
 
 mkdir -p "$IMPORTS_EXISTING" "$SOFTWARE_EXISTING" "$CUSTOM_EXISTING"
 
