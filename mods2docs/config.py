@@ -1,16 +1,24 @@
 import datetime
+from pathlib import Path
 
+# Outputs
 current_date = datetime.datetime.now().strftime("%Y-%m-%d")
 
-broken_symlinks_file = f"broken-symlinks.log"
-log_file_path = f"log-collect-data.log"
-main_log_file= f"main-update-packages.log"
+DATA_FOLDER = Path("data")
 
-DATA_FILE = "collected-data.pkl"
-STACKS_DIR = "stanage/software/stubs/"
-IMPORTS_DIR = "referenceinfo/imports/stanage/packages/"
-CUSTOM_DIR = "referenceinfo/imports/stanage/packages/custom/"
+broken_symlinks_file = DATA_FOLDER / "broken-symlinks.log"
+log_file_path = DATA_FOLDER / "log-collect-data.log"
+main_log_file = DATA_FOLDER / "main-update-packages.log"
 
+DATA_FILE = DATA_FOLDER / "collected-data.pkl"
+stacks_dir = "stanage/software/stubs/"
+imports_dir = "referenceinfo/imports/stanage/packages/"
+custom_dir = "referenceinfo/imports/stanage/packages/custom/"
+STACKS_DIR = DATA_FOLDER / stacks_dir 
+IMPORTS_DIR = DATA_FOLDER / imports_dir
+CUSTOM_DIR = DATA_FOLDER / custom_dir
+
+# Inputs
 modulepaths = {
     'icelake': "/opt/apps/tuos/el9/modules/live/all:/opt/apps/tuos/common/modules/easybuild-only/all:/opt/apps/tuos/common/modules/live/all",
     'znver3': "/opt/apps/tuos/el9-znver3/modules/live/all:/opt/apps/tuos/common/modules/easybuild-only/all:/opt/apps/tuos/common/modules/live/all"
@@ -23,6 +31,9 @@ titles = [
 output_dirs = [
     "el9-icelake-znver-stanage"
 ]
+
+# Define the path for the SLURM interactive session include file
+SLURM_INTERACTIVE_SESSION_IMPORT = "referenceinfo/imports/scheduler/SLURM/common_commands/srun_start_interactive_session_import_stanage.rst"
 
 module_classes = {
     "base": "Default module class",

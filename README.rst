@@ -10,7 +10,7 @@ The generated files for each package found on the given module paths includes:
 * Sidebar - Latest version available on each architecture, date module file was last modified, and URL.
 * Versions available - as module load commands in grouped tabs (for each architecture).
 * Notes - detailing how to view build logs, etc.
-* Dependencies - Shows the depenedenices for the latest version (across architectures), each is a link to it's respective page. 
+* Dependencies - Shows the dependencies for the latest version (across architectures), each is a link to it's respective page.
  
 Each of the above is imported into a package's page when built, this allows re-use of these imports 
 elsewhere in the documentation.
@@ -26,15 +26,15 @@ Scripts
 .. code-block::
 
  ├── README
- ├── collect_data.py  parses module files in modulepaths for each arch
- ├── config.py        configuration file
- ├── config.yml       configuration for hpc-rocket
- ├── graph.py         creates markdown files for force directed graph in Obsidian
- ├── main.py          produces *.rst files, running collect_data.py if not already run today
+ ├── collect_data.py    parses module files in modulepaths for each arch
+ ├── config.py          configuration file
+ ├── config.yml         configuration for hpc-rocket
+ ├── graph.py           creates markdown files for force directed graph in Obsidian
+ ├── start_pipeline.py  produces *.rst files, running collect_data.py if not already run today
  ├── run.sh
- ├── setup_local.sh   activates required environment, generating it if doesn't exist 
- ├── slurm.sh         job script run collect_data.py on hpc cluster
- └── sync_stacks.sh   syncs *rst files into hpc docs repo
+ ├── setup_local.sh     activates required environment, generating it if doesn't exist
+ ├── slurm.sh           job script run collect_data.py on hpc cluster
+ └── sync_stacks.sh     syncs *rst files into hpc docs repo
  
 Usage
 -----
@@ -82,7 +82,7 @@ The module files which are located in modulepaths are parsed, in this case one s
 
 Functions
 ^^^^^^^^^
-Below are some of the main.py functions, which we may wish to customise:
+Below are some of the mods2docs functions, which we may wish to customise:
 
 .. code-block:: python
 
