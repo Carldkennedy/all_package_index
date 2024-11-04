@@ -17,7 +17,7 @@ def load_module(module_type, module_name):
         raise e
 
 def collect_data(parser_module):
-    """Collects and organizes Lua module data by architecture using the specified parser module."""
+    """Collects and organises Lua module data by architecture using the specified parser module."""
     paths_by_arch = parser_module.gather_lua_paths_by_arch()
     sorted_paths_by_arch = parser_module.sort_paths(paths_by_arch)
 
