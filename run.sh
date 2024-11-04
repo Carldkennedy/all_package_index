@@ -19,4 +19,4 @@ mkdir -p backups/
 for file in *.{pkl,log}; do cp "$file" "${file}-$(date +%Y%m%d).bk" && echo "Backed up $file" ; done
 mv *.bk backups/
 
-python -m mods2docs.run_pipeline --parser lmod --writer rest
+python -m mods2docs.start_pipeline --parser lmod --writer rest
