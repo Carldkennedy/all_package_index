@@ -16,16 +16,14 @@ The generated files for each package found on the given module paths includes:
 Each of the above is imported into a package's page when built, this allows re-use of these imports 
 elsewhere in the documentation.
 
-TODO
-----
+## TODO
 
 - [ ] Support any number of architectures
  
-Setup and Usage
----------------
+## Setup and Usage
 
-Configuration
-^^^^^^^^^^^^^
+### Configuration
+
 To configure the necessary parameters, use config.py and config.yml:
 
 config.py defines output directories for generated documentation and other key paths.
@@ -66,8 +64,7 @@ The title of the stack is 'Icelake and Znver (OS: Rocky 9) Package Versions'.
 
 The module files which are located in modulepaths are parsed, in this case one set for each architecture.
 
-Scripts Overview
-^^^^^^^^^^^^^^^^
+### Scripts Overview
 
 The repository includes several scripts and modules organised under mods2docs, each with a specific role in the pipeline:
 
@@ -94,8 +91,7 @@ The repository includes several scripts and modules organised under mods2docs, e
 
 
 
-Setting Up and Running Scripts
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+### Setting Up and Running Scripts
 
 .. code-block:: bash 
  
@@ -106,8 +102,7 @@ Setting Up and Running Scripts
    # This script completes pipeline and pushes changes from a new branch to the remote repository
    ./sync_stacks.sh
 
-Pipeline Overview
------------------
+## Pipeline Overview
 
 The primary script, start_pipeline.py, orchestrates the data parsing and documentation generation pipeline:
 .
@@ -119,8 +114,8 @@ The primary script, start_pipeline.py, orchestrates the data parsing and documen
 .
 
 
-Writer modules
-^^^^^^^^^^^^^^
+### Writer modules
+
 Below are some of the mods2docs functions, which we may wish to customise:
 
 .. code-block:: python
@@ -136,11 +131,10 @@ Below are some of the mods2docs functions, which we may wish to customise:
  write_dependencies(dependencies, output_dir, category, package, package_ref)
  write_ml_file(package, package_infos, output_dir)
 
-Parser Modules
-^^^^^^^^^^^^^^
+### Parser Modules
 
-Contributing
-------------
+## Contributing
+
 We welcome contributions to the All Package Index project! Whether you’d like to report a bug, suggest new features,
 or improve the documentation, your help is invaluable to the project’s success. 
 Please follow the guidelines below to ensure a smooth collaboration process.
