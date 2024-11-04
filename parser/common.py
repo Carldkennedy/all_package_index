@@ -1,4 +1,5 @@
 import subprocess
+import pickle
 
 def extract_installer(file_path):
     try:
@@ -12,8 +13,4 @@ def extract_installer(file_path):
         append_log(f"Error extracting installer: {e}", config.log_file_path)
     return None
 
-def save_collected_data(file_path, data):
-    """Saves collected data as a pickle file."""
-    with open(file_path, 'wb') as f:
-        pickle.dump(data, f)
 
