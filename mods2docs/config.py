@@ -1,16 +1,19 @@
 import datetime
+from pathlib import Path
 
+# Outputs
 current_date = datetime.datetime.now().strftime("%Y-%m-%d")
 
-broken_symlinks_file = f"broken-symlinks.log"
-log_file_path = f"log-collect-data.log"
-main_log_file= f"main-update-packages.log"
+DATA_FOLDER = Path("data")
+broken_symlinks_file = DATA_FOLDER / "broken-symlinks.log"
+log_file_path = DATA_FOLDER / "log-collect-data.log"
+main_log_file = DATA_FOLDER / "main-update-packages.log"
+DATA_FILE = DATA_FOLDER / "collected-data.pkl"
+STACKS_DIR = DATA_FOLDER / "stanage/software/stubs/"
+IMPORTS_DIR = DATA_FOLDER / "referenceinfo/imports/stanage/packages/"
+CUSTOM_DIR = DATA_FOLDER / "referenceinfo/imports/stanage/packages/custom/"
 
-DATA_FILE = "collected-data.pkl"
-STACKS_DIR = "stanage/software/stubs/"
-IMPORTS_DIR = "referenceinfo/imports/stanage/packages/"
-CUSTOM_DIR = "referenceinfo/imports/stanage/packages/custom/"
-
+# Inputs
 modulepaths = {
     'icelake': "/opt/apps/tuos/el9/modules/live/all:/opt/apps/tuos/common/modules/easybuild-only/all:/opt/apps/tuos/common/modules/live/all",
     'znver3': "/opt/apps/tuos/el9-znver3/modules/live/all:/opt/apps/tuos/common/modules/easybuild-only/all:/opt/apps/tuos/common/modules/live/all"

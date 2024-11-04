@@ -25,5 +25,4 @@ if [ $? -ne 0 ]; then
 fi
 
 echo "Environment setup is complete."
-cd all-package-index
-python collect_data.py --parser lmod
+python -m mods2docs.collect_data --parser lmod
