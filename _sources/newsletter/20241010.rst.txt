@@ -1,0 +1,65 @@
+.. _nl20241010:
+
+News - 2024-10-10
+=================
+
+Hello everyone! We are so pleased to have you all back for the new academic year. For those who are new, this is our monthly HPC newsletter, where we share all things HPC at the university of Sheffield. From the new software and technology the team is always working on, to upcoming events and courses, and showcasing any of the great research our community is carrying out on our HPC cluster.  
+
+Stanage Now Back Under Our Management
+---------------------------------------
+
+Since going live Stanage has been under the management of a third party vendor; even though this allowed the team to concentrate on other innovative projects it hindered our ability to make changes at a system level. Over the summer the research platforms team worked extremely hard to taking back control of Stanage. This was one of the main reasons for our August outage. For those who were with us during this period, we are extremely grateful for your patience and apologise for any disruption caused. You shouldn't notice any changes yet, but going forward the team now has the flexibility to easily make changes to improve the user experience.
+
+JADE2 End Of Life
+-----------------
+
+On top of Stanage and Bessemer, the university also has access to the tier 2 HPC systems known as JADE2 and Bede. Users of JADE2 should be aware of the following key dates, as it is unfortunately being withdrawn from service:
+
+- From 1st September 2024: No new groups or user accounts can be added to the system.
+- From 1st November 2024: Batch and interactive access to all compute resources will be withdrawn (i.e., it is the last day to submit a job).
+- 6th January 2025: All access to the service will be withdrawn and physical decommissioning of the system will commence.
+
+EPSRC Large Scale Facilities - User survey
+------------------------------------------
+
+For those who have made use of BEDE or other EPSRC Large Scale Facilities, we would like to know your experiences of how accessible you consider these facilities are by your response to this `survey  <https://engagementhub.ukri.org/epsrc-researchinfrastructure/lsfusersurvey/>`_ .
+
+A Sad Goodbye
+-------------
+
+This summer, we had the pleasure of welcoming two talented interns who brought fresh ideas, energy, and dedication to our team. Over the past few months we worked on upskilling them on everything HPC. After their training they got to support some of our researchers on our HPC system, contributed meaningfully to some of our big projects and became integral part of our team. As the summer came to a close, we reluctantly had to say goodbye to the pair, but we are confident that their future holds great things and are grateful for all their hard work.
+We hope to offer more internships next summer to empower more ambitious minds, so if supporting research and tackling intriguing challenges appeals to you, please keep an eye on our announcement and in the mean time please study our `HPC documentation <https://docs.hpc.shef.ac.uk/>`_  and play around with HPC systems. We're eager to welcome another bunch next summer, from all levels of experience and disciplines. 
+
+
+Upcoming Training
+-----------------
+
+Below are our research computing key training dates for October and the rest of this semester. You can register for these courses and more at  `Research Computing Training <https://sites.google.com/sheffield.ac.uk/research-training/>`_ . 
+
+.. warning::
+    For our taught postgraduate users who don't have access to MyDevelopment, please email us at ``researchcomputing@sheffield.ac.uk`` with the course you want to register for, and we should be able to help you.
+
+- 10/10/2024 - High-Performance Computing
+- 23/10/2024 - Data Science and AI for Medical Research in R 
+- 29/10/2024 - Introducing AI into Research
+- 29/10/2024 - High-Performance Computing
+- 30/10/2024 - Data Science and AI for Medical Research in R 
+- 31/10/2024 - Matlab 1
+- 04/11/2024 - Python 1
+- 07/11/2024 - Matlab 2
+- 11/11/2024 - Python 2
+- 12/11/2024 - Introducing AI into Research
+- 14/11/2024 - Introduction to R Programming
+- 14/11/2024 - High-Performance Computing
+- 03/12/2024 - High-Performance Computing
+
+The RSE team will be carrying out the **Better software for better research: Introduction to the FAIR training programme** course on the 22/10/2024. You can register for it by following the instructions found `here <https://rse.shef.ac.uk/training/fair4rs/>`_ .  
+
+
+Useful Links
+------------
+
+- :ref:`HPC documentation  <hpc-home>`
+- :ref:`Citing the HPC services in publications.  <citing>`
+- `RSE code clinics <https://rse.shef.ac.uk/support/code-clinic/>`_ . These are fortnightly support sessions run by the RSE team and IT Services' Research IT and support team. They are open to anyone at TUOS writing code for research to get help with programming problems and general advice on best practice.
+- `Training and courses <https://sites.google.com/sheffield.ac.uk/research-training/>`_ (You must be logged into the main university website to view).

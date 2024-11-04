@@ -1,0 +1,213 @@
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Verifying software package download integrity &mdash; Sheffield HPC Documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/tabs.css?v=a5c4661c" />
+      <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=0a35405e" />
+
+  
+    <link rel="canonical" href="https://docs.hpc.shef.ac.uk/referenceinfo/linux-shell/verifying-software-package-downloads.html" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../_static/copybutton.js?v=f281be69"></script>
+        <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="What are environment variables?" href="what-are-environment-variables.html" />
+    <link rel="prev" title="Unpacking an RPM" href="unpacking-an-rpm.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Sheffield HPC Documentation
+              <img src="../../_static/UOSLogo_Primary_Violet_RGB_small.png" class="logo" alt="Logo"/>
+          </a><div>
+    <h3>Quick search</h3>
+    <!--Setup by JKWM via https://cse.google.com/cse/all-->
+    <script async src="https://cse.google.com/cse.js?cx=243e6cd4be08b404b">
+    </script>
+    <div class="gcse-search"></div>
+ </div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../hpc/index.html">Using the HPC Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../stanage/index.html">Stanage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bessemer/index.html">Bessemer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../parallel/index.html">Parallel Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../newsletter/index.html">News</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html">Glossary of Terms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../other-uk-hpc-resources.html">Access to External UK HPC Facilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../help.html">Need help?</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://rcgsheffield.github.io/TUoS-RIT-training-resources/training.html">Courses / Training Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../FAQs.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cheatsheets/index.html">Quick Reference (Cheat Sheets)</a></li>
+<li class="toctree-l1"><a class="reference external" href="http://changelog.hpc.shef.ac.uk/">Latest Software / HPC changelog</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Reference Information Index</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../ANSYS/index.html">ANSYS Packages Reference Info</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../environment-modules/index.html">Environment Modules Reference Info</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Linux shell Reference Info</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="making-software-available-with-bashrc.html">Making software available via the .bashrc file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="the-bashrc-file.html">The .bashrc file and its purpose</a></li>
+<li class="toctree-l3"><a class="reference internal" href="unpacking-a-tarball.html">Unpacking a tarball</a></li>
+<li class="toctree-l3"><a class="reference internal" href="unpacking-an-rpm.html">Unpacking an RPM</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Verifying software package download integrity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="what-are-environment-variables.html">What are environment variables?</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../scheduler/index.html">Scheduler Reference Info</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../computer-architecture/index.html">Computer Architecture Reference Info</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../connecting-ssh/index.html">Connecting via SSH Reference Info</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mfa/index.html">Multifactor Authentication Reference Info</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../admins/index.html">Documentation Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../citing.html">Suggested text for citations and letters of support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../decommissioned/index.html">Decommissioned Clusters</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Sheffield HPC Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+<!-- <a class="forkme" href="https://github.com/rcgsheffield/sheffield_hpc">
+<img alt="Fork me on GitHub" src="../../_static/img/forkme.png"> 
+</a> -->
+
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Reference Information Index</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Linux shell Reference Info</a></li>
+      <li class="breadcrumb-item active">Verifying software package download integrity</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="toctree-wrapper compound">
+</div>
+<section id="verifying-software-package-download-integrity">
+<h1>Verifying software package download integrity<a class="headerlink" href="#verifying-software-package-download-integrity" title="Link to this heading"></a></h1>
+<p>Typically any downloaded software packages will be supplied with a checksum value (usually MD5 or SHA256)
+and you should check that this checksum is correct after upload to the cluster to verify the integrity
+of the uploaded files.</p>
+<p>An example of checking the integrity of the Make RPM is shown below using the
+<code class="docutils literal notranslate"><span class="pre">md5sum</span></code> and <code class="docutils literal notranslate"><span class="pre">sha256sum</span></code> commands:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="hll"><span class="gp">[user@node004 [stanage] yumpackages]$ </span>md5sum<span class="w"> </span>make-3.82-24.el7.x86_64.rpm
+</span><span class="go">c678cfe499cd64bae54a09b43f600231  make-3.82-24.el7.x86_64.rpm</span>
+<span class="hll"><span class="gp">[user@node004 [stanage] yumpackages]$ </span>sha256sum<span class="w"> </span>make-3.82-24.el7.x86_64.rpm
+</span><span class="go">d4829aff887b450f0f3bd307f782e062d1067ca4f95fcad5511148679c14a668  make-3.82-24.el7.x86_64.rpm</span>
+</pre></div>
+</div>
+<p>At this stage if being thorough you should check that any vendor or package maintainer signatures on
+the downloaded binary packages are valid.</p>
+<p>If the vendor or maintainer has supplied a tarball or similar with an associated signature file (typically
+<code class="docutils literal notranslate"><span class="pre">packagename.tar.gz.asc</span></code>  or <code class="docutils literal notranslate"><span class="pre">packagename.tar.gz.sig</span></code>) then you can use gpg to check if it is valid as
+demonstrated below with the GNU Make project’s source tarball:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="hll"><span class="gp">[user@node004 [stanage] make]$ </span>gpg<span class="w"> </span>--verify<span class="w"> </span>make-4.3.tar.gz.sig<span class="w"> </span>make-4.3.tar.gz
+</span><span class="go">gpg: Signature made Sun 19 Jan 2020 22:24:43 GMT using RSA key ID DB78137A</span>
+<span class="go">gpg: Good signature from &quot;Paul D. Smith &lt;paul@mad-scientist.net&gt;&quot;</span>
+<span class="go">gpg:                 aka &quot;Paul D. Smith &lt;psmith@gnu.org&gt;&quot;</span>
+<span class="go">gpg: WARNING: This key is not certified with a trusted signature!</span>
+<span class="go">gpg:          There is no indication that the signature belongs to the owner.</span>
+<span class="hll"><span class="go">Primary key fingerprint: 6D4E EB02 AD83 4703 510B  1176 80CB 727A 20C7 9BB2</span>
+</span><span class="go">Subkey fingerprint: B250 8A90 102F 8AE3 B12A  0090 DEAC CAAE DB78 137A</span>
+</pre></div>
+</div>
+<p>The GNU Make project documentation shows Paul D. Smith as the project maintainer and
+navigating to this personal site, <a class="reference external" href="http://make.mad-scientist.net/switching-gpg-keys/">http://make.mad-scientist.net/switching-gpg-keys/</a>, shows
+the matching primary key fingerprint as expected and you can proceed with installing from
+the package.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Because we have not set Paul’s public key as trusted and signed his public key with our own
+private key, GPG will warn you that while the package is signed with Paul’s key, his key is not trusted
+nor can it verify it was indeed Paul’s key in the first place.</p>
+<p>As it is possible for anyone to generate a signing key with anyone’s name or email, you must verify
+the public key that signed the package is Paul’s e.g. by confirming with an alternate source such
+as his website which publishes the expected fingerprint.</p>
+<p>In order for GPG to trust the signature, several further commands are needed to add the key to your key
+chain, mark it as trusted then sign it with your own private key to establish a chain of trust / confirm
+to GPG you trust the key and have verified that it was indeed generated by Paul.</p>
+<p>As this has several steps and is required it is out of scope of this page.</p>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="unpacking-an-rpm.html" class="btn btn-neutral float-left" title="Unpacking an RPM" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="what-are-environment-variables.html" class="btn btn-neutral float-right" title="What are environment variables?" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, The University of Sheffield.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<footer class="footer">
+  <div class="container">
+    <div class="left-footer">
+         &copy; 2024, The University of Sheffield
+       <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" /></a>
+    </div>
+   
+    <div class="centre-footer">
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.3.7
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

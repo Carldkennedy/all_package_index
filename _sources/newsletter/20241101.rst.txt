@@ -1,0 +1,114 @@
+.. _nl20241101:
+
+News - 2024-11-01
+=================
+
+Hello everyone! Autumn is finally with us, as the leaves fall and the and the clocks go back, one really appreciates Unix epoch time - it’s straightforward, reliable, and never makes me guess what hour it is. Unlike daylight saving time, which just makes me feel like I got segmentation fault in my sleep schedule!
+
+This months news letter details:
+
+- Compute grants available this winter to our researchers and students.  
+- Planned Non-Disruptive Maintenance.
+- New NVIDIA and CUDA software additions to the HPC clusters.
+- November training courses run by Research Computing, RSE and our external partners. 
+- End of access for MyAPPs
+
+
+
+Upcoming Non-Disruptive Maintenance Events
+------------------------------------------
+
+The platforms team will carrying out none disruptive maintenance over the weeks following the 4th November. For specific details, please click the links below but to summarise:
+
+- All jobs and interactive sessions using centrally provided software on Stanage should be considered at risk on November 5th between 10am and 11:30am.  `Stanage central software storage volume non-disruptive maintenance <https://changelog.hpc.shef.ac.uk/Stanage-central-software-storage-volume-nonn-disruptive-maintenance/>`_ . 
+
+
+- Available GPU resources across both clusters will be diminished over the coming weeks as we perform GPU driver updates. We are staggering these updates to avoid large capacity loss. `Stanage and Bessemer GPU Driver updates <https://changelog.hpc.shef.ac.uk/Stanage-and-Bessemer-HPC-GPU-Driver-updates/>`_
+
+The way the team is able to make the maintenace none disruptive is by taking a few nodes out of service to undergo maintenace before returning them to service and working on the next batch.  This decreases compute capacity across both clusters as nodes will be required to be drained and rebooted. The decreases in capacity are being mitigated by staggered drainage and reboot cycles for each cluster’s nodes.
+
+Nodes undergoing maintenance and the reason for the maintenance can be seen using the following command:
+
+.. code-block:: console
+
+    sinfo -R --format="%50E %N %.6t"
+
+New Nvidia Drivers And CUDA versions
+-------------------------------------
+ 
+The platforms team have been hard at work this month updating the GPU drivers to newer Nvidia drivers that support CUDA 12.4. With the completion of this update, users now have access to CUDA 12.4 on both Stanage and Bessemer.
+
+End Of Access For MyAPPs
+------------------------
+
+This December we will be ending support for access to HPC using myAPPs via a web browser. MyAPPs is one of the resources IT Services provided to give access to the Bessemer cluster through a web based CLI terminal and text editor. The majority of our users won't be affected by this but for the few that will, we will be sending communications through the month of November with more details in advance of the changes and advise how to migrate to using SSH and SSH clients.
+
+Bede: 3 additional Grace-Hopper nodes available (6 total)
+---------------------------------------------------------
+
+The N8 CIR Bede Tier 2 HPC facility now includes a `pilot of 6 Grace-Hopper nodes <https://bede-documentation.readthedocs.io/en/latest/usage/index.html#grace-hopper-pilot>`_ , each containing an `NVIDIA GH200 Grace Hopper Superchip <https://www.nvidia.com/en-gb/data-center/grace-hopper-superchip/>`_.
+
+Bede is available for use by researchers from N8 Research Partnership, including the University of Sheffield. Access to Bede is managed per project, with [details of the application procedure provided on the N8 CIR website](https://n8cir.org.uk/bede/accessing-bede/).
+
+Please contact ``tier-2-hpc-support-group@sheffield.ac.uk`` if you have any questions regarding the application process, the Grace-Hopper pilot, or Bede in general.
+
+UKRI Funding Oportunity
+------------------------
+
+UKRI have a new funding opportunity that will grant successful candidates access to UKRI high performance computing facilities. This opportunity is open to both researchers and students (there are a few eligibility criteria for students). You can get more information and register for it by following the instructions found `here <https://www.ukri.org/opportunity/access-to-high-performance-computing-facilities-autumn-2024/>`_ .  
+
+Here are a few key dates for the grant application:
+
+- 07/11/2024 - Webinar detailing the grant.
+- 28/11/2024 - Closing date for applications.
+- 01/01/2025 - Expected project start date.
+
+Research Computing Support is happy to provide a quick review of your application for this grant if you desire. However, please put in your request before 19/11/2024 so that the team can allocate time towards this.
+
+Access To EuroHPC
+-----------------
+
+The European High Performance Computing Joint Undertaking (EuroHPC JU) has nine supercomputers located across Europe, offering a combined compute of up to 539.13 petaflops of compute. EuroHPC has a few upcoming date access proposal deadlines listed below. You can apply for these access and get more information `on this page <https://eurohpc-ju.europa.eu/access-our-supercomputers/eurohpc-access-calls_en/>`_ . 
+
+- 01/12/2024 - EuroHPC JU Call for Proposals for Development Access. The purpose of the EuroHPC JU Development Access calls is to support researchers and HPC application developers by giving them the opportunity to develop, test and optimise their applications on the upcoming/available EuroHPC pre-exascale and/or Petascale system prior to applying for Extreme Scale and/or Regular Access. 
+- 01/12/2024 - EuroHPC JU Call for Proposals for Benchmark Access. The purpose of the EuroHPC JU Benchmark Access calls is to support researchers and HPC application developers by giving them the opportunity to test or benchmark their applications on the upcoming/available EuroHPC Pre-exascale and/or Petascale system prior to applying for Extreme Scale and/or Regular Access. 
+
+
+Upcoming Training
+-----------------
+
+Below are our research computing key training dates for in November and the rest of this semester. You can register for these courses and more at  `Research Computing Training <https://sites.google.com/sheffield.ac.uk/research-training/>`_ . 
+
+.. warning::
+    For our taught postgraduate users who don't have access to MyDevelopment, please email us at ``researchcomputing@sheffield.ac.uk`` with the course you want to register for, and we should be able to help you.
+
+- 04/11/2024 - Python 1
+- 07/11/2024 - Matlab 2
+- 11/11/2024 - Python 2
+- 12/11/2024 - Introducing AI into Research
+- 14/11/2024 - Introduction to R Programming
+- 14/11/2024 - High-Performance Computing
+- 18/11/2024 - Python 3
+- 03/12/2024 - High-Performance Computing
+- 10/12/2024 - Introducing AI into Research
+- 12/12/2024 - Introduction to R Programming
+
+The RSE team will be carrying out the following courses in november. You can register for them by following the `instructions found here <https://rse.shef.ac.uk/training/fair4rs/>`_ .  
+
+- 08/11/2024 - Software lifecycle planning
+- 18/11/2024 - Git, GitHub and GitKraken - From Zero to Hero 1 (Version control Training)
+- 19/11/2024 - Git, GitHub and GitKraken - From Zero to Hero 2 (Version control Training)
+
+Below are some training from our third party collaborators:
+
+- 25/11/2024 to 26/11/2024 - The N8 CIR group will be running a FREE two-day workshop on AI, Machine Learning, and Neural Networks for researchers. This interactive workshop will introduce you to concepts like supervised and unsupervised learning, bias, and variance. The hands-on session will guide attendees through building and training a simple neural network. We'll also explore deeper architectures using live demos and discuss the importance of explainability, bias and fairness. This workshop is everything you need to get started with neural networks in your research. You can register for it by  `following the instructions found here <https://www.eventbrite.co.uk/e/neural-networks-for-research-workshop-tickets-1044873373387?aff=oddtdtcreator>`_ . 
+- 26/11/2024 to 27/11/2024 - The Archer group will be running a **face-to-face** training session on **Message Passing programming with MPI** at Birmingham followed by a half day online session on 3rd December. You can register for it by following this `link <https://www.archer2.ac.uk/training/courses/241126-mpi/>`_ . 
+- `Wolfram-U Learning Portal <https://www.wolfram.com/wolfram-u/>`_ offers free open interactive courses, certifications, training events and other educational resources for professional and technical development.
+
+Useful Links
+------------
+
+- :ref:`HPC documentation  <hpc-home>`
+- :ref:`Citing the HPC services in publications.  <citing>`
+- `RSE code clinics <https://rse.shef.ac.uk/support/code-clinic/>`_ . These are fortnightly support sessions run by the RSE team and IT Services' Research IT and support team. They are open to anyone at TUOS writing code for research to get help with programming problems and general advice on best practice.
+- `Training and courses <https://sites.google.com/sheffield.ac.uk/research-training/>`_ (You must be logged into the main university website to view).

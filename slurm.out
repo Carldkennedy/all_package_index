@@ -1,0 +1,45 @@
+Purging modules and loading 'Anaconda3' ...
+Activating Conda environment 'lmod_env' ...
+Environment setup is complete.
+/opt/apps/tuos/el9/modules/live/math/MATLAB/2023b.lua not found.
+/opt/apps/tuos/el9-znver3/modules/live/compiler/LLVM/14.0.3-GCCcore-11.3.0.lua not found.
+/opt/apps/tuos/el9-znver3/modules/live/data/LAME/3.100-GCCcore-11.3.0.lua not found.
+/opt/apps/tuos/el9-znver3/modules/live/data/netCDF/4.9.0-gompi-2022a.lua not found.
+/opt/apps/tuos/el9-znver3/modules/live/devel/Boost/1.79.0-GCC-11.3.0.lua not found.
+/opt/apps/tuos/el9-znver3/modules/live/devel/DBus/1.14.0-GCCcore-11.3.0.lua not found.
+/opt/apps/tuos/el9-znver3/modules/live/devel/GObject-Introspection/1.72.0-GCCcore-11.3.0.lua not found.
+/opt/apps/tuos/el9-znver3/modules/live/devel/Mako/1.2.0-GCCcore-11.3.0.lua not found.
+/opt/apps/tuos/el9-znver3/modules/live/devel/PCRE2/10.40-GCCcore-11.3.0.lua not found.
+/opt/apps/tuos/el9-znver3/modules/live/devel/Qt5/5.15.5-GCCcore-11.3.0.lua not found.
+/opt/apps/tuos/el9-znver3/modules/live/lang/FriBidi/1.0.12-GCCcore-11.3.0.lua not found.
+/opt/apps/tuos/el9-znver3/modules/live/lang/Lua/5.4.4-GCCcore-11.3.0.lua not found.
+/opt/apps/tuos/el9-znver3/modules/live/lang/nodejs/16.15.1-GCCcore-11.3.0.lua not found.
+/opt/apps/tuos/el9-znver3/modules/live/lang/Yasm/1.3.0-GCCcore-11.3.0.lua not found.
+/opt/apps/tuos/el9-znver3/modules/live/lib/ffnvcodec/11.1.5.2.lua not found.
+/opt/apps/tuos/el9-znver3/modules/live/lib/graphite2/1.3.14-GCCcore-11.3.0.lua not found.
+/opt/apps/tuos/el9-znver3/modules/live/lib/libdrm/2.4.110-GCCcore-11.3.0.lua not found.
+/opt/apps/tuos/el9-znver3/modules/live/lib/libgd/2.3.3-GCCcore-11.3.0.lua not found.
+/opt/apps/tuos/el9-znver3/modules/live/lib/libglvnd/1.4.0-GCCcore-11.3.0.lua not found.
+/opt/apps/tuos/el9-znver3/modules/live/lib/libunwind/1.6.2-GCCcore-11.3.0.lua not found.
+/opt/apps/tuos/el9-znver3/modules/live/lib/NSPR/4.34-GCCcore-11.3.0.lua not found.
+/opt/apps/tuos/el9-znver3/modules/live/lib/NSS/3.79-GCCcore-11.3.0.lua not found.
+/opt/apps/tuos/el9-znver3/modules/live/math/KaHIP/3.14-gompi-2022a.lua not found.
+/opt/apps/tuos/el9-znver3/modules/live/math/libcerf/2.1-GCCcore-11.3.0.lua not found.
+/opt/apps/tuos/el9-znver3/modules/live/math/METIS/5.1.0-GCCcore-11.3.0.lua not found.
+/opt/apps/tuos/el9-znver3/modules/live/math/MPFR/4.1.0-GCCcore-11.3.0.lua not found.
+/opt/apps/tuos/el9-znver3/modules/live/math/SCOTCH/7.0.1-gompi-2022a.lua not found.
+/opt/apps/tuos/el9-znver3/modules/live/numlib/CGAL/4.14.3-gompi-2022a.lua not found.
+/opt/apps/tuos/el9-znver3/modules/live/tools/re2c/2.2-GCCcore-11.3.0.lua not found.
+/opt/apps/tuos/el9-znver3/modules/live/vis/cairo/1.17.4-GCCcore-11.3.0.lua not found.
+/opt/apps/tuos/el9-znver3/modules/live/vis/FFmpeg/4.4.2-GCCcore-11.3.0.lua not found.
+/opt/apps/tuos/el9-znver3/modules/live/vis/GLib/2.72.1-GCCcore-11.3.0.lua not found.
+/opt/apps/tuos/el9-znver3/modules/live/vis/gnuplot/5.4.4-GCCcore-11.3.0.lua not found.
+/opt/apps/tuos/el9-znver3/modules/live/vis/HarfBuzz/4.2.1-GCCcore-11.3.0.lua not found.
+/opt/apps/tuos/el9-znver3/modules/live/vis/JasPer/2.0.33-GCCcore-11.3.0.lua not found.
+/opt/apps/tuos/el9-znver3/modules/live/vis/libGLU/9.0.2-GCCcore-11.3.0.lua not found.
+/opt/apps/tuos/el9-znver3/modules/live/vis/Mesa/22.0.3-GCCcore-11.3.0.lua not found.
+/opt/apps/tuos/el9-znver3/modules/live/vis/Pango/1.50.7-GCCcore-11.3.0.lua not found.
+/opt/apps/tuos/el9-znver3/modules/live/vis/ParaView/5.10.1-foss-2022a-mpi.lua not found.
+/opt/apps/tuos/el9-znver3/modules/live/vis/pixman/0.40.0-GCCcore-11.3.0.lua not found.
+/opt/apps/tuos/el9-znver3/modules/live/vis/x264/20220620-GCCcore-11.3.0.lua not found.
+/opt/apps/tuos/el9-znver3/modules/live/vis/x265/3.5-GCCcore-11.3.0.lua not found.

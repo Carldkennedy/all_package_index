@@ -1,0 +1,373 @@
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OpenFOAM &mdash; Sheffield HPC Documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=a5c4661c" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=0a35405e" />
+
+  
+    <link rel="canonical" href="https://docs.hpc.shef.ac.uk/stanage/software/apps/openfoam.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../../_static/copybutton.js?v=f281be69"></script>
+        <script src="../../../_static/design-tabs.js?v=36754332"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Python" href="python.html" />
+    <link rel="prev" title="Nextflow" href="nextflow.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Sheffield HPC Documentation
+              <img src="../../../_static/UOSLogo_Primary_Violet_RGB_small.png" class="logo" alt="Logo"/>
+          </a><div>
+    <h3>Quick search</h3>
+    <!--Setup by JKWM via https://cse.google.com/cse/all-->
+    <script async src="https://cse.google.com/cse.js?cx=243e6cd4be08b404b">
+    </script>
+    <div class="gcse-search"></div>
+ </div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../hpc/index.html">Using the HPC Systems</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Stanage</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../stanage-FAQ-gotchas.html">Stanage FAQ and Gotchas</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Software on Stanage</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Applications on Stanage</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="ansys/index.html">ANSYS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="R.html">R</a></li>
+<li class="toctree-l4"><a class="reference internal" href="abaqus.html">Abaqus</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ansysem.html">ANSYSEM</a></li>
+<li class="toctree-l4"><a class="reference internal" href="apptainer.html">Apptainer/Singularity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="castep.html">CASTEP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="git-lfs.html">Git LFS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gmp.html">GnuMP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gromacs.html">GROMACS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="java.html">Java (Temurin/OpenJDK)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="julia.html">Julia</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lammps.html">LAMMPS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mathematica.html">Mathematica</a></li>
+<li class="toctree-l4"><a class="reference internal" href="matlab.html">MATLAB</a></li>
+<li class="toctree-l4"><a class="reference internal" href="maven.html">Maven</a></li>
+<li class="toctree-l4"><a class="reference internal" href="molpro.html">Molpro</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ncdu.html">ncdu</a></li>
+<li class="toctree-l4"><a class="reference internal" href="netlogo.html">NetLogo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nextflow.html">Nextflow</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">OpenFOAM</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#usage">Usage</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#interactive-usage">Interactive Usage</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#batch-usage">Batch Usage</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#example-decomposepardict">Example decomposeParDict:</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#installation-notes">Installation notes</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#installation-method">Installation method</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#testing-method">Testing method</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="python.html">Python</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pytorch.html">PyTorch</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rosetta.html">Rosetta</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rstudio.html">RStudio</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sox.html">SoX</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tensorflow.html">TensorFlow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="vasp.html">VASP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="xvfb.html">Xvfb</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../development/index.html">Developing on Stanage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../libs/index.html">Libraries on Stanage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../parallel/index.html">Parallel Systems on Stanage</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../cluster_specs.html">Stanage Specifications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../slurm.html">Slurm Scheduler Job Submission info</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../stanage-mfa-setup.html">Stanage TOTP multifactor authentication setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../GPUComputingStanage.html">Using GPUs on Stanage</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../bessemer/index.html">Bessemer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../parallel/index.html">Parallel Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../newsletter/index.html">News</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary.html">Glossary of Terms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../other-uk-hpc-resources.html">Access to External UK HPC Facilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../help.html">Need help?</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://rcgsheffield.github.io/TUoS-RIT-training-resources/training.html">Courses / Training Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../FAQs.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cheatsheets/index.html">Quick Reference (Cheat Sheets)</a></li>
+<li class="toctree-l1"><a class="reference external" href="http://changelog.hpc.shef.ac.uk/">Latest Software / HPC changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../referenceinfo/index.html">Reference Information Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../citing.html">Suggested text for citations and letters of support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../decommissioned/index.html">Decommissioned Clusters</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Sheffield HPC Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+<!-- <a class="forkme" href="https://github.com/rcgsheffield/sheffield_hpc">
+<img alt="Fork me on GitHub" src="../../../_static/img/forkme.png"> 
+</a> -->
+
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Stanage</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Software on Stanage</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Applications on Stanage</a></li>
+      <li class="breadcrumb-item active">OpenFOAM</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="openfoam">
+<h1>OpenFOAM<a class="headerlink" href="#openfoam" title="Link to this heading"></a></h1>
+<aside class="sidebar">
+<p class="sidebar-title">OpenFOAM</p>
+<dl class="field-list simple">
+<dt class="field-odd">Versions<span class="colon">:</span></dt>
+<dd class="field-odd"><p>8.0, v2012, v2206</p>
+</dd>
+<dt class="field-even">URL<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://openfoam.org/">https://openfoam.org/</a> or <a class="reference external" href="https://www.openfoam.com/">https://www.openfoam.com/</a></p>
+</dd>
+<dt class="field-odd">Documentation<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://cfd.direct/openfoam/user-guide">https://cfd.direct/openfoam/user-guide</a> or <a class="reference external" href="https://www.openfoam.com/documentation/overview">https://www.openfoam.com/documentation/overview</a></p>
+</dd>
+<dt class="field-even">Dependencies<span class="colon">:</span></dt>
+<dd class="field-even"><p>NCurses, METIS, SCOTCH, CGAL and Paraview. Easybuild foss toolchain see <a class="reference internal" href="../development/toolchains.html#stanage-eb-toolchains"><span class="std std-ref">Development toolchains</span></a>.</p>
+</dd>
+</dl>
+</aside>
+<p>OpenFOAM is leading software for computational fluid dynamics (CFD). It is licensed free and open source only under the GNU General Public Licence (GPL) by the OpenFOAM Foundation. Different versions of OpenFOAM supplied from different projects exist so choose your module carefully.</p>
+<section id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Link to this heading"></a></h2>
+<p>There are two OpenFOAM modules, choose one and load it with either:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>module<span class="w"> </span>load<span class="w"> </span>OpenFOAM/v2206-foss-2022a
+module<span class="w"> </span>load<span class="w"> </span>OpenFOAM/8-foss-2020b
+module<span class="w"> </span>load<span class="w"> </span>OpenFOAM/v2012-foss-2020a
+</pre></div>
+</div>
+<p>OpenFOAM can be used in an interactive or batch job. OpenFOAM modules can be activated using the module file and sourcing the OpenFOAM environment script e.g.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>module<span class="w"> </span>load<span class="w"> </span>OpenFOAM/v2206-foss-2022a
+<span class="nb">source</span><span class="w"> </span><span class="nv">$FOAM_BASH</span>
+</pre></div>
+</div>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>Users should investigate OpenFOAM documentation to determine which OpenFOAM executables are parallel compatible and
+which are serial only. Only the <code class="docutils literal notranslate"><span class="pre">simpleFoam</span></code> executable shown below is parallel compatible and is executed with <code class="docutils literal notranslate"><span class="pre">srun</span></code>
+in multiple core jobs.</p>
+</div>
+</section>
+<hr class="docutils" />
+<section id="interactive-usage">
+<h2>Interactive Usage<a class="headerlink" href="#interactive-usage" title="Link to this heading"></a></h2>
+<p>The following is an example single core interactive session running the pitzDaily example model.</p>
+<p>After connecting to Stanage (see section Connecting with SSH), you can start an interactive graphical session.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>module<span class="w"> </span>load<span class="w"> </span>OpenFOAM/v2206-foss-2022a
+<span class="nb">source</span><span class="w"> </span><span class="nv">$FOAM_BASH</span>
+rm<span class="w"> </span>-r<span class="w"> </span>/users/<span class="nv">$USER</span>/tests/openfoam/run/
+mkdir<span class="w"> </span>-p<span class="w"> </span>/users/<span class="nv">$USER</span>/tests/openfoam/run
+<span class="nb">cd</span><span class="w"> </span>/users/<span class="nv">$USER</span>/tests/openfoam/run
+cp<span class="w"> </span>-r<span class="w"> </span><span class="nv">$FOAM_TUTORIALS</span>/incompressible/simpleFoam/pitzDaily<span class="w"> </span>.
+chmod<span class="w"> </span><span class="m">700</span><span class="w"> </span>-R<span class="w"> </span>pitzDaily<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>pitzDaily
+blockMesh
+simpleFoam
+paraFoam<span class="w"> </span><span class="c1">#To view the output.</span>
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="batch-usage">
+<h2>Batch Usage<a class="headerlink" href="#batch-usage" title="Link to this heading"></a></h2>
+<p>The following is an example batch job running the pitzDaily example model on 4 nodes with 1 task per node:</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>You will need to supply a <a class="reference external" href="https://cfd.direct/openfoam/user-guide/v8-running-applications-parallel/">decomposeParDict</a> in the system subdirectory of the case - check the installation script for an example using the EOF method to add it :</p>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<span class="c1">#SBATCH --nodes=4</span>
+<span class="c1">#SBATCH --ntasks-per-node=1</span>
+<span class="c1">#SBATCH --mem=16000</span>
+<span class="c1">#SBATCH --job-name=name_OpenFOAM_V2206_mpi_4</span>
+<span class="c1">#SBATCH --output=output_OpenFOAM_V2206_mpi_4</span>
+<span class="c1">#SBATCH --time=01:00:00</span>
+<span class="c1">#SBATCH --mail-user=some.user@sheffield.ac.uk</span>
+<span class="c1">#SBATCH --mail-type=ALL</span>
+
+mkdir<span class="w"> </span>-p<span class="w"> </span>/users/<span class="nv">$USER</span>/tests/openfoam/run
+<span class="nb">cd</span><span class="w"> </span>/users/<span class="nv">$USER</span>/tests/openfoam/run
+
+module<span class="w"> </span>load<span class="w"> </span>OpenFOAM/v2206-foss-2022a
+<span class="nb">source</span><span class="w"> </span><span class="nv">$FOAM_BASH</span>
+
+cp<span class="w"> </span>-r<span class="w"> </span><span class="nv">$FOAM_TUTORIALS</span>/incompressible/simpleFoam/pitzDaily<span class="w"> </span>.
+chmod<span class="w"> </span><span class="m">700</span><span class="w"> </span>-R<span class="w"> </span>pitzDaily<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>pitzDaily
+cp<span class="w"> </span>/users/<span class="nv">$USER</span>/openfoam/my_custom_decomposeParDict_4<span class="w"> </span>system/decomposeParDict<span class="w">  </span><span class="c1"># You must supply you own copy or see the example below.</span>
+
+blockMesh
+decomposePar
+
+srun<span class="w"> </span>--export<span class="o">=</span>ALL<span class="w"> </span>simpleFoam<span class="w"> </span>-parallel
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="example-decomposepardict">
+<h2>Example decomposeParDict:<a class="headerlink" href="#example-decomposepardict" title="Link to this heading"></a></h2>
+<p>In the batch script example above my_custom_decomposeParDict_4 (for 4 cores) is located in /users/$USER/openfoam/ and contains the following:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>FoamFile
+<span class="o">{</span>
+<span class="w">    </span>version<span class="w">         </span><span class="m">2</span>.0<span class="p">;</span>
+<span class="w">    </span>format<span class="w">          </span>ascii<span class="p">;</span>
+
+<span class="w">    </span>root<span class="w">            </span><span class="s2">&quot;&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="k">case</span><span class="w">            </span><span class="s2">&quot;&quot;</span><span class="p">;</span>
+<span class="w">    </span>instance<span class="w">        </span><span class="s2">&quot;&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="nb">local</span><span class="w">           </span><span class="s2">&quot;&quot;</span><span class="p">;</span>
+
+<span class="w">    </span>class<span class="w">           </span>dictionary<span class="p">;</span>
+<span class="w">    </span>object<span class="w">          </span>decomposeParDict<span class="p">;</span>
+<span class="o">}</span>
+
+//<span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span>//
+
+
+numberOfSubdomains<span class="w"> </span><span class="m">4</span><span class="p">;</span>
+
+method<span class="w">          </span>simple<span class="p">;</span>
+
+simpleCoeffs
+<span class="o">{</span>
+<span class="w">    </span>n<span class="w">               </span><span class="o">(</span><span class="m">1</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">1</span><span class="o">)</span><span class="p">;</span>
+<span class="w">    </span>delta<span class="w">           </span><span class="m">0</span>.001<span class="p">;</span>
+<span class="o">}</span>
+
+hierarchicalCoeffs
+<span class="o">{</span>
+<span class="w">    </span>n<span class="w">               </span><span class="o">(</span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="o">)</span><span class="p">;</span>
+<span class="w">    </span>delta<span class="w">           </span><span class="m">0</span>.001<span class="p">;</span>
+<span class="w">    </span>order<span class="w">           </span>xyz<span class="p">;</span>
+<span class="o">}</span>
+
+metisCoeffs
+<span class="o">{</span>
+<span class="w">    </span>processorWeights
+<span class="w">    </span><span class="o">(</span>
+<span class="w">        </span><span class="m">1</span>
+<span class="w">        </span><span class="m">1</span>
+<span class="w">        </span><span class="m">1</span>
+<span class="w">    </span><span class="o">)</span><span class="p">;</span>
+<span class="o">}</span>
+
+manualCoeffs
+<span class="o">{</span>
+<span class="w">    </span>dataFile<span class="w">        </span><span class="s2">&quot;&quot;</span><span class="p">;</span>
+<span class="o">}</span>
+
+distributed<span class="w">     </span>no<span class="p">;</span>
+
+roots
+<span class="o">(</span>
+<span class="o">)</span><span class="p">;</span>
+
+
+//<span class="w"> </span>*************************************************************************<span class="w"> </span>//
+</pre></div>
+</div>
+</section>
+<section id="installation-notes">
+<h2>Installation notes<a class="headerlink" href="#installation-notes" title="Link to this heading"></a></h2>
+<section id="installation-method">
+<h3>Installation method<a class="headerlink" href="#installation-method" title="Link to this heading"></a></h3>
+<p>This section is primarily for administrators of the system. OpenFOAM has been installed using the default Easybuild config files.
+Build logs and test reports can be found in <code class="docutils literal notranslate"><span class="pre">$EBDEVELOPENFOAM</span></code> with a given module loaded.</p>
+</section>
+<section id="testing-method">
+<h3>Testing method<a class="headerlink" href="#testing-method" title="Link to this heading"></a></h3>
+<p>Testing has been conducted with the above examples.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="nextflow.html" class="btn btn-neutral float-left" title="Nextflow" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="python.html" class="btn btn-neutral float-right" title="Python" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, The University of Sheffield.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<footer class="footer">
+  <div class="container">
+    <div class="left-footer">
+         &copy; 2024, The University of Sheffield
+       <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" /></a>
+    </div>
+   
+    <div class="centre-footer">
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.3.7
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,326 @@
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>cfitsio &mdash; Sheffield HPC Documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=a5c4661c" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=0a35405e" />
+
+  
+    <link rel="canonical" href="https://docs.hpc.shef.ac.uk/stanage/software/libs/cfitsio.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../../_static/copybutton.js?v=f281be69"></script>
+        <script src="../../../_static/design-tabs.js?v=36754332"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="CUDA" href="cuda.html" />
+    <link rel="prev" title="Boost C++ Library" href="boost.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Sheffield HPC Documentation
+              <img src="../../../_static/UOSLogo_Primary_Violet_RGB_small.png" class="logo" alt="Logo"/>
+          </a><div>
+    <h3>Quick search</h3>
+    <!--Setup by JKWM via https://cse.google.com/cse/all-->
+    <script async src="https://cse.google.com/cse.js?cx=243e6cd4be08b404b">
+    </script>
+    <div class="gcse-search"></div>
+ </div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../hpc/index.html">Using the HPC Systems</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Stanage</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../stanage-FAQ-gotchas.html">Stanage FAQ and Gotchas</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Software on Stanage</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../apps/index.html">Applications on Stanage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../development/index.html">Developing on Stanage</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Libraries on Stanage</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="PETSc.html">PETSc</a></li>
+<li class="toctree-l4"><a class="reference internal" href="blas.html">BLAS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="boost.html">Boost C++ Library</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">cfitsio</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#usage">Usage</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#installation-notes">Installation notes</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#testing">Testing</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#multi-thread-testing">Multi-thread Testing</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="cuda.html">CUDA</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cudnn.html">cuDNN</a></li>
+<li class="toctree-l4"><a class="reference internal" href="fftw.html">fftw</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gdal.html">Geospatial Data Abstraction Library (GDAL)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="geos.html">geos</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gsl.html">GSL</a></li>
+<li class="toctree-l4"><a class="reference internal" href="hdf5.html">HDF5</a></li>
+<li class="toctree-l4"><a class="reference internal" href="imkl.html">Intel MKL</a></li>
+<li class="toctree-l4"><a class="reference internal" href="libsndfile.html">libsndfile</a></li>
+<li class="toctree-l4"><a class="reference internal" href="libunistring.html">libunistring</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nag.html">NAG Fortran and C Library</a></li>
+<li class="toctree-l4"><a class="reference internal" href="netcdf.html">netCDF</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nlopt.html">NLopt</a></li>
+<li class="toctree-l4"><a class="reference internal" href="openblas.html">OpenBLAS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="proj.html">PROJ</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scalapack.html">ScaLAPACK</a></li>
+<li class="toctree-l4"><a class="reference internal" href="udunits.html">udunits</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../parallel/index.html">Parallel Systems on Stanage</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../cluster_specs.html">Stanage Specifications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../slurm.html">Slurm Scheduler Job Submission info</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../stanage-mfa-setup.html">Stanage TOTP multifactor authentication setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../GPUComputingStanage.html">Using GPUs on Stanage</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../bessemer/index.html">Bessemer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../parallel/index.html">Parallel Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../newsletter/index.html">News</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary.html">Glossary of Terms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../other-uk-hpc-resources.html">Access to External UK HPC Facilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../help.html">Need help?</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://rcgsheffield.github.io/TUoS-RIT-training-resources/training.html">Courses / Training Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../FAQs.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cheatsheets/index.html">Quick Reference (Cheat Sheets)</a></li>
+<li class="toctree-l1"><a class="reference external" href="http://changelog.hpc.shef.ac.uk/">Latest Software / HPC changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../referenceinfo/index.html">Reference Information Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../citing.html">Suggested text for citations and letters of support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../decommissioned/index.html">Decommissioned Clusters</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Sheffield HPC Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+<!-- <a class="forkme" href="https://github.com/rcgsheffield/sheffield_hpc">
+<img alt="Fork me on GitHub" src="../../../_static/img/forkme.png"> 
+</a> -->
+
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Stanage</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Software on Stanage</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Libraries on Stanage</a></li>
+      <li class="breadcrumb-item active">cfitsio</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="cfitsio">
+<span id="cfitsio-stanage"></span><h1>cfitsio<a class="headerlink" href="#cfitsio" title="Link to this heading"></a></h1>
+<aside class="sidebar">
+<p class="sidebar-title">cfitsio</p>
+<dl class="field-list simple">
+<dt class="field-odd">Versions<span class="colon">:</span></dt>
+<dd class="field-odd"><p>3.48, 3.49</p>
+</dd>
+<dt class="field-even">URL<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="http://heasarc.gsfc.nasa.gov/fitsio/fitsio.html">http://heasarc.gsfc.nasa.gov/fitsio/fitsio.html</a></p>
+</dd>
+</dl>
+</aside>
+<p>CFITSIO is a library of C and Fortran subroutines for reading and writing data
+files in FITS (Flexible Image Transport System) data format. CFITSIO provides
+simple high-level routines for reading and writing FITS files that insulate
+the programmer from the internal complexities of the FITS format.</p>
+<section id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Link to this heading"></a></h2>
+<p>To make this library available, run one of the following module commands</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">load</span> <span class="n">CFITSIO</span><span class="o">/</span><span class="mf">3.48</span><span class="o">-</span><span class="n">GCCcore</span><span class="o">-</span><span class="mf">9.3.0</span>
+<span class="n">module</span> <span class="n">load</span> <span class="n">CFITSIO</span><span class="o">/</span><span class="mf">3.49</span><span class="o">-</span><span class="n">GCCcore</span><span class="o">-</span><span class="mf">10.2.0</span>
+<span class="n">module</span> <span class="n">load</span> <span class="n">CFITSIO</span><span class="o">/</span><span class="mf">3.49</span><span class="o">-</span><span class="n">GCCcore</span><span class="o">-</span><span class="mf">10.3.0</span>
+<span class="n">module</span> <span class="n">load</span> <span class="n">CFITSIO</span><span class="o">/</span><span class="mf">3.49</span><span class="o">-</span><span class="n">GCCcore</span><span class="o">-</span><span class="mf">11.2.0</span>
+</pre></div>
+</div>
+<p>The modulefile creates a variable <code class="docutils literal notranslate"><span class="pre">$CPATH</span></code> which is the path
+to the include directory.</p>
+</section>
+<section id="installation-notes">
+<h2>Installation notes<a class="headerlink" href="#installation-notes" title="Link to this heading"></a></h2>
+<p>This section is primarily for administrators of the system. CFITSIO has been installed using the default Easybuild config files.</p>
+<p>Build logs and test reports can be found in <code class="docutils literal notranslate"><span class="pre">$EBDEVELCFITSIO</span></code> with a given module loaded.</p>
+</section>
+<section id="testing">
+<h2>Testing<a class="headerlink" href="#testing" title="Link to this heading"></a></h2>
+<p>Create a <code class="docutils literal notranslate"><span class="pre">test.c</span></code> file containing the following (<a class="reference external" href="https://heasarc.gsfc.nasa.gov/docs/software/fitsio/quick/node4.html">source</a>):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#include &lt;string.h&gt;</span>
+<span class="c1">#include &lt;stdio.h&gt;</span>
+<span class="c1">#include &quot;fitsio.h&quot;</span>
+<span class="nb">int</span> <span class="n">main</span><span class="p">(</span><span class="nb">int</span> <span class="n">argc</span><span class="p">,</span> <span class="n">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
+<span class="p">{</span>
+        <span class="n">fitsfile</span> <span class="o">*</span><span class="n">fptr</span><span class="p">;</span>
+        <span class="n">char</span> <span class="n">card</span><span class="p">[</span><span class="n">FLEN_CARD</span><span class="p">];</span>
+        <span class="nb">int</span> <span class="n">status</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>  <span class="n">nkeys</span><span class="p">,</span> <span class="n">ii</span><span class="p">;</span>  <span class="o">/*</span> <span class="n">MUST</span> <span class="n">initialize</span> <span class="n">status</span> <span class="o">*/</span>
+        <span class="n">fits_open_file</span><span class="p">(</span><span class="o">&amp;</span><span class="n">fptr</span><span class="p">,</span> <span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">READONLY</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">status</span><span class="p">);</span>
+        <span class="n">fits_get_hdrspace</span><span class="p">(</span><span class="n">fptr</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">nkeys</span><span class="p">,</span> <span class="n">NULL</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">status</span><span class="p">);</span>
+        <span class="k">for</span> <span class="p">(</span><span class="n">ii</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">ii</span> <span class="o">&lt;=</span> <span class="n">nkeys</span><span class="p">;</span> <span class="n">ii</span><span class="o">++</span><span class="p">)</span>  <span class="p">{</span>
+          <span class="n">fits_read_record</span><span class="p">(</span><span class="n">fptr</span><span class="p">,</span> <span class="n">ii</span><span class="p">,</span> <span class="n">card</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">status</span><span class="p">);</span> <span class="o">/*</span> <span class="n">read</span> <span class="n">keyword</span> <span class="o">*/</span>
+          <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">card</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;END</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">);</span>  <span class="o">/*</span> <span class="n">terminate</span> <span class="n">listing</span> <span class="k">with</span> <span class="n">END</span> <span class="o">*/</span>
+        <span class="n">fits_close_file</span><span class="p">(</span><span class="n">fptr</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">status</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">status</span><span class="p">)</span>          <span class="o">/*</span> <span class="nb">print</span> <span class="nb">any</span> <span class="n">error</span> <span class="n">messages</span> <span class="o">*/</span>
+            <span class="n">fits_report_error</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="n">status</span><span class="p">);</span>
+        <span class="k">return</span><span class="p">(</span><span class="n">status</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Fits file downloaded from <a class="reference external" href="https://fits.gsfc.nasa.gov/samples/IUElwp25637mxlo.fits">here</a>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ module load CFITSIO/3.49-GCCcore-10.2.0
+$ module load GCC/GCCcore-10.2.0
+$ gcc test.c -o test -lm /opt/apps/testapps/el7/software/staging/CFITSIO/3.49-GCCcore-10.2.0/lib/libcfitsio.so
+$ ./test IUElwp25637mxlo.fits | head
+</pre></div>
+</div>
+<p>The output should look like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SIMPLE</span>  <span class="o">=</span>                    <span class="n">T</span> <span class="o">/</span> <span class="n">Standard</span> <span class="n">FITS</span> <span class="n">Format</span>
+<span class="n">BITPIX</span>  <span class="o">=</span>                    <span class="mi">8</span> <span class="o">/</span> <span class="mi">8</span> <span class="n">bits</span> <span class="n">ASCII</span>
+<span class="n">NAXIS</span>   <span class="o">=</span>                    <span class="mi">0</span> <span class="o">/</span> <span class="n">No</span> <span class="n">image</span> <span class="n">data</span>
+<span class="n">EXTEND</span>  <span class="o">=</span>                    <span class="n">T</span> <span class="o">/</span> <span class="n">Extensions</span> <span class="n">are</span> <span class="n">present</span>
+<span class="n">TELESCOP</span><span class="o">=</span> <span class="s1">&#39;IUE     &#39;</span>           <span class="o">/</span> <span class="n">International</span> <span class="n">Ultraviolet</span> <span class="n">Explorer</span>
+<span class="n">DATE</span>    <span class="o">=</span> <span class="s1">&#39;29/12/95&#39;</span>           <span class="o">/</span> <span class="n">Date</span> <span class="n">file</span> <span class="n">was</span> <span class="n">written</span>
+<span class="n">ORIGIN</span>  <span class="o">=</span> <span class="s1">&#39;GSFC    &#39;</span>           <span class="o">/</span> <span class="n">Institution</span> <span class="n">generating</span> <span class="n">the</span> <span class="n">file</span>
+<span class="n">COMMENT</span> <span class="o">*</span>
+<span class="n">COMMENT</span> <span class="o">*</span> <span class="n">CORE</span> <span class="n">DATA</span> <span class="n">ITEMS</span> <span class="o">-</span> <span class="n">COMMON</span> <span class="n">SET</span>
+<span class="n">COMMENT</span> <span class="o">*</span>
+</pre></div>
+</div>
+</section>
+<section id="multi-thread-testing">
+<h2>Multi-thread Testing<a class="headerlink" href="#multi-thread-testing" title="Link to this heading"></a></h2>
+<p>Download and unpack <a class="reference external" href="https://heasarc.gsfc.nasa.gov/docs/software/fitsio/quick/node4.html">threadtest.tar.gz</a></p>
+<p>Navigate into unpacked directory <code class="docutils literal notranslate"><span class="pre">threadtest/</span></code>. Next enter the following commands:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">load</span> <span class="n">CFITSIO</span><span class="o">/</span><span class="mf">3.49</span><span class="o">-</span><span class="n">GCCcore</span><span class="o">-</span><span class="mf">11.2.0</span>
+<span class="n">module</span> <span class="n">load</span> <span class="n">GCC</span><span class="o">/</span><span class="mf">11.2.0</span>
+<span class="n">gcc</span> <span class="n">fits_threads</span><span class="o">.</span><span class="n">c</span> <span class="o">-</span><span class="n">lcfitsio</span> <span class="o">-</span><span class="n">o</span> <span class="n">fits_threads</span>
+<span class="n">gcc</span> <span class="n">fits_threads2</span><span class="o">.</span><span class="n">c</span>  <span class="o">-</span><span class="n">lcfitsio</span> <span class="o">-</span><span class="n">o</span> <span class="n">fits_threads2</span>
+<span class="n">gcc</span> <span class="n">threadhello</span><span class="o">.</span><span class="n">c</span> <span class="o">-</span><span class="n">fopenmp</span> <span class="o">-</span><span class="n">o</span> <span class="n">threadhello</span>
+</pre></div>
+</div>
+<p>Next source each compiled file (expected output shown):</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="hll"><span class="gp">$ </span>./fits_threads
+</span>
+<span class="go">7  7  7  6  6  6  6  6  5  4</span>
+<span class="go">5  7  11  18  27  36  48  59  74  123</span>
+<span class="go">178  89  95  100  105  111  117  125  133  141</span>
+<span class="go">147  155  166  175  185  193  192  196  199  200</span>
+<span class="go">200  200  200  203  204  204  207  207  207  211</span>
+<span class="go">211  209  210  211  211  213  214  213  214  215</span>
+<span class="go">216  216  216  217  218  218  219  218  220  221</span>
+<span class="go">221  220  219  220  221  220  221  221  223  225</span>
+<span class="go">222  223  224  223  223  225  224  223  224  225</span>
+<span class="go">225  226  225  221  224  225  226  228  231  232</span>
+
+<span class="go">22  22  22  21  21  21  21  21  20  19</span>
+<span class="go">20  22  26  33  42  51  63  74  89  138</span>
+<span class="go">193  104  110  115  120  126  132  140  148  156</span>
+<span class="go">162  170  181  190  200  208  207  211  214  215</span>
+<span class="go">215  215  215  218  219  219  222  222  222  226</span>
+<span class="go">226  224  225  226  226  228  229  228  229  230</span>
+<span class="go">231  231  231  232  233  233  234  233  235  236</span>
+<span class="go">236  235  234  235  236  235  236  236  238  240</span>
+<span class="go">237  238  239  238  238  240  239  238  239  240</span>
+<span class="go">240  241  240  236  239  240  241  243  246  247</span>
+
+<span class="hll"><span class="gp">$ </span>./fits_threads2
+</span>
+<span class="go">sum of image 0 = 34417584.000000</span>
+<span class="go">sum of image 1 = 36397848.000000</span>
+
+<span class="hll"><span class="gp">$ </span>./threadhello
+</span>
+<span class="go">Hello from thread 6, nthreads 8</span>
+<span class="go">Hello from thread 7, nthreads 8</span>
+<span class="go">Hello from thread 5, nthreads 8</span>
+<span class="go">Hello from thread 2, nthreads 8</span>
+<span class="go">Hello from thread 3, nthreads 8</span>
+<span class="go">Hello from thread 0, nthreads 8</span>
+<span class="go">Hello from thread 1, nthreads 8</span>
+<span class="go">Hello from thread 4, nthreads 8</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="boost.html" class="btn btn-neutral float-left" title="Boost C++ Library" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="cuda.html" class="btn btn-neutral float-right" title="CUDA" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, The University of Sheffield.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<footer class="footer">
+  <div class="container">
+    <div class="left-footer">
+         &copy; 2024, The University of Sheffield
+       <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" /></a>
+    </div>
+   
+    <div class="centre-footer">
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.3.7
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

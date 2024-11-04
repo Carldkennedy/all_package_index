@@ -1,0 +1,309 @@
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>geos &mdash; Sheffield HPC Documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=a5c4661c" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=0a35405e" />
+
+  
+    <link rel="canonical" href="https://docs.hpc.shef.ac.uk/stanage/software/libs/geos.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../../_static/copybutton.js?v=f281be69"></script>
+        <script src="../../../_static/design-tabs.js?v=36754332"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="GSL" href="gsl.html" />
+    <link rel="prev" title="Geospatial Data Abstraction Library (GDAL)" href="gdal.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Sheffield HPC Documentation
+              <img src="../../../_static/UOSLogo_Primary_Violet_RGB_small.png" class="logo" alt="Logo"/>
+          </a><div>
+    <h3>Quick search</h3>
+    <!--Setup by JKWM via https://cse.google.com/cse/all-->
+    <script async src="https://cse.google.com/cse.js?cx=243e6cd4be08b404b">
+    </script>
+    <div class="gcse-search"></div>
+ </div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../hpc/index.html">Using the HPC Systems</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Stanage</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../stanage-FAQ-gotchas.html">Stanage FAQ and Gotchas</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Software on Stanage</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../apps/index.html">Applications on Stanage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../development/index.html">Developing on Stanage</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Libraries on Stanage</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="PETSc.html">PETSc</a></li>
+<li class="toctree-l4"><a class="reference internal" href="blas.html">BLAS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="boost.html">Boost C++ Library</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cfitsio.html">cfitsio</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cuda.html">CUDA</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cudnn.html">cuDNN</a></li>
+<li class="toctree-l4"><a class="reference internal" href="fftw.html">fftw</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gdal.html">Geospatial Data Abstraction Library (GDAL)</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">geos</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#usage">Usage</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#the-rgeos-interface-in-r">The rgeos interface in R</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#installation-notes">Installation notes</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#testing">Testing</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="gsl.html">GSL</a></li>
+<li class="toctree-l4"><a class="reference internal" href="hdf5.html">HDF5</a></li>
+<li class="toctree-l4"><a class="reference internal" href="imkl.html">Intel MKL</a></li>
+<li class="toctree-l4"><a class="reference internal" href="libsndfile.html">libsndfile</a></li>
+<li class="toctree-l4"><a class="reference internal" href="libunistring.html">libunistring</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nag.html">NAG Fortran and C Library</a></li>
+<li class="toctree-l4"><a class="reference internal" href="netcdf.html">netCDF</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nlopt.html">NLopt</a></li>
+<li class="toctree-l4"><a class="reference internal" href="openblas.html">OpenBLAS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="proj.html">PROJ</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scalapack.html">ScaLAPACK</a></li>
+<li class="toctree-l4"><a class="reference internal" href="udunits.html">udunits</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../parallel/index.html">Parallel Systems on Stanage</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../cluster_specs.html">Stanage Specifications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../slurm.html">Slurm Scheduler Job Submission info</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../stanage-mfa-setup.html">Stanage TOTP multifactor authentication setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../GPUComputingStanage.html">Using GPUs on Stanage</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../bessemer/index.html">Bessemer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../parallel/index.html">Parallel Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../newsletter/index.html">News</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary.html">Glossary of Terms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../other-uk-hpc-resources.html">Access to External UK HPC Facilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../help.html">Need help?</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://rcgsheffield.github.io/TUoS-RIT-training-resources/training.html">Courses / Training Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../FAQs.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cheatsheets/index.html">Quick Reference (Cheat Sheets)</a></li>
+<li class="toctree-l1"><a class="reference external" href="http://changelog.hpc.shef.ac.uk/">Latest Software / HPC changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../referenceinfo/index.html">Reference Information Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../citing.html">Suggested text for citations and letters of support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../decommissioned/index.html">Decommissioned Clusters</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Sheffield HPC Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+<!-- <a class="forkme" href="https://github.com/rcgsheffield/sheffield_hpc">
+<img alt="Fork me on GitHub" src="../../../_static/img/forkme.png"> 
+</a> -->
+
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Stanage</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Software on Stanage</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Libraries on Stanage</a></li>
+      <li class="breadcrumb-item active">geos</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="geos">
+<span id="geos-stanage"></span><h1>geos<a class="headerlink" href="#geos" title="Link to this heading"></a></h1>
+<aside class="sidebar">
+<p class="sidebar-title">geos</p>
+<dl class="field-list simple">
+<dt class="field-odd">Version<span class="colon">:</span></dt>
+<dd class="field-odd"><p>3.9.1</p>
+</dd>
+<dt class="field-even">URL<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="http://trac.osgeo.org/geos/">http://trac.osgeo.org/geos/</a></p>
+</dd>
+</dl>
+</aside>
+<p>GEOS (Geometry Engine, Open Source) is a C/C++ port of a subset of
+the <a class="reference external" href="http://locationtech.github.io/jts/">Java Topology Suite</a> (JTS),
+which in turn is a library that:</p>
+<ul class="simple">
+<li><p>Provides an object model for planar geometry together with a set of fundamental geometric functions.</p></li>
+<li><p>JTS conforms to the <a class="reference external" href="https://www.ogc.org/standard/sfs/">Simple Features Specification for SQL</a> published by the Open GIS Consortium.</p></li>
+<li><p>JTS is designed to be used as a core component of vector-based geomatics software such as geographical information systems.</p></li>
+<li><p>It can also be used as a general-purpose library providing algorithms in computational geometry.</p></li>
+</ul>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>GEOS is typically loaded as an external dependency for R. Please ensure you select the matching
+GCC compiler versions of your version of R and the GEOS libraries.</p>
+</div>
+<hr class="docutils" />
+<section id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Link to this heading"></a></h2>
+<p>To make this library available, run one of the following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">load</span> <span class="n">GEOS</span><span class="o">/</span><span class="mf">3.9.1</span><span class="o">-</span><span class="n">GCC</span><span class="o">-</span><span class="mf">10.2.0</span>
+<span class="n">module</span> <span class="n">load</span> <span class="n">GEOS</span><span class="o">/</span><span class="mf">3.9.1</span><span class="o">-</span><span class="n">GCC</span><span class="o">-</span><span class="mf">11.2.0</span>
+</pre></div>
+</div>
+<p>This also activates the matching version of the GCC compiler suite (as its C++ standard library is required by GEOS.)</p>
+</section>
+<hr class="docutils" />
+<section id="the-rgeos-interface-in-r">
+<h2>The rgeos interface in R<a class="headerlink" href="#the-rgeos-interface-in-r" title="Link to this heading"></a></h2>
+<p>rgeos is a CRAN package that provides an R interface to geos. It is not installed in R by default so you need to install a version in your home directory.</p>
+<p>After connecting to Stanage (see <a class="reference internal" href="../../../hpc/connecting.html#ssh"><span class="std std-ref">Establishing a SSH connection</span></a>), start an interactive session (e.g. using the <code class="code docutils literal notranslate"><span class="pre">srun</span> <span class="pre">--pty</span> <span class="pre">bash</span> <span class="pre">-i</span></code> command). Run the following module commands</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">load</span> <span class="n">R</span><span class="o">/</span><span class="mf">4.0.5</span><span class="o">-</span><span class="n">foss</span><span class="o">-</span><span class="mi">2020</span><span class="n">b</span>
+<span class="n">module</span> <span class="n">load</span> <span class="n">GEOS</span><span class="o">/</span><span class="mf">3.9.1</span><span class="o">-</span><span class="n">GCC</span><span class="o">-</span><span class="mf">10.2.0</span>
+</pre></div>
+</div>
+<p>Launch R and run the command</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">install</span><span class="o">.</span><span class="n">packages</span><span class="p">(</span><span class="s1">&#39;rgeos&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>If you’ve never installed an R package before on the system, it will ask you if you want to install to a personal library. Answer <code class="docutils literal notranslate"><span class="pre">y</span></code> to any questions you are asked.</p>
+<p>The library will be installed to a sub-directory called <code class="docutils literal notranslate"><span class="pre">R</span></code> in your home directory and you should only need to perform the above procedure once.</p>
+<p>Once you have performed the installation, you will only need to run the <code class="docutils literal notranslate"><span class="pre">module</span></code> commands above to make the geos library available to the system. Then, you use <code class="docutils literal notranslate"><span class="pre">rgeos</span></code> as you would any other library in R</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">library</span><span class="p">(</span><span class="s1">&#39;rgeos&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="installation-notes">
+<h2>Installation notes<a class="headerlink" href="#installation-notes" title="Link to this heading"></a></h2>
+<p>This section is primarily for administrators of the system. GEOS has been installed using the default Easybuild config files.</p>
+<p>Build logs and test reports can be found in <code class="docutils literal notranslate"><span class="pre">$EBROOTGEOS/easybuild</span></code> with a given module loaded.</p>
+</section>
+<section id="testing">
+<h2>Testing<a class="headerlink" href="#testing" title="Link to this heading"></a></h2>
+<p>Create a file called <code class="docutils literal notranslate"><span class="pre">geos_hello_world.c</span></code> with the following content (<a class="reference external" href="https://libgeos.org/usage/c_api/">source</a>):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#include &lt;stdio.h&gt;  /* for printf */</span>
+<span class="c1">#include &lt;stdarg.h&gt; /* for va_list */</span>
+
+<span class="o">/*</span> <span class="n">Only</span> <span class="n">the</span> <span class="n">CAPI</span> <span class="n">header</span> <span class="ow">is</span> <span class="n">required</span> <span class="o">*/</span>
+<span class="c1">#include &lt;geos_c.h&gt;</span>
+
+<span class="n">static</span> <span class="n">void</span>
+<span class="n">geos_msg_handler</span><span class="p">(</span><span class="n">const</span> <span class="n">char</span><span class="o">*</span> <span class="n">fmt</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">va_list</span> <span class="n">ap</span><span class="p">;</span>
+    <span class="n">va_start</span><span class="p">(</span><span class="n">ap</span><span class="p">,</span> <span class="n">fmt</span><span class="p">);</span>
+    <span class="n">vprintf</span> <span class="p">(</span><span class="n">fmt</span><span class="p">,</span> <span class="n">ap</span><span class="p">);</span>
+    <span class="n">va_end</span><span class="p">(</span><span class="n">ap</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nb">int</span> <span class="n">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="o">/*</span> <span class="n">Send</span> <span class="n">notice</span> <span class="ow">and</span> <span class="n">error</span> <span class="n">messages</span> <span class="n">to</span> <span class="n">the</span> <span class="n">terminal</span> <span class="o">*/</span>
+    <span class="n">initGEOS</span><span class="p">(</span><span class="n">geos_msg_handler</span><span class="p">,</span> <span class="n">geos_msg_handler</span><span class="p">);</span>
+
+    <span class="o">/*</span> <span class="n">Read</span> <span class="n">WKT</span> <span class="n">into</span> <span class="n">geometry</span> <span class="nb">object</span> <span class="o">*/</span>
+    <span class="n">GEOSWKTReader</span><span class="o">*</span> <span class="n">reader</span> <span class="o">=</span> <span class="n">GEOSWKTReader_create</span><span class="p">();</span>
+    <span class="n">GEOSGeometry</span><span class="o">*</span> <span class="n">geom_a</span> <span class="o">=</span> <span class="n">GEOSWKTReader_read</span><span class="p">(</span><span class="n">reader</span><span class="p">,</span> <span class="s2">&quot;POINT(1 1)&quot;</span><span class="p">);</span>
+
+    <span class="o">/*</span> <span class="n">Convert</span> <span class="n">result</span> <span class="n">to</span> <span class="n">WKT</span> <span class="o">*/</span>
+    <span class="n">GEOSWKTWriter</span><span class="o">*</span> <span class="n">writer</span> <span class="o">=</span> <span class="n">GEOSWKTWriter_create</span><span class="p">();</span>
+    <span class="n">char</span><span class="o">*</span> <span class="n">wkt</span> <span class="o">=</span> <span class="n">GEOSWKTWriter_write</span><span class="p">(</span><span class="n">writer</span><span class="p">,</span> <span class="n">geom_a</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s2">&quot;Geometry: </span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">wkt</span><span class="p">);</span>
+
+    <span class="o">/*</span> <span class="n">Clean</span> <span class="n">up</span> <span class="n">allocated</span> <span class="n">objects</span> <span class="o">*/</span>
+    <span class="n">GEOSWKTReader_destroy</span><span class="p">(</span><span class="n">reader</span><span class="p">);</span>
+    <span class="n">GEOSWKTWriter_destroy</span><span class="p">(</span><span class="n">writer</span><span class="p">);</span>
+    <span class="n">GEOSGeom_destroy</span><span class="p">(</span><span class="n">geom_a</span><span class="p">);</span>
+    <span class="n">GEOSFree</span><span class="p">(</span><span class="n">wkt</span><span class="p">);</span>
+
+    <span class="o">/*</span> <span class="n">Clean</span> <span class="n">up</span> <span class="n">the</span> <span class="k">global</span> <span class="n">context</span> <span class="o">*/</span>
+    <span class="n">finishGEOS</span><span class="p">();</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Next compile the <code class="docutils literal notranslate"><span class="pre">geos_hello_world.c</span></code> file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cc geos_hello_world.c -o geos_hello_world -l geos_c
+$ ./geos_hello_world
+</pre></div>
+</div>
+<p>Output should look like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Geometry</span><span class="p">:</span> <span class="n">POINT</span> <span class="p">(</span><span class="mf">1.0000000000000000</span> <span class="mf">1.0000000000000000</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="gdal.html" class="btn btn-neutral float-left" title="Geospatial Data Abstraction Library (GDAL)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="gsl.html" class="btn btn-neutral float-right" title="GSL" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, The University of Sheffield.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<footer class="footer">
+  <div class="container">
+    <div class="left-footer">
+         &copy; 2024, The University of Sheffield
+       <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" /></a>
+    </div>
+   
+    <div class="centre-footer">
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.3.7
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

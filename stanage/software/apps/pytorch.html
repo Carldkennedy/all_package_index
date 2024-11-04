@@ -1,0 +1,316 @@
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PyTorch &mdash; Sheffield HPC Documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=a5c4661c" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=0a35405e" />
+
+  
+    <link rel="canonical" href="https://docs.hpc.shef.ac.uk/stanage/software/apps/pytorch.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../../_static/copybutton.js?v=f281be69"></script>
+        <script src="../../../_static/design-tabs.js?v=36754332"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Rosetta" href="rosetta.html" />
+    <link rel="prev" title="Python" href="python.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Sheffield HPC Documentation
+              <img src="../../../_static/UOSLogo_Primary_Violet_RGB_small.png" class="logo" alt="Logo"/>
+          </a><div>
+    <h3>Quick search</h3>
+    <!--Setup by JKWM via https://cse.google.com/cse/all-->
+    <script async src="https://cse.google.com/cse.js?cx=243e6cd4be08b404b">
+    </script>
+    <div class="gcse-search"></div>
+ </div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../hpc/index.html">Using the HPC Systems</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Stanage</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../stanage-FAQ-gotchas.html">Stanage FAQ and Gotchas</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Software on Stanage</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Applications on Stanage</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="ansys/index.html">ANSYS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="R.html">R</a></li>
+<li class="toctree-l4"><a class="reference internal" href="abaqus.html">Abaqus</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ansysem.html">ANSYSEM</a></li>
+<li class="toctree-l4"><a class="reference internal" href="apptainer.html">Apptainer/Singularity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="castep.html">CASTEP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="git-lfs.html">Git LFS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gmp.html">GnuMP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gromacs.html">GROMACS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="java.html">Java (Temurin/OpenJDK)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="julia.html">Julia</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lammps.html">LAMMPS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mathematica.html">Mathematica</a></li>
+<li class="toctree-l4"><a class="reference internal" href="matlab.html">MATLAB</a></li>
+<li class="toctree-l4"><a class="reference internal" href="maven.html">Maven</a></li>
+<li class="toctree-l4"><a class="reference internal" href="molpro.html">Molpro</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ncdu.html">ncdu</a></li>
+<li class="toctree-l4"><a class="reference internal" href="netlogo.html">NetLogo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nextflow.html">Nextflow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="openfoam.html">OpenFOAM</a></li>
+<li class="toctree-l4"><a class="reference internal" href="python.html">Python</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">PyTorch</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#about-pytorch-on-stanage">About PyTorch on Stanage</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#installation-in-home-directory">Installation in Home Directory</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#testing-your-pytorch-installation">Testing your PyTorch installation</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="rosetta.html">Rosetta</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rstudio.html">RStudio</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sox.html">SoX</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tensorflow.html">TensorFlow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="vasp.html">VASP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="xvfb.html">Xvfb</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../development/index.html">Developing on Stanage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../libs/index.html">Libraries on Stanage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../parallel/index.html">Parallel Systems on Stanage</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../cluster_specs.html">Stanage Specifications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../slurm.html">Slurm Scheduler Job Submission info</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../stanage-mfa-setup.html">Stanage TOTP multifactor authentication setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../GPUComputingStanage.html">Using GPUs on Stanage</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../bessemer/index.html">Bessemer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../parallel/index.html">Parallel Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../newsletter/index.html">News</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary.html">Glossary of Terms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../other-uk-hpc-resources.html">Access to External UK HPC Facilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../help.html">Need help?</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://rcgsheffield.github.io/TUoS-RIT-training-resources/training.html">Courses / Training Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../FAQs.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cheatsheets/index.html">Quick Reference (Cheat Sheets)</a></li>
+<li class="toctree-l1"><a class="reference external" href="http://changelog.hpc.shef.ac.uk/">Latest Software / HPC changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../referenceinfo/index.html">Reference Information Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../citing.html">Suggested text for citations and letters of support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../decommissioned/index.html">Decommissioned Clusters</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Sheffield HPC Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+<!-- <a class="forkme" href="https://github.com/rcgsheffield/sheffield_hpc">
+<img alt="Fork me on GitHub" src="../../../_static/img/forkme.png"> 
+</a> -->
+
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Stanage</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Software on Stanage</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Applications on Stanage</a></li>
+      <li class="breadcrumb-item active">PyTorch</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="pytorch">
+<span id="pytorch-stanage"></span><h1>PyTorch<a class="headerlink" href="#pytorch" title="Link to this heading"></a></h1>
+<aside class="sidebar">
+<p class="sidebar-title">PyTorch</p>
+<dl class="field-list simple">
+<dt class="field-odd">URL<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://pytorch.org">https://pytorch.org</a></p>
+</dd>
+</dl>
+</aside>
+<p>PyTorch is an open source machine learning library for Python, based on <a class="reference external" href="http://torch.ch/">Torch</a>.
+It is used for applications such as natural language processing.</p>
+<section id="about-pytorch-on-stanage">
+<h2>About PyTorch on Stanage<a class="headerlink" href="#about-pytorch-on-stanage" title="Link to this heading"></a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A GPU-enabled worker node must be requested in order to enable GPU acceleration.
+See <a class="reference internal" href="../../GPUComputingStanage.html#gpu-computing-stanage"><span class="std std-ref">Using GPUs on Stanage</span></a> for more information.</p>
+</div>
+<p>As PyTorch and all its dependencies are written in Python, it can be installed locally in your home directory.
+The use of Conda (<a class="reference internal" href="python.html#python-stanage"><span class="std std-ref">Python</span></a>) is recommended as
+it is able to create virtual environment(s) in your home directory,
+allowing for the installation of new Python packages without needing admin permission.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>All ‘stable’ releases of PyTorch to date (up to and including 2.0.1) are not compatible with Stanage nodes with H100 GPUs (see <a class="reference internal" href="../../cluster_specs.html#stanage-gpu-specs"><span class="std std-ref">Stanage specs</span></a>).</p>
+<p>To use PyTorch on the H100 nodes you must install and use a ‘nightly’ build of PyTorch (see installation instructions below).</p>
+</div>
+</section>
+<section id="installation-in-home-directory">
+<h2>Installation in Home Directory<a class="headerlink" href="#installation-in-home-directory" title="Link to this heading"></a></h2>
+<p>Conda is used to create a virtual python environment for installing your local version of PyTorch.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Torch requires more than 2GB of CPU RAM for installation
+so you <strong>must</strong> use the <code class="docutils literal notranslate"><span class="pre">--mem=8G</span></code> flag to request more memory.
+<code class="docutils literal notranslate"><span class="pre">8G</span></code> means 8 GB of CPU RAM.</p>
+</div>
+<p>First request an interactive session, e.g. with <a class="reference internal" href="../../../hpc/scheduler/index.html#submit-interactive-stanage"><span class="std std-ref">Interactive Jobs</span></a> or optionally with GPU <a class="reference internal" href="../../GPUComputingStanage.html#gpu-interactive-stanage"><span class="std std-ref">Interactive use of the GPUs</span></a>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># To request 8GB of CPU RAM for the session</span>
+<span class="n">srun</span> <span class="o">--</span><span class="n">mem</span><span class="o">=</span><span class="mi">8</span><span class="n">G</span> <span class="o">--</span><span class="n">pty</span> <span class="n">bash</span>
+
+<span class="c1"># NB Each NVIDIA A100 (and H100) GPU in Stanage has 80GB of GPU RAM</span>
+<span class="n">srun</span> <span class="o">--</span><span class="n">partition</span><span class="o">=</span><span class="n">gpu</span> <span class="o">--</span><span class="n">qos</span><span class="o">=</span><span class="n">gpu</span> <span class="o">--</span><span class="n">gres</span><span class="o">=</span><span class="n">gpu</span><span class="p">:</span><span class="mi">1</span> <span class="o">--</span><span class="n">mem</span><span class="o">=</span><span class="mi">82</span><span class="n">G</span> <span class="o">--</span><span class="n">pty</span> <span class="n">bash</span>
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>During the 2 week introduction phase of the H100 GPUs to the Stanage cluster, usage of the H100 GPUs requires the <code class="docutils literal notranslate"><span class="pre">--partition=gpu-h100</span></code> and <code class="docutils literal notranslate"><span class="pre">--gres=gpu:1</span></code> arguments to be set in your submission scripts.
+This is to ensure usage is “opt in” by users as the slightly different architecture of these GPUs to the existing A100 GPUs may necessitate changes to batch submission scripts and selected software versions.</p>
+<p>Eventually the H100 GPUs will be brought into the general GPU partition, at which point the <code class="docutils literal notranslate"><span class="pre">--partition=gpu</span></code> will be required to access H100s (or any GPUs). At that stage any submissions
+using the general <code class="docutils literal notranslate"><span class="pre">--gres=gpu:1</span></code> will be scheduled with the first available GPU of any type. Requesting a specific type of GPU will then require selection via the <code class="docutils literal notranslate"><span class="pre">--gres=gpu:h100:1</span></code> or
+<code class="docutils literal notranslate"><span class="pre">--gres=gpu:a100:1</span></code> arguments.</p>
+<p>When these latter changes are made, we will give advanced notice via email and by amendments made within this documentation.</p>
+</div>
+<p>Then PyTorch can be installed by the following</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load the conda module</span>
+<span class="n">module</span> <span class="n">load</span> <span class="n">Anaconda3</span><span class="o">/</span><span class="mf">2022.05</span>
+
+<span class="c1"># (Only needed if we&#39;re using GPU) Load a cuDNN module</span>
+<span class="c1"># (which in this case implicitly loads CUDA 12.1.1)</span>
+<span class="n">module</span> <span class="n">load</span> <span class="n">cuDNN</span><span class="o">/</span><span class="mf">8.9.2.26</span><span class="o">-</span><span class="n">CUDA</span><span class="o">-</span><span class="mf">12.1.1</span>
+
+<span class="c1"># Create an conda virtual environment called &#39;pytorch&#39;</span>
+<span class="n">conda</span> <span class="n">create</span> <span class="o">-</span><span class="n">n</span> <span class="n">pytorch</span> <span class="n">python</span><span class="o">=</span><span class="mf">3.10</span>
+
+<span class="c1"># Activate the &#39;pytorch&#39; environment</span>
+<span class="n">source</span> <span class="n">activate</span> <span class="n">pytorch</span>
+
+<span class="c1"># Install the latest stable PyTorch release if you only want to run PyTorch using A100 GPUs</span>
+<span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">torch</span> <span class="n">torchvision</span>
+<span class="c1"># Or use a nightly PyTorch build instead if you want to be able to use H100 GPUs also / as well.</span>
+<span class="c1"># python -m pip install --pre torch torchvision --index-url https://download.pytorch.org/whl/nightly/cu118</span>
+</pre></div>
+</div>
+<p><strong>Every Session Afterwards and in Your Job Scripts</strong></p>
+<p>Every time you use a new session or within your job scripts,
+the modules must be loaded and conda must be activated again.
+Use the following command to activate the Conda environment with PyTorch installed:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load the conda module</span>
+<span class="n">module</span> <span class="n">load</span> <span class="n">Anaconda3</span><span class="o">/</span><span class="mf">2022.10</span>
+<span class="c1"># *Only needed if we&#39;re using GPU* Load the CUDA and cuDNN module</span>
+<span class="n">module</span> <span class="n">load</span> <span class="n">cuDNN</span><span class="o">/</span><span class="mf">8.9.2.26</span><span class="o">-</span><span class="n">CUDA</span><span class="o">-</span><span class="mf">12.1.1</span>
+<span class="c1"># Activate the &#39;pytorch&#39; environment</span>
+<span class="n">source</span> <span class="n">activate</span> <span class="n">pytorch</span>
+</pre></div>
+</div>
+</section>
+<section id="testing-your-pytorch-installation">
+<h2>Testing your PyTorch installation<a class="headerlink" href="#testing-your-pytorch-installation" title="Link to this heading"></a></h2>
+<p>To ensure that PyTorch was installed correctly, we can verify the installation by running sample PyTorch code
+e.g. an example from the official PyTorch <a class="reference external" href="https://pytorch.org/get-started/locally/">getting started</a> guide
+(replicated below).</p>
+<p>Here we construct a randomly-initialized tensor:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The output should be something similar to:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tensor</span><span class="p">([[</span><span class="mf">0.3380</span><span class="p">,</span> <span class="mf">0.3845</span><span class="p">,</span> <span class="mf">0.3217</span><span class="p">],</span>
+        <span class="p">[</span><span class="mf">0.8337</span><span class="p">,</span> <span class="mf">0.9050</span><span class="p">,</span> <span class="mf">0.2650</span><span class="p">],</span>
+        <span class="p">[</span><span class="mf">0.2979</span><span class="p">,</span> <span class="mf">0.7141</span><span class="p">,</span> <span class="mf">0.9069</span><span class="p">],</span>
+        <span class="p">[</span><span class="mf">0.1449</span><span class="p">,</span> <span class="mf">0.1132</span><span class="p">,</span> <span class="mf">0.1375</span><span class="p">],</span>
+        <span class="p">[</span><span class="mf">0.4675</span><span class="p">,</span> <span class="mf">0.3947</span><span class="p">,</span> <span class="mf">0.1426</span><span class="p">]])</span>
+</pre></div>
+</div>
+<p>Additionally, to check if your GPU driver and CUDA is enabled and accessible by PyTorch,
+run the following commands to return whether or not the CUDA driver is enabled:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>The output should be:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kc">True</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="python.html" class="btn btn-neutral float-left" title="Python" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="rosetta.html" class="btn btn-neutral float-right" title="Rosetta" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, The University of Sheffield.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<footer class="footer">
+  <div class="container">
+    <div class="left-footer">
+         &copy; 2024, The University of Sheffield
+       <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" /></a>
+    </div>
+   
+    <div class="centre-footer">
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.3.7
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

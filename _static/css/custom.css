@@ -1,0 +1,92 @@
+.wy-nav-content {
+  max-width: 75% !important;
+}
+
+.wy-side-nav-search {
+	background-color: #a8d9e7!important;
+}
+
+.wy-side-nav-search > div.version {
+	color: #440099!important;
+}
+
+.wy-nav-side {
+	background: #151d28!important;
+}
+
+.wy-side-nav-search .wy-dropdown > a, .wy-side-nav-search > a {
+	color: #440099!important;
+}
+
+.wy-menu-vertical li.toctree-l3, .wy-menu-vertical li.toctree-l4 .wy-menu-vertical {
+    font-size: 1em;
+}
+
+.rst-content .section ul li>p:only-child, .rst-content .section ul li>p:only-child:last-child {
+    margin-bottom:5px !important; /* This is a horrible hack and I know it */
+}
+
+/* override table width restrictions */
+@media screen and (min-width: 767px) {
+
+  .wy-table-responsive table td {
+    /* !important prevents the common CSS stylesheets from
+       overriding this as on RTD they are loaded after this stylesheet */
+    white-space: normal !important;
+  }
+
+  .wy-table-responsive {
+    overflow: visible !important;
+  }
+
+}
+
+    .underline-bold {
+    text-decoration: underline;
+    font-weight: bold;
+  }
+
+  hr.hr-mid-section-separator {
+    overflow: visible; /* For IE */
+    padding: 0;
+    border: none;
+    border-top: medium double #e1e4e5;
+    color: #e1e4e5;
+    text-align: center;
+    /*margin-right: 10%;
+    margin-left: 10%;  */  
+    }
+    hr.hr-mid-section-separator:after { 
+    content: "§";
+    display: inline-block;
+    position: relative;
+    top: -0.7em;
+    font-size: 1.5em;
+    padding: 0 0.25em;
+    background: #fcfcfc;
+    }
+
+    hr.hr-mid-section-separator-dashed {
+      border-top: 2px dashed rgba(0, 0, 0, 0.28) !important;
+      }
+
+    .rst-content blockquote {
+      border-left: 10px solid rgb(155, 155, 155);
+      color: #333;
+      padding: 1em 1.2em 1em;
+      background-color: rgb(218, 218, 218);
+      margin: 5px 15px 20px;
+      display:flex;
+      min-width: 180px;
+  }
+
+  .rst-content blockquote p {
+    margin-bottom:0px;
+  }
+
+.boldtext { font-weight: bold; }
+
+/* Add transparency to green code blocks */
+div.highlight {
+  background-color: rgba(210, 255, 147, 0.38) !important;
+}

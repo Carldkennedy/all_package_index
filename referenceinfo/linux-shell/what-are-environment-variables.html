@@ -1,0 +1,228 @@
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>What are environment variables? &mdash; Sheffield HPC Documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/tabs.css?v=a5c4661c" />
+      <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=0a35405e" />
+
+  
+    <link rel="canonical" href="https://docs.hpc.shef.ac.uk/referenceinfo/linux-shell/what-are-environment-variables.html" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../_static/copybutton.js?v=f281be69"></script>
+        <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Scheduler Reference Info" href="../scheduler/index.html" />
+    <link rel="prev" title="Verifying software package download integrity" href="verifying-software-package-downloads.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Sheffield HPC Documentation
+              <img src="../../_static/UOSLogo_Primary_Violet_RGB_small.png" class="logo" alt="Logo"/>
+          </a><div>
+    <h3>Quick search</h3>
+    <!--Setup by JKWM via https://cse.google.com/cse/all-->
+    <script async src="https://cse.google.com/cse.js?cx=243e6cd4be08b404b">
+    </script>
+    <div class="gcse-search"></div>
+ </div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../hpc/index.html">Using the HPC Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../stanage/index.html">Stanage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bessemer/index.html">Bessemer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../parallel/index.html">Parallel Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../newsletter/index.html">News</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html">Glossary of Terms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../other-uk-hpc-resources.html">Access to External UK HPC Facilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../help.html">Need help?</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://rcgsheffield.github.io/TUoS-RIT-training-resources/training.html">Courses / Training Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../FAQs.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cheatsheets/index.html">Quick Reference (Cheat Sheets)</a></li>
+<li class="toctree-l1"><a class="reference external" href="http://changelog.hpc.shef.ac.uk/">Latest Software / HPC changelog</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Reference Information Index</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../ANSYS/index.html">ANSYS Packages Reference Info</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../environment-modules/index.html">Environment Modules Reference Info</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Linux shell Reference Info</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="making-software-available-with-bashrc.html">Making software available via the .bashrc file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="the-bashrc-file.html">The .bashrc file and its purpose</a></li>
+<li class="toctree-l3"><a class="reference internal" href="unpacking-a-tarball.html">Unpacking a tarball</a></li>
+<li class="toctree-l3"><a class="reference internal" href="unpacking-an-rpm.html">Unpacking an RPM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="verifying-software-package-downloads.html">Verifying software package download integrity</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">What are environment variables?</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#listing-environment-variables">Listing environment variables</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#setting-environment-variables">Setting environment variables</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../scheduler/index.html">Scheduler Reference Info</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../computer-architecture/index.html">Computer Architecture Reference Info</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../connecting-ssh/index.html">Connecting via SSH Reference Info</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mfa/index.html">Multifactor Authentication Reference Info</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../admins/index.html">Documentation Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../citing.html">Suggested text for citations and letters of support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../decommissioned/index.html">Decommissioned Clusters</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Sheffield HPC Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+<!-- <a class="forkme" href="https://github.com/rcgsheffield/sheffield_hpc">
+<img alt="Fork me on GitHub" src="../../_static/img/forkme.png"> 
+</a> -->
+
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Reference Information Index</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Linux shell Reference Info</a></li>
+      <li class="breadcrumb-item active">What are environment variables?</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="toctree-wrapper compound">
+</div>
+<section id="what-are-environment-variables">
+<h1>What are environment variables?<a class="headerlink" href="#what-are-environment-variables" title="Link to this heading"></a></h1>
+<p>In Linux based operating systems, environment variables are dynamic named values stored within the
+system which are used by shells or subshells (your terminal) to facilitate functionality. Simply put,
+they are variables with a name and value which perform a function in how the operating system and
+applications work.</p>
+<p>These variables have a simple format:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">KEY</span><span class="o">=</span>value
+<span class="nv">KEY</span><span class="o">=</span><span class="s2">&quot;Some other value&quot;</span>
+<span class="nv">KEY</span><span class="o">=</span>value1:value2
+</pre></div>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<ul class="simple">
+<li><p>The variable names are case sensitive and by convention they are UPPER CASE.</p></li>
+<li><p>If a variable has multiple values they should be separated by a colon <code class="docutils literal notranslate"><span class="pre">:</span></code>.</p></li>
+<li><p>Variables <strong>do not</strong> have spaces around the equals <code class="docutils literal notranslate"><span class="pre">=</span></code> sign.</p></li>
+</ul>
+</div>
+<p>Note that <strong>environment variables</strong> are variables that are available system-wide and are inherited
+by all spawned child processes and shells where <strong>shell variables</strong> are variables that apply only to
+the current shell instance. Each shell such as bash (the default on the clusters), has its own
+set of internal shell variables.</p>
+<hr class="docutils" />
+<section id="listing-environment-variables">
+<h2>Listing environment variables<a class="headerlink" href="#listing-environment-variables" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>env</strong> – This command allows you to run another program in a custom environment without modifying
+the current one. When used without an argument it will print a list of the current environment variables.</p></li>
+<li><p><strong>printenv</strong> – This command prints all or the specified environment variables.</p></li>
+<li><p><strong>echo $MYVARIABLE</strong> - The command <strong>echo</strong> when supplied with a variable name prefixed with <code class="docutils literal notranslate"><span class="pre">$</span></code> will
+print that variable. An alternative syntax would be <strong>echo ${MYVARIABLE}</strong>. Variables can also be
+utilized in bash scripts in this manner.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="setting-environment-variables">
+<h2>Setting environment variables<a class="headerlink" href="#setting-environment-variables" title="Link to this heading"></a></h2>
+<p>Manually setting environment variables is trivial and can be accomplished with the commands below.</p>
+<ul class="simple">
+<li><p><strong>set</strong> – The command sets or unsets shell variables. When used without an argument it will print a
+<strong>list</strong> of all variables including environment and shell variables, and shell functions.</p></li>
+<li><p><strong>unset</strong> – The command deletes shell and environment variables.</p></li>
+<li><p><strong>export</strong> – The command sets environment variables.</p></li>
+</ul>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>Setting or changing environment variables can lead to a corrupted shell environment which can leave you
+unable to login or run programs. Manually changing values should be avoided in favour of using the
+<a class="reference internal" href="../../hpc/installing-software.html#software-installs-modules"><span class="std std-ref">modules system</span></a>.</p>
+<p>If you find your shell environment is behaving oddly, programs are no longer available and
+you suspect you may have corrupted your current shell environment by changing environment variables
+in the terminal you can simply log out and log back in to clear the problem.</p>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="verifying-software-package-downloads.html" class="btn btn-neutral float-left" title="Verifying software package download integrity" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../scheduler/index.html" class="btn btn-neutral float-right" title="Scheduler Reference Info" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, The University of Sheffield.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<footer class="footer">
+  <div class="container">
+    <div class="left-footer">
+         &copy; 2024, The University of Sheffield
+       <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" /></a>
+    </div>
+   
+    <div class="centre-footer">
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.3.7
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

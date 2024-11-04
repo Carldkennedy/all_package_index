@@ -1,0 +1,253 @@
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>cuDNN &mdash; Sheffield HPC Documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=a5c4661c" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=0a35405e" />
+
+  
+    <link rel="canonical" href="https://docs.hpc.shef.ac.uk/stanage/software/libs/cudnn.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../../_static/copybutton.js?v=f281be69"></script>
+        <script src="../../../_static/design-tabs.js?v=36754332"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="fftw" href="fftw.html" />
+    <link rel="prev" title="CUDA" href="cuda.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Sheffield HPC Documentation
+              <img src="../../../_static/UOSLogo_Primary_Violet_RGB_small.png" class="logo" alt="Logo"/>
+          </a><div>
+    <h3>Quick search</h3>
+    <!--Setup by JKWM via https://cse.google.com/cse/all-->
+    <script async src="https://cse.google.com/cse.js?cx=243e6cd4be08b404b">
+    </script>
+    <div class="gcse-search"></div>
+ </div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../hpc/index.html">Using the HPC Systems</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Stanage</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../stanage-FAQ-gotchas.html">Stanage FAQ and Gotchas</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Software on Stanage</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../apps/index.html">Applications on Stanage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../development/index.html">Developing on Stanage</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Libraries on Stanage</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="PETSc.html">PETSc</a></li>
+<li class="toctree-l4"><a class="reference internal" href="blas.html">BLAS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="boost.html">Boost C++ Library</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cfitsio.html">cfitsio</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cuda.html">CUDA</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">cuDNN</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#usage">Usage</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#installation-notes">Installation notes</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="fftw.html">fftw</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gdal.html">Geospatial Data Abstraction Library (GDAL)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="geos.html">geos</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gsl.html">GSL</a></li>
+<li class="toctree-l4"><a class="reference internal" href="hdf5.html">HDF5</a></li>
+<li class="toctree-l4"><a class="reference internal" href="imkl.html">Intel MKL</a></li>
+<li class="toctree-l4"><a class="reference internal" href="libsndfile.html">libsndfile</a></li>
+<li class="toctree-l4"><a class="reference internal" href="libunistring.html">libunistring</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nag.html">NAG Fortran and C Library</a></li>
+<li class="toctree-l4"><a class="reference internal" href="netcdf.html">netCDF</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nlopt.html">NLopt</a></li>
+<li class="toctree-l4"><a class="reference internal" href="openblas.html">OpenBLAS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="proj.html">PROJ</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scalapack.html">ScaLAPACK</a></li>
+<li class="toctree-l4"><a class="reference internal" href="udunits.html">udunits</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../parallel/index.html">Parallel Systems on Stanage</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../cluster_specs.html">Stanage Specifications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../slurm.html">Slurm Scheduler Job Submission info</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../stanage-mfa-setup.html">Stanage TOTP multifactor authentication setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../GPUComputingStanage.html">Using GPUs on Stanage</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../bessemer/index.html">Bessemer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../parallel/index.html">Parallel Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../newsletter/index.html">News</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary.html">Glossary of Terms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../other-uk-hpc-resources.html">Access to External UK HPC Facilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../help.html">Need help?</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://rcgsheffield.github.io/TUoS-RIT-training-resources/training.html">Courses / Training Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../FAQs.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cheatsheets/index.html">Quick Reference (Cheat Sheets)</a></li>
+<li class="toctree-l1"><a class="reference external" href="http://changelog.hpc.shef.ac.uk/">Latest Software / HPC changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../referenceinfo/index.html">Reference Information Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../citing.html">Suggested text for citations and letters of support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../decommissioned/index.html">Decommissioned Clusters</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Sheffield HPC Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+<!-- <a class="forkme" href="https://github.com/rcgsheffield/sheffield_hpc">
+<img alt="Fork me on GitHub" src="../../../_static/img/forkme.png"> 
+</a> -->
+
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Stanage</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Software on Stanage</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Libraries on Stanage</a></li>
+      <li class="breadcrumb-item active">cuDNN</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="cudnn">
+<span id="cudnn-stanage"></span><h1>cuDNN<a class="headerlink" href="#cudnn" title="Link to this heading"></a></h1>
+<aside class="sidebar">
+<p class="sidebar-title">cuDNN</p>
+<dl class="field-list simple">
+<dt class="field-odd">Dependencies<span class="colon">:</span></dt>
+<dd class="field-odd"><p>CUDA, gcc</p>
+</dd>
+<dt class="field-even">URL<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://developer.nvidia.com/cudnn">https://developer.nvidia.com/cudnn</a></p>
+</dd>
+<dt class="field-odd">Documentation<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://developer.nvidia.com/cudnn">https://developer.nvidia.com/cudnn</a></p>
+</dd>
+</dl>
+</aside>
+<p>The NVIDIA CUDA Deep Neural Network library (cuDNN) is
+a GPU-accelerated library of primitives for deep neural networks.
+cuDNN provides highly tuned implementations for standard routines such
+as forward and backward convolution, pooling, normalization, and activation layers.
+cuDNN is part of the NVIDIA Deep Learning SDK.</p>
+<section id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Link to this heading"></a></h2>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><strong>Only GPU-enabled nodes are able to run the cuDNN library.</strong></p>
+</div>
+<p class="boldtext">See <a class="reference internal" href="../../GPUComputingStanage.html#gpu-computing-stanage"><span class="std std-ref">Using GPUs on Stanage</span></a> for more information on how to request a GPU-enabled node for an interactive session or job submission.</p>
+<p>Load the appropriate cuDNN version
+(and implicitly load a <a class="reference internal" href="cuda.html#cuda-stanage"><span class="std std-ref">specified CUDA version</span></a>)
+with one of the following commands:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>module<span class="w"> </span>load<span class="w"> </span>cuDNN/8.9.2.26-CUDA-12.1.1
+module<span class="w"> </span>load<span class="w"> </span>cuDNN/8.8.0.121-CUDA-12.0.0
+module<span class="w"> </span>load<span class="w"> </span>cuDNN/8.7.0.84-CUDA-11.8.0
+module<span class="w"> </span>load<span class="w"> </span>cuDNN/8.6.0.163-CUDA-11.8.0
+module<span class="w"> </span>load<span class="w"> </span>cuDNN/8.4.1.50-CUDA-11.7.0
+module<span class="w"> </span>load<span class="w"> </span>cuDNN/8.0.4.30-CUDA-11.1.1
+module<span class="w"> </span>load<span class="w"> </span>cuDNN/7.6.4.38-gcccuda-2019b
+module<span class="w"> </span>load<span class="w"> </span>cuDNN/7.6.4.38-gcccuda-2019a
+module<span class="w"> </span>load<span class="w"> </span>cuDNN/7.6.4.38-CUDA-10.0.130
+module<span class="w"> </span>load<span class="w"> </span>cuDNN/7.6.2.24-CUDA-10.1.243
+module<span class="w"> </span>load<span class="w"> </span>cuDNN/7.4.2.24-CUDA-10.0.130
+</pre></div>
+</div>
+</section>
+<section id="installation-notes">
+<h2>Installation notes<a class="headerlink" href="#installation-notes" title="Link to this heading"></a></h2>
+<p>This section is primarily for administrators of the system.</p>
+<p>All cuDNN installs were installed using eponymous EasyBuild easyconfigs.</p>
+<p>It’s possible to download and compile some sample cuDNN programs from the nVIDIA Developer portal for the purposes of testing a cuDNN install,
+but it’s easier to build and test a program from a third party.</p>
+<p>Save the C++_ program from <a class="reference external" href="https://medium.com/&#64;rohitdwivedula/minimal-cudnn-c-hello-world-example-47d3c6b60b73">this blog post</a> as <code class="docutils literal notranslate"><span class="pre">hw.cpp</span></code> then
+compile and execute it by running the following on a GPU node
+(ideally from a batch job):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>module<span class="w"> </span>purge
+module<span class="w"> </span>load<span class="w"> </span>cuDNN/8.8.0.121-CUDA-12.0.0
+
+g++<span class="w"> </span>-o<span class="w"> </span>hw.o<span class="w"> </span>-c<span class="w"> </span>hw.cpp
+nvcc<span class="w"> </span>-ccbin<span class="w"> </span>g++<span class="w"> </span>-m64<span class="w"> </span>-gencode<span class="w"> </span><span class="nv">arch</span><span class="o">=</span>compute_80,code<span class="o">=</span>sm_80<span class="w"> </span>-o<span class="w"> </span>hw<span class="w"> </span>hw.o<span class="w"> </span>-lcublasLt<span class="w"> </span>-lcudart<span class="w"> </span>-lcublas<span class="w"> </span>-lcudnn<span class="w"> </span>-lstdc++<span class="w"> </span>-lm
+./hw
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="cuda.html" class="btn btn-neutral float-left" title="CUDA" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="fftw.html" class="btn btn-neutral float-right" title="fftw" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, The University of Sheffield.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<footer class="footer">
+  <div class="container">
+    <div class="left-footer">
+         &copy; 2024, The University of Sheffield
+       <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" /></a>
+    </div>
+   
+    <div class="centre-footer">
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.3.7
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

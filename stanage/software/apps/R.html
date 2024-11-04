@@ -1,0 +1,388 @@
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>R &mdash; Sheffield HPC Documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=a5c4661c" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=0a35405e" />
+
+  
+    <link rel="canonical" href="https://docs.hpc.shef.ac.uk/stanage/software/apps/R.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../../_static/copybutton.js?v=f281be69"></script>
+        <script src="../../../_static/design-tabs.js?v=36754332"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Abaqus" href="abaqus.html" />
+    <link rel="prev" title="ANSYS LS-DYNA" href="ansys/ls-dyna.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Sheffield HPC Documentation
+              <img src="../../../_static/UOSLogo_Primary_Violet_RGB_small.png" class="logo" alt="Logo"/>
+          </a><div>
+    <h3>Quick search</h3>
+    <!--Setup by JKWM via https://cse.google.com/cse/all-->
+    <script async src="https://cse.google.com/cse.js?cx=243e6cd4be08b404b">
+    </script>
+    <div class="gcse-search"></div>
+ </div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../hpc/index.html">Using the HPC Systems</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Stanage</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../stanage-FAQ-gotchas.html">Stanage FAQ and Gotchas</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Software on Stanage</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Applications on Stanage</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="ansys/index.html">ANSYS</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">R</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#interactive-usage">Interactive Usage</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#serial-one-cpu-batch-usage">Serial (one CPU) Batch usage</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#graphical-output">Graphical output</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#installing-additional-packages">Installing additional packages</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#r-packages-that-require-external-libraries">R Packages that require external libraries</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#using-the-rmath-library-in-c-programs">Using the Rmath library in C Programs</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#installation-notes">Installation Notes</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#r-4-0-5-foss-2020b">R/4.0.5-foss-2020b</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="abaqus.html">Abaqus</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ansysem.html">ANSYSEM</a></li>
+<li class="toctree-l4"><a class="reference internal" href="apptainer.html">Apptainer/Singularity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="castep.html">CASTEP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="git-lfs.html">Git LFS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gmp.html">GnuMP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gromacs.html">GROMACS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="java.html">Java (Temurin/OpenJDK)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="julia.html">Julia</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lammps.html">LAMMPS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mathematica.html">Mathematica</a></li>
+<li class="toctree-l4"><a class="reference internal" href="matlab.html">MATLAB</a></li>
+<li class="toctree-l4"><a class="reference internal" href="maven.html">Maven</a></li>
+<li class="toctree-l4"><a class="reference internal" href="molpro.html">Molpro</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ncdu.html">ncdu</a></li>
+<li class="toctree-l4"><a class="reference internal" href="netlogo.html">NetLogo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nextflow.html">Nextflow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="openfoam.html">OpenFOAM</a></li>
+<li class="toctree-l4"><a class="reference internal" href="python.html">Python</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pytorch.html">PyTorch</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rosetta.html">Rosetta</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rstudio.html">RStudio</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sox.html">SoX</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tensorflow.html">TensorFlow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="vasp.html">VASP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="xvfb.html">Xvfb</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../development/index.html">Developing on Stanage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../libs/index.html">Libraries on Stanage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../parallel/index.html">Parallel Systems on Stanage</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../cluster_specs.html">Stanage Specifications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../slurm.html">Slurm Scheduler Job Submission info</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../stanage-mfa-setup.html">Stanage TOTP multifactor authentication setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../GPUComputingStanage.html">Using GPUs on Stanage</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../bessemer/index.html">Bessemer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../parallel/index.html">Parallel Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../newsletter/index.html">News</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary.html">Glossary of Terms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../other-uk-hpc-resources.html">Access to External UK HPC Facilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../help.html">Need help?</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://rcgsheffield.github.io/TUoS-RIT-training-resources/training.html">Courses / Training Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../FAQs.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cheatsheets/index.html">Quick Reference (Cheat Sheets)</a></li>
+<li class="toctree-l1"><a class="reference external" href="http://changelog.hpc.shef.ac.uk/">Latest Software / HPC changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../referenceinfo/index.html">Reference Information Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../citing.html">Suggested text for citations and letters of support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../decommissioned/index.html">Decommissioned Clusters</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Sheffield HPC Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+<!-- <a class="forkme" href="https://github.com/rcgsheffield/sheffield_hpc">
+<img alt="Fork me on GitHub" src="../../../_static/img/forkme.png"> 
+</a> -->
+
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Stanage</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Software on Stanage</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Applications on Stanage</a></li>
+      <li class="breadcrumb-item active">R</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="r">
+<span id="r-stanage"></span><h1>R<a class="headerlink" href="#r" title="Link to this heading"></a></h1>
+<aside class="sidebar">
+<p class="sidebar-title">R</p>
+<dl class="field-list simple">
+<dt class="field-odd">Versions<span class="colon">:</span></dt>
+<dd class="field-odd"><p>4.0.0,4.0.5,4.2.1,4.2.2</p>
+</dd>
+<dt class="field-even">URL<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://www.r-project.org/">https://www.r-project.org/</a></p>
+</dd>
+<dt class="field-odd">Documentation<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://www.r-project.org/">https://www.r-project.org/</a></p>
+</dd>
+</dl>
+</aside>
+<p>R is a language and environment for statistical computing and graphics.
+It is a GNU project which is similar to the S language and environment which was developed at Bell Laboratories (formerly AT&amp;T, now Lucent Technologies) by John Chambers and colleagues.
+R can be considered as a different implementation of S. There are some important differences, but much code written for S runs unaltered under R.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The CPU &amp; GPU nodes have different CPU architectures (Intel &amp; AMD respectively). Installing R packages on a CPU node will result in a failure if R is loaded and executed on a GPU node, and vice versa.</p>
+</div>
+<section id="interactive-usage">
+<h2>Interactive Usage<a class="headerlink" href="#interactive-usage" title="Link to this heading"></a></h2>
+<p>After connecting to Stanage (see <a class="reference internal" href="../../../hpc/connecting.html#ssh"><span class="std std-ref">Establishing a SSH connection</span></a>),  start an interactive session with the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>srun<span class="w"> </span>--pty<span class="w"> </span>bash<span class="w"> </span>-i
+</pre></div>
+</div>
+<p>You can then load a specific version of R using:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">load</span> <span class="n">R</span><span class="o">/</span><span class="mf">4.0.0</span><span class="o">-</span><span class="n">foss</span><span class="o">-</span><span class="mi">2020</span><span class="n">a</span>
+<span class="n">module</span> <span class="n">load</span> <span class="n">R</span><span class="o">/</span><span class="mf">4.0.5</span><span class="o">-</span><span class="n">foss</span><span class="o">-</span><span class="mi">2020</span><span class="n">b</span>
+<span class="n">module</span> <span class="n">load</span> <span class="n">R</span><span class="o">/</span><span class="mf">4.2.1</span><span class="o">-</span><span class="n">foss</span><span class="o">-</span><span class="mi">2022</span><span class="n">a</span>
+<span class="n">module</span> <span class="n">load</span> <span class="n">R</span><span class="o">/</span><span class="mf">4.2.2</span><span class="o">-</span><span class="n">foss</span><span class="o">-</span><span class="mi">2022</span><span class="n">b</span>
+</pre></div>
+</div>
+<p>R can then be run with:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ R
+</pre></div>
+</div>
+</section>
+<section id="serial-one-cpu-batch-usage">
+<h2>Serial (one CPU) Batch usage<a class="headerlink" href="#serial-one-cpu-batch-usage" title="Link to this heading"></a></h2>
+<p>Here, we assume that you wish to run the program <code class="docutils literal notranslate"><span class="pre">my_code.r</span></code> on the system.
+With batch usage it is recommended to load a specific version of R,
+for example <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">load</span> <span class="pre">R/4.0.5-foss-2020b</span></code>,
+to ensure the expected output is achieved.</p>
+<p>First, you need to write a batch submission file.
+We assume you’ll call this <code class="docutils literal notranslate"><span class="pre">my_job.slurm</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<span class="c1">#SBATCH --mem=4G              # Request 4GB of memory</span>
+<span class="c1">#SBATCH --mail-user=username@sheffield.ac.uk  # Replace with your email address</span>
+
+module<span class="w"> </span>load<span class="w"> </span>R/4.0.5-foss-2020b<span class="w">  </span><span class="c1"># Recommended to load a specific version of R</span>
+
+R<span class="w"> </span>CMD<span class="w"> </span>BATCH<span class="w"> </span>my_code.r<span class="w"> </span>my_code.r.o<span class="nv">$JOB_ID</span>
+</pre></div>
+</div>
+<p>Note that R must be called with both the <code class="docutils literal notranslate"><span class="pre">CMD</span></code> and <code class="docutils literal notranslate"><span class="pre">BATCH</span></code> options
+which tell it to run an R program,
+in this case <code class="docutils literal notranslate"><span class="pre">my_code.r</span></code>.
+If you do not do this, R will attempt to open an interactive prompt.</p>
+<p>The final argument, <code class="docutils literal notranslate"><span class="pre">my_code.r.o$JOBID</span></code>, tells R to send output to a file with this name.
+Since <code class="docutils literal notranslate"><span class="pre">$JOBID</span></code> will always be unique, this ensures that all of your output files are unique.
+Without this argument R sends all output to a file called <code class="docutils literal notranslate"><span class="pre">my_code.Rout</span></code>.</p>
+<p>Ensuring that <code class="docutils literal notranslate"><span class="pre">my_code.r</span></code> and <code class="docutils literal notranslate"><span class="pre">my_job.slurm</span></code> are both in your current working directory,
+submit your job to the batch system</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sbatch</span> <span class="n">my_job</span><span class="o">.</span><span class="n">slurm</span>
+</pre></div>
+</div>
+<p>Replace <code class="docutils literal notranslate"><span class="pre">my_job.slurm</span></code> with the name of your submission script.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>By default, R will save variables in the workspace in the current directory
+(in a file called <code class="docutils literal notranslate"><span class="pre">.RData</span></code>)
+when a script exits and reload them when it starts from the same directory.
+To disable this, add the <code class="docutils literal notranslate"><span class="pre">--no-save</span></code> and <code class="docutils literal notranslate"><span class="pre">--no-restore</span></code> options to your command
+e.g. <code class="docutils literal notranslate"><span class="pre">R</span> <span class="pre">CMD</span> <span class="pre">BATCH</span> <span class="pre">--no-save</span> <span class="pre">--no-restore</span> <span class="pre">my_code.r</span> <span class="pre">my_code.r.o$JOB_ID</span></code>.</p>
+</div>
+</section>
+<section id="graphical-output">
+<h2>Graphical output<a class="headerlink" href="#graphical-output" title="Link to this heading"></a></h2>
+<p>By default, graphical output from batch jobs is sent to a file called <code class="docutils literal notranslate"><span class="pre">Rplots.pdf</span></code>.</p>
+</section>
+<section id="installing-additional-packages">
+<h2>Installing additional packages<a class="headerlink" href="#installing-additional-packages" title="Link to this heading"></a></h2>
+<p>As you will not have permissions to install packages to the default folder,
+additional R packages can be installed to your home folder <code class="docutils literal notranslate"><span class="pre">~/</span></code>.
+To create the appropriate folder,
+install your first package in R in interactive mode.
+Load an interactive R session as described above, and install a package with:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">install</span><span class="o">.</span><span class="n">packages</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>You will be prompted to create a personal package library.
+Choose ‘yes’.
+The package will download and install from a CRAN mirror
+(you may be asked to select a nearby mirror,
+which you can do simply by entering the number of your preferred mirror).</p>
+<p>Once the chosen package has been installed,
+additional packages can be installed either in the same way,
+or by creating a <code class="docutils literal notranslate"><span class="pre">.R</span></code> script.
+An example script might look like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">install</span><span class="o">.</span><span class="n">packages</span><span class="p">(</span><span class="s2">&quot;dplyr&quot;</span><span class="p">)</span>
+<span class="n">install</span><span class="o">.</span><span class="n">packages</span><span class="p">(</span><span class="s2">&quot;devtools&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Call this using <code class="docutils literal notranslate"><span class="pre">source()</span></code>.
+For example if your script is called <code class="docutils literal notranslate"><span class="pre">packages.R</span></code> and is stored in your home folder,
+source this from an interactive R session with:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">source</span><span class="p">(</span><span class="s2">&quot;~/packages.R&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>These additional packages will be installed without prompting to your personal package library.</p>
+<p>To check your packages are up to date, and update them if necessary,
+run the following line from an R interactive session</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">update</span><span class="o">.</span><span class="n">packages</span><span class="p">(</span><span class="n">lib</span><span class="o">.</span><span class="n">loc</span> <span class="o">=</span> <span class="s2">&quot;~/R/x86_64-unknown-linux-gnu-library/3.6/&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The folder name after <code class="docutils literal notranslate"><span class="pre">~/R/</span></code> will likely change,
+but this can be completed with tab autocompletion from the R session.
+Ensure <code class="docutils literal notranslate"><span class="pre">lib.loc</span></code> folder is specified, or R will attempt to update the wrong library.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Notice that the personal package library path includes the version of R:
+if after installing some packages you switch to using a different <a class="reference external" href="http://semver.org/">major or minor version</a> of R
+then you will need then to install those package <em>for this new version</em>.</p>
+</div>
+</section>
+<section id="r-packages-that-require-external-libraries">
+<h2>R Packages that require external libraries<a class="headerlink" href="#r-packages-that-require-external-libraries" title="Link to this heading"></a></h2>
+<p>Some R packages require external libraries to be installed before you can install and use them
+(e.g. <code class="docutils literal notranslate"><span class="pre">rgdal</span></code>, <code class="docutils literal notranslate"><span class="pre">rgeos</span></code>, <code class="docutils literal notranslate"><span class="pre">hdf5r</span></code>).</p>
+<p>Since there are so many, we only install those libraries that have been explicitly requested by users of the system.
+The associated R packages are not included in the central installation of R.</p>
+<p>To load external libraries you should  <a class="reference internal" href="../../../hpc/modules.html#search-env-modules"><span class="std std-ref">search for a module</span></a> which matches the
+build chain of the R version you are using to avoid load conflicts e.g. for R 4.0.5, foss-2020b.</p>
+<p>To request the installation of dependencies for R packages that depend on non-R libraries
+please contact <code class="docutils literal notranslate"><span class="pre">research-it&#64;sheffield.ac.uk</span></code>.</p>
+</section>
+<section id="using-the-rmath-library-in-c-programs">
+<h2>Using the Rmath library in C Programs<a class="headerlink" href="#using-the-rmath-library-in-c-programs" title="Link to this heading"></a></h2>
+<p>The Rmath library allows you to access some of R’s functionality from a C program.
+For example, consider this C program:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+<span class="cp">#define MATHLIB_STANDALONE</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;Rmath.h&quot;</span>
+
+<span class="n">main</span><span class="p">(){</span>
+<span class="w">   </span><span class="kt">double</span><span class="w"> </span><span class="n">shape1</span><span class="p">,</span><span class="n">shape2</span><span class="p">,</span><span class="n">prob</span><span class="p">;</span>
+
+<span class="w">   </span><span class="n">shape1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0</span><span class="p">;</span>
+<span class="w">   </span><span class="n">shape2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2.0</span><span class="p">;</span>
+<span class="w">   </span><span class="n">prob</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.5</span><span class="p">;</span>
+
+<span class="w">   </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Critical value is %lf</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="n">qbeta</span><span class="p">(</span><span class="n">prob</span><span class="p">,</span><span class="n">shape1</span><span class="p">,</span><span class="n">shape2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">));</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>This makes use of R’s <code class="docutils literal notranslate"><span class="pre">qbeta</span></code> function.
+You can compile and run this on a worker node as follows.</p>
+<p>Start a session on a worker node with <code class="docutils literal notranslate"><span class="pre">srun</span> <span class="pre">--pty</span> <span class="pre">bash</span> <span class="pre">-i</span></code> and load a version of R:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">load</span> <span class="n">R</span><span class="o">/</span><span class="mf">4.0.5</span><span class="o">-</span><span class="n">foss</span><span class="o">-</span><span class="mi">2020</span><span class="n">b</span>
+</pre></div>
+</div>
+<p>Assuming the program is called <code class="docutils literal notranslate"><span class="pre">test_rmath.c</span></code>, compile with:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gcc</span> <span class="n">test_rmath</span><span class="o">.</span><span class="n">c</span> <span class="o">-</span><span class="n">lRmath</span> <span class="o">-</span><span class="n">lm</span> <span class="o">-</span><span class="n">o</span> <span class="n">test_rmath</span>
+</pre></div>
+</div>
+<p>For full details about the functions made available by the Rmath library,
+see section 6.7 of the document <a class="reference external" href="https://cran.r-project.org/doc/manuals/r-release/R-exts.html#Numerical-analysis-subroutines">Writing R extensions</a></p>
+</section>
+<section id="installation-notes">
+<h2>Installation Notes<a class="headerlink" href="#installation-notes" title="Link to this heading"></a></h2>
+<p>These notes are primarily for administrators of the system.</p>
+<section id="r-4-0-5-foss-2020b">
+<h3>R/4.0.5-foss-2020b<a class="headerlink" href="#r-4-0-5-foss-2020b" title="Link to this heading"></a></h3>
+<p>R was installed using Easybuild 4.7.0, build details can be found in <code class="docutils literal notranslate"><span class="pre">$EBROOTR/easyconfig</span></code>.
+Note: installed minus any of the configuration to install 700+ packages from CRAN
+(i.e. just base R was installed).</p>
+<p>NOTE: all R versions patched to address the CVE vulnerability using R-4.x_fix-CVE-2024-27322.patch</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="ansys/ls-dyna.html" class="btn btn-neutral float-left" title="ANSYS LS-DYNA" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="abaqus.html" class="btn btn-neutral float-right" title="Abaqus" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, The University of Sheffield.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<footer class="footer">
+  <div class="container">
+    <div class="left-footer">
+         &copy; 2024, The University of Sheffield
+       <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" /></a>
+    </div>
+   
+    <div class="centre-footer">
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.3.7
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,334 @@
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Abaqus &mdash; Sheffield HPC Documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=a5c4661c" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=0a35405e" />
+
+  
+    <link rel="canonical" href="https://docs.hpc.shef.ac.uk/stanage/software/apps/abaqus.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../../_static/copybutton.js?v=f281be69"></script>
+        <script src="../../../_static/design-tabs.js?v=36754332"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="ANSYSEM" href="ansysem.html" />
+    <link rel="prev" title="R" href="R.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Sheffield HPC Documentation
+              <img src="../../../_static/UOSLogo_Primary_Violet_RGB_small.png" class="logo" alt="Logo"/>
+          </a><div>
+    <h3>Quick search</h3>
+    <!--Setup by JKWM via https://cse.google.com/cse/all-->
+    <script async src="https://cse.google.com/cse.js?cx=243e6cd4be08b404b">
+    </script>
+    <div class="gcse-search"></div>
+ </div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../hpc/index.html">Using the HPC Systems</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Stanage</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../stanage-FAQ-gotchas.html">Stanage FAQ and Gotchas</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Software on Stanage</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Applications on Stanage</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="ansys/index.html">ANSYS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="R.html">R</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Abaqus</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#interactive-and-gui-usage">Interactive and GUI Usage</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#abaqus-example-problems">Abaqus example problems</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#batch-jobs">Batch jobs</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#licensed-options">Licensed options</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#checkpointing-your-work">Checkpointing your work</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#installation-notes">Installation notes</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#abaqus-2021-easybuild-install">Abaqus 2021 (EasyBuild install):</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="ansysem.html">ANSYSEM</a></li>
+<li class="toctree-l4"><a class="reference internal" href="apptainer.html">Apptainer/Singularity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="castep.html">CASTEP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="git-lfs.html">Git LFS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gmp.html">GnuMP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gromacs.html">GROMACS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="java.html">Java (Temurin/OpenJDK)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="julia.html">Julia</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lammps.html">LAMMPS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mathematica.html">Mathematica</a></li>
+<li class="toctree-l4"><a class="reference internal" href="matlab.html">MATLAB</a></li>
+<li class="toctree-l4"><a class="reference internal" href="maven.html">Maven</a></li>
+<li class="toctree-l4"><a class="reference internal" href="molpro.html">Molpro</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ncdu.html">ncdu</a></li>
+<li class="toctree-l4"><a class="reference internal" href="netlogo.html">NetLogo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nextflow.html">Nextflow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="openfoam.html">OpenFOAM</a></li>
+<li class="toctree-l4"><a class="reference internal" href="python.html">Python</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pytorch.html">PyTorch</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rosetta.html">Rosetta</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rstudio.html">RStudio</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sox.html">SoX</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tensorflow.html">TensorFlow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="vasp.html">VASP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="xvfb.html">Xvfb</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../development/index.html">Developing on Stanage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../libs/index.html">Libraries on Stanage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../parallel/index.html">Parallel Systems on Stanage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../stubs/index.html">All Packages Index</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../cluster_specs.html">Stanage Specifications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../slurm.html">Slurm Scheduler Job Submission info</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../stanage-mfa-setup.html">Stanage TOTP multifactor authentication setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../GPUComputingStanage.html">Using GPUs on Stanage</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../bessemer/index.html">Bessemer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../parallel/index.html">Parallel Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../newsletter/index.html">News</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary.html">Glossary of Terms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../other-uk-hpc-resources.html">Access to External UK HPC Facilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../help.html">Need help?</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://rcgsheffield.github.io/TUoS-RIT-training-resources/training.html">Courses / Training Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../FAQs.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cheatsheets/index.html">Quick Reference (Cheat Sheets)</a></li>
+<li class="toctree-l1"><a class="reference external" href="http://changelog.hpc.shef.ac.uk/">Latest Software / HPC changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../referenceinfo/index.html">Reference Information Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../citing.html">Suggested text for citations and letters of support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../decommissioned/index.html">Decommissioned Clusters</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Sheffield HPC Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+<!-- <a class="forkme" href="https://github.com/rcgsheffield/sheffield_hpc">
+<img alt="Fork me on GitHub" src="../../../_static/img/forkme.png"> 
+</a> -->
+
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Stanage</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Software on Stanage</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Applications on Stanage</a></li>
+      <li class="breadcrumb-item active">Abaqus</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="abaqus">
+<h1>Abaqus<a class="headerlink" href="#abaqus" title="Link to this heading"></a></h1>
+<aside class="sidebar">
+<p class="sidebar-title">Abaqus</p>
+<dl class="field-list simple">
+<dt class="field-odd">Versions<span class="colon">:</span></dt>
+<dd class="field-odd"><p>2021</p>
+</dd>
+<dt class="field-even">Dependencies<span class="colon">:</span></dt>
+<dd class="field-even"><p>User subroutines need the Intel FORTRAN compiler 2019</p>
+</dd>
+<dt class="field-odd">URL<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="http://www.3ds.com/products-services/simulia/products/abaqus/">http://www.3ds.com/products-services/simulia/products/abaqus/</a></p>
+</dd>
+<dt class="field-even">Documentation<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://help.3ds.com/">https://help.3ds.com/</a> (note: register for an account to access.)</p>
+</dd>
+</dl>
+</aside>
+<p>Abaqus is a software suite for Finite Element Analysis (FEA) developed by Dassault Systèmes.</p>
+<section id="interactive-and-gui-usage">
+<h2>Interactive and GUI Usage<a class="headerlink" href="#interactive-and-gui-usage" title="Link to this heading"></a></h2>
+<p>Abaqus can be activated using one of the following module files:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>module<span class="w"> </span>load<span class="w"> </span>ABAQUS/2021
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Users must unset the SLURM environment variable SLURM_GTIDS. Failure to do so will cause Abaqus to get stuck due to the MPI that Abaqus ships with not supporting the SLURM scheduler. SLURM_GTIDS should be unset for both interactive/GUI and batch jobs:</p>
+<p><code class="docutils literal notranslate"><span class="pre">unset</span> <span class="pre">SLURM_GTIDS</span></code></p>
+</div>
+<p>To use Abaqus in GUI mode you will need to connect using a <a class="reference internal" href="../../../hpc/flight-desktop.html#flight-desktop"><span class="std std-ref">flight graphical session on Stanage</span></a>, then after starting a terminal inside of the flight session:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>module<span class="w"> </span>load<span class="w"> </span>ABAQUS/2021
+abaqus<span class="w"> </span>cae
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="abaqus-example-problems">
+<h2>Abaqus example problems<a class="headerlink" href="#abaqus-example-problems" title="Link to this heading"></a></h2>
+<p>Abaqus contains a large number of example problems which can be used to become familiar with Abaqus on the system.
+These example problems are described in the Abaqus documentation and can be obtained using the Abaqus <code class="docutils literal notranslate"><span class="pre">fetch</span></code> command.
+For example, after loading the Abaqus module enter the following at the command line to extract the input file for test problem s4d:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">abaqus</span> <span class="n">fetch</span> <span class="n">job</span><span class="o">=</span><span class="n">s4d</span>
+</pre></div>
+</div>
+<p>This will extract the input file <code class="docutils literal notranslate"><span class="pre">s4d.inp</span></code> to run the computation defined by the commands and batch submission script below.</p>
+</section>
+<hr class="docutils" />
+<section id="batch-jobs">
+<h2>Batch jobs<a class="headerlink" href="#batch-jobs" title="Link to this heading"></a></h2>
+<p>The following is an example batch submission script, <code class="docutils literal notranslate"><span class="pre">my_job.sh</span></code>, to run the executable <code class="docutils literal notranslate"><span class="pre">abaqus</span></code> with input file is <code class="docutils literal notranslate"><span class="pre">s4d.inp</span></code>. The script requests 4 cores using the OpenMP parallel environment <code class="docutils literal notranslate"><span class="pre">smp</span></code> with a runtime of 30 mins and 2 GB of real memory per core.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>#!/bin/bash
+#SBATCH --job-name=abaqus_smp_test
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=4
+#SBATCH --mem=8000
+#SBATCH --output=output_abaqus_smp_4
+#SBATCH --time=00:30:00
+#SBATCH --mail-user=a.person@sheffield.ac.uk
+#SBATCH --mail-type=ALL
+module load ABAQUS/2018
+unset SLURM_GTIDS
+abaqus job=my_job input=s4d.inp mp_mode=threads cpus=$SLURM_NTASKS scratch=$TMPDIR memory=&quot;8gb&quot; interactive
+</pre></div>
+</div>
+<p>The job is submitted to the queue by typing:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sbatch</span> <span class="n">my_job</span><span class="o">.</span><span class="n">sh</span>
+</pre></div>
+</div>
+<p><strong>User subroutines:</strong> The <code class="docutils literal notranslate"><span class="pre">umatmst3</span></code> model has a user defined subroutine <code class="docutils literal notranslate"><span class="pre">umatmst3.f</span></code>. The model files are obtained using</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">abaqus</span> <span class="n">fetch</span> <span class="n">job</span><span class="o">=</span><span class="n">umatmst3</span><span class="o">*</span>
+</pre></div>
+</div>
+<p>The script below is an example of a batch submission script for a single core job with a runtime of 30 mins, 8 GB of real memory and with user subroutine <code class="docutils literal notranslate"><span class="pre">umatmst3.f</span></code> and input file <code class="docutils literal notranslate"><span class="pre">umatmst3.inp</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>#!/bin/bash
+#SBATCH --job-name=abaqus_subroutine_test
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=1
+#SBATCH --mem=8000
+#SBATCH --output=output_abaqus_subroutine
+#SBATCH --time=00:30:00
+#SBATCH --mail-user=a.person@sheffield.ac.uk
+#SBATCH --mail-type=ALL
+module load ABAQUS/2018
+module load iccifort/2019.5.281
+unset SLURM_GTIDS
+abaqus job=my_job input=umatmst3.inp user=umatmst3.f scratch=$TMPDIR memory=&quot;8gb&quot; interactive
+</pre></div>
+</div>
+<p>Note that the module <code class="docutils literal notranslate"><span class="pre">iccifort/2019.5.281</span></code>, required for compiling the user subroutines, is not automatically loaded when the module for Abaqus is loaded.</p>
+</section>
+<hr class="docutils" />
+<section id="licensed-options">
+<h2>Licensed options<a class="headerlink" href="#licensed-options" title="Link to this heading"></a></h2>
+<p>All available Abaqus licenses can be viewed using <code class="docutils literal notranslate"><span class="pre">abaqus</span> <span class="pre">licensing</span> <span class="pre">r</span></code> e.g.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ module load ABAQUS/2021
+$ abaqus licensing r
+</pre></div>
+</div>
+<p>Run <code class="docutils literal notranslate"><span class="pre">abaqus</span> <span class="pre">licensing</span></code> for usage info for the Abaqus licensing sub-command. Run <code class="docutils literal notranslate"><span class="pre">abaqus</span> <span class="pre">licensing</span> <span class="pre">ru</span></code> to see current licence usage.</p>
+</section>
+<hr class="docutils" />
+<section id="checkpointing-your-work">
+<h2>Checkpointing your work<a class="headerlink" href="#checkpointing-your-work" title="Link to this heading"></a></h2>
+<p>Abaqus has a built-in checkpoint and restart feature.</p>
+<p>Add the following to the input file (refer to official Abaqus documentation for detail):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">*</span><span class="n">RESTART</span><span class="p">,</span> <span class="n">WRITE</span><span class="p">,</span> <span class="n">OVERLAY</span><span class="p">,</span> <span class="n">FREQUENCY</span><span class="o">=</span><span class="mi">10</span>
+</pre></div>
+</div>
+<p><strong>OVERLAY</strong> saves only one state, i.e. overwrites the restart file every time new restart information is written</p>
+<p><strong>FREQUENCY=N</strong> writes restart information every N timesteps</p>
+<p>And, to restart the job, create a new input file newJobName with only a single line:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">*</span><span class="n">RESTART</span><span class="p">,</span> <span class="n">READ</span>
+</pre></div>
+</div>
+<p>Then run Abaqus specifying both the new and old job names:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">abaqus</span> <span class="n">jobname</span><span class="o">=</span><span class="n">newJobName</span> <span class="n">oldjob</span><span class="o">=</span><span class="n">oldJobName</span>
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="installation-notes">
+<h2>Installation notes<a class="headerlink" href="#installation-notes" title="Link to this heading"></a></h2>
+<section id="abaqus-2021-easybuild-install">
+<h3>Abaqus 2021 (EasyBuild install):<a class="headerlink" href="#abaqus-2021-easybuild-install" title="Link to this heading"></a></h3>
+<p>Abaqus was installed using Easybuild 4.7.0, build details can be found in folder $EBROOTABAQUS/easybuild with the module loaded.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="R.html" class="btn btn-neutral float-left" title="R" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="ansysem.html" class="btn btn-neutral float-right" title="ANSYSEM" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, The University of Sheffield.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<footer class="footer">
+  <div class="container">
+    <div class="left-footer">
+         &copy; 2024, The University of Sheffield
+       <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" /></a>
+    </div>
+   
+    <div class="centre-footer">
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.3.7
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

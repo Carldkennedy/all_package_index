@@ -1,0 +1,345 @@
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OpenMPI &mdash; Sheffield HPC Documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=a5c4661c" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=0a35405e" />
+
+  
+    <link rel="canonical" href="https://docs.hpc.shef.ac.uk/stanage/software/parallel/openmpi.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../../_static/copybutton.js?v=f281be69"></script>
+        <script src="../../../_static/design-tabs.js?v=36754332"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Stanage Specifications" href="../../cluster_specs.html" />
+    <link rel="prev" title="Intel MPI" href="impi.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Sheffield HPC Documentation
+              <img src="../../../_static/UOSLogo_Primary_Violet_RGB_small.png" class="logo" alt="Logo"/>
+          </a><div>
+    <h3>Quick search</h3>
+    <!--Setup by JKWM via https://cse.google.com/cse/all-->
+    <script async src="https://cse.google.com/cse.js?cx=243e6cd4be08b404b">
+    </script>
+    <div class="gcse-search"></div>
+ </div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../hpc/index.html">Using the HPC Systems</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Stanage</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../stanage-FAQ-gotchas.html">Stanage FAQ and Gotchas</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Software on Stanage</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../apps/index.html">Applications on Stanage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../development/index.html">Developing on Stanage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../libs/index.html">Libraries on Stanage</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Parallel Systems on Stanage</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="impi.html">Intel MPI</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">OpenMPI</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#versions">Versions</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#example">Example</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#interactive-job-submission">Interactive job submission</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#non-interactive-job-submission">Non-interactive job submission</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#installation-notes">Installation notes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../cluster_specs.html">Stanage Specifications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../slurm.html">Slurm Scheduler Job Submission info</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../stanage-mfa-setup.html">Stanage TOTP multifactor authentication setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../GPUComputingStanage.html">Using GPUs on Stanage</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../bessemer/index.html">Bessemer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../parallel/index.html">Parallel Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../newsletter/index.html">News</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary.html">Glossary of Terms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../other-uk-hpc-resources.html">Access to External UK HPC Facilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../help.html">Need help?</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://rcgsheffield.github.io/TUoS-RIT-training-resources/training.html">Courses / Training Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../FAQs.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cheatsheets/index.html">Quick Reference (Cheat Sheets)</a></li>
+<li class="toctree-l1"><a class="reference external" href="http://changelog.hpc.shef.ac.uk/">Latest Software / HPC changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../referenceinfo/index.html">Reference Information Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../citing.html">Suggested text for citations and letters of support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../decommissioned/index.html">Decommissioned Clusters</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Sheffield HPC Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+<!-- <a class="forkme" href="https://github.com/rcgsheffield/sheffield_hpc">
+<img alt="Fork me on GitHub" src="../../../_static/img/forkme.png"> 
+</a> -->
+
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Stanage</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Software on Stanage</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Parallel Systems on Stanage</a></li>
+      <li class="breadcrumb-item active">OpenMPI</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="openmpi">
+<span id="openmpi-stanage"></span><h1>OpenMPI<a class="headerlink" href="#openmpi" title="Link to this heading"></a></h1>
+<aside class="sidebar">
+<p class="sidebar-title">OpenMPI</p>
+<dl class="field-list simple">
+<dt class="field-odd">Latest Version<span class="colon">:</span></dt>
+<dd class="field-odd"><p>4.1.4</p>
+</dd>
+<dt class="field-even">Dependencies<span class="colon">:</span></dt>
+<dd class="field-even"><p>gcc</p>
+</dd>
+<dt class="field-odd">URL<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://www.open-mpi.org/">https://www.open-mpi.org/</a></p>
+</dd>
+</dl>
+</aside>
+<p>The OpenMPI Project is an open source Message Passing Interface implementation that is developed and maintained by a consortium of academic, research, and industry partners. OpenMPI is therefore able to combine the expertise, technologies, and resources from all across the High Performance Computing community in order to build the best MPI library available. OpenMPI offers advantages for system and software vendors, application developers and computer science researchers.</p>
+<section id="versions">
+<h2>Versions<a class="headerlink" href="#versions" title="Link to this heading"></a></h2>
+<p>You can load a specific version using one of the following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">load</span> <span class="n">OpenMPI</span><span class="o">/</span><span class="mf">3.1.4</span><span class="o">-</span><span class="n">GCC</span><span class="o">-</span><span class="mf">8.3.0</span>   <span class="c1"># part of the foss-2019b toolchain</span>
+<span class="n">module</span> <span class="n">load</span> <span class="n">OpenMPI</span><span class="o">/</span><span class="mf">4.0.3</span><span class="o">-</span><span class="n">GCC</span><span class="o">-</span><span class="mf">9.3.0</span>   <span class="c1"># part of the foss-2020a toolchain</span>
+<span class="n">module</span> <span class="n">load</span> <span class="n">OpenMPI</span><span class="o">/</span><span class="mf">4.0.5</span><span class="o">-</span><span class="n">GCC</span><span class="o">-</span><span class="mf">9.3.0</span>   <span class="c1"># part of the foss-2020a toolchain</span>
+<span class="n">module</span> <span class="n">load</span> <span class="n">OpenMPI</span><span class="o">/</span><span class="mf">4.0.5</span><span class="o">-</span><span class="n">GCC</span><span class="o">-</span><span class="mf">10.2.0</span>  <span class="c1"># part of the foss-2020b toolchain</span>
+<span class="n">module</span> <span class="n">load</span> <span class="n">OpenMPI</span><span class="o">/</span><span class="mf">4.1.4</span><span class="o">-</span><span class="n">GCC</span><span class="o">-</span><span class="mf">11.3.0</span>  <span class="c1"># part of the foss-2022a toolchain</span>
+<span class="n">module</span> <span class="n">load</span> <span class="n">OpenMPI</span><span class="o">/</span><span class="mf">4.1.4</span><span class="o">-</span><span class="n">GCC</span><span class="o">-</span><span class="mf">12.2.0</span>  <span class="c1"># part of the foss-2022b toolchain</span>
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The current installation of OpenMPI 4.1.1 has poor performance over Omnipath which is still under investigation.</p>
+</div>
+<p>See <a class="reference external" href="https://www.open-mpi.org/software/ompi/major-changes.php">here</a> for a brief guide to the new features in OpenMPI 4.x and <a class="reference external" href="https://docs.open-mpi.org/en/v5.0.x/news/news-v4.1.x.html">here</a> for a detailed view of the changes between OpenMPI versions.</p>
+</section>
+<section id="example">
+<h2>Example<a class="headerlink" href="#example" title="Link to this heading"></a></h2>
+<p>Consider the following source code <code class="docutils literal notranslate"><span class="pre">hello.c</span></code>:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;mpi.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="o">**</span><span class="w"> </span><span class="n">argv</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Initialize the MPI environment</span>
+<span class="w">    </span><span class="n">MPI_Init</span><span class="p">(</span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Get the number of processes</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">world_size</span><span class="p">;</span>
+<span class="w">    </span><span class="n">MPI_Comm_size</span><span class="p">(</span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">world_size</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Get the rank of the process</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">world_rank</span><span class="p">;</span>
+<span class="w">    </span><span class="n">MPI_Comm_rank</span><span class="p">(</span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">world_rank</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Get the name of the processor</span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">processor_name</span><span class="p">[</span><span class="n">MPI_MAX_PROCESSOR_NAME</span><span class="p">];</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">name_len</span><span class="p">;</span>
+<span class="w">    </span><span class="n">MPI_Get_processor_name</span><span class="p">(</span><span class="n">processor_name</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">name_len</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Print off a hello world message</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Hello world from processor %s, rank %d out of %d processors</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span>
+<span class="w">           </span><span class="n">processor_name</span><span class="p">,</span><span class="w"> </span><span class="n">world_rank</span><span class="p">,</span><span class="w"> </span><span class="n">world_size</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Finalize the MPI environment.</span>
+<span class="w">    </span><span class="n">MPI_Finalize</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>MPI_COMM_WORLD (which is constructed for us by MPI) encloses all of the processes in the job, so this call should return the amount of processes that were requested for the job.</p>
+<p>Compile your source code by using on of the following commands:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mpicc</span> <span class="n">hello</span><span class="o">.</span><span class="n">c</span> <span class="o">-</span><span class="n">o</span> <span class="n">hello</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In this example we used the MPI C compiler. We could also choose to compile with either of the MPI C++ compilers <code class="docutils literal notranslate"><span class="pre">mpicxx</span></code> or <code class="docutils literal notranslate"><span class="pre">mpiCC</span></code></p>
+</div>
+<section id="interactive-job-submission">
+<h3>Interactive job submission<a class="headerlink" href="#interactive-job-submission" title="Link to this heading"></a></h3>
+<p>You can run your job interactively (from a login node):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">srun</span> <span class="n">hello</span>
+</pre></div>
+</div>
+<p>Your output would be something like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Hello</span> <span class="n">world</span> <span class="kn">from</span> <span class="nn">processor</span> <span class="n">node003</span><span class="o">.</span><span class="n">pri</span><span class="o">.</span><span class="n">stanage</span><span class="o">.</span><span class="n">alces</span><span class="o">.</span><span class="n">network</span><span class="p">,</span> <span class="n">rank</span> <span class="mi">0</span> <span class="n">out</span> <span class="n">of</span> <span class="mi">1</span> <span class="n">processors</span>
+</pre></div>
+</div>
+<p>This is an expected behaviour since by default interactive jobs get allocated one single-CPU-core task running on one node.
+You can request an interactive job with multiple concurrent single-CPU-core tasks (4 in this example) by using this command (from a login node):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">srun</span> <span class="o">--</span><span class="n">ntasks</span><span class="o">=</span><span class="mi">4</span> <span class="n">hello</span>
+</pre></div>
+</div>
+<p>Your output would be something like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Hello</span> <span class="n">world</span> <span class="kn">from</span> <span class="nn">processor</span> <span class="n">node003</span><span class="o">.</span><span class="n">pri</span><span class="o">.</span><span class="n">stanage</span><span class="o">.</span><span class="n">alces</span><span class="o">.</span><span class="n">network</span><span class="p">,</span> <span class="n">rank</span> <span class="mi">3</span> <span class="n">out</span> <span class="n">of</span> <span class="mi">4</span> <span class="n">processors</span>
+<span class="n">Hello</span> <span class="n">world</span> <span class="kn">from</span> <span class="nn">processor</span> <span class="n">node003</span><span class="o">.</span><span class="n">pri</span><span class="o">.</span><span class="n">stanage</span><span class="o">.</span><span class="n">alces</span><span class="o">.</span><span class="n">network</span><span class="p">,</span> <span class="n">rank</span> <span class="mi">1</span> <span class="n">out</span> <span class="n">of</span> <span class="mi">4</span> <span class="n">processors</span>
+<span class="n">Hello</span> <span class="n">world</span> <span class="kn">from</span> <span class="nn">processor</span> <span class="n">node003</span><span class="o">.</span><span class="n">pri</span><span class="o">.</span><span class="n">stanage</span><span class="o">.</span><span class="n">alces</span><span class="o">.</span><span class="n">network</span><span class="p">,</span> <span class="n">rank</span> <span class="mi">0</span> <span class="n">out</span> <span class="n">of</span> <span class="mi">4</span> <span class="n">processors</span>
+<span class="n">Hello</span> <span class="n">world</span> <span class="kn">from</span> <span class="nn">processor</span> <span class="n">node003</span><span class="o">.</span><span class="n">pri</span><span class="o">.</span><span class="n">stanage</span><span class="o">.</span><span class="n">alces</span><span class="o">.</span><span class="n">network</span><span class="p">,</span> <span class="n">rank</span> <span class="mi">2</span> <span class="n">out</span> <span class="n">of</span> <span class="mi">4</span> <span class="n">processors</span>
+</pre></div>
+</div>
+<p>Please note that requesting multiple cores in an interactive node depends on the availability. During peak times, it is unlikely that you can successfully request a large number of CPU cores interactively.  Therefore, it is usually sensible to run MPI workloads as batch jobs.</p>
+</section>
+<section id="non-interactive-job-submission">
+<span id="batch-openmpi-stanage"></span><h3>Non-interactive job submission<a class="headerlink" href="#non-interactive-job-submission" title="Link to this heading"></a></h3>
+<p>Write a shell script (minimal example). We name the script as <code class="docutils literal notranslate"><span class="pre">test.sh</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<span class="c1">#SBATCH --nodes=1</span>
+<span class="c1">#SBATCH --ntasks-per-node=8</span>
+
+<span class="n">module</span> <span class="n">load</span> <span class="n">OpenMPI</span><span class="o">/</span><span class="mf">4.1.4</span><span class="o">-</span><span class="n">GCC</span><span class="o">-</span><span class="mf">12.2.0</span>
+
+<span class="n">srun</span> <span class="o">--</span><span class="n">export</span><span class="o">=</span><span class="n">ALL</span> <span class="n">hello</span>
+</pre></div>
+</div>
+<p>Submit your script by using the command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sbatch</span> <span class="n">test</span><span class="o">.</span><span class="n">sh</span>
+</pre></div>
+</div>
+<p>Your output would be something like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Hello</span> <span class="n">world</span> <span class="kn">from</span> <span class="nn">processor</span> <span class="n">node003</span><span class="o">.</span><span class="n">pri</span><span class="o">.</span><span class="n">stanage</span><span class="o">.</span><span class="n">alces</span><span class="o">.</span><span class="n">network</span><span class="p">,</span> <span class="n">rank</span> <span class="mi">6</span> <span class="n">out</span> <span class="n">of</span> <span class="mi">8</span> <span class="n">processors</span>
+<span class="n">Hello</span> <span class="n">world</span> <span class="kn">from</span> <span class="nn">processor</span> <span class="n">node003</span><span class="o">.</span><span class="n">pri</span><span class="o">.</span><span class="n">stanage</span><span class="o">.</span><span class="n">alces</span><span class="o">.</span><span class="n">network</span><span class="p">,</span> <span class="n">rank</span> <span class="mi">5</span> <span class="n">out</span> <span class="n">of</span> <span class="mi">8</span> <span class="n">processors</span>
+<span class="o">...</span>
+<span class="n">Hello</span> <span class="n">world</span> <span class="kn">from</span> <span class="nn">processor</span> <span class="n">node003</span><span class="o">.</span><span class="n">pri</span><span class="o">.</span><span class="n">stanage</span><span class="o">.</span><span class="n">alces</span><span class="o">.</span><span class="n">network</span><span class="p">,</span> <span class="n">rank</span> <span class="mi">1</span> <span class="n">out</span> <span class="n">of</span> <span class="mi">8</span> <span class="n">processors</span>
+<span class="n">Hello</span> <span class="n">world</span> <span class="kn">from</span> <span class="nn">processor</span> <span class="n">node003</span><span class="o">.</span><span class="n">pri</span><span class="o">.</span><span class="n">stanage</span><span class="o">.</span><span class="n">alces</span><span class="o">.</span><span class="n">network</span><span class="p">,</span> <span class="n">rank</span> <span class="mi">4</span> <span class="n">out</span> <span class="n">of</span> <span class="mi">8</span> <span class="n">processors</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="installation-notes">
+<h2>Installation notes<a class="headerlink" href="#installation-notes" title="Link to this heading"></a></h2>
+<p>This section is primarily for administrators of the system. OpenMPI has been installed using the default Easybuild config files but with the following tweaks made via EasyBuild hooks:</p>
+<ul>
+<li><dl class="simple">
+<dt>Compile-time options set so that:</dt><dd><ul class="simple">
+<li><p>All versions compiled with Slurm and PMIx support enabled.</p></li>
+<li><p>Versions older than 4.1.0 are compiled with support for the PSM2 library for
+efficient inter-process communication inc via Omni-Path
+(but OpenMPI only actually uses PSM2 at runtime for versions &lt;= 4.0.0).</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt>Module files are patched so that at runtime:</dt><dd><ul>
+<li><p>When OpenMPI is loaded,
+it instructs Slurm at runtime
+(via an environment variable - <code class="docutils literal notranslate"><span class="pre">SLURM_MPI_TYPE=pmix_v4</span></code>) that
+PMIx version 4 is to be used for launching remote processes using <code class="docutils literal notranslate"><span class="pre">srun</span></code>.</p></li>
+<li><p>Versions greater than 4.0.0 are configured at runtime to use
+LibFabric (OFI) for inter-process communications, which in turn is
+configured at runtime via environment variables to use the PSM2 OFI provider
+for efficient OmniPath support.</p>
+<p>OFI is used instead of PSM2 as
+the older PSM2 library on CentOS 7 is incompatible with newer versions of OpenMPI,
+plus OFI is now the preferred way of doing comms over Omni-Path fabrics with MPI implementations.</p>
+<dl class="simple">
+<dt>Key variables set in OpenMPI module files:</dt><dd><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">OMPI_MCA_pml=cm</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">OMPI_MCA_mtl=ofi</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">OMPI_MCA_mtl_ofi_provider_include=psm2</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PMIX_MCA_psec=native</span></code></p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<p>Build logs and test reports can be found in <code class="docutils literal notranslate"><span class="pre">$EBROOTOPENMPI/easybuild</span></code> with a given module loaded.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="impi.html" class="btn btn-neutral float-left" title="Intel MPI" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../cluster_specs.html" class="btn btn-neutral float-right" title="Stanage Specifications" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, The University of Sheffield.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<footer class="footer">
+  <div class="container">
+    <div class="left-footer">
+         &copy; 2024, The University of Sheffield
+       <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" /></a>
+    </div>
+   
+    <div class="centre-footer">
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.3.7
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

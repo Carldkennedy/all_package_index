@@ -1,0 +1,315 @@
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ANSYS &mdash; Sheffield HPC Documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/tabs.css?v=a5c4661c" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/custom.css?v=0a35405e" />
+
+  
+    <link rel="canonical" href="https://docs.hpc.shef.ac.uk/stanage/software/apps/ansys/index.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../../../_static/copybutton.js?v=f281be69"></script>
+        <script src="../../../../_static/design-tabs.js?v=36754332"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="Fluent" href="fluent.html" />
+    <link rel="prev" title="Applications on Stanage" href="../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            Sheffield HPC Documentation
+              <img src="../../../../_static/UOSLogo_Primary_Violet_RGB_small.png" class="logo" alt="Logo"/>
+          </a><div>
+    <h3>Quick search</h3>
+    <!--Setup by JKWM via https://cse.google.com/cse/all-->
+    <script async src="https://cse.google.com/cse.js?cx=243e6cd4be08b404b">
+    </script>
+    <div class="gcse-search"></div>
+ </div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../hpc/index.html">Using the HPC Systems</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">Stanage</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../stanage-FAQ-gotchas.html">Stanage FAQ and Gotchas</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html">Software on Stanage</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html">Applications on Stanage</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">ANSYS</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#module-loading">Module loading</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#ansys-programs">ANSYS Programs</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="fluent.html">Fluent</a></li>
+<li class="toctree-l6"><a class="reference internal" href="mechanical.html">Mechanical / MAPDL</a></li>
+<li class="toctree-l6"><a class="reference internal" href="ls-dyna.html">ANSYS LS-DYNA</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#ansys-training-and-help-resources">ANSYS training and help resources</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#ansys-example-models">ANSYS example models</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#installation-note-for-administrators">Installation note for Administrators:</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../R.html">R</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../abaqus.html">Abaqus</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../ansysem.html">ANSYSEM</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apptainer.html">Apptainer/Singularity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../castep.html">CASTEP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../git-lfs.html">Git LFS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../gmp.html">GnuMP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../gromacs.html">GROMACS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../java.html">Java (Temurin/OpenJDK)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../julia.html">Julia</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../lammps.html">LAMMPS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../mathematica.html">Mathematica</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../matlab.html">MATLAB</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../maven.html">Maven</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../molpro.html">Molpro</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../ncdu.html">ncdu</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../netlogo.html">NetLogo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../nextflow.html">Nextflow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../openfoam.html">OpenFOAM</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../python.html">Python</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../pytorch.html">PyTorch</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../rosetta.html">Rosetta</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../rstudio.html">RStudio</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sox.html">SoX</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tensorflow.html">TensorFlow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../vasp.html">VASP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../xvfb.html">Xvfb</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../development/index.html">Developing on Stanage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../libs/index.html">Libraries on Stanage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../parallel/index.html">Parallel Systems on Stanage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../stubs/index.html">All Packages Index</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cluster_specs.html">Stanage Specifications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../slurm.html">Slurm Scheduler Job Submission info</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../stanage-mfa-setup.html">Stanage TOTP multifactor authentication setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../GPUComputingStanage.html">Using GPUs on Stanage</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../bessemer/index.html">Bessemer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../parallel/index.html">Parallel Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../newsletter/index.html">News</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../glossary.html">Glossary of Terms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../other-uk-hpc-resources.html">Access to External UK HPC Facilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../help.html">Need help?</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://rcgsheffield.github.io/TUoS-RIT-training-resources/training.html">Courses / Training Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../FAQs.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../cheatsheets/index.html">Quick Reference (Cheat Sheets)</a></li>
+<li class="toctree-l1"><a class="reference external" href="http://changelog.hpc.shef.ac.uk/">Latest Software / HPC changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../referenceinfo/index.html">Reference Information Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../citing.html">Suggested text for citations and letters of support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../decommissioned/index.html">Decommissioned Clusters</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Sheffield HPC Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+<!-- <a class="forkme" href="https://github.com/rcgsheffield/sheffield_hpc">
+<img alt="Fork me on GitHub" src="../../../../_static/img/forkme.png"> 
+</a> -->
+
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">Stanage</a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Software on Stanage</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Applications on Stanage</a></li>
+      <li class="breadcrumb-item active">ANSYS</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <span class="target" id="ansys-stanage-index"></span><aside class="sidebar" id="ansys-stanage-sidebar">
+<p class="sidebar-title">ANSYS</p>
+<dl class="field-list simple">
+<dt class="field-odd">Versions<span class="colon">:</span></dt>
+<dd class="field-odd"><p>19.2, 2022R2, 2023R1, 2023R2</p>
+</dd>
+<dt class="field-even">Dependencies<span class="colon">:</span></dt>
+<dd class="field-even"><p>UDFs / User subroutines will also need either the GCC or Intel C compiler with correct versions.</p>
+</dd>
+<dt class="field-odd">URL<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="http://www.ansys.com">http://www.ansys.com</a></p>
+</dd>
+</dl>
+</aside>
+<section id="ansys">
+<h1><a class="toc-backref" href="#id1" role="doc-backlink">ANSYS</a><a class="headerlink" href="#ansys" title="Link to this heading"></a></h1>
+<nav class="contents" id="contents">
+<p class="topic-title">Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#ansys" id="id1">ANSYS</a></p>
+<ul>
+<li><p><a class="reference internal" href="#module-loading" id="id2">Module loading</a></p></li>
+<li><p><a class="reference internal" href="#ansys-programs" id="id3">ANSYS Programs</a></p></li>
+<li><p><a class="reference internal" href="#ansys-training-and-help-resources" id="id4">ANSYS training and help resources</a></p></li>
+<li><p><a class="reference internal" href="#ansys-example-models" id="id5">ANSYS example models</a></p></li>
+<li><p><a class="reference internal" href="#installation-note-for-administrators" id="id6">Installation note for Administrators:</a></p></li>
+</ul>
+</li>
+</ul>
+</nav>
+<hr class="docutils" />
+<p>The ANSYS suite of programs can be used to numerically simulate a large variety of structural and fluid dynamics problems found in many engineering, physics, medical, aeronautics and automotive industry applications.</p>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>ANSYS users can now use a maximum of 400 concurrent cores, across all devices on campus, including personal machines and HPC clusters,
+and regardless of the number of ANSYS applications they have open. Please see <a class="reference internal" href="../../../../FAQs.html#ansys-license-restrictions"><span class="std std-ref">ANSYS license restrictions</span></a> for more detail.</p>
+</div>
+<hr class="docutils" />
+<section id="module-loading">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Module loading</a><a class="headerlink" href="#module-loading" title="Link to this heading"></a></h2>
+<p>After connecting to Stanage (see <a class="reference internal" href="../../../../hpc/connecting.html#ssh"><span class="std std-ref">Establishing a SSH connection</span></a>),  you can start an <a class="reference internal" href="../../../../hpc/scheduler/index.html#submit-interactive-stanage"><span class="std std-ref">interactive session</span></a> or submit a batch job using ANSYS programs activating them and making them available with one of the module load commands below:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">load</span> <span class="n">ANSYS</span><span class="o">/</span><span class="mf">19.2</span>
+<span class="n">module</span> <span class="n">load</span> <span class="n">ANSYS</span><span class="o">/</span><span class="mi">2022</span><span class="n">R2</span>
+<span class="n">module</span> <span class="n">load</span> <span class="n">ANSYS</span><span class="o">/</span><span class="mi">2023</span><span class="n">R1</span>
+<span class="n">module</span> <span class="n">load</span> <span class="n">ANSYS</span><span class="o">/</span><span class="mi">2023</span><span class="n">R2</span>
+</pre></div>
+</div>
+<p>and the workbench is launched using:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">runwb2</span>
+</pre></div>
+</div>
+<p>Fluent, CFX, ICEM, Mechanical APDL/model (and many more) can all be accessed from the workbench. Outside the workbench the corresponding GUIs can be launched using <code class="docutils literal notranslate"><span class="pre">fluent</span></code>, <code class="docutils literal notranslate"><span class="pre">cfx5pre</span></code>, <code class="docutils literal notranslate"><span class="pre">icemcfd</span></code> and <code class="docutils literal notranslate"><span class="pre">launcher</span></code>.</p>
+</section>
+<hr class="docutils" />
+<section id="ansys-programs">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">ANSYS Programs</a><a class="headerlink" href="#ansys-programs" title="Link to this heading"></a></h2>
+<p>As the ANSYS suite contains a large number of packages, links to each dedicated page for each ANSYS sub-package, can be found below:</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="fluent.html">Fluent</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mechanical.html">Mechanical / MAPDL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ls-dyna.html">ANSYS LS-DYNA</a></li>
+</ul>
+</div>
+</section>
+<hr class="docutils" />
+<section id="ansys-training-and-help-resources">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">ANSYS training and help resources</a><a class="headerlink" href="#ansys-training-and-help-resources" title="Link to this heading"></a></h2>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Academic support requests should be directed to the <a class="reference external" href="mailto:research-it&#37;&#52;&#48;sheffield&#46;ac&#46;uk">IT Services’ Research and Innovation team</a>  or
+the <a class="reference external" href="https://forum.ansys.com/">ANSYS Learning Forum</a> (<strong>ensure you register with your University email for priority support</strong>).</p>
+</div>
+<p>ANSYS provides numerous academic training and help resources including tutorials, video lectures and examples.
+A short list of these resources is summarised below:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://courses.ansys.com">ANSYS provides free online Innovation Courses</a> which cover numerous topics including the theory and implementation of modelling with ANSYS products.</p></li>
+<li><p>The <a class="reference external" href="https://www.youtube.com/user/ANSYSHowToVideos/playlists">ANSYS How to Videos channel</a> has many in depth tutorials for many ANSYS products.</p></li>
+<li><p>Those with an Ansys Learning Hub Subscription can also access further courses at  the <a class="reference external" href="https://www.ansys.com/training-center/course-catalog">ANSYS Learning Hub courses index</a>.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="ansys-example-models">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">ANSYS example models</a><a class="headerlink" href="#ansys-example-models" title="Link to this heading"></a></h2>
+<p>ANSYS contains a large number of example models which can be used to become familiar with the software.
+With a module loaded, the example models can be found in:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$EBROOTANSYS/v222/ansys/data/
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="installation-note-for-administrators">
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">Installation note for Administrators:</a><a class="headerlink" href="#installation-note-for-administrators" title="Link to this heading"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">export</span> <span class="pre">FLUENT_AFFINITY=0</span></code> has been added to the module files in order to fix incorrect core allocation - <a class="reference external" href="https://github.com/rcgsheffield/sheffield_hpc/issues/1082">see details</a>.</p>
+<hr class="docutils" />
+<p><strong>To be confirmed</strong> mapdl will not run without modifying the file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$EBROOTANSYS/v222/ansys/bin/anssh.ini
+</pre></div>
+</div>
+<p>The following instruction should be inserted at line 2433 (tbc) in <code class="docutils literal notranslate"><span class="pre">anssh.ini</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">setenv</span> <span class="n">KMP_AFFINITY</span> <span class="n">compact</span>
+</pre></div>
+</div>
+<hr class="docutils" />
+<p>Module files are available below:</p>
+<ul class="simple">
+<li><p><a class="reference download internal" download="" href="../../../../_downloads/ff6747ee7ebea5c3b5ff4559f99fba51/2022R2.lua"><code class="xref download docutils literal notranslate"><span class="pre">/opt/apps/testapps/el7/modules/staging/all/ANSYS/2022R2.lua</span></code></a></p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../index.html" class="btn btn-neutral float-left" title="Applications on Stanage" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="fluent.html" class="btn btn-neutral float-right" title="Fluent" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, The University of Sheffield.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<footer class="footer">
+  <div class="container">
+    <div class="left-footer">
+         &copy; 2024, The University of Sheffield
+       <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" /></a>
+    </div>
+   
+    <div class="centre-footer">
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.3.7
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

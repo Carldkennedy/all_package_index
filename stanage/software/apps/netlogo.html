@@ -1,0 +1,330 @@
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NetLogo &mdash; Sheffield HPC Documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=a5c4661c" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=0a35405e" />
+
+  
+    <link rel="canonical" href="https://docs.hpc.shef.ac.uk/stanage/software/apps/netlogo.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../../_static/copybutton.js?v=f281be69"></script>
+        <script src="../../../_static/design-tabs.js?v=36754332"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Nextflow" href="nextflow.html" />
+    <link rel="prev" title="ncdu" href="ncdu.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Sheffield HPC Documentation
+              <img src="../../../_static/UOSLogo_Primary_Violet_RGB_small.png" class="logo" alt="Logo"/>
+          </a><div>
+    <h3>Quick search</h3>
+    <!--Setup by JKWM via https://cse.google.com/cse/all-->
+    <script async src="https://cse.google.com/cse.js?cx=243e6cd4be08b404b">
+    </script>
+    <div class="gcse-search"></div>
+ </div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../hpc/index.html">Using the HPC Systems</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Stanage</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../stanage-FAQ-gotchas.html">Stanage FAQ and Gotchas</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Software on Stanage</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Applications on Stanage</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="ansys/index.html">ANSYS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="R.html">R</a></li>
+<li class="toctree-l4"><a class="reference internal" href="abaqus.html">Abaqus</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ansysem.html">ANSYSEM</a></li>
+<li class="toctree-l4"><a class="reference internal" href="apptainer.html">Apptainer/Singularity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="castep.html">CASTEP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="git-lfs.html">Git LFS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gmp.html">GnuMP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gromacs.html">GROMACS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="java.html">Java (Temurin/OpenJDK)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="julia.html">Julia</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lammps.html">LAMMPS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mathematica.html">Mathematica</a></li>
+<li class="toctree-l4"><a class="reference internal" href="matlab.html">MATLAB</a></li>
+<li class="toctree-l4"><a class="reference internal" href="maven.html">Maven</a></li>
+<li class="toctree-l4"><a class="reference internal" href="molpro.html">Molpro</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ncdu.html">ncdu</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">NetLogo</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#usage">Usage</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#interactive-usage">Interactive usage</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#batch-usage">Batch usage</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#installation-notes">Installation notes</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#installation-method">Installation method</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="nextflow.html">Nextflow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="openfoam.html">OpenFOAM</a></li>
+<li class="toctree-l4"><a class="reference internal" href="python.html">Python</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pytorch.html">PyTorch</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rosetta.html">Rosetta</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rstudio.html">RStudio</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sox.html">SoX</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tensorflow.html">TensorFlow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="vasp.html">VASP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="xvfb.html">Xvfb</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../development/index.html">Developing on Stanage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../libs/index.html">Libraries on Stanage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../parallel/index.html">Parallel Systems on Stanage</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../cluster_specs.html">Stanage Specifications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../slurm.html">Slurm Scheduler Job Submission info</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../stanage-mfa-setup.html">Stanage TOTP multifactor authentication setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../GPUComputingStanage.html">Using GPUs on Stanage</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../bessemer/index.html">Bessemer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../parallel/index.html">Parallel Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../newsletter/index.html">News</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary.html">Glossary of Terms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../other-uk-hpc-resources.html">Access to External UK HPC Facilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../help.html">Need help?</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://rcgsheffield.github.io/TUoS-RIT-training-resources/training.html">Courses / Training Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../FAQs.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cheatsheets/index.html">Quick Reference (Cheat Sheets)</a></li>
+<li class="toctree-l1"><a class="reference external" href="http://changelog.hpc.shef.ac.uk/">Latest Software / HPC changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../referenceinfo/index.html">Reference Information Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../citing.html">Suggested text for citations and letters of support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../decommissioned/index.html">Decommissioned Clusters</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Sheffield HPC Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+<!-- <a class="forkme" href="https://github.com/rcgsheffield/sheffield_hpc">
+<img alt="Fork me on GitHub" src="../../../_static/img/forkme.png"> 
+</a> -->
+
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Stanage</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Software on Stanage</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Applications on Stanage</a></li>
+      <li class="breadcrumb-item active">NetLogo</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="softwarename">
+<span id="netlogo-stanage"></span><h1>NetLogo<a class="headerlink" href="#softwarename" title="Link to this heading"></a></h1>
+<aside class="sidebar">
+<p class="sidebar-title">NetLogo</p>
+<dl class="field-list simple">
+<dt class="field-odd">Versions<span class="colon">:</span></dt>
+<dd class="field-odd"><p>6.2.0</p>
+</dd>
+<dt class="field-even">Dependencies<span class="colon">:</span></dt>
+<dd class="field-even"><p>Java</p>
+</dd>
+<dt class="field-odd">URL<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="http://ccl.northwestern.edu/netlogo">http://ccl.northwestern.edu/netlogo</a></p>
+</dd>
+</dl>
+</aside>
+<p>NetLogo  is a multi-agent programmable modeling environment. It is used by many hundreds of thousands
+of students, teachers, and researchers worldwide. It also powers HubNet participatory simulations. It is
+authored by Uri Wilensky and developed at the CCL. You can also try it online through
+<a class="reference external" href="https://www.netlogoweb.org/">NetLogo Web</a>.</p>
+<hr class="docutils" />
+<section id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Link to this heading"></a></h2>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>At the current moment GUI usage is not possible on Stanage, meaning you will not be able to run <code class="docutils literal notranslate"><span class="pre">netlogo-gui.sh</span></code>.</p>
+</div>
+<p>The latest version of NetLogo (currently version 6.2.0) is made available with the commands below:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span><span class="c1"># First load the Java Module</span>
+<span class="gp">$ </span>module<span class="w"> </span>load<span class="w"> </span>Java/11.0.2
+<span class="gp">$ </span><span class="c1"># Now load the Netlogo</span>
+<span class="gp">$ </span>module<span class="w"> </span>load<span class="w"> </span>NetLogo/6.2.0-64
+</pre></div>
+</div>
+<p>After this any of the NetLogo commands can be run from the terminal prompt. The available
+commands are below:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span><span class="c1"># Run the headless (no GUI command) for batch jobs with appropriate arguments substituting for $ARGS.</span>
+<span class="gp">$ </span>netlogo-headless.sh<span class="w"> </span><span class="nv">$ARGS</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>NetLogo will use only a single core by default but can be parallelised using the
+included BehaviorSpace tool for performing parameter sweeps (loading one
+model run per core and queueing jobs for each core.)</p>
+<p>See: <a class="reference external" href="https://ccl.northwestern.edu/netlogo/docs/behaviorspace.html">https://ccl.northwestern.edu/netlogo/docs/behaviorspace.html</a></p>
+</div>
+<p><strong>Command line options for the headless executable include:</strong></p>
+<ul class="simple">
+<li><p>--model &lt;path&gt;: pathname of model to open (required)</p></li>
+<li><p>--setup-file &lt;path&gt;: read experiment setups from this file instead of the model file</p></li>
+<li><p>--experiment &lt;name&gt;: name of experiment to run</p></li>
+<li><p>--table &lt;path&gt;: pathname to send table output to (or - for standard output)</p></li>
+<li><p>--spreadsheet &lt;path&gt;: pathname to send table output to (or - for standard output)</p></li>
+<li><p>--threads &lt;number&gt;: use this many threads to do model runs in parallel, or 1 to disable parallel runs. defaults to one thread per processor.</p></li>
+<li><p>--min-pxcor &lt;number&gt;: override world size setting in model file</p></li>
+<li><p>--max-pxcor &lt;number&gt;: override world size setting in model file</p></li>
+<li><p>--min-pycor &lt;number&gt;: override world size setting in model file</p></li>
+<li><p>--max-pycor &lt;number&gt;: override world size setting in model file</p></li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>NetLogo makes use of a hardcoded path for the models directory which will be incorrect by default. To
+correct this you can make a symlink to the models directory in your current working directory with the
+commands: <code class="docutils literal notranslate"><span class="pre">[</span> <span class="pre">!</span> <span class="pre">-d</span> <span class="pre">&quot;./models&quot;</span> <span class="pre">]</span> <span class="pre">&amp;&amp;</span> <span class="pre">ln</span> <span class="pre">-s</span> <span class="pre">$EBROOTNETLOGO/app/models</span> <span class="pre">models</span></code></p>
+<p>Without this, the models library menu item will not load correctly.</p>
+</div>
+</section>
+<hr class="docutils" />
+<section id="interactive-usage">
+<h2>Interactive usage<a class="headerlink" href="#interactive-usage" title="Link to this heading"></a></h2>
+<p>After connecting to Bessemer (see <a class="reference internal" href="../../../hpc/connecting.html#ssh"><span class="std std-ref">Establishing a SSH connection</span></a>),  start an interactive session with the
+<code class="code docutils literal notranslate"><span class="pre">srun</span> <span class="pre">--pty</span> <span class="pre">bash</span> <span class="pre">-i</span></code> command.</p>
+<p>To use NetLogo interactively you must use the netlogo-headless.sh start script. To do so, run the following
+commands :</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>module<span class="w"> </span>load<span class="w"> </span>Java/11.0.2
+<span class="gp">$ </span>module<span class="w"> </span>load<span class="w"> </span>NetLogo/6.2.0-64
+<span class="gp">$ </span><span class="c1"># Optional symlink if use of the models library is required.</span>
+<span class="gp">$ </span><span class="c1"># [ ! -d &quot;./models&quot; ] &amp;&amp; ln -s $EBROOTNETLOGO/app/models models</span>
+<span class="gp">$ </span>netlogo-headless.sh<span class="w"> </span><span class="nv">$ARGS</span>
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="batch-usage">
+<h2>Batch usage<a class="headerlink" href="#batch-usage" title="Link to this heading"></a></h2>
+<p>The following <code class="docutils literal notranslate"><span class="pre">batch_smp_4_core.sh</span></code> example is derived from the BehaviorSpace command line instructions
+provided in the NetLogo documentation:
+<a class="reference external" href="http://ccl.northwestern.edu/netlogo/docs/behaviorspace.html#running-from-the-command-line">http://ccl.northwestern.edu/netlogo/docs/behaviorspace.html#running-from-the-command-line</a></p>
+<p>This uses the BehaviorSpace tool from NetLogo to perform a parameter
+sweep using 4 cores and 8GB of memory with the Wolf Sheep Simple 5 example model.
+Use of the BehaviorSpace tool is highly recommended to ensure good parallelism in
+multicore NetLogo jobs.</p>
+<p><strong>batch_smp_4_core.sh:</strong></p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<span class="c1">#SBATCH --nodes=1</span>
+<span class="c1">#SBATCH --ntasks-per-node=4</span>
+<span class="c1">#SBATCH --mem=8000</span>
+<span class="c1">#SBATCH --job-name=NetLogo_BehaviorSpace_smp_4</span>
+<span class="c1">#SBATCH --output=NetLogo_BehaviorSpace_smp_4</span>
+<span class="c1">#SBATCH --time=00:10:00</span>
+<span class="c1">#SBATCH --mail-user=a.person@sheffield.ac.uk</span>
+<span class="c1">#SBATCH --mail-type=ALL</span>
+module<span class="w"> </span>load<span class="w"> </span>Java/11.0.2
+module<span class="w"> </span>load<span class="w"> </span>NetLogo/6.2.0-64
+<span class="o">[</span><span class="w"> </span>!<span class="w"> </span>-d<span class="w"> </span><span class="s2">&quot;./models&quot;</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>ln<span class="w"> </span>-s<span class="w"> </span><span class="nv">$EBROOTNETLOGO</span>/app/models<span class="w"> </span>models
+netlogo-headless.sh<span class="w"> </span><span class="se">\</span>
+--model<span class="w"> </span><span class="s2">&quot;./models/IABM Textbook/chapter 4/Wolf Sheep Simple 5.nlogo&quot;</span><span class="w"> </span><span class="se">\</span>
+--experiment<span class="w"> </span><span class="s2">&quot;Wolf Sheep Simple model analysis&quot;</span><span class="w"> </span><span class="se">\</span>
+--table<span class="w"> </span>table_output.csv<span class="w"> </span><span class="se">\</span>
+--spreadsheet<span class="w"> </span>spreadsheet_output.csv<span class="w"> </span><span class="se">\</span>
+--threads<span class="w"> </span><span class="nv">$SLURM_NTASKS</span>
+</pre></div>
+</div>
+<p>The job is submitted to the queue by typing:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>sbatch<span class="w"> </span>batch_smp_4_core.sh
+</pre></div>
+</div>
+<p>And will generate the normal log output file in addition to <code class="docutils literal notranslate"><span class="pre">table_output.csv</span></code> and
+<code class="docutils literal notranslate"><span class="pre">spreadsheet_output.csv</span></code> in the current working directory.</p>
+</section>
+<section id="installation-notes">
+<h2>Installation notes<a class="headerlink" href="#installation-notes" title="Link to this heading"></a></h2>
+<section id="installation-method">
+<h3>Installation method<a class="headerlink" href="#installation-method" title="Link to this heading"></a></h3>
+<p>NetLogo version 6.2.0 was installed using Easybuild 4.7.1, build details can be found in folder <code class="docutils literal notranslate"><span class="pre">$EBROOTNETLOGO/easybuild</span></code> with the module loaded.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="ncdu.html" class="btn btn-neutral float-left" title="ncdu" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="nextflow.html" class="btn btn-neutral float-right" title="Nextflow" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, The University of Sheffield.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<footer class="footer">
+  <div class="container">
+    <div class="left-footer">
+         &copy; 2024, The University of Sheffield
+       <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" /></a>
+    </div>
+   
+    <div class="centre-footer">
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.3.7
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

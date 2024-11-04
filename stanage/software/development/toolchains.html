@@ -1,0 +1,221 @@
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Development toolchains &mdash; Sheffield HPC Documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=a5c4661c" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=0a35405e" />
+
+  
+    <link rel="canonical" href="https://docs.hpc.shef.ac.uk/stanage/software/development/toolchains.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../../_static/copybutton.js?v=f281be69"></script>
+        <script src="../../../_static/design-tabs.js?v=36754332"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Libraries on Stanage" href="../libs/index.html" />
+    <link rel="prev" title="NVCC - NVIDIA CUDA Compiler" href="nvidia_compiler.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Sheffield HPC Documentation
+              <img src="../../../_static/UOSLogo_Primary_Violet_RGB_small.png" class="logo" alt="Logo"/>
+          </a><div>
+    <h3>Quick search</h3>
+    <!--Setup by JKWM via https://cse.google.com/cse/all-->
+    <script async src="https://cse.google.com/cse.js?cx=243e6cd4be08b404b">
+    </script>
+    <div class="gcse-search"></div>
+ </div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../hpc/index.html">Using the HPC Systems</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Stanage</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../stanage-FAQ-gotchas.html">Stanage FAQ and Gotchas</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Software on Stanage</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../apps/index.html">Applications on Stanage</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Developing on Stanage</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="cmake.html">CMake</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doxygen.html">Doxygen</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gcc.html">GNU Compiler Collection (gcc)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="git.html">git</a></li>
+<li class="toctree-l4"><a class="reference internal" href="icc_ifort.html">Intel Compilers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nvidia_compiler.html">NVCC - NVIDIA CUDA Compiler</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Development toolchains</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#dependency-versions-for-toolchains">Dependency versions for toolchains</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#sub-toolchains">Sub-toolchains</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../libs/index.html">Libraries on Stanage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../parallel/index.html">Parallel Systems on Stanage</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../cluster_specs.html">Stanage Specifications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../slurm.html">Slurm Scheduler Job Submission info</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../stanage-mfa-setup.html">Stanage TOTP multifactor authentication setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../GPUComputingStanage.html">Using GPUs on Stanage</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../bessemer/index.html">Bessemer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../parallel/index.html">Parallel Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../newsletter/index.html">News</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary.html">Glossary of Terms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../other-uk-hpc-resources.html">Access to External UK HPC Facilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../help.html">Need help?</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://rcgsheffield.github.io/TUoS-RIT-training-resources/training.html">Courses / Training Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../FAQs.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cheatsheets/index.html">Quick Reference (Cheat Sheets)</a></li>
+<li class="toctree-l1"><a class="reference external" href="http://changelog.hpc.shef.ac.uk/">Latest Software / HPC changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../referenceinfo/index.html">Reference Information Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../citing.html">Suggested text for citations and letters of support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../decommissioned/index.html">Decommissioned Clusters</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Sheffield HPC Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+<!-- <a class="forkme" href="https://github.com/rcgsheffield/sheffield_hpc">
+<img alt="Fork me on GitHub" src="../../../_static/img/forkme.png"> 
+</a> -->
+
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Stanage</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Software on Stanage</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Developing on Stanage</a></li>
+      <li class="breadcrumb-item active">Development toolchains</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="development-toolchains">
+<span id="stanage-eb-toolchains"></span><h1>Development toolchains<a class="headerlink" href="#development-toolchains" title="Link to this heading"></a></h1>
+<p>Much of the software available on Stanage
+was installed using <a class="reference external" href="https://easybuild.readthedocs.io/">EasyBuild</a>,
+which is a tool for building and installing software on HPC systems.</p>
+<p>EasyBuild groups core sets of dependencies as what it calls <em>toolchains</em>.
+The two supported toolchains on Stanage are:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">foss</span></code></dt><dd><ul>
+<li><p>C, C++ and Fortran compilers: <a class="reference internal" href="gcc.html#gcc-stanage"><span class="std std-ref">GCC</span></a></p></li>
+<li><p>MPI implementation: <a class="reference internal" href="../parallel/openmpi.html#openmpi-stanage"><span class="std std-ref">OpenMPI</span></a></p></li>
+<li><p>BLAS and LAPACK implementation: <a class="reference internal" href="../libs/openblas.html#openblas-stanage"><span class="std std-ref">OpenBLAS</span></a></p></li>
+<li><p>Parallel, distributed LAPACK implementation: <a class="reference internal" href="../libs/scalapack.html#scalapack-stanage"><span class="std std-ref">ScaLAPACK</span></a></p></li>
+<li><p>Fourier transforms: <a class="reference internal" href="../libs/fftw.html#fftw-stanage"><span class="std std-ref">FFTW</span></a></p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">intel</span></code></dt><dd><ul>
+<li><p>C, C++ and Fortran compilers (<a class="reference internal" href="icc_ifort.html#icc-ifort-stanage"><span class="std std-ref">icc/icpc/ifort</span></a>)</p></li>
+<li><p>MPI implementation (<a class="reference internal" href="../parallel/impi.html#impi-stanage"><span class="std std-ref">Intel MPI</span></a>)</p></li>
+<li><p>BLAS, LAPACK and fourier transforms: <a class="reference internal" href="../libs/imkl.html#imkl-stanage"><span class="std std-ref">Intel MKL</span></a></p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<section id="dependency-versions-for-toolchains">
+<h2>Dependency versions for toolchains<a class="headerlink" href="#dependency-versions-for-toolchains" title="Link to this heading"></a></h2>
+<p>See the <a class="reference external" href="https://docs.easybuild.io/common-toolchains">EasyBuild documentation for dependency versions for foss and intel</a></p>
+</section>
+<section id="sub-toolchains">
+<h2>Sub-toolchains<a class="headerlink" href="#sub-toolchains" title="Link to this heading"></a></h2>
+<p>In addition to the above toolchains there are sub-toolchains
+corresponding to subsets of the main toolchain dependencies:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">gompi</span></code>: <code class="docutils literal notranslate"><span class="pre">GCC</span></code> + <code class="docutils literal notranslate"><span class="pre">openmpi</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gompic</span></code>: <code class="docutils literal notranslate"><span class="pre">GCC</span></code> + <code class="docutils literal notranslate"><span class="pre">OpenMPI</span></code> + <code class="docutils literal notranslate"><span class="pre">CUDA</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gcccuda</span></code>: <code class="docutils literal notranslate"><span class="pre">GCC</span></code> + <code class="docutils literal notranslate"><span class="pre">CUDA</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">iccifort</span></code>: <code class="docutils literal notranslate"><span class="pre">icc</span></code> + <code class="docutils literal notranslate"><span class="pre">ifort</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">iimpi</span></code>: <code class="docutils literal notranslate"><span class="pre">icc</span></code> + <code class="docutils literal notranslate"><span class="pre">ifort</span></code> + <code class="docutils literal notranslate"><span class="pre">impi</span></code></p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="nvidia_compiler.html" class="btn btn-neutral float-left" title="NVCC - NVIDIA CUDA Compiler" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../libs/index.html" class="btn btn-neutral float-right" title="Libraries on Stanage" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, The University of Sheffield.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<footer class="footer">
+  <div class="container">
+    <div class="left-footer">
+         &copy; 2024, The University of Sheffield
+       <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" /></a>
+    </div>
+   
+    <div class="centre-footer">
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.3.7
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

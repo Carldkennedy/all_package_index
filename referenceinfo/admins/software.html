@@ -1,0 +1,326 @@
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Software Example &mdash; Sheffield HPC Documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/tabs.css?v=a5c4661c" />
+      <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=0a35405e" />
+
+  
+    <link rel="canonical" href="https://docs.hpc.shef.ac.uk/referenceinfo/admins/software.html" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../_static/copybutton.js?v=f281be69"></script>
+        <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Custom configuration" href="custom.html" />
+    <link rel="prev" title="Code snippets" href="code-snippets.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Sheffield HPC Documentation
+              <img src="../../_static/UOSLogo_Primary_Violet_RGB_small.png" class="logo" alt="Logo"/>
+          </a><div>
+    <h3>Quick search</h3>
+    <!--Setup by JKWM via https://cse.google.com/cse/all-->
+    <script async src="https://cse.google.com/cse.js?cx=243e6cd4be08b404b">
+    </script>
+    <div class="gcse-search"></div>
+ </div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../hpc/index.html">Using the HPC Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../stanage/index.html">Stanage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bessemer/index.html">Bessemer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../parallel/index.html">Parallel Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../newsletter/index.html">News</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html">Glossary of Terms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../other-uk-hpc-resources.html">Access to External UK HPC Facilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../help.html">Need help?</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://rcgsheffield.github.io/TUoS-RIT-training-resources/training.html">Courses / Training Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../FAQs.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cheatsheets/index.html">Quick Reference (Cheat Sheets)</a></li>
+<li class="toctree-l1"><a class="reference external" href="http://changelog.hpc.shef.ac.uk/">Latest Software / HPC changelog</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Reference Information Index</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../ANSYS/index.html">ANSYS Packages Reference Info</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../environment-modules/index.html">Environment Modules Reference Info</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linux-shell/index.html">Linux shell Reference Info</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scheduler/index.html">Scheduler Reference Info</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../computer-architecture/index.html">Computer Architecture Reference Info</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../connecting-ssh/index.html">Connecting via SSH Reference Info</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mfa/index.html">Multifactor Authentication Reference Info</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Documentation Reference</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="Contributing.html">Contributing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="code-snippets.html">Code snippets</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Software Example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#interactive-usage">Interactive Usage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#batch-usage">Batch Usage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#installation-notes">Installation notes</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#installation-method">Installation method</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#testing-method">Testing method</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#the-markup">The Markup</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="custom.html">Custom configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="readme.html">Read Me</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../citing.html">Suggested text for citations and letters of support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../decommissioned/index.html">Decommissioned Clusters</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Sheffield HPC Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+<!-- <a class="forkme" href="https://github.com/rcgsheffield/sheffield_hpc">
+<img alt="Fork me on GitHub" src="../../_static/img/forkme.png"> 
+</a> -->
+
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Reference Information Index</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Documentation Reference</a></li>
+      <li class="breadcrumb-item active">Software Example</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <span class="target" id="admin-software"></span><section id="softwarename">
+<h1>Software Example<a class="headerlink" href="#softwarename" title="Link to this heading"></a></h1>
+<aside class="sidebar">
+<p class="sidebar-title">Software Example</p>
+<dl class="field-list simple">
+<dt class="field-odd">Versions<span class="colon">:</span></dt>
+<dd class="field-odd"><p>14.4.2</p>
+</dd>
+<dt class="field-even">Dependencies<span class="colon">:</span></dt>
+<dd class="field-even"><p>foss-2019b toolchain (see Easybuild for details.)</p>
+</dd>
+<dt class="field-odd">URL<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="http://sox.sourceforge.net/">http://sox.sourceforge.net/</a></p>
+</dd>
+</dl>
+</aside>
+<p>Software Example is a cross-platform (Windows, Linux, MacOS X, etc.) command line utility that can convert various
+formats of computer audio files in to other formats. It can also apply various effects to these sound files, and,
+as an added bonus, Software Example can play and record audio files on most platforms.</p>
+<hr class="docutils" />
+<section id="interactive-usage">
+<h2>Interactive Usage<a class="headerlink" href="#interactive-usage" title="Link to this heading"></a></h2>
+<p><em>delete as appopriate</em></p>
+<p>After connecting to Stanage (see <a class="reference internal" href="../../hpc/connecting.html#ssh"><span class="std std-ref">Establishing a SSH connection</span></a>),  start an interactive session with the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>srun<span class="w"> </span>--pty<span class="w"> </span>bash<span class="w"> </span>-i
+</pre></div>
+</div>
+<p>After connecting to Bessemer (see <a class="reference internal" href="../../hpc/connecting.html#ssh"><span class="std std-ref">Establishing a SSH connection</span></a>),  start an interactive session with the
+<code class="code docutils literal notranslate"><span class="pre">srun</span> <span class="pre">--pty</span> <span class="pre">bash</span> <span class="pre">-i</span></code> command.</p>
+<p>The latest version of Software Example (currently version 14.4.2) is made available with the command:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>module<span class="w"> </span>load<span class="w"> </span>SoX/14.4.2-GCC-8.3.0
+</pre></div>
+</div>
+<p>After this the Software Example command can be run from the terminal prompt with the <code class="docutils literal notranslate"><span class="pre">sox</span></code> command.</p>
+<p>Further documentation on the usage of Software Example can be found at the following link:
+<a class="reference external" href="http://sox.sourceforge.net/Docs/Documentation">http://sox.sourceforge.net/Docs/Documentation</a></p>
+</section>
+<hr class="docutils" />
+<section id="batch-usage">
+<h2>Batch Usage<a class="headerlink" href="#batch-usage" title="Link to this heading"></a></h2>
+<p>The following is an example batch job:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<span class="c1">#SBATCH --nodes=1</span>
+<span class="c1">#SBATCH --ntasks-per-node=4</span>
+<span class="c1">#SBATCH --mem=8000</span>
+<span class="c1">#SBATCH --job-name=jobname</span>
+<span class="c1">#SBATCH --output=output</span>
+<span class="c1">#SBATCH --time=01:00:00</span>
+<span class="c1">#SBATCH --mail-user=a.person@sheffield.ac.uk</span>
+<span class="c1">#SBATCH --mail-type=ALL</span>
+
+module<span class="w"> </span>load<span class="w"> </span>someModule/version
+srun<span class="w"> </span>--export<span class="o">=</span>ALL<span class="w"> </span>softwarename
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="installation-notes">
+<h2>Installation notes<a class="headerlink" href="#installation-notes" title="Link to this heading"></a></h2>
+<section id="installation-method">
+<h3>Installation method<a class="headerlink" href="#installation-method" title="Link to this heading"></a></h3>
+<p>This section is primarily for administrators of the system. Software Example has been installed using the default Easybuild config files.</p>
+<p>Build logs and test reports can be found in <code class="docutils literal notranslate"><span class="pre">$EBDEVELSOFTWARENAME</span></code> with a given module loaded.</p>
+</section>
+<section id="testing-method">
+<h3>Testing method<a class="headerlink" href="#testing-method" title="Link to this heading"></a></h3>
+<p>Testing has been conducted by ………</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="the-markup">
+<h2>The Markup<a class="headerlink" href="#the-markup" title="Link to this heading"></a></h2>
+<p><span class="underline-bold">The above example was rendered with the following markup:</span></p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="nt">_software_stanage:</span>
+<span class="p">..</span> <span class="nt">|softwarename|</span> <span class="ow">replace</span><span class="p">::</span> Software Example
+<span class="p">..</span> <span class="nt">|currentver|</span> <span class="ow">replace</span><span class="p">::</span> 14.4.2
+<span class="p">..</span> <span class="nt">|ebtoolchain|</span> <span class="ow">replace</span><span class="p">::</span> foss-2019b
+
+<span class="gh">|softwarename|</span>
+<span class="gh">==========================================================================================================</span>
+
+<span class="p">..</span> <span class="ow">sidebar</span><span class="p">::</span> |softwarename|
+
+   <span class="nc">:Versions:</span>  |currentver|
+   <span class="nc">:Dependencies:</span> |ebtoolchain| toolchain (see Easybuild for details.)
+   <span class="nc">:URL:</span> http://sox.sourceforge.net/
+
+|softwarename| is a cross-platform (Windows, Linux, MacOS X, etc.) command line utility that can convert various
+formats of computer audio files in to other formats. It can also apply various effects to these sound files, and,
+as an added bonus, |softwarename| can play and record audio files on most platforms.
+
+========
+
+<span class="gh">Interactive Usage</span>
+<span class="gh">-----------------</span>
+
+<span class="ge">*delete as appopriate*</span>
+
+<span class="p">..</span> <span class="ow">include</span><span class="p">::</span> /referenceinfo/imports/scheduler/SLURM/common_commands/srun_start_interactive_session_import_stanage.rst
+<span class="p">..</span> <span class="ow">include</span><span class="p">::</span> /referenceinfo/imports/scheduler/SLURM/common_commands/srun_start_interactive_session_import.rst
+
+The latest version of |softwarename| (currently version |currentver|) is made available with the command:
+
+<span class="p">..</span> <span class="ow">code-block</span><span class="p">::</span> <span class="k">console</span>
+
+    <span class="gp">$ </span>module<span class="w"> </span>load<span class="w"> </span>SoX/14.4.2-GCC-8.3.0
+
+After this the |softwarename| command can be run from the terminal prompt with the <span class="s">``sox``</span> command.
+
+Further documentation on the usage of |softwarename| can be found at the following link:
+<span class="gh">http://sox.sourceforge.net/Docs/Documentation</span>
+<span class="gh">--------------------------</span>
+
+<span class="gh">Batch Usage</span>
+<span class="gh">--------------------</span>
+
+The following is an example batch job:
+
+<span class="p">..</span> <span class="ow">code-block</span><span class="p">::</span> <span class="k">bash</span>
+
+    <span class="ch">#!/bin/bash</span>
+    <span class="c1">#SBATCH --nodes=1</span>
+    <span class="c1">#SBATCH --ntasks-per-node=4</span>
+    <span class="c1">#SBATCH --mem=8000</span>
+    <span class="c1">#SBATCH --job-name=jobname</span>
+    <span class="c1">#SBATCH --output=output</span>
+    <span class="c1">#SBATCH --time=01:00:00</span>
+    <span class="c1">#SBATCH --mail-user=a.person@sheffield.ac.uk</span>
+    <span class="c1">#SBATCH --mail-type=ALL</span>
+
+    module<span class="w"> </span>load<span class="w"> </span>someModule/version
+    srun<span class="w"> </span>--export<span class="o">=</span>ALL<span class="w"> </span>softwarename
+
+========
+
+<span class="gh">Installation notes</span>
+<span class="gh">------------------</span>
+
+<span class="gh">Installation method</span>
+<span class="gh">^^^^^^^^^^^^^^^^^^^</span>
+
+This section is primarily for administrators of the system. |softwarename| has been installed using the default Easybuild config files.
+
+Build logs and test reports can be found in <span class="s">``$EBDEVELSOFTWARENAME``</span> with a given module loaded.
+
+<span class="gh">Testing method</span>
+<span class="gh">^^^^^^^^^^^^^^^</span>
+Testing has been conducted by .........
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="code-snippets.html" class="btn btn-neutral float-left" title="Code snippets" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="custom.html" class="btn btn-neutral float-right" title="Custom configuration" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, The University of Sheffield.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<footer class="footer">
+  <div class="container">
+    <div class="left-footer">
+         &copy; 2024, The University of Sheffield
+       <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" /></a>
+    </div>
+   
+    <div class="centre-footer">
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.3.7
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

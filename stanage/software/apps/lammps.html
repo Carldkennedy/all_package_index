@@ -1,0 +1,353 @@
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LAMMPS &mdash; Sheffield HPC Documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=a5c4661c" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=0a35405e" />
+
+  
+    <link rel="canonical" href="https://docs.hpc.shef.ac.uk/stanage/software/apps/lammps.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../../_static/copybutton.js?v=f281be69"></script>
+        <script src="../../../_static/design-tabs.js?v=36754332"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Mathematica" href="mathematica.html" />
+    <link rel="prev" title="Julia" href="julia.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Sheffield HPC Documentation
+              <img src="../../../_static/UOSLogo_Primary_Violet_RGB_small.png" class="logo" alt="Logo"/>
+          </a><div>
+    <h3>Quick search</h3>
+    <!--Setup by JKWM via https://cse.google.com/cse/all-->
+    <script async src="https://cse.google.com/cse.js?cx=243e6cd4be08b404b">
+    </script>
+    <div class="gcse-search"></div>
+ </div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../hpc/index.html">Using the HPC Systems</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Stanage</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../stanage-FAQ-gotchas.html">Stanage FAQ and Gotchas</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Software on Stanage</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Applications on Stanage</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="ansys/index.html">ANSYS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="R.html">R</a></li>
+<li class="toctree-l4"><a class="reference internal" href="abaqus.html">Abaqus</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ansysem.html">ANSYSEM</a></li>
+<li class="toctree-l4"><a class="reference internal" href="apptainer.html">Apptainer/Singularity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="castep.html">CASTEP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="git-lfs.html">Git LFS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gmp.html">GnuMP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gromacs.html">GROMACS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="java.html">Java (Temurin/OpenJDK)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="julia.html">Julia</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">LAMMPS</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#interactive-usage">Interactive Usage</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#serial-one-core-batch-usage">Serial (one core) Batch usage</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#parallel-multi-core-using-mpi-batch-usage">Parallel (multi core using MPI) Batch usage</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#installation-notes">Installation notes</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#installation-method">Installation method</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#testing-method">Testing method</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="mathematica.html">Mathematica</a></li>
+<li class="toctree-l4"><a class="reference internal" href="matlab.html">MATLAB</a></li>
+<li class="toctree-l4"><a class="reference internal" href="maven.html">Maven</a></li>
+<li class="toctree-l4"><a class="reference internal" href="molpro.html">Molpro</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ncdu.html">ncdu</a></li>
+<li class="toctree-l4"><a class="reference internal" href="netlogo.html">NetLogo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nextflow.html">Nextflow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="openfoam.html">OpenFOAM</a></li>
+<li class="toctree-l4"><a class="reference internal" href="python.html">Python</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pytorch.html">PyTorch</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rosetta.html">Rosetta</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rstudio.html">RStudio</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sox.html">SoX</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tensorflow.html">TensorFlow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="vasp.html">VASP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="xvfb.html">Xvfb</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../development/index.html">Developing on Stanage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../libs/index.html">Libraries on Stanage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../parallel/index.html">Parallel Systems on Stanage</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../cluster_specs.html">Stanage Specifications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../slurm.html">Slurm Scheduler Job Submission info</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../stanage-mfa-setup.html">Stanage TOTP multifactor authentication setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../GPUComputingStanage.html">Using GPUs on Stanage</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../bessemer/index.html">Bessemer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../parallel/index.html">Parallel Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../newsletter/index.html">News</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary.html">Glossary of Terms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../other-uk-hpc-resources.html">Access to External UK HPC Facilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../help.html">Need help?</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://rcgsheffield.github.io/TUoS-RIT-training-resources/training.html">Courses / Training Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../FAQs.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cheatsheets/index.html">Quick Reference (Cheat Sheets)</a></li>
+<li class="toctree-l1"><a class="reference external" href="http://changelog.hpc.shef.ac.uk/">Latest Software / HPC changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../referenceinfo/index.html">Reference Information Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../citing.html">Suggested text for citations and letters of support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../decommissioned/index.html">Decommissioned Clusters</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Sheffield HPC Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+<!-- <a class="forkme" href="https://github.com/rcgsheffield/sheffield_hpc">
+<img alt="Fork me on GitHub" src="../../../_static/img/forkme.png"> 
+</a> -->
+
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Stanage</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Software on Stanage</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Applications on Stanage</a></li>
+      <li class="breadcrumb-item active">LAMMPS</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <span class="target" id="lammps-stanage"></span><section id="softwarename">
+<h1>LAMMPS<a class="headerlink" href="#softwarename" title="Link to this heading"></a></h1>
+<aside class="sidebar">
+<p class="sidebar-title">LAMMPS</p>
+<dl class="field-list simple">
+<dt class="field-odd">Versions<span class="colon">:</span></dt>
+<dd class="field-odd"><p>03Mar2020</p>
+</dd>
+<dt class="field-even">URL<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://www.lammps.org/">https://www.lammps.org/</a></p>
+</dd>
+<dt class="field-odd">Documentation<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.lammps.org/Manual.html">https://docs.lammps.org/Manual.html</a></p>
+</dd>
+<dt class="field-even">Dependencies<span class="colon">:</span></dt>
+<dd class="field-even"><p>EasyBuild toolchains foss and intel (see <a class="reference internal" href="../development/toolchains.html#stanage-eb-toolchains"><span class="std std-ref">Development toolchains</span></a>).</p>
+</dd>
+</dl>
+</aside>
+<p>LAMMPS is a classical molecular dynamics code with a focus on materials modelling. It’s an acronym for Large-scale Atomic/Molecular Massively Parallel Simulator.</p>
+<p>LAMMPS has potentials for solid-state materials (metals, semiconductors) and soft matter (biomolecules, polymers) and coarse-grained or mesoscopic systems. It can be used to model atoms or, more generically, as a parallel particle simulator at the atomic, meso, or continuum scale.</p>
+<p>LAMMPS runs on single processors or in parallel using message-passing techniques and a spatial-decomposition of the simulation domain. Many of its models have versions that provide accelerated performance on CPUs, GPUs, and Intel Xeon Phis. The code is designed to be easy to modify or extend with new functionality.</p>
+<section id="interactive-usage">
+<h2>Interactive Usage<a class="headerlink" href="#interactive-usage" title="Link to this heading"></a></h2>
+<p>After connecting to Stanage (see <a class="reference internal" href="../../../hpc/connecting.html#ssh"><span class="std std-ref">Establishing a SSH connection</span></a>),  start an interactive session with the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>srun<span class="w"> </span>--pty<span class="w"> </span>bash<span class="w"> </span>-i
+</pre></div>
+</div>
+<p>You can load a specific version with the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>module<span class="w"> </span>load<span class="w"> </span>LAMMPS/3Mar2020-foss-2020a-Python-3.8.2-kokkos
+module<span class="w"> </span>load<span class="w"> </span>LAMMPS/3Mar2020-intel-2020a-Python-3.8.2-kokkos
+</pre></div>
+</div>
+</section>
+<section id="serial-one-core-batch-usage">
+<h2>Serial (one core) Batch usage<a class="headerlink" href="#serial-one-core-batch-usage" title="Link to this heading"></a></h2>
+<p>First we will copy an example to run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cp<span class="w"> </span><span class="nv">$EBROOTLAMMPS</span>/examples/indent/in.indent<span class="w"> </span>.
+</pre></div>
+</div>
+<p>Your batch script <code class="docutils literal notranslate"><span class="pre">batch.sh</span></code> should contain the following commands:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<span class="c1">#SBATCH --job-name=lmp-indent</span>
+<span class="c1">#SBATCH --mail-user=a.person@sheffield.ac.uk</span>
+<span class="c1">#SBATCH --mail-type=FAIL</span>
+<span class="c1">#SBATCH --time=00:01:00</span>
+<span class="c1">#SBATCH --mem=1G</span>
+<span class="c1">#SBATCH --cpus-per-task=1</span>
+<span class="c1">#SBATCH --output=output-%j.log</span>
+<span class="c1">#SBATCH --error=error-%j.log</span>
+
+module<span class="w"> </span>load<span class="w"> </span>LAMMPS/3Mar2020-intel-2020a-Python-3.8.2-kokkos
+srun<span class="w"> </span>--export<span class="o">=</span>ALL<span class="w"> </span>lmp<span class="w"> </span>-in<span class="w"> </span><span class="k">in</span>.indent
+</pre></div>
+</div>
+<p>Submit your job to the SLURM scheduler:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sbatch<span class="w"> </span>batch.sh
+</pre></div>
+</div>
+<p>The output will be written to the <code class="docutils literal notranslate"><span class="pre">output-&lt;JOB_ID&gt;.log</span></code> file when the job finishes. Looking at the head and tail the output should be similar to:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="hll"><span class="gp">   $ </span>head<span class="w"> </span>output-22775.log<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>tail<span class="w"> </span>output-22775.log
+</span><span class="go">   LAMMPS (3 Mar 2020)</span>
+<span class="go">   OMP_NUM_THREADS environment is not set. Defaulting to 1 thread. (src/comm.cpp:94)</span>
+<span class="go">     using 1 OpenMP thread(s) per MPI task</span>
+<span class="go">   Lattice spacing in x,y,z = 1.1327 1.96189 1.1327</span>
+<span class="go">   Created orthogonal box = (0 0 -0.283174) to (22.6539 19.6189 0.283174)</span>
+<span class="go">     1 by 1 by 1 MPI processor grid</span>
+<span class="go">   Created 420 atoms</span>
+<span class="go">     create_atoms CPU = 0.000239827 secs</span>
+<span class="go">   60 atoms in group lower</span>
+<span class="go">   360 atoms in group mobile</span>
+<span class="go">   Nghost:    109 ave 109 max 109 min</span>
+<span class="go">   Histogram: 1 0 0 0 0 0 0 0 0 0</span>
+<span class="go">   Neighs:    3580 ave 3580 max 3580 min</span>
+<span class="go">   Histogram: 1 0 0 0 0 0 0 0 0 0</span>
+
+<span class="go">   Total # of neighbors = 3580</span>
+<span class="go">   Ave neighs/atom = 8.52381</span>
+<span class="go">   Neighbor list builds = 629</span>
+<span class="go">   Dangerous builds = 0</span>
+<span class="go">   Total wall time: 0:00:01</span>
+</pre></div>
+</div>
+</section>
+<section id="parallel-multi-core-using-mpi-batch-usage">
+<h2>Parallel (multi core using MPI) Batch usage<a class="headerlink" href="#parallel-multi-core-using-mpi-batch-usage" title="Link to this heading"></a></h2>
+<p>Your batch script <code class="docutils literal notranslate"><span class="pre">mpi_batch.sh</span></code> should contain the following commands:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<span class="c1">#SBATCH --job-name=mpi-lmp-indent</span>
+<span class="c1">#SBATCH --mail-user=a.person@sheffield.ac.uk</span>
+<span class="c1">#SBATCH --mail-type=FAIL</span>
+<span class="c1">#SBATCH --time=00:01:00</span>
+<span class="c1">#SBATCH --mem=1G</span>
+<span class="c1">#SBATCH --ntasks-per-node=4</span>
+<span class="c1">#SBATCH --output=mpi-output-%j.log</span>
+<span class="c1">#SBATCH --error=mpi-error-%j.log</span>
+
+module<span class="w"> </span>load<span class="w"> </span>LAMMPS/3Mar2020-intel-2020a-Python-3.8.2-kokkos
+<span class="nb">export</span><span class="w"> </span><span class="nv">OMP_NUM_THREADS</span><span class="o">=</span><span class="nv">$SLURM_CPUS_PER_TASK</span>
+srun<span class="w"> </span>--export<span class="o">=</span>ALL<span class="w"> </span>lmp<span class="w"> </span>-in<span class="w"> </span><span class="k">in</span>.indent
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We haven’t used the <code class="docutils literal notranslate"><span class="pre">#SBATCH</span> <span class="pre">--nodes=1</span></code> option as we aim to distribute tasks flexibly across the cluster,
+instead of restricting them to a single node. As it’s often easier to find (in this case) 4 free cores scattered across multiple nodes.
+The decision between consolidating tasks on one node, spreading them across few nodes, or distributing them anywhere,
+relies on model size, scalability, and the trade-off between computation and queue waiting times.</p>
+</div>
+<p>Submit your job to the SLURM scheduler:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sbatch<span class="w"> </span>mpi_batch.sh
+</pre></div>
+</div>
+<p>The output will be written to the <code class="docutils literal notranslate"><span class="pre">mpi-output-&lt;JOB_ID&gt;.log</span></code> file when the job finishes. Looking at the head and tail the output should be similar to:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="hll"><span class="gp">   $ </span>head<span class="w"> </span>output-mpi-22794.log<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>tail<span class="w"> </span>output-mpi-22794.log
+</span><span class="go">   LAMMPS (3 Mar 2020)</span>
+<span class="go">     using 4 OpenMP thread(s) per MPI task</span>
+<span class="go">   Lattice spacing in x,y,z = 1.1327 1.96189 1.1327</span>
+<span class="go">   Created orthogonal box = (0 0 -0.283174) to (22.6539 19.6189 0.283174)</span>
+<span class="go">     1 by 1 by 1 MPI processor grid</span>
+<span class="go">   Created 420 atoms</span>
+<span class="go">     create_atoms CPU = 0.000365397 secs</span>
+<span class="go">   60 atoms in group lower</span>
+<span class="go">   360 atoms in group mobile</span>
+<span class="go">   Setting atom values ...</span>
+<span class="go">   Nghost:    109 ave 109 max 109 min</span>
+<span class="go">   Histogram: 1 0 0 0 0 0 0 0 0 0</span>
+<span class="go">   Neighs:    3580 ave 3580 max 3580 min</span>
+<span class="go">   Histogram: 1 0 0 0 0 0 0 0 0 0</span>
+
+<span class="go">   Total # of neighbors = 3580</span>
+<span class="go">   Ave neighs/atom = 8.52381</span>
+<span class="go">   Neighbor list builds = 629</span>
+<span class="go">   Dangerous builds = 0</span>
+<span class="go">   Total wall time: 0:00:01</span>
+</pre></div>
+</div>
+</section>
+<section id="installation-notes">
+<h2>Installation notes<a class="headerlink" href="#installation-notes" title="Link to this heading"></a></h2>
+<section id="installation-method">
+<h3>Installation method<a class="headerlink" href="#installation-method" title="Link to this heading"></a></h3>
+<p>This section is primarily for administrators of the system. LAMMPS has been installed using the default Easybuild config files.
+Build logs and test reports can be found in <code class="docutils literal notranslate"><span class="pre">$EBDEVELLAMMPS</span></code> with a given module loaded.</p>
+</section>
+<section id="testing-method">
+<h3>Testing method<a class="headerlink" href="#testing-method" title="Link to this heading"></a></h3>
+<p>Testing has been conducted with the above examples.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="julia.html" class="btn btn-neutral float-left" title="Julia" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="mathematica.html" class="btn btn-neutral float-right" title="Mathematica" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, The University of Sheffield.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<footer class="footer">
+  <div class="container">
+    <div class="left-footer">
+         &copy; 2024, The University of Sheffield
+       <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" /></a>
+    </div>
+   
+    <div class="centre-footer">
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.3.7
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

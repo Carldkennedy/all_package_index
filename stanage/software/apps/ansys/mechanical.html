@@ -1,0 +1,351 @@
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mechanical / MAPDL &mdash; Sheffield HPC Documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/tabs.css?v=a5c4661c" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/custom.css?v=0a35405e" />
+
+  
+    <link rel="canonical" href="https://docs.hpc.shef.ac.uk/stanage/software/apps/ansys/mechanical.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../../../_static/copybutton.js?v=f281be69"></script>
+        <script src="../../../../_static/design-tabs.js?v=36754332"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="ANSYS LS-DYNA" href="ls-dyna.html" />
+    <link rel="prev" title="Fluent" href="fluent.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            Sheffield HPC Documentation
+              <img src="../../../../_static/UOSLogo_Primary_Violet_RGB_small.png" class="logo" alt="Logo"/>
+          </a><div>
+    <h3>Quick search</h3>
+    <!--Setup by JKWM via https://cse.google.com/cse/all-->
+    <script async src="https://cse.google.com/cse.js?cx=243e6cd4be08b404b">
+    </script>
+    <div class="gcse-search"></div>
+ </div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../hpc/index.html">Using the HPC Systems</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">Stanage</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../stanage-FAQ-gotchas.html">Stanage FAQ and Gotchas</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html">Software on Stanage</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html">Applications on Stanage</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="index.html">ANSYS</a><ul class="current">
+<li class="toctree-l5"><a class="reference internal" href="index.html#module-loading">Module loading</a></li>
+<li class="toctree-l5 current"><a class="reference internal" href="index.html#ansys-programs">ANSYS Programs</a><ul class="current">
+<li class="toctree-l6"><a class="reference internal" href="fluent.html">Fluent</a></li>
+<li class="toctree-l6 current"><a class="current reference internal" href="#">Mechanical / MAPDL</a></li>
+<li class="toctree-l6"><a class="reference internal" href="ls-dyna.html">ANSYS LS-DYNA</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="index.html#ansys-training-and-help-resources">ANSYS training and help resources</a></li>
+<li class="toctree-l5"><a class="reference internal" href="index.html#ansys-example-models">ANSYS example models</a></li>
+<li class="toctree-l5"><a class="reference internal" href="index.html#installation-note-for-administrators">Installation note for Administrators:</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../R.html">R</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../abaqus.html">Abaqus</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../ansysem.html">ANSYSEM</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../apptainer.html">Apptainer/Singularity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../castep.html">CASTEP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../git-lfs.html">Git LFS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../gmp.html">GnuMP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../gromacs.html">GROMACS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../java.html">Java (Temurin/OpenJDK)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../julia.html">Julia</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../lammps.html">LAMMPS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../mathematica.html">Mathematica</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../matlab.html">MATLAB</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../maven.html">Maven</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../molpro.html">Molpro</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../ncdu.html">ncdu</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../netlogo.html">NetLogo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../nextflow.html">Nextflow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../openfoam.html">OpenFOAM</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../python.html">Python</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../pytorch.html">PyTorch</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../rosetta.html">Rosetta</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../rstudio.html">RStudio</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sox.html">SoX</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tensorflow.html">TensorFlow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../vasp.html">VASP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../xvfb.html">Xvfb</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../development/index.html">Developing on Stanage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../libs/index.html">Libraries on Stanage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../parallel/index.html">Parallel Systems on Stanage</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cluster_specs.html">Stanage Specifications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../slurm.html">Slurm Scheduler Job Submission info</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../stanage-mfa-setup.html">Stanage TOTP multifactor authentication setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../GPUComputingStanage.html">Using GPUs on Stanage</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../bessemer/index.html">Bessemer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../parallel/index.html">Parallel Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../newsletter/index.html">News</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../glossary.html">Glossary of Terms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../other-uk-hpc-resources.html">Access to External UK HPC Facilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../help.html">Need help?</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://rcgsheffield.github.io/TUoS-RIT-training-resources/training.html">Courses / Training Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../FAQs.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../cheatsheets/index.html">Quick Reference (Cheat Sheets)</a></li>
+<li class="toctree-l1"><a class="reference external" href="http://changelog.hpc.shef.ac.uk/">Latest Software / HPC changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../referenceinfo/index.html">Reference Information Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../citing.html">Suggested text for citations and letters of support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../decommissioned/index.html">Decommissioned Clusters</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Sheffield HPC Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+<!-- <a class="forkme" href="https://github.com/rcgsheffield/sheffield_hpc">
+<img alt="Fork me on GitHub" src="../../../../_static/img/forkme.png"> 
+</a> -->
+
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">Stanage</a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Software on Stanage</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Applications on Stanage</a></li>
+          <li class="breadcrumb-item"><a href="index.html">ANSYS</a></li>
+      <li class="breadcrumb-item active">Mechanical / MAPDL</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <span class="target" id="ansys-stanage-mechanical"></span><aside class="sidebar" id="ansys-stanage-sidebar">
+<p class="sidebar-title">ANSYS</p>
+<dl class="field-list simple">
+<dt class="field-odd">Versions<span class="colon">:</span></dt>
+<dd class="field-odd"><p>19.2, 2022R2, 2023R1, 2023R2</p>
+</dd>
+<dt class="field-even">Dependencies<span class="colon">:</span></dt>
+<dd class="field-even"><p>UDFs / User subroutines will also need either the GCC or Intel C compiler with correct versions.</p>
+</dd>
+<dt class="field-odd">URL<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="http://www.ansys.com">http://www.ansys.com</a></p>
+</dd>
+</dl>
+</aside>
+<section id="mechanical-mapdl">
+<h1><a class="toc-backref" href="#id1" role="doc-backlink">Mechanical / MAPDL</a><a class="headerlink" href="#mechanical-mapdl" title="Link to this heading"></a></h1>
+<nav class="contents" id="contents">
+<p class="topic-title">Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#mechanical-mapdl" id="id1">Mechanical / MAPDL</a></p>
+<ul>
+<li><p><a class="reference internal" href="#module-loading" id="id2">Module loading</a></p></li>
+<li><p><a class="reference internal" href="#interactive-jobs" id="id3">Interactive jobs</a></p></li>
+<li><p><a class="reference internal" href="#batch-jobs" id="id4">Batch jobs</a></p>
+<ul>
+<li><p><a class="reference internal" href="#sample-smp-mapdl-scheduler-job-script" id="id5">Sample SMP MAPDL Scheduler Job Script</a></p></li>
+<li><p><a class="reference internal" href="#sample-mpi-mapdl-scheduler-job-script" id="id6">Sample MPI MAPDL Scheduler Job Script</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#ansys-mechnical-training-and-help-resources" id="id7">ANSYS Mechnical training and help resources</a></p></li>
+</ul>
+</li>
+</ul>
+</nav>
+<hr class="docutils" />
+<p>Ansys Mechanical is a finite element analysis (FEA) tool that enables you to analyse complex product architectures and solve difficult mechanical problems.
+You can use Ansys Mechanical to simulate real world behavior of components and sub-systems, and customize it to test design variations quickly and accurately.
+ANSYS Mechanical has interfaces to other pre and post processing packages supplied by ANSYS and can make use of  built in <a class="reference internal" href="../../../../parallel/MPI.html#parallel-mpi"><span class="std std-ref">MPI</span></a> to utilize multiple cross node CPU and can scale to hundreds of cores.</p>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>ANSYS users can now use a maximum of 400 concurrent cores, across all devices on campus, including personal machines and HPC clusters,
+and regardless of the number of ANSYS applications they have open. Please see <a class="reference internal" href="../../../../FAQs.html#ansys-license-restrictions"><span class="std std-ref">ANSYS license restrictions</span></a> for more detail.</p>
+</div>
+<hr class="docutils" />
+<section id="module-loading">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Module loading</a><a class="headerlink" href="#module-loading" title="Link to this heading"></a></h2>
+<p>After connecting to Stanage (see <a class="reference internal" href="../../../../hpc/connecting.html#ssh"><span class="std std-ref">Establishing a SSH connection</span></a>),  you can start an <a class="reference internal" href="../../../../hpc/scheduler/index.html#submit-interactive-stanage"><span class="std std-ref">interactive session</span></a> or submit a batch job using ANSYS programs activating them and making them available with one of the module load commands below:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">load</span> <span class="n">ANSYS</span><span class="o">/</span><span class="mf">19.2</span>
+<span class="n">module</span> <span class="n">load</span> <span class="n">ANSYS</span><span class="o">/</span><span class="mi">2022</span><span class="n">R2</span>
+<span class="n">module</span> <span class="n">load</span> <span class="n">ANSYS</span><span class="o">/</span><span class="mi">2023</span><span class="n">R1</span>
+<span class="n">module</span> <span class="n">load</span> <span class="n">ANSYS</span><span class="o">/</span><span class="mi">2023</span><span class="n">R2</span>
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="interactive-jobs">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Interactive jobs</a><a class="headerlink" href="#interactive-jobs" title="Link to this heading"></a></h2>
+<p>You can load an ANSYS module above and then start the ANSYS mechanical launcher program by running the <code class="docutils literal notranslate"><span class="pre">launcher</span></code> command.</p>
+<p>If desired, the ANSYS Workbench GUI executable can be launched with the  <code class="docutils literal notranslate"><span class="pre">runwb2</span></code> command.
+To use more than a single core, you should write a batch job script and ANSYS mechanical APDL script file for submission to the batch queues.</p>
+</section>
+<hr class="docutils" />
+<section id="batch-jobs">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Batch jobs</a><a class="headerlink" href="#batch-jobs" title="Link to this heading"></a></h2>
+<p>MAPDL is capable of running in both <a class="reference internal" href="../../../../parallel/MPI.html#parallel-mpi"><span class="std std-ref">MPI</span></a> and <a class="reference internal" href="../../../../parallel/SMP.html#parallel-smp"><span class="std std-ref">SMP</span></a> parallel environments but will use its in-build MPI communications for both.</p>
+<section id="sample-smp-mapdl-scheduler-job-script">
+<h3><a class="toc-backref" href="#id5" role="doc-backlink">Sample SMP MAPDL Scheduler Job Script</a><a class="headerlink" href="#sample-smp-mapdl-scheduler-job-script" title="Link to this heading"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">Mapdl</span> <span class="pre">mechanical</span></code>: the following is an example batch submission script, <code class="docutils literal notranslate"><span class="pre">mech_job.sh</span></code>, to run the mechanical executable <code class="docutils literal notranslate"><span class="pre">mapdl</span></code> with input file <code class="docutils literal notranslate"><span class="pre">CrankSlot_Flexible.inp</span></code>, and carry out a mechanical simulation.
+The script requests 2 cores using the SMP parallel environment with a runtime of 60 mins and 2 GB of real memory per core.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<ul class="simple">
+<li><p>The argument <code class="docutils literal notranslate"><span class="pre">$SLURM_NTASKS</span></code> is a SLURM scheduler variable which will return the requested number of tasks.</p></li>
+</ul>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<span class="c1">#SBATCH --nodes=1</span>
+<span class="c1">#SBATCH --ntasks-per-node=2</span>
+<span class="c1">#SBATCH --mem=4000</span>
+<span class="c1">#SBATCH --job-name=ansys_mech-test</span>
+<span class="c1">#SBATCH --output=output_ansys_mech_test</span>
+<span class="c1">#SBATCH --time=01:00:00</span>
+<span class="c1">#SBATCH --mail-user=a.person@sheffield.ac.uk</span>
+<span class="c1">#SBATCH --mail-type=ALL</span>
+
+module<span class="w"> </span>load<span class="w"> </span>ANSYS/2023R2
+mapdl<span class="w"> </span>-smp<span class="w"> </span>-dir<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span><span class="w"> </span>-b<span class="w"> </span>-np<span class="w"> </span><span class="nv">$SLURM_NTASKS</span><span class="w"> </span>-j<span class="w"> </span>solution<span class="w"> </span>-i<span class="w"> </span>CrankSlot_Flexible.inp
+</pre></div>
+</div>
+<p>The job is submitted to the queue by typing:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sbatch<span class="w"> </span>mech_job.sh
+</pre></div>
+</div>
+</section>
+<section id="sample-mpi-mapdl-scheduler-job-script">
+<h3><a class="toc-backref" href="#id6" role="doc-backlink">Sample MPI MAPDL Scheduler Job Script</a><a class="headerlink" href="#sample-mpi-mapdl-scheduler-job-script" title="Link to this heading"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">Mapdl</span> <span class="pre">mechanical</span></code>: the following is an example batch submission script, <code class="docutils literal notranslate"><span class="pre">mech_job.sh</span></code>, to run the mechanical executable <code class="docutils literal notranslate"><span class="pre">mapdl</span></code> with input file <code class="docutils literal notranslate"><span class="pre">CrankSlot_Flexible.inp</span></code>, and carry out a mechanical simulation.
+The script requests 2 cores using the MPI parallel environment with a runtime of 60 mins and 2 GB of real memory per core.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<ul class="simple">
+<li><p>The argument <code class="docutils literal notranslate"><span class="pre">$SLURM_NTASKS</span></code> is a SLURM scheduler variable which will return the requested number of tasks.</p></li>
+</ul>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<span class="c1">#SBATCH --nodes=2</span>
+<span class="c1">#SBATCH --ntasks-per-node=1</span>
+<span class="c1">#SBATCH --mem=2000</span>
+<span class="c1">#SBATCH --job-name=ansys_mech-test</span>
+<span class="c1">#SBATCH --output=output_ansys_mech_test</span>
+<span class="c1">#SBATCH --time=01:00:00</span>
+<span class="c1">#SBATCH --mail-user=a.person@sheffield.ac.uk</span>
+<span class="c1">#SBATCH --mail-type=ALL</span>
+
+module<span class="w"> </span>load<span class="w"> </span>ANSYS/2023R2
+<span class="c1"># Create a hosts file with the allocated nodes</span>
+<span class="nb">echo</span><span class="w"> </span><span class="o">===========================</span>
+<span class="nb">echo</span><span class="w"> </span>List<span class="w"> </span>of<span class="w"> </span>machines<span class="w"> </span>supplied<span class="w"> </span>to<span class="w"> </span>Ansys<span class="w"> </span>Mech
+<span class="nv">machinelist</span><span class="o">=</span><span class="k">$(</span>scontrol<span class="w"> </span>show<span class="w"> </span>hostname<span class="w"> </span><span class="nv">$SLURM_JOB_NODELIST</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span>-v<span class="w"> </span><span class="nv">cpus</span><span class="o">=</span><span class="nv">$SLURM_NTASKS_PER_NODE</span><span class="w"> </span><span class="s1">&#39;{printf &quot;%s:%d:&quot;, $0, cpus}&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span><span class="s1">&#39;s/:$//&#39;</span><span class="k">)</span>
+<span class="nb">echo</span><span class="w"> </span><span class="nv">$machinelist</span>
+<span class="nb">echo</span><span class="w"> </span><span class="o">===========================</span>
+mapdl<span class="w"> </span>-dis<span class="w"> </span>-mpi<span class="w"> </span>INTELMPI<span class="w"> </span>-machines<span class="w"> </span><span class="nv">$machinelist</span><span class="w"> </span>-b<span class="w"> </span>-scheduler_tight_coupling<span class="w"> </span>-pib.infinipath<span class="w"> </span>-i<span class="w"> </span>CrankSlot_Flexible.inp
+</pre></div>
+</div>
+<p>The job is submitted to the queue by typing:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sbatch<span class="w"> </span>mech_job.sh
+</pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="ansys-mechnical-training-and-help-resources">
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">ANSYS Mechnical training and help resources</a><a class="headerlink" href="#ansys-mechnical-training-and-help-resources" title="Link to this heading"></a></h2>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Academic support requests should be directed to the <a class="reference external" href="mailto:research-it&#37;&#52;&#48;sheffield&#46;ac&#46;uk">IT Services’ Research and Innovation team</a>  or
+the <a class="reference external" href="https://forum.ansys.com/">ANSYS Learning Forum</a> (<strong>ensure you register with your University email for priority support</strong>).</p>
+</div>
+<p>ANSYS provides numerous academic training and help resources including tutorials, video lectures and examples for structural and mechnical products.
+A short list of the resources ANSYS maintains is summarised below:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.youtube.com/user/ANSYSHowToVideos/playlists?view=50&amp;sort=dd&amp;shelf_id=8">“How to” youtube playlists for structural and mechnical products.</a></p></li>
+<li><p><a class="reference external" href="https://courses.ansys.com/index.php/structures/">An extensive number of free online courses on structural and mechnical products and theory</a></p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="fluent.html" class="btn btn-neutral float-left" title="Fluent" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="ls-dyna.html" class="btn btn-neutral float-right" title="ANSYS LS-DYNA" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, The University of Sheffield.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<footer class="footer">
+  <div class="container">
+    <div class="left-footer">
+         &copy; 2024, The University of Sheffield
+       <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" /></a>
+    </div>
+   
+    <div class="centre-footer">
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.3.7
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

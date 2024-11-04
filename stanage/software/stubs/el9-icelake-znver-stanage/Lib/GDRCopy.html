@@ -1,0 +1,327 @@
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../../">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GDRCopy &mdash; Sheffield HPC Documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/tabs.css?v=a5c4661c" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/css/custom.css?v=0a35405e" />
+
+  
+    <link rel="canonical" href="https://docs.hpc.shef.ac.uk/stanage/software/stubs/el9-icelake-znver-stanage/Lib/GDRCopy.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../../../../_static/copybutton.js?v=f281be69"></script>
+        <script src="../../../../../_static/tabs.js?v=3030b3cb"></script>
+        <script src="../../../../../_static/design-tabs.js?v=36754332"></script>
+    <script src="../../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+    <link rel="next" title="Highway" href="Highway.html" />
+    <link rel="prev" title="FlexiBLAS" href="FlexiBLAS.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../../index.html" class="icon icon-home">
+            Sheffield HPC Documentation
+              <img src="../../../../../_static/UOSLogo_Primary_Violet_RGB_small.png" class="logo" alt="Logo"/>
+          </a><div>
+    <h3>Quick search</h3>
+    <!--Setup by JKWM via https://cse.google.com/cse/all-->
+    <script async src="https://cse.google.com/cse.js?cx=243e6cd4be08b404b">
+    </script>
+    <div class="gcse-search"></div>
+ </div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../../hpc/index.html">Using the HPC Systems</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../../index.html">Stanage</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../../stanage-FAQ-gotchas.html">Stanage FAQ and Gotchas</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../../index.html">Software on Stanage</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../../apps/index.html">Applications on Stanage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../development/index.html">Developing on Stanage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../libs/index.html">Libraries on Stanage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../parallel/index.html">Parallel Systems on Stanage</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../../index.html">All Packages Index</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="../index.html">Icelake and Znver (OS: Rocky 9) Package Versions</a><ul class="current">
+<li class="toctree-l5"><a class="reference internal" href="../All/index.html">All</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../Bio/index.html">Bio</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../Cae/index.html">Cae</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../Chem/index.html">Chem</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../Compiler/index.html">Compiler</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../Data/index.html">Data</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../Debugger/index.html">Debugger</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../Devel/index.html">Devel</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../Geo/index.html">Geo</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../Lang/index.html">Lang</a></li>
+<li class="toctree-l5 current"><a class="reference internal" href="index.html">Lib</a><ul class="current">
+<li class="toctree-l6"><a class="reference internal" href="Abseil.html">Abseil</a></li>
+<li class="toctree-l6"><a class="reference internal" href="Brotli.html">Brotli</a></li>
+<li class="toctree-l6"><a class="reference internal" href="Brunsli.html">Brunsli</a></li>
+<li class="toctree-l6"><a class="reference internal" href="CFITSIO.html">CFITSIO</a></li>
+<li class="toctree-l6"><a class="reference internal" href="Catch2.html">Catch2</a></li>
+<li class="toctree-l6"><a class="reference internal" href="Cereal.html">Cereal</a></li>
+<li class="toctree-l6"><a class="reference internal" href="Check.html">Check</a></li>
+<li class="toctree-l6"><a class="reference internal" href="Compress-Raw-Zlib.html">Compress-Raw-Zlib</a></li>
+<li class="toctree-l6"><a class="reference internal" href="FLAC.html">FLAC</a></li>
+<li class="toctree-l6"><a class="reference internal" href="FlexiBLAS.html">FlexiBLAS</a></li>
+<li class="toctree-l6 current"><a class="current reference internal" href="#">GDRCopy</a></li>
+<li class="toctree-l6"><a class="reference internal" href="Highway.html">Highway</a></li>
+<li class="toctree-l6"><a class="reference internal" href="ICU.html">ICU</a></li>
+<li class="toctree-l6"><a class="reference internal" href="Imath.html">Imath</a></li>
+<li class="toctree-l6"><a class="reference internal" href="JsonCpp.html">JsonCpp</a></li>
+<li class="toctree-l6"><a class="reference internal" href="Judy.html">Judy</a></li>
+<li class="toctree-l6"><a class="reference internal" href="LERC.html">LERC</a></li>
+<li class="toctree-l6"><a class="reference internal" href="LMDB.html">LMDB</a></li>
+<li class="toctree-l6"><a class="reference internal" href="LibTIFF.html">LibTIFF</a></li>
+<li class="toctree-l6"><a class="reference internal" href="NCCL.html">NCCL</a></li>
+<li class="toctree-l6"><a class="reference internal" href="NSPR.html">NSPR</a></li>
+<li class="toctree-l6"><a class="reference internal" href="NSS.html">NSS</a></li>
+<li class="toctree-l6"><a class="reference internal" href="OpenJPEG.html">OpenJPEG</a></li>
+<li class="toctree-l6"><a class="reference internal" href="PMIx.html">PMIx</a></li>
+<li class="toctree-l6"><a class="reference internal" href="PROJ.html">PROJ</a></li>
+<li class="toctree-l6"><a class="reference internal" href="PyYAML.html">PyYAML</a></li>
+<li class="toctree-l6"><a class="reference internal" href="SDL2.html">SDL2</a></li>
+<li class="toctree-l6"><a class="reference internal" href="TensorFlow.html">TensorFlow</a></li>
+<li class="toctree-l6"><a class="reference internal" href="UCC.html">UCC</a></li>
+<li class="toctree-l6"><a class="reference internal" href="UCX.html">UCX</a></li>
+<li class="toctree-l6"><a class="reference internal" href="UCX-CUDA.html">UCX-CUDA</a></li>
+<li class="toctree-l6"><a class="reference internal" href="Xerces-C%2B%2B.html">Xerces-C++</a></li>
+<li class="toctree-l6"><a class="reference internal" href="double-conversion.html">double-conversion</a></li>
+<li class="toctree-l6"><a class="reference internal" href="ffnvcodec.html">ffnvcodec</a></li>
+<li class="toctree-l6"><a class="reference internal" href="gc.html">gc</a></li>
+<li class="toctree-l6"><a class="reference internal" href="giflib.html">giflib</a></li>
+<li class="toctree-l6"><a class="reference internal" href="graphite2.html">graphite2</a></li>
+<li class="toctree-l6"><a class="reference internal" href="jemalloc.html">jemalloc</a></li>
+<li class="toctree-l6"><a class="reference internal" href="json-c.html">json-c</a></li>
+<li class="toctree-l6"><a class="reference internal" href="libaio.html">libaio</a></li>
+<li class="toctree-l6"><a class="reference internal" href="libdap.html">libdap</a></li>
+<li class="toctree-l6"><a class="reference internal" href="libdrm.html">libdrm</a></li>
+<li class="toctree-l6"><a class="reference internal" href="libedit.html">libedit</a></li>
+<li class="toctree-l6"><a class="reference internal" href="libepoxy.html">libepoxy</a></li>
+<li class="toctree-l6"><a class="reference internal" href="libevent.html">libevent</a></li>
+<li class="toctree-l6"><a class="reference internal" href="libfabric.html">libfabric</a></li>
+<li class="toctree-l6"><a class="reference internal" href="libffi.html">libffi</a></li>
+<li class="toctree-l6"><a class="reference internal" href="libgd.html">libgd</a></li>
+<li class="toctree-l6"><a class="reference internal" href="libgeotiff.html">libgeotiff</a></li>
+<li class="toctree-l6"><a class="reference internal" href="libglvnd.html">libglvnd</a></li>
+<li class="toctree-l6"><a class="reference internal" href="libiconv.html">libiconv</a></li>
+<li class="toctree-l6"><a class="reference internal" href="libjpeg-turbo.html">libjpeg-turbo</a></li>
+<li class="toctree-l6"><a class="reference internal" href="libmatheval.html">libmatheval</a></li>
+<li class="toctree-l6"><a class="reference internal" href="libogg.html">libogg</a></li>
+<li class="toctree-l6"><a class="reference internal" href="libopus.html">libopus</a></li>
+<li class="toctree-l6"><a class="reference internal" href="libpng.html">libpng</a></li>
+<li class="toctree-l6"><a class="reference internal" href="libreadline.html">libreadline</a></li>
+<li class="toctree-l6"><a class="reference internal" href="libsndfile.html">libsndfile</a></li>
+<li class="toctree-l6"><a class="reference internal" href="libsodium.html">libsodium</a></li>
+<li class="toctree-l6"><a class="reference internal" href="libtirpc.html">libtirpc</a></li>
+<li class="toctree-l6"><a class="reference internal" href="libtool.html">libtool</a></li>
+<li class="toctree-l6"><a class="reference internal" href="libunistring.html">libunistring</a></li>
+<li class="toctree-l6"><a class="reference internal" href="libunwind.html">libunwind</a></li>
+<li class="toctree-l6"><a class="reference internal" href="libvorbis.html">libvorbis</a></li>
+<li class="toctree-l6"><a class="reference internal" href="libxml2.html">libxml2</a></li>
+<li class="toctree-l6"><a class="reference internal" href="libxslt.html">libxslt</a></li>
+<li class="toctree-l6"><a class="reference internal" href="libyaml.html">libyaml</a></li>
+<li class="toctree-l6"><a class="reference internal" href="libzip.html">libzip</a></li>
+<li class="toctree-l6"><a class="reference internal" href="lz4.html">lz4</a></li>
+<li class="toctree-l6"><a class="reference internal" href="mpi4py.html">mpi4py</a></li>
+<li class="toctree-l6"><a class="reference internal" href="nettle.html">nettle</a></li>
+<li class="toctree-l6"><a class="reference internal" href="nlohmann_json.html">nlohmann_json</a></li>
+<li class="toctree-l6"><a class="reference internal" href="pybind11.html">pybind11</a></li>
+<li class="toctree-l6"><a class="reference internal" href="scikit-build.html">scikit-build</a></li>
+<li class="toctree-l6"><a class="reference internal" href="snappy.html">snappy</a></li>
+<li class="toctree-l6"><a class="reference internal" href="tbb.html">tbb</a></li>
+<li class="toctree-l6"><a class="reference internal" href="zlib.html">zlib</a></li>
+<li class="toctree-l6"><a class="reference internal" href="zstd.html">zstd</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="../Math/index.html">Math</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../Mpi/index.html">Mpi</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../Numlib/index.html">Numlib</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../Phys/index.html">Phys</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../System/index.html">System</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../Toolchain/index.html">Toolchain</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../Tools/index.html">Tools</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../Vis/index.html">Vis</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cluster_specs.html">Stanage Specifications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../slurm.html">Slurm Scheduler Job Submission info</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../stanage-mfa-setup.html">Stanage TOTP multifactor authentication setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../GPUComputingStanage.html">Using GPUs on Stanage</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../bessemer/index.html">Bessemer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../parallel/index.html">Parallel Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../newsletter/index.html">News</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../glossary.html">Glossary of Terms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../other-uk-hpc-resources.html">Access to External UK HPC Facilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../help.html">Need help?</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://rcgsheffield.github.io/TUoS-RIT-training-resources/training.html">Courses / Training Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../FAQs.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../cheatsheets/index.html">Quick Reference (Cheat Sheets)</a></li>
+<li class="toctree-l1"><a class="reference external" href="http://changelog.hpc.shef.ac.uk/">Latest Software / HPC changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../referenceinfo/index.html">Reference Information Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../citing.html">Suggested text for citations and letters of support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../decommissioned/index.html">Decommissioned Clusters</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">Sheffield HPC Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+<!-- <a class="forkme" href="https://github.com/rcgsheffield/sheffield_hpc">
+<img alt="Fork me on GitHub" src="../../../../../_static/img/forkme.png"> 
+</a> -->
+
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../../index.html">Stanage</a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">Software on Stanage</a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">All Packages Index</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Icelake and Znver (OS: Rocky 9) Package Versions</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Lib</a></li>
+      <li class="breadcrumb-item active">GDRCopy</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="gdrcopy">
+<span id="gdrcopy-lib-el9-icelake-znver-stanage"></span><h1>GDRCopy<a class="headerlink" href="#gdrcopy" title="Link to this heading"></a></h1>
+<aside class="sidebar">
+<p class="sidebar-title">GDRCopy</p>
+<dl class="field-list simple">
+<dt class="field-odd">Latest Version (Icelake)<span class="colon">:</span></dt>
+<dd class="field-odd"><p>2.3</p>
+</dd>
+<dt class="field-even">Installed on (Icelake)<span class="colon">:</span></dt>
+<dd class="field-even"><p>2024-05-28</p>
+</dd>
+<dt class="field-odd">Latest Version (Znver)<span class="colon">:</span></dt>
+<dd class="field-odd"><p>2.3</p>
+</dd>
+<dt class="field-even">Installed on (Znver)<span class="colon">:</span></dt>
+<dd class="field-even"><p>2024-06-13</p>
+</dd>
+<dt class="field-odd">URL<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://github.com/NVIDIA/gdrcopy">https://github.com/NVIDIA/gdrcopy</a></p>
+</dd>
+</dl>
+</aside>
+<p>A low-latency GPU memory copy library based on NVIDIA GPUDirect RDMA technology.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This is an autogenerated page, more detail including examples may be available for this package. Please see <a class="reference internal" href="../../../index.html#stanage-software"><span class="std std-ref">Software on Stanage</span></a></p>
+</div>
+<p>After connecting to Stanage (see <a class="reference internal" href="../../../../../hpc/connecting.html#ssh"><span class="std std-ref">Establishing a SSH connection</span></a>),  start an interactive session with the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>srun<span class="w"> </span>--pty<span class="w"> </span>bash<span class="w"> </span>-i
+</pre></div>
+</div>
+<p>A version of GDRCopy can then be made available with <em>one</em> of the following:</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" role="tablist"><button aria-controls="panel-0-SWNlbGFrZQ==" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-0-SWNlbGFrZQ==" name="SWNlbGFrZQ==" role="tab" tabindex="0">Icelake</button><button aria-controls="panel-0-Wm52ZXIz" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-Wm52ZXIz" name="Wm52ZXIz" role="tab" tabindex="-1">Znver3</button></div><div aria-labelledby="tab-0-SWNlbGFrZQ==" class="sphinx-tabs-panel group-tab" id="panel-0-SWNlbGFrZQ==" name="SWNlbGFrZQ==" role="tabpanel" tabindex="0"><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">module load GDRCopy/2.3-GCCcore-11.3.0</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-0-Wm52ZXIz" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-0-Wm52ZXIz" name="Wm52ZXIz" role="tabpanel" tabindex="0"><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">module load GDRCopy/2.3-GCCcore-12.2.0</span>
+<span class="go">module load GDRCopy/2.3-GCCcore-11.3.0</span>
+</pre></div>
+</div>
+</div></div>
+<section id="notes">
+<h2>Notes<a class="headerlink" href="#notes" title="Link to this heading"></a></h2>
+<p>GDRCopy was installed using Easybuild, build details can be found in <code class="docutils literal notranslate"><span class="pre">$EBROOTGDRCOPY/easybuild</span></code> with a given module loaded.</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Dependencies for latest version of GDRCopy<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<ul class="simple">
+<li><p class="sd-card-text"><a class="reference internal" href="../Compiler/GCCcore.html#gcccore-compiler-el9-icelake-znver-stanage"><span class="std std-ref">GCCcore/12.2.0</span></a></p></li>
+</ul>
+</div>
+</details></section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="FlexiBLAS.html" class="btn btn-neutral float-left" title="FlexiBLAS" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Highway.html" class="btn btn-neutral float-right" title="Highway" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, The University of Sheffield.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<footer class="footer">
+  <div class="container">
+    <div class="left-footer">
+         &copy; 2024, The University of Sheffield
+       <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" /></a>
+    </div>
+   
+    <div class="centre-footer">
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.3.7
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

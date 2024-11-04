@@ -1,0 +1,296 @@
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../../">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>M4 &mdash; Sheffield HPC Documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/tabs.css?v=a5c4661c" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/css/custom.css?v=0a35405e" />
+
+  
+    <link rel="canonical" href="https://docs.hpc.shef.ac.uk/stanage/software/stubs/el9-icelake-znver-stanage/Devel/M4.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../../../../_static/copybutton.js?v=f281be69"></script>
+        <script src="../../../../../_static/tabs.js?v=3030b3cb"></script>
+        <script src="../../../../../_static/design-tabs.js?v=36754332"></script>
+    <script src="../../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+    <link rel="next" title="Mako" href="Mako.html" />
+    <link rel="prev" title="LZO" href="LZO.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../../index.html" class="icon icon-home">
+            Sheffield HPC Documentation
+              <img src="../../../../../_static/UOSLogo_Primary_Violet_RGB_small.png" class="logo" alt="Logo"/>
+          </a><div>
+    <h3>Quick search</h3>
+    <!--Setup by JKWM via https://cse.google.com/cse/all-->
+    <script async src="https://cse.google.com/cse.js?cx=243e6cd4be08b404b">
+    </script>
+    <div class="gcse-search"></div>
+ </div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../../hpc/index.html">Using the HPC Systems</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../../index.html">Stanage</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../../stanage-FAQ-gotchas.html">Stanage FAQ and Gotchas</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../../index.html">Software on Stanage</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../../apps/index.html">Applications on Stanage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../development/index.html">Developing on Stanage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../libs/index.html">Libraries on Stanage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../parallel/index.html">Parallel Systems on Stanage</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../../index.html">All Packages Index</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="../index.html">Icelake and Znver (OS: Rocky 9) Package Versions</a><ul class="current">
+<li class="toctree-l5"><a class="reference internal" href="../All/index.html">All</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../Bio/index.html">Bio</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../Cae/index.html">Cae</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../Chem/index.html">Chem</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../Compiler/index.html">Compiler</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../Data/index.html">Data</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../Debugger/index.html">Debugger</a></li>
+<li class="toctree-l5 current"><a class="reference internal" href="index.html">Devel</a><ul class="current">
+<li class="toctree-l6"><a class="reference internal" href="Autoconf.html">Autoconf</a></li>
+<li class="toctree-l6"><a class="reference internal" href="Automake.html">Automake</a></li>
+<li class="toctree-l6"><a class="reference internal" href="Autotools.html">Autotools</a></li>
+<li class="toctree-l6"><a class="reference internal" href="Bazel.html">Bazel</a></li>
+<li class="toctree-l6"><a class="reference internal" href="Boost.html">Boost</a></li>
+<li class="toctree-l6"><a class="reference internal" href="CMake.html">CMake</a></li>
+<li class="toctree-l6"><a class="reference internal" href="DBus.html">DBus</a></li>
+<li class="toctree-l6"><a class="reference internal" href="Doxygen.html">Doxygen</a></li>
+<li class="toctree-l6"><a class="reference internal" href="GObject-Introspection.html">GObject-Introspection</a></li>
+<li class="toctree-l6"><a class="reference internal" href="LZO.html">LZO</a></li>
+<li class="toctree-l6 current"><a class="current reference internal" href="#">M4</a></li>
+<li class="toctree-l6"><a class="reference internal" href="Mako.html">Mako</a></li>
+<li class="toctree-l6"><a class="reference internal" href="PCRE.html">PCRE</a></li>
+<li class="toctree-l6"><a class="reference internal" href="PCRE2.html">PCRE2</a></li>
+<li class="toctree-l6"><a class="reference internal" href="PyCharm.html">PyCharm</a></li>
+<li class="toctree-l6"><a class="reference internal" href="Qt5.html">Qt5</a></li>
+<li class="toctree-l6"><a class="reference internal" href="SCons.html">SCons</a></li>
+<li class="toctree-l6"><a class="reference internal" href="SQLite.html">SQLite</a></li>
+<li class="toctree-l6"><a class="reference internal" href="SWIG.html">SWIG</a></li>
+<li class="toctree-l6"><a class="reference internal" href="ant.html">ant</a></li>
+<li class="toctree-l6"><a class="reference internal" href="flatbuffers.html">flatbuffers</a></li>
+<li class="toctree-l6"><a class="reference internal" href="flatbuffers-python.html">flatbuffers-python</a></li>
+<li class="toctree-l6"><a class="reference internal" href="gperf.html">gperf</a></li>
+<li class="toctree-l6"><a class="reference internal" href="intltool.html">intltool</a></li>
+<li class="toctree-l6"><a class="reference internal" href="libgit2.html">libgit2</a></li>
+<li class="toctree-l6"><a class="reference internal" href="make.html">make</a></li>
+<li class="toctree-l6"><a class="reference internal" href="makeinfo.html">makeinfo</a></li>
+<li class="toctree-l6"><a class="reference internal" href="ncurses.html">ncurses</a></li>
+<li class="toctree-l6"><a class="reference internal" href="nsync.html">nsync</a></li>
+<li class="toctree-l6"><a class="reference internal" href="pkg-config.html">pkg-config</a></li>
+<li class="toctree-l6"><a class="reference internal" href="pkgconf.html">pkgconf</a></li>
+<li class="toctree-l6"><a class="reference internal" href="pkgconfig.html">pkgconfig</a></li>
+<li class="toctree-l6"><a class="reference internal" href="protobuf.html">protobuf</a></li>
+<li class="toctree-l6"><a class="reference internal" href="protobuf-python.html">protobuf-python</a></li>
+<li class="toctree-l6"><a class="reference internal" href="rstudio.html">rstudio</a></li>
+<li class="toctree-l6"><a class="reference internal" href="xorg-macros.html">xorg-macros</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="../Geo/index.html">Geo</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../Lang/index.html">Lang</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../Lib/index.html">Lib</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../Math/index.html">Math</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../Mpi/index.html">Mpi</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../Numlib/index.html">Numlib</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../Phys/index.html">Phys</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../System/index.html">System</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../Toolchain/index.html">Toolchain</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../Tools/index.html">Tools</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../Vis/index.html">Vis</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../cluster_specs.html">Stanage Specifications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../slurm.html">Slurm Scheduler Job Submission info</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../stanage-mfa-setup.html">Stanage TOTP multifactor authentication setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../GPUComputingStanage.html">Using GPUs on Stanage</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../bessemer/index.html">Bessemer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../parallel/index.html">Parallel Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../newsletter/index.html">News</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../glossary.html">Glossary of Terms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../other-uk-hpc-resources.html">Access to External UK HPC Facilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../help.html">Need help?</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://rcgsheffield.github.io/TUoS-RIT-training-resources/training.html">Courses / Training Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../FAQs.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../cheatsheets/index.html">Quick Reference (Cheat Sheets)</a></li>
+<li class="toctree-l1"><a class="reference external" href="http://changelog.hpc.shef.ac.uk/">Latest Software / HPC changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../referenceinfo/index.html">Reference Information Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../citing.html">Suggested text for citations and letters of support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../decommissioned/index.html">Decommissioned Clusters</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">Sheffield HPC Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+<!-- <a class="forkme" href="https://github.com/rcgsheffield/sheffield_hpc">
+<img alt="Fork me on GitHub" src="../../../../../_static/img/forkme.png"> 
+</a> -->
+
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../../index.html">Stanage</a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">Software on Stanage</a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">All Packages Index</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Icelake and Znver (OS: Rocky 9) Package Versions</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Devel</a></li>
+      <li class="breadcrumb-item active">M4</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="m4">
+<span id="m4-devel-el9-icelake-znver-stanage"></span><h1>M4<a class="headerlink" href="#m4" title="Link to this heading"></a></h1>
+<aside class="sidebar">
+<p class="sidebar-title">M4</p>
+<dl class="field-list simple">
+<dt class="field-odd">Latest Version (Icelake)<span class="colon">:</span></dt>
+<dd class="field-odd"><p>1.4.19</p>
+</dd>
+<dt class="field-even">Installed on (Icelake)<span class="colon">:</span></dt>
+<dd class="field-even"><p>2024-05-20</p>
+</dd>
+<dt class="field-odd">Latest Version (Znver)<span class="colon">:</span></dt>
+<dd class="field-odd"><p>1.4.19</p>
+</dd>
+<dt class="field-even">Installed on (Znver)<span class="colon">:</span></dt>
+<dd class="field-even"><p>2024-06-11</p>
+</dd>
+<dt class="field-odd">URL<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://www.gnu.org/software/m4/m4.html">https://www.gnu.org/software/m4/m4.html</a></p>
+</dd>
+</dl>
+</aside>
+<p>GNU M4 is an implementation of the traditional Unix macro processor. It is
+mostly SVR4 compatible although it has some extensions (for example, handling
+more than 9 positional parameters to macros). GNU M4 also has built-in
+functions for including files, running shell commands, doing arithmetic, etc.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This is an autogenerated page, more detail including examples may be available for this package. Please see <a class="reference internal" href="../../../index.html#stanage-software"><span class="std std-ref">Software on Stanage</span></a></p>
+</div>
+<p>After connecting to Stanage (see <a class="reference internal" href="../../../../../hpc/connecting.html#ssh"><span class="std std-ref">Establishing a SSH connection</span></a>),  start an interactive session with the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>srun<span class="w"> </span>--pty<span class="w"> </span>bash<span class="w"> </span>-i
+</pre></div>
+</div>
+<p>A version of M4 can then be made available with <em>one</em> of the following:</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" role="tablist"><button aria-controls="panel-0-SWNlbGFrZQ==" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-0-SWNlbGFrZQ==" name="SWNlbGFrZQ==" role="tab" tabindex="0">Icelake</button><button aria-controls="panel-0-Wm52ZXIz" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-Wm52ZXIz" name="Wm52ZXIz" role="tab" tabindex="-1">Znver3</button></div><div aria-labelledby="tab-0-SWNlbGFrZQ==" class="sphinx-tabs-panel group-tab" id="panel-0-SWNlbGFrZQ==" name="SWNlbGFrZQ==" role="tabpanel" tabindex="0"><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">module load M4/1.4.19</span>
+<span class="go">module load M4/1.4.19-GCCcore-13.2.0</span>
+<span class="go">module load M4/1.4.19-GCCcore-12.3.0</span>
+<span class="go">module load M4/1.4.19-GCCcore-12.2.0</span>
+<span class="go">module load M4/1.4.19-GCCcore-11.3.0</span>
+<span class="go">module load M4/1.4.19-GCCcore-11.2.0</span>
+<span class="go">module load M4/1.4.19-GCCcore-10.3.0</span>
+<span class="go">module load M4/1.4.19-GCCcore-9.5.0</span>
+<span class="go">module load M4/1.4.18</span>
+<span class="go">module load M4/1.4.18-GCCcore-11.1.0</span>
+<span class="go">module load M4/1.4.18-GCCcore-10.3.0</span>
+<span class="go">module load M4/1.4.18-GCCcore-10.2.0</span>
+<span class="go">module load M4/1.4.18-GCCcore-10.1.0</span>
+<span class="go">module load M4/1.4.18-GCCcore-9.3.0</span>
+<span class="go">module load M4/1.4.18-GCCcore-9.2.0</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-0-Wm52ZXIz" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-0-Wm52ZXIz" name="Wm52ZXIz" role="tabpanel" tabindex="0"><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">module load M4/1.4.19</span>
+<span class="go">module load M4/1.4.19-GCCcore-12.3.0</span>
+<span class="go">module load M4/1.4.19-GCCcore-12.2.0</span>
+<span class="go">module load M4/1.4.19-GCCcore-11.3.0</span>
+<span class="go">module load M4/1.4.19-GCCcore-11.2.0</span>
+<span class="go">module load M4/1.4.18</span>
+<span class="go">module load M4/1.4.18-GCCcore-10.2.0</span>
+</pre></div>
+</div>
+</div></div>
+<section id="notes">
+<h2>Notes<a class="headerlink" href="#notes" title="Link to this heading"></a></h2>
+<p>M4 was installed using Easybuild, build details can be found in <code class="docutils literal notranslate"><span class="pre">$EBROOTM4/easybuild</span></code> with a given module loaded.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="LZO.html" class="btn btn-neutral float-left" title="LZO" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Mako.html" class="btn btn-neutral float-right" title="Mako" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, The University of Sheffield.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<footer class="footer">
+  <div class="container">
+    <div class="left-footer">
+         &copy; 2024, The University of Sheffield
+       <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" /></a>
+    </div>
+   
+    <div class="centre-footer">
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.3.7
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

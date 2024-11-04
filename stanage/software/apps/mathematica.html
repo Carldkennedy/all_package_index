@@ -1,0 +1,281 @@
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mathematica &mdash; Sheffield HPC Documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=a5c4661c" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=0a35405e" />
+
+  
+    <link rel="canonical" href="https://docs.hpc.shef.ac.uk/stanage/software/apps/mathematica.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../../_static/copybutton.js?v=f281be69"></script>
+        <script src="../../../_static/design-tabs.js?v=36754332"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="MATLAB" href="matlab.html" />
+    <link rel="prev" title="LAMMPS" href="lammps.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Sheffield HPC Documentation
+              <img src="../../../_static/UOSLogo_Primary_Violet_RGB_small.png" class="logo" alt="Logo"/>
+          </a><div>
+    <h3>Quick search</h3>
+    <!--Setup by JKWM via https://cse.google.com/cse/all-->
+    <script async src="https://cse.google.com/cse.js?cx=243e6cd4be08b404b">
+    </script>
+    <div class="gcse-search"></div>
+ </div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../hpc/index.html">Using the HPC Systems</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Stanage</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../stanage-FAQ-gotchas.html">Stanage FAQ and Gotchas</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Software on Stanage</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Applications on Stanage</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="ansys/index.html">ANSYS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="R.html">R</a></li>
+<li class="toctree-l4"><a class="reference internal" href="abaqus.html">Abaqus</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ansysem.html">ANSYSEM</a></li>
+<li class="toctree-l4"><a class="reference internal" href="apptainer.html">Apptainer/Singularity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="castep.html">CASTEP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="git-lfs.html">Git LFS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gmp.html">GnuMP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gromacs.html">GROMACS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="java.html">Java (Temurin/OpenJDK)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="julia.html">Julia</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lammps.html">LAMMPS</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Mathematica</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#batch-submission">Batch Submission</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#gui-usage">GUI Usage</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#installation-notes">Installation notes</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="matlab.html">MATLAB</a></li>
+<li class="toctree-l4"><a class="reference internal" href="maven.html">Maven</a></li>
+<li class="toctree-l4"><a class="reference internal" href="molpro.html">Molpro</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ncdu.html">ncdu</a></li>
+<li class="toctree-l4"><a class="reference internal" href="netlogo.html">NetLogo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nextflow.html">Nextflow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="openfoam.html">OpenFOAM</a></li>
+<li class="toctree-l4"><a class="reference internal" href="python.html">Python</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pytorch.html">PyTorch</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rosetta.html">Rosetta</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rstudio.html">RStudio</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sox.html">SoX</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tensorflow.html">TensorFlow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="vasp.html">VASP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="xvfb.html">Xvfb</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../development/index.html">Developing on Stanage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../libs/index.html">Libraries on Stanage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../parallel/index.html">Parallel Systems on Stanage</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../cluster_specs.html">Stanage Specifications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../slurm.html">Slurm Scheduler Job Submission info</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../stanage-mfa-setup.html">Stanage TOTP multifactor authentication setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../GPUComputingStanage.html">Using GPUs on Stanage</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../bessemer/index.html">Bessemer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../parallel/index.html">Parallel Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../newsletter/index.html">News</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary.html">Glossary of Terms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../other-uk-hpc-resources.html">Access to External UK HPC Facilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../help.html">Need help?</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://rcgsheffield.github.io/TUoS-RIT-training-resources/training.html">Courses / Training Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../FAQs.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cheatsheets/index.html">Quick Reference (Cheat Sheets)</a></li>
+<li class="toctree-l1"><a class="reference external" href="http://changelog.hpc.shef.ac.uk/">Latest Software / HPC changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../referenceinfo/index.html">Reference Information Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../citing.html">Suggested text for citations and letters of support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../decommissioned/index.html">Decommissioned Clusters</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Sheffield HPC Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+<!-- <a class="forkme" href="https://github.com/rcgsheffield/sheffield_hpc">
+<img alt="Fork me on GitHub" src="../../../_static/img/forkme.png"> 
+</a> -->
+
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Stanage</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Software on Stanage</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Applications on Stanage</a></li>
+      <li class="breadcrumb-item active">Mathematica</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="mathematica">
+<h1>Mathematica<a class="headerlink" href="#mathematica" title="Link to this heading"></a></h1>
+<aside class="sidebar">
+<p class="sidebar-title">Wolfram Mathematica</p>
+<dl class="field-list simple">
+<dt class="field-odd">Dependencies<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">URL<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="http://www.wolfram.com/mathematica/">http://www.wolfram.com/mathematica/</a></p>
+</dd>
+<dt class="field-odd">Latest version<span class="colon">:</span></dt>
+<dd class="field-odd"><p>13.2.1</p>
+</dd>
+</dl>
+</aside>
+<p>Mathematica is a technical computing environment and programming language with strong symbolic and numerical abilities.</p>
+<section id="batch-submission">
+<h2>Batch Submission<a class="headerlink" href="#batch-submission" title="Link to this heading"></a></h2>
+<p>Unfortunately, it is not possible to run Mathematica notebook .nb files directly in batch.  Instead, you need to create a simple text file that contains all of the Mathematica commands you want to execute.  Typically, such files are given the extension .m.  Let’s run the following simple Mathematica script as a batch job.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>(*Find out what version of Mathematica this machine is running*)
+Print[&quot;Mathematica version is &quot; &lt;&gt; $Version]
+
+(*Find out the name of the machine we are running on*)
+Print[&quot;The machine name is &quot; &lt;&gt; $MachineName]
+
+(*Do a calculation*)
+Print[&quot;The result of the integral is &quot;]
+Print [ Integrate[Sin[x]^2, x]]
+</pre></div>
+</div>
+<p>Copy and paste the above into a text file called <code class="docutils literal notranslate"><span class="pre">very_simple_mathematica.m</span></code></p>
+<p>An example batch submission script for this file is</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<span class="c1"># Request 4 gigabytes of real memory</span>
+<span class="c1">#SBATCH --mem=4G</span>
+<span class="c1">#SBATCH --mail-user=a.person@sheffield.ac.uk</span>
+<span class="c1">#SBATCH --mail-type=ALL</span>
+
+<span class="n">module</span> <span class="n">load</span> <span class="n">Mathematica</span><span class="o">/</span><span class="mf">13.2.1</span>
+
+<span class="n">math</span> <span class="o">-</span><span class="n">script</span> <span class="n">very_simple_mathematica</span><span class="o">.</span><span class="n">m</span>
+</pre></div>
+</div>
+<p>Copy and paste the above into a file called <code class="docutils literal notranslate"><span class="pre">run_job.sh</span></code> and submit with</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sbatch</span> <span class="n">run_job</span><span class="o">.</span><span class="n">sh</span>
+</pre></div>
+</div>
+<p>Once the job has successfully completed, the output will be in a file named like <code class="docutils literal notranslate"><span class="pre">slurm-4835.out</span></code>. The number at the end refers to the job-ID given to this job by the system and will be different for you. The contents of this file is</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">more</span> <span class="n">slurm</span><span class="o">-</span><span class="mf">4835.</span><span class="n">out</span>
+
+<span class="n">Mathematica</span> <span class="n">version</span> <span class="ow">is</span> <span class="mf">13.2.1</span> <span class="k">for</span> <span class="n">Linux</span> <span class="n">x86</span> <span class="p">(</span><span class="mi">64</span><span class="o">-</span><span class="n">bit</span><span class="p">)</span> <span class="p">(</span><span class="n">January</span> <span class="mi">27</span><span class="p">,</span> <span class="mi">2023</span><span class="p">)</span>
+<span class="n">The</span> <span class="n">machine</span> <span class="n">name</span> <span class="ow">is</span> <span class="n">node301</span>
+<span class="n">The</span> <span class="n">result</span> <span class="n">of</span> <span class="n">the</span> <span class="n">integral</span> <span class="ow">is</span>
+<span class="n">x</span><span class="o">/</span><span class="mi">2</span> <span class="o">-</span> <span class="n">Sin</span><span class="p">[</span><span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="p">]</span><span class="o">/</span><span class="mi">4</span>
+</pre></div>
+</div>
+</section>
+<section id="gui-usage">
+<h2>GUI Usage<a class="headerlink" href="#gui-usage" title="Link to this heading"></a></h2>
+<p>To use Mathematica in GUI mode you will need to be in a <a class="reference internal" href="../../../hpc/flight-desktop.html#flight-desktop"><span class="std std-ref">flight graphical session on Stanage</span></a> and start a terminal inside of the flight session.</p>
+<p>Load both the Mathematica and QT modules (Mathematica requires the Qt framework/library to create its graphical user interface). To start the IDE you will need to type <code class="docutils literal notranslate"><span class="pre">Mathematica</span></code>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1">#load the necessary modules</span>
+module<span class="w"> </span>load<span class="w"> </span>Mathematica/13.2.1
+module<span class="w"> </span>load<span class="w"> </span>Qt5/5.15.7-GCCcore-12.2.0
+
+<span class="c1">#Start Mathematica in GUI mode</span>
+Mathematica
+</pre></div>
+</div>
+</section>
+<section id="installation-notes">
+<h2>Installation notes<a class="headerlink" href="#installation-notes" title="Link to this heading"></a></h2>
+<p>These are primarily for administrators of the system.</p>
+<p>Set the the University network Mathematica license in <code class="docutils literal notranslate"><span class="pre">/opt/apps/testapps/common/easybuild/hooks/default.py</span></code>.</p>
+<p>Download the Mathematica package, Mathematica_13.2.1_LINUX.sh, from Wolfram.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="o">-</span><span class="n">p</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">apps</span><span class="o">/</span><span class="n">testapps</span><span class="o">/</span><span class="n">media</span><span class="o">/</span><span class="n">eb</span><span class="o">-</span><span class="n">srcs</span><span class="o">/</span><span class="n">m</span><span class="o">/</span><span class="n">Mathematica</span><span class="o">/</span>
+<span class="n">mv</span> <span class="n">Mathematica_13</span><span class="mf">.2.1</span><span class="n">_LINUX</span><span class="o">.</span><span class="n">sh</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">apps</span><span class="o">/</span><span class="n">testapps</span><span class="o">/</span><span class="n">media</span><span class="o">/</span><span class="n">eb</span><span class="o">-</span><span class="n">srcs</span><span class="o">/</span><span class="n">m</span><span class="o">/</span><span class="n">Mathematica</span><span class="o">/</span>
+</pre></div>
+</div>
+<p>Mathematica was installed using Easybuild 4.7.0, build details can be found in <code class="docutils literal notranslate"><span class="pre">$EBDEVELMATHEMATICA</span></code></p>
+<p>Testing was performed using the above examples.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="lammps.html" class="btn btn-neutral float-left" title="LAMMPS" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="matlab.html" class="btn btn-neutral float-right" title="MATLAB" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, The University of Sheffield.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<footer class="footer">
+  <div class="container">
+    <div class="left-footer">
+         &copy; 2024, The University of Sheffield
+       <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" /></a>
+    </div>
+   
+    <div class="centre-footer">
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.3.7
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

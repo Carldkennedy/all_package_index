@@ -1,0 +1,190 @@
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Setting up Profiles in MobaXterm &mdash; Sheffield HPC Documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/tabs.css?v=a5c4661c" />
+      <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=0a35405e" />
+
+  
+    <link rel="canonical" href="https://docs.hpc.shef.ac.uk/referenceinfo/connecting-ssh/mobaxterm.html" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../_static/copybutton.js?v=f281be69"></script>
+        <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Multifactor Authentication Reference Info" href="../mfa/index.html" />
+    <link rel="prev" title="Setting up Profiles in Windows Terminal" href="windows_terminal.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Sheffield HPC Documentation
+              <img src="../../_static/UOSLogo_Primary_Violet_RGB_small.png" class="logo" alt="Logo"/>
+          </a><div>
+    <h3>Quick search</h3>
+    <!--Setup by JKWM via https://cse.google.com/cse/all-->
+    <script async src="https://cse.google.com/cse.js?cx=243e6cd4be08b404b">
+    </script>
+    <div class="gcse-search"></div>
+ </div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../hpc/index.html">Using the HPC Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../stanage/index.html">Stanage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bessemer/index.html">Bessemer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../parallel/index.html">Parallel Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../newsletter/index.html">News</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html">Glossary of Terms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../other-uk-hpc-resources.html">Access to External UK HPC Facilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../help.html">Need help?</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://rcgsheffield.github.io/TUoS-RIT-training-resources/training.html">Courses / Training Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../FAQs.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cheatsheets/index.html">Quick Reference (Cheat Sheets)</a></li>
+<li class="toctree-l1"><a class="reference external" href="http://changelog.hpc.shef.ac.uk/">Latest Software / HPC changelog</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Reference Information Index</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../ANSYS/index.html">ANSYS Packages Reference Info</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../environment-modules/index.html">Environment Modules Reference Info</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linux-shell/index.html">Linux shell Reference Info</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scheduler/index.html">Scheduler Reference Info</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../computer-architecture/index.html">Computer Architecture Reference Info</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Connecting via SSH Reference Info</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="windows_terminal.html">Setting up Profiles in Windows Terminal</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Setting up Profiles in MobaXterm</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../mfa/index.html">Multifactor Authentication Reference Info</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../admins/index.html">Documentation Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../citing.html">Suggested text for citations and letters of support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../decommissioned/index.html">Decommissioned Clusters</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Sheffield HPC Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+<!-- <a class="forkme" href="https://github.com/rcgsheffield/sheffield_hpc">
+<img alt="Fork me on GitHub" src="../../_static/img/forkme.png"> 
+</a> -->
+
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Reference Information Index</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Connecting via SSH Reference Info</a></li>
+      <li class="breadcrumb-item active">Setting up Profiles in MobaXterm</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="setting-up-profiles-in-mobaxterm">
+<span id="mobaxterm-connecting-profile-setup"></span><h1>Setting up Profiles in MobaXterm<a class="headerlink" href="#setting-up-profiles-in-mobaxterm" title="Link to this heading"></a></h1>
+<p>For personal systems you can download and install the <em>Installer edition</em> of <a class="reference external" href="https://mobaxterm.mobatek.net/download-home-edition.html">MobaXterm</a>.</p>
+<p>After starting MobaXterm you should see something like this:</p>
+<a class="reference internal image-reference" href="../../_images/mobaxterm-welcome.png"><img alt="../../_images/mobaxterm-welcome.png" class="align-center" src="../../_images/mobaxterm-welcome.png" style="width: 100%;" /></a>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Usernames to connect with all HPC services will be the same as those you use to login to MUSE <span class="underline-bold">not</span> the prefix on your email address.</p>
+</div>
+<p>You should create a session profile for your login for each cluster by clicking <em>Session</em> in the top left, and then <em>SSH</em>.</p>
+<ol class="arabic simple">
+<li><p>Enter the details for the cluster in the <em>Remote host</em> box, choosing <code class="docutils literal notranslate"><span class="pre">stanage.shef.ac.uk</span></code> or <code class="docutils literal notranslate"><span class="pre">bessemer.shef.ac.uk</span></code>.</p></li>
+<li><p>Now click the <em>Specify Username</em> checkmark and enter your username.</p></li>
+<li><p>Please ensure that the checkmark for <em>X11 Forwarding</em> is ticked or GUI applications will be unable to open.</p></li>
+<li><p>Please ensure that that <em>Use SCP protocol</em> is also ticked (or depending on MobaXterm version select <em>SCP (enhanced speed)</em> option from the <em>SSH-browser type</em> dropdown menu) .</p></li>
+<li><p>Now click <em>OK</em> to save your session profile.</p></li>
+</ol>
+<p>You should add a session for each cluster.</p>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>Alternatively you can use a terminal within MobaXterm for SSHing to remote machines but
+be warned that this may cause authentication issues when trying to connect to Stanage using MFA.</p>
+</div>
+<p>You can now double click on this session profile to start connecting at which point you will be prompted for your username, password
+and then with a Duo MFA prompt (or a request for your TOTP verification code on Stanage). Please enter these details and your terminal will connect as shown below.</p>
+<p>You <strong>may</strong> be asked to submit your username and password with a second MFA prompt in order for the file browser to work correctly. On a successful
+login you should be presented with a screen like the below:</p>
+<a class="reference internal image-reference" href="../../_images/mobaxterm-terminal.png"><img alt="../../_images/mobaxterm-terminal.png" class="align-center" src="../../_images/mobaxterm-terminal.png" style="width: 100%;" /></a>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="windows_terminal.html" class="btn btn-neutral float-left" title="Setting up Profiles in Windows Terminal" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../mfa/index.html" class="btn btn-neutral float-right" title="Multifactor Authentication Reference Info" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, The University of Sheffield.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<footer class="footer">
+  <div class="container">
+    <div class="left-footer">
+         &copy; 2024, The University of Sheffield
+       <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" /></a>
+    </div>
+   
+    <div class="centre-footer">
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.3.7
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

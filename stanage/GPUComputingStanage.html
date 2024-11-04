@@ -1,0 +1,290 @@
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Using GPUs on Stanage &mdash; Sheffield HPC Documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=a5c4661c" />
+      <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=0a35405e" />
+
+  
+    <link rel="canonical" href="https://docs.hpc.shef.ac.uk/stanage/GPUComputingStanage.html" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../_static/copybutton.js?v=f281be69"></script>
+        <script src="../_static/tabs.js?v=3030b3cb"></script>
+        <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Bessemer" href="../bessemer/index.html" />
+    <link rel="prev" title="Stanage TOTP multifactor authentication setup" href="stanage-mfa-setup.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Sheffield HPC Documentation
+              <img src="../_static/UOSLogo_Primary_Violet_RGB_small.png" class="logo" alt="Logo"/>
+          </a><div>
+    <h3>Quick search</h3>
+    <!--Setup by JKWM via https://cse.google.com/cse/all-->
+    <script async src="https://cse.google.com/cse.js?cx=243e6cd4be08b404b">
+    </script>
+    <div class="gcse-search"></div>
+ </div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../hpc/index.html">Using the HPC Systems</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Stanage</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="stanage-FAQ-gotchas.html">Stanage FAQ and Gotchas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="software/index.html">Software on Stanage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cluster_specs.html">Stanage Specifications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="slurm.html">Slurm Scheduler Job Submission info</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stanage-mfa-setup.html">Stanage TOTP multifactor authentication setup</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Using GPUs on Stanage</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#interactive-use-of-the-gpus">Interactive use of the GPUs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#submitting-gpu-batch-jobs">Submitting GPU batch jobs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#requesting-gpus-and-multiple-cpu-cores-from-the-scheduler">Requesting GPUs and multiple CPU cores from the scheduler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#stanage-gpu-resources">Stanage GPU Resources</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#gpu-enabled-software">GPU-enabled Software</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#training-materials">Training materials</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../bessemer/index.html">Bessemer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../parallel/index.html">Parallel Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../newsletter/index.html">News</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary of Terms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../other-uk-hpc-resources.html">Access to External UK HPC Facilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../help.html">Need help?</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://rcgsheffield.github.io/TUoS-RIT-training-resources/training.html">Courses / Training Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../FAQs.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cheatsheets/index.html">Quick Reference (Cheat Sheets)</a></li>
+<li class="toctree-l1"><a class="reference external" href="http://changelog.hpc.shef.ac.uk/">Latest Software / HPC changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../referenceinfo/index.html">Reference Information Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../citing.html">Suggested text for citations and letters of support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../decommissioned/index.html">Decommissioned Clusters</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Sheffield HPC Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+<!-- <a class="forkme" href="https://github.com/rcgsheffield/sheffield_hpc">
+<img alt="Fork me on GitHub" src="../_static/img/forkme.png"> 
+</a> -->
+
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Stanage</a></li>
+      <li class="breadcrumb-item active">Using GPUs on Stanage</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="using-gpus-on-stanage">
+<span id="gpu-computing-stanage"></span><h1>Using GPUs on Stanage<a class="headerlink" href="#using-gpus-on-stanage" title="Link to this heading"></a></h1>
+<p>There are two types of GPU node in Stanage which differ in terms of
+GPU architecture (NVIDIA A100 and H100),
+the number of GPUs per node and
+GPU interconnect technologies (inc bandwidth)
+(see <a class="reference internal" href="cluster_specs.html#stanage-gpu-specs"><span class="std std-ref">Stanage hardware specifications</span></a>).
+At present you need to decide which node type to target when
+submitting a batch job or
+starting an interactive session on a worker node.</p>
+<section id="interactive-use-of-the-gpus">
+<span id="gpu-interactive-stanage"></span><h2>Interactive use of the GPUs<a class="headerlink" href="#interactive-use-of-the-gpus" title="Link to this heading"></a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>See <a class="reference internal" href="../hpc/scheduler/index.html#submit-interactive-stanage"><span class="std std-ref">requesting an interactive session on slurm</span></a> if you’re not already familiar with the concept.</p>
+</div>
+<p>To start an interactive session with access to one GPU on a GPU node (<a class="reference internal" href="cluster_specs.html#stanage-gpu-specs"><span class="std std-ref">Stanage hardware specifications</span></a>):</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" role="tablist"><button aria-controls="panel-0-QTEwMCBHUFUgbm9kZShzKQ==" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-0-QTEwMCBHUFUgbm9kZShzKQ==" name="QTEwMCBHUFUgbm9kZShzKQ==" role="tab" tabindex="0">A100 GPU node(s)</button><button aria-controls="panel-0-SDEwMCBHUFUgbm9kZShzKQ==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-SDEwMCBHUFUgbm9kZShzKQ==" name="SDEwMCBHUFUgbm9kZShzKQ==" role="tab" tabindex="-1">H100 GPU node(s)</button></div><div aria-labelledby="tab-0-QTEwMCBHUFUgbm9kZShzKQ==" class="sphinx-tabs-panel group-tab" id="panel-0-QTEwMCBHUFUgbm9kZShzKQ==" name="QTEwMCBHUFUgbm9kZShzKQ==" role="tabpanel" tabindex="0"><div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>srun<span class="w"> </span>--partition<span class="o">=</span>gpu<span class="w"> </span>--qos<span class="o">=</span>gpu<span class="w"> </span>--gres<span class="o">=</span>gpu:1<span class="w"> </span>--pty<span class="w"> </span>bash
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-0-SDEwMCBHUFUgbm9kZShzKQ==" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-0-SDEwMCBHUFUgbm9kZShzKQ==" name="SDEwMCBHUFUgbm9kZShzKQ==" role="tabpanel" tabindex="0"><div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>srun<span class="w"> </span>--partition<span class="o">=</span>gpu-h100<span class="w"> </span>--qos<span class="o">=</span>gpu<span class="w"> </span>--gres<span class="o">=</span>gpu:1<span class="w"> </span>--pty<span class="w"> </span>bash
+</pre></div>
+</div>
+</div></div>
+<p>Note it’s not possible to request GPUs using <code class="docutils literal notranslate"><span class="pre">--gpus=N</span></code> on Stanage at this time (unlike on Bessemer).</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>During the 2 week introduction phase of the H100 GPUs to the Stanage cluster, usage of the H100 GPUs requires the <code class="docutils literal notranslate"><span class="pre">--partition=gpu-h100</span></code> and <code class="docutils literal notranslate"><span class="pre">--gres=gpu:1</span></code> arguments to be set in your submission scripts.
+This is to ensure usage is “opt in” by users as the slightly different architecture of these GPUs to the existing A100 GPUs may necessitate changes to batch submission scripts and selected software versions.</p>
+<p>Eventually the H100 GPUs will be brought into the general GPU partition, at which point the <code class="docutils literal notranslate"><span class="pre">--partition=gpu</span></code> will be required to access H100s (or any GPUs). At that stage any submissions
+using the general <code class="docutils literal notranslate"><span class="pre">--gres=gpu:1</span></code> will be scheduled with the first available GPU of any type. Requesting a specific type of GPU will then require selection via the <code class="docutils literal notranslate"><span class="pre">--gres=gpu:h100:1</span></code> or
+<code class="docutils literal notranslate"><span class="pre">--gres=gpu:a100:1</span></code> arguments.</p>
+<p>When these latter changes are made, we will give advanced notice via email and by amendments made within this documentation.</p>
+</div>
+<p>Interactive sessions provide you with 2 GB of CPU RAM by default,
+which is significantly less than the amount of GPU RAM available on a single GPU.
+This can lead to issues where your session has insufficient CPU RAM to transfer data to and from the GPU.
+As such, it is recommended that you request enough CPU memory to communicate properly with the GPU e.g.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1"># NB Each NVIDIA A100 (and H100) GPU in Stanage has 80GB of GPU RAM</span>
+srun<span class="w"> </span>--partition<span class="o">=</span>gpu<span class="w"> </span>--qos<span class="o">=</span>gpu<span class="w"> </span>--gres<span class="o">=</span>gpu:1<span class="w"> </span>--mem<span class="o">=</span>82G<span class="w"> </span>--pty<span class="w"> </span>bash
+</pre></div>
+</div>
+<p>The above will give you 2GB more CPU RAM than the 80GB of GPU RAM available on an NVIDIA A100 (and H100).</p>
+</section>
+<section id="submitting-gpu-batch-jobs">
+<span id="gpu-jobs-stanage"></span><h2>Submitting GPU batch jobs<a class="headerlink" href="#submitting-gpu-batch-jobs" title="Link to this heading"></a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>See <a class="reference internal" href="../hpc/scheduler/index.html#submit-job-stanage"><span class="std std-ref">submitting jobs on slurm</span></a> if you’re not already familiar with the concept.</p>
+</div>
+<p>To run batch jobs on GPU nodes, ensure your job submission script includes a request for GPUs,
+e.g. for two GPUs use <code class="docutils literal notranslate"><span class="pre">--gres=gpu:2</span></code>:</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" role="tablist"><button aria-controls="panel-1-QTEwMCBub2RlKHMp" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-1-QTEwMCBub2RlKHMp" name="QTEwMCBub2RlKHMp" role="tab" tabindex="0">A100 node(s)</button><button aria-controls="panel-1-SDEwMCBub2RlKHMp" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-1-SDEwMCBub2RlKHMp" name="SDEwMCBub2RlKHMp" role="tab" tabindex="-1">H100 node(s)</button></div><div aria-labelledby="tab-1-QTEwMCBub2RlKHMp" class="sphinx-tabs-panel group-tab" id="panel-1-QTEwMCBub2RlKHMp" name="QTEwMCBub2RlKHMp" role="tabpanel" tabindex="0"><div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<span class="c1">#SBATCH --partition=gpu</span>
+<span class="c1">#SBATCH --qos=gpu</span>
+<span class="c1">#SBATCH --gres=gpu:2</span>
+<span class="c1">#SBATCH --mem=82G</span>
+
+<span class="c1"># Your code below...</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-1-SDEwMCBub2RlKHMp" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-1-SDEwMCBub2RlKHMp" name="SDEwMCBub2RlKHMp" role="tabpanel" tabindex="0"><div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<span class="c1">#SBATCH --partition=gpu-h100</span>
+<span class="c1">#SBATCH --qos=gpu</span>
+<span class="c1">#SBATCH --gres=gpu:2</span>
+<span class="c1">#SBATCH --mem=82G</span>
+
+<span class="c1"># Your code below...</span>
+</pre></div>
+</div>
+</div></div>
+</section>
+<section id="requesting-gpus-and-multiple-cpu-cores-from-the-scheduler">
+<h2>Requesting GPUs and multiple CPU cores from the scheduler<a class="headerlink" href="#requesting-gpus-and-multiple-cpu-cores-from-the-scheduler" title="Link to this heading"></a></h2>
+<p>To request four separate Slurm tasks within a job, each of which has four CPU cores and with four (A100) GPUs available to the entire job (shared between tasks):</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<span class="c1">#SBATCH --partition=gpu</span>
+<span class="c1">#SBATCH --qos=gpu</span>
+<span class="c1">#SBATCH --nodes=1</span>
+<span class="c1">#SBATCH --ntasks=4</span>
+<span class="c1">#SBATCH --cpus-per-task=4</span>
+<span class="c1">#SBATCH --gres=gpu:4       # 4 GPUs for job</span>
+</pre></div>
+</div>
+<p>Note that:</p>
+<ul class="simple">
+<li><p>The GPUs are (unintuitively) shared between the Slurm tasks.</p></li>
+<li><p>It’s not possible to request <code class="docutils literal notranslate"><span class="pre">--gpus-per-node</span></code>, <code class="docutils literal notranslate"><span class="pre">--gpus-per-task</span></code> or <code class="docutils literal notranslate"><span class="pre">--gpus-per-socket</span></code> on Stanage at this time (unlike on Bessemer).</p></li>
+<li><p>Not all nodes have four GPUs (<a class="reference internal" href="cluster_specs.html#stanage-gpu-specs"><span class="std std-ref">Stanage hardware specifications</span></a>).</p></li>
+</ul>
+</section>
+<section id="stanage-gpu-resources">
+<span id="gpu-resources-stanage"></span><h2>Stanage GPU Resources<a class="headerlink" href="#stanage-gpu-resources" title="Link to this heading"></a></h2>
+<section id="gpu-enabled-software">
+<h3>GPU-enabled Software<a class="headerlink" href="#gpu-enabled-software" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Applications</p>
+<ul>
+<li><p>None yet</p></li>
+</ul>
+</li>
+<li><p>Libraries</p>
+<ul>
+<li><p><a class="reference internal" href="software/libs/cuda.html#cuda-stanage"><span class="std std-ref">CUDA</span></a></p></li>
+<li><p><a class="reference internal" href="software/libs/cudnn.html#cudnn-stanage"><span class="std std-ref">cuDNN</span></a></p></li>
+</ul>
+</li>
+<li><p>Development Tools</p>
+<ul>
+<li><p><a class="reference internal" href="software/development/nvidia_compiler.html#nvidia-compiler-stanage"><span class="std std-ref">NVCC - NVIDIA CUDA Compiler</span></a></p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="training-materials">
+<h2>Training materials<a class="headerlink" href="#training-materials" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>The Research Software Engineering team have developed an undergraduate teaching module on CUDA;
+<a class="reference external" href="https://rse.shef.ac.uk/training/com4521">lecture notes and lecture recordings for that module are accessible here</a> for anyone with a University account.</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="stanage-mfa-setup.html" class="btn btn-neutral float-left" title="Stanage TOTP multifactor authentication setup" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../bessemer/index.html" class="btn btn-neutral float-right" title="Bessemer" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, The University of Sheffield.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<footer class="footer">
+  <div class="container">
+    <div class="left-footer">
+         &copy; 2024, The University of Sheffield
+       <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" /></a>
+    </div>
+   
+    <div class="centre-footer">
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.3.7
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

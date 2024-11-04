@@ -1,0 +1,336 @@
+html {
+    background-color: #fff;
+    color: #414042;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 0.8125em;
+    line-height: 1.53846;
+}
+
+body {
+    padding-top: 115px;
+    background-color: inherit;
+}
+
+.container {
+    background-color: #fff;
+    margin-bottom: 3em;
+}
+
+div.sidebar {
+    background-color: #ecf0f1;
+    width: inherit;
+}
+
+.sidebar-title {
+    text-align: center;
+    font-size: 20px;
+}
+
+pre {
+    color: #171A1B;
+}
+
+cite {
+    background-color: #ecf0f1;
+    font-family: monospace;
+}
+/* Do not change the background colour of citations / code snippets within admonitions which change backround and text colour. There are many of these (note, warning etc) so this is the simplest fix */
+.admonition cite {
+    background: inherit;
+}
+
+.note {
+    background-color: #333132;
+    border-color: #333132;
+}
+/* Hack to move anchor links down by the 80px height of the header bar
+   See: http://nicolasgallagher.com/jump-links-and-viewport-positioning/demo/#method-B */
+@media (min-width: 991px) {
+    div.section::before {
+        display: block;
+        content: "";
+        height: 80px;
+        margin: -80px 0 0;
+    }
+}
+
+/* Footer */
+.footer {
+    bottom: 0;
+    height: 3em;
+    padding-top: 0.8em;
+    position: fixed;
+    width: 100%;
+    border: 0 none;
+    background-color: white;
+}
+
+.left-footer {
+    float: left;
+}
+
+.centre-footer {
+    float: none;
+    width:17%;
+    min-width: 180px;
+    margin: 0 auto;
+    height: inherit;
+}
+
+.right-footer {
+    float: right;
+}
+
+/* hack to move the RTD version thing to above the footer */
+.rst-versions.rst-badge {
+    bottom: 3em;
+}
+
+/* Top Nav */
+.navbar {
+    height: 80px;
+    background-color: #333132;
+    margin: 0;
+}
+
+.navbar .container {
+    height:100%;
+    background-color: inherit;
+}
+
+.navbar-brand {
+    height:100%;
+    padding-top: 0px;
+    padding-left: 20px;
+}
+
+.navbar-brand img {
+    padding-right: 15px;
+}
+
+.navbar-nav > li > a {
+    line-height:40px;
+    margin: 0;
+}
+
+.navbar-form {
+    padding-top:0;
+    margin-top:0;
+    padding-bottom:0;
+    margin-bottom:0;
+    line-height:75px;
+}
+
+.form-control {
+    height: 80px;
+    border: 0 none;
+    border-radius: 0;
+}
+
+.navbar-form .form-control {
+    width: 215px;
+}
+
+.navbar-header {
+    height: 100%;
+}
+
+.navbar-fixed-top .navbar-collapse, .navbar-fixed-bottom .navbar-collapse {
+    max-height: none;
+}
+
+.navbar-form{
+    box-shadow: none;
+}
+
+.navbar-form .form-group {
+    margin-bottom: 0;
+}
+
+/* Side Nav */
+
+/* Top Level */
+div.bs-sidenav {
+    text-shadow: none;
+    background-color: #030000;
+    margin-bottom:0;
+    position: static !important;
+}
+
+.bs-sidenav .nav > li > a {
+    line-height: 2em;
+    color: #fff;
+    /*border-left: 3px solid #000*/
+}
+
+.bs-sidenav .nav > li > a:hover,
+.bs-sidenav .nav > li > a:focus {
+    background-color: inherit;
+    border-right: inherit;
+    /*border-left: 3px solid #fff;*/
+    background-color: #007D65;
+}
+
+.bs-sidenav .nav > li.current > a {
+    /*border-left: 3px solid #fff;*/
+    background-color: #007D65;
+}
+
+/* all non-first level menus */
+.bs-sidenav .nav > li.current > ul{
+    background-color: #414042;
+    border-left: 3px solid #fff;
+
+}
+
+/* Second Level */
+
+.bs-sidenav .nav > li.toctree-l2 > a {
+    /*border-left: 3px solid #414042;*/
+}
+
+.bs-sidenav .nav > li.toctree-l2 > a:hover,
+.bs-sidenav .nav > li.toctree-l2 > a:focus {
+    /*border-left: 3px solid #fff;*/
+}
+
+.bs-sidenav .nav > li.current.toctree-l2 > a {
+    background-color: #00A685;
+    /*color: #0066b3;*/
+    /*border-left: 3px solid #fff;*/
+}
+
+/* Third Level */
+
+.bs-sidenav .nav > li.toctree-l3 {
+    border-left: 2px solid #fff;
+}
+
+.bs-sidenav .nav > li.toctree-l3 > a {
+    /*border-left: 2px solid #414042;*/
+}
+
+.bs-sidenav .nav > li.toctree-l3 > a:hover,
+.bs-sidenav .nav > li.toctree-l3 > a:focus{
+    /*border-left: 2px solid #fff;*/
+}
+
+.bs-sidenav .nav > li.toctree-l3.current > a {
+    /*border-left: 3px solid #fff;*/
+    color: #313131;
+    background-color: #46e4c5;
+}
+
+
+
+/* Screen width fixes */
+
+@media (max-width: 979px){
+    .navbar-collapse {
+            background-color: #333132;
+    }
+}
+
+@media (max-width: 324px) {
+    .navbar-brand {
+        display:none;
+}
+}
+
+@media (max-width: 510px) {
+    .footer {
+        display:none;
+}
+}
+
+@media (max-width: 991px) {
+    .centre-footer {
+        display: none;
+    }
+    .navbar-header {
+        float: none;
+    }
+    .navbar-left,.navbar-right {
+        float: none !important;
+    }
+    .navbar-toggle {
+        display: block;
+    }
+    .navbar-collapse {
+        border-top: 1px solid transparent;
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+    }
+    .navbar-fixed-top {
+        top: 0;
+        border-width: 0 0 1px;
+    }
+    .navbar-collapse.collapse {
+        display: none!important;
+    }
+    .navbar-nav {
+        float: none!important;
+        margin-top: 7.5px;
+    }
+    .navbar-nav>li {
+        float: none;
+    }
+    .navbar-nav>li>a {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .collapse.in{
+        display:block !important;
+    }
+}
+
+
+/* Table */
+
+table.table:not(.field-list):not(.footnote) {
+    border-top: 1px solid #333132;
+    border-right: 1px solid #333132;
+    border-collapse: collapse;
+}
+
+table.table:not(.footnote) td:not(.field-body) {
+    border-bottom: 1px solid #333132 !important;
+    border-left: 1px solid #333132 !important;
+}
+
+table.table:not(.footnote) thead th:not(.field-name) {
+    border-bottom: 1px solid #333132 !important;
+    border-left: 1px solid #333132 !important;
+    background-color: #333132;
+    font-weight: bold;
+    color: #ffffff
+}
+
+/* Forkme Banner */
+/* a.forkme>img { */
+/*     position: absolute; */
+/*     top: 80px; */
+/*     right: 0px; */
+/*     border: 0; */
+/* } */
+
+/* @media (max-width: 850px) { */
+/*     a.forkme>img { */
+/*         display: none; */
+/*     } */
+/* } */
+
+/* For multiple columns (https://stackoverflow.com/a/58853076) */
+div.leftside {
+  width: 43%;
+  padding: 0px 3px 0px 0px;
+  float: left;
+}
+
+div.rightside {
+  margin-left: 45%;
+  /* float: right; */
+}
+
+div.wy-nav-content {
+  max-width: 75px;
+}

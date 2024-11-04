@@ -1,0 +1,203 @@
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Exporting GUI Fluent plots in batch submission jobs &mdash; Sheffield HPC Documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=a5c4661c" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=0a35405e" />
+
+  
+    <link rel="canonical" href="https://docs.hpc.shef.ac.uk/referenceinfo/ANSYS/fluent/export-fluent-plots-while-using-batch-jobs.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../../_static/copybutton.js?v=f281be69"></script>
+        <script src="../../../_static/design-tabs.js?v=36754332"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="ANSYS Packages File Paths" href="../typical_executable_paths.html" />
+    <link rel="prev" title="Writing Fluent journal files" href="writing-fluent-journal-files.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Sheffield HPC Documentation
+              <img src="../../../_static/UOSLogo_Primary_Violet_RGB_small.png" class="logo" alt="Logo"/>
+          </a><div>
+    <h3>Quick search</h3>
+    <!--Setup by JKWM via https://cse.google.com/cse/all-->
+    <script async src="https://cse.google.com/cse.js?cx=243e6cd4be08b404b">
+    </script>
+    <div class="gcse-search"></div>
+ </div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../hpc/index.html">Using the HPC Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../stanage/index.html">Stanage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../bessemer/index.html">Bessemer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../parallel/index.html">Parallel Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../newsletter/index.html">News</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary.html">Glossary of Terms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../other-uk-hpc-resources.html">Access to External UK HPC Facilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../help.html">Need help?</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://rcgsheffield.github.io/TUoS-RIT-training-resources/training.html">Courses / Training Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../FAQs.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cheatsheets/index.html">Quick Reference (Cheat Sheets)</a></li>
+<li class="toctree-l1"><a class="reference external" href="http://changelog.hpc.shef.ac.uk/">Latest Software / HPC changelog</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Reference Information Index</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">ANSYS Packages Reference Info</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">ANSYS Fluent Reference Info</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="writing-fluent-journal-files.html">Writing Fluent journal files</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Exporting GUI Fluent plots in batch submission jobs</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#sources">Sources</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../typical_executable_paths.html">ANSYS Packages File Paths</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../environment-modules/index.html">Environment Modules Reference Info</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../linux-shell/index.html">Linux shell Reference Info</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../scheduler/index.html">Scheduler Reference Info</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../computer-architecture/index.html">Computer Architecture Reference Info</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../connecting-ssh/index.html">Connecting via SSH Reference Info</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../mfa/index.html">Multifactor Authentication Reference Info</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../admins/index.html">Documentation Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../citing.html">Suggested text for citations and letters of support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../decommissioned/index.html">Decommissioned Clusters</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Sheffield HPC Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+<!-- <a class="forkme" href="https://github.com/rcgsheffield/sheffield_hpc">
+<img alt="Fork me on GitHub" src="../../../_static/img/forkme.png"> 
+</a> -->
+
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Reference Information Index</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">ANSYS Packages Reference Info</a></li>
+          <li class="breadcrumb-item"><a href="index.html">ANSYS Fluent Reference Info</a></li>
+      <li class="breadcrumb-item active">Exporting GUI Fluent plots in batch submission jobs</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="toctree-wrapper compound" id="export-fluent-plots-while-using-batch-jobs">
+</div>
+<section id="exporting-gui-fluent-plots-in-batch-submission-jobs">
+<h1>Exporting GUI Fluent plots in batch submission jobs<a class="headerlink" href="#exporting-gui-fluent-plots-in-batch-submission-jobs" title="Link to this heading"></a></h1>
+<p>While in a batch job you cannot call a display of a window / figure / animation as Fluent has nowhere to direct this output (there is no available display.)</p>
+<p>To avoid this issue while attempting to export images from a batch job you should ensure the fluent command in your submission script has the <code class="docutils literal notranslate"><span class="pre">-gu</span></code> and  <code class="docutils literal notranslate"><span class="pre">-driver</span> <span class="pre">null</span></code> arguments.</p>
+<p>for a <strong>Bessemer</strong> batch job:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>fluent<span class="w"> </span>2ddp<span class="w"> </span>-i<span class="w"> </span>test.jou<span class="w"> </span>-gu<span class="w"> </span>-t<span class="nv">$SLURM_NTASKS</span><span class="w"> </span>-driver<span class="w"> </span>null
+</pre></div>
+</div>
+<p>You can setup your plots / graphs either in your journal file or interactively via the GUI and saving the case file.</p>
+<p>You can then instruct Fluent to make a hard copy after each figure/animation in the you journal file  with:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">display</span><span class="o">/</span><span class="n">hard</span><span class="o">-</span><span class="n">copy</span> <span class="s2">&quot;myfile.tif&quot;</span>
+</pre></div>
+</div>
+<p>Ensure that you select the correct file format as some file types will not support animations.</p>
+<hr class="docutils" />
+<p>For an example of the journal file commands see below:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">display</span> <span class="nb">set</span><span class="o">-</span><span class="n">window</span> <span class="n">xx</span> <span class="p">;(</span><span class="n">xx</span> <span class="o">-&gt;</span> <span class="n">window</span> <span class="n">number</span><span class="p">)</span>
+<span class="o">/</span><span class="n">display</span> <span class="nb">set</span> <span class="n">contours</span> <span class="n">surface</span> <span class="n">yy</span> <span class="p">;(</span><span class="n">surface</span> <span class="nb">id</span> <span class="o">=</span> <span class="n">yy</span><span class="p">)</span>
+<span class="o">/</span><span class="n">display</span> <span class="nb">set</span> <span class="n">contours</span> <span class="n">filled</span><span class="o">-</span><span class="n">contours</span> <span class="n">yes</span>
+<span class="o">/</span><span class="n">display</span> <span class="n">contour</span> <span class="n">zz</span> <span class="n">vof</span> <span class="mi">0</span> <span class="mi">1</span> <span class="p">;(</span><span class="n">contour</span> <span class="n">of</span> <span class="n">volume</span> <span class="n">fraction</span> <span class="n">field</span> <span class="p">(</span><span class="n">vof</span><span class="p">)</span> <span class="n">of</span> <span class="n">zz</span> <span class="n">phase</span><span class="p">,</span> <span class="nb">min</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">max</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+<span class="o">/</span><span class="n">display</span> <span class="n">hard</span><span class="o">-</span><span class="n">copy</span> <span class="s2">&quot;vof-%t.jpg&quot;</span> <span class="p">;(</span><span class="n">save</span> <span class="n">the</span> <span class="n">image</span> <span class="n">file</span> <span class="ow">in</span> <span class="o">.</span><span class="n">jpg</span> <span class="nb">format</span><span class="p">)</span>
+</pre></div>
+</div>
+<hr class="docutils" />
+<section id="sources">
+<h2>Sources<a class="headerlink" href="#sources" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.researchgate.net/post/How-can-I-export-my-contour-image-for-every-required-time-step-in-Fluent">https://www.researchgate.net/post/How-can-I-export-my-contour-image-for-every-required-time-step-in-Fluent</a></p></li>
+<li><p><a class="reference external" href="https://www.eureka.im/273.html">https://www.eureka.im/273.html</a></p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="writing-fluent-journal-files.html" class="btn btn-neutral float-left" title="Writing Fluent journal files" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../typical_executable_paths.html" class="btn btn-neutral float-right" title="ANSYS Packages File Paths" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, The University of Sheffield.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<footer class="footer">
+  <div class="container">
+    <div class="left-footer">
+         &copy; 2024, The University of Sheffield
+       <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" /></a>
+    </div>
+   
+    <div class="centre-footer">
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.3.7
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

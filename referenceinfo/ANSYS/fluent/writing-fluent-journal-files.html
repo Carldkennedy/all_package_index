@@ -1,0 +1,472 @@
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Writing Fluent journal files &mdash; Sheffield HPC Documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=a5c4661c" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=0a35405e" />
+
+  
+    <link rel="canonical" href="https://docs.hpc.shef.ac.uk/referenceinfo/ANSYS/fluent/writing-fluent-journal-files.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../../_static/copybutton.js?v=f281be69"></script>
+        <script src="../../../_static/design-tabs.js?v=36754332"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Exporting GUI Fluent plots in batch submission jobs" href="export-fluent-plots-while-using-batch-jobs.html" />
+    <link rel="prev" title="ANSYS Fluent Reference Info" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Sheffield HPC Documentation
+              <img src="../../../_static/UOSLogo_Primary_Violet_RGB_small.png" class="logo" alt="Logo"/>
+          </a><div>
+    <h3>Quick search</h3>
+    <!--Setup by JKWM via https://cse.google.com/cse/all-->
+    <script async src="https://cse.google.com/cse.js?cx=243e6cd4be08b404b">
+    </script>
+    <div class="gcse-search"></div>
+ </div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../hpc/index.html">Using the HPC Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../stanage/index.html">Stanage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../bessemer/index.html">Bessemer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../parallel/index.html">Parallel Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../newsletter/index.html">News</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary.html">Glossary of Terms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../other-uk-hpc-resources.html">Access to External UK HPC Facilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../help.html">Need help?</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://rcgsheffield.github.io/TUoS-RIT-training-resources/training.html">Courses / Training Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../FAQs.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cheatsheets/index.html">Quick Reference (Cheat Sheets)</a></li>
+<li class="toctree-l1"><a class="reference external" href="http://changelog.hpc.shef.ac.uk/">Latest Software / HPC changelog</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Reference Information Index</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">ANSYS Packages Reference Info</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">ANSYS Fluent Reference Info</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Writing Fluent journal files</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#what-is-a-fluent-journal-file">What is a Fluent journal file</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#key-things-to-understand-about-fluent-journal-files">Key things to understand about Fluent journal files</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#why-you-should-use-a-fluent-journal-file">Why you should use a Fluent journal file</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#how-to-make-a-fluent-journal-file">How to make a Fluent journal file</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#common-journal-file-commands">Common journal file commands</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#reading-a-case-file">Reading a case file</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#initialisation-of-a-case-file">Initialisation of a case file</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#setting-the-transient-time-step">Setting the transient time step</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#starting-a-solve-process">Starting a solve process</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#outputting-performance-data-at-model-finish">Outputting performance data at model finish:</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#saving-your-model">Saving your model</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#exit-fluent">Exit fluent</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#autosaving-and-saving-intermediate-state-models">Autosaving and saving intermediate state models</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#autosaving">Autosaving</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#saving-intermediate-state-models">Saving intermediate state models</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#example-simple-journal-file-load-case-initialise-run-save-data-and-exit">Example: Simple journal file - load case, initialise, run, save data and exit</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#example-complex-journal-file-submerged-vegetation-benchmark">Example: Complex journal file - submerged vegetation benchmark</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="export-fluent-plots-while-using-batch-jobs.html">Exporting GUI Fluent plots in batch submission jobs</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../typical_executable_paths.html">ANSYS Packages File Paths</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../environment-modules/index.html">Environment Modules Reference Info</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../linux-shell/index.html">Linux shell Reference Info</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../scheduler/index.html">Scheduler Reference Info</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../computer-architecture/index.html">Computer Architecture Reference Info</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../connecting-ssh/index.html">Connecting via SSH Reference Info</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../mfa/index.html">Multifactor Authentication Reference Info</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../admins/index.html">Documentation Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../citing.html">Suggested text for citations and letters of support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../decommissioned/index.html">Decommissioned Clusters</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Sheffield HPC Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+<!-- <a class="forkme" href="https://github.com/rcgsheffield/sheffield_hpc">
+<img alt="Fork me on GitHub" src="../../../_static/img/forkme.png"> 
+</a> -->
+
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Reference Information Index</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">ANSYS Packages Reference Info</a></li>
+          <li class="breadcrumb-item"><a href="index.html">ANSYS Fluent Reference Info</a></li>
+      <li class="breadcrumb-item active">Writing Fluent journal files</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="toctree-wrapper compound" id="writing-fluent-journal-files">
+</div>
+<section id="id1">
+<h1>Writing Fluent journal files<a class="headerlink" href="#id1" title="Link to this heading"></a></h1>
+<section id="what-is-a-fluent-journal-file">
+<h2>What is a Fluent journal file<a class="headerlink" href="#what-is-a-fluent-journal-file" title="Link to this heading"></a></h2>
+<p>A journal file is effectively a sequence of TUI and/or Scheme commands that you’ll supply to Fluent instead of using the GUI / TUI. These are arranged as they would be typed interactively into the program or entered through the GUI (graphics user interface) / TUI (text user interface).</p>
+</section>
+<hr class="docutils" />
+<section id="key-things-to-understand-about-fluent-journal-files">
+<h2>Key things to understand about Fluent journal files<a class="headerlink" href="#key-things-to-understand-about-fluent-journal-files" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>The purpose of a journal file is to automate a series of commands instead of entering them repeatedly on the command line.</p></li>
+<li><p>To include comments in your file, be sure to put a semicolon <code class="docutils literal notranslate"><span class="pre">;</span></code> at the beginning of each comment line.</p></li>
+<li><p>You can check if a command exists by opening the Fluent program, loading a model and typing the command into the TUI command window.</p></li>
+<li><p>TUI commands are of the form <code class="docutils literal notranslate"><span class="pre">/menu/submenu/command</span> <span class="pre">argument</span></code></p></li>
+<li><p>Scheme commands are within brackets <code class="docutils literal notranslate"><span class="pre">(command)</span></code> and many commands may be undocumented - Scheme is a general programming language like C.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="why-you-should-use-a-fluent-journal-file">
+<h2>Why you should use a Fluent journal file<a class="headerlink" href="#why-you-should-use-a-fluent-journal-file" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Using journal files with bash scripting can allow you to automate your jobs.</p></li>
+<li><p>Using journal files can allow you to parameterise your models easily and automatically.</p></li>
+<li><p>Using a journal file can set parameters you do not have in your case file e.g. autosaving.</p></li>
+<li><p>Using a journal file can allow you to safely save, stop and restart your jobs easily.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="how-to-make-a-fluent-journal-file">
+<h2>How to make a Fluent journal file<a class="headerlink" href="#how-to-make-a-fluent-journal-file" title="Link to this heading"></a></h2>
+<p>If you have already made your case file and it is fully setup, the best way to make a journal file is to manually create one with a text editor with the necessary loading, initialisation, solving, stopping and saving commands.</p>
+<p>For complex model setup, the primary way to make a journal file is to record a journal file with how you have setup your case (File &gt; Write &gt; Start Journal) using the Fluent GUI. This will allow for direct playback of exactly what you have done. This may have downsides such as one GUI operation being translated into several commands and / or you may make mistakes. For this reason it is best to take a hybrid approach and manually tweak your journal files after making them.</p>
+</section>
+<hr class="docutils" />
+<section id="common-journal-file-commands">
+<h2>Common journal file commands<a class="headerlink" href="#common-journal-file-commands" title="Link to this heading"></a></h2>
+<p>Note that the order of your journal file commands is <strong>highly</strong> important. The correct sequences must be followed and some stages have multiple options e.g. different initialisation methods.</p>
+<section id="reading-a-case-file">
+<h3>Reading a case file<a class="headerlink" href="#reading-a-case-file" title="Link to this heading"></a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">;</span><span class="n">Reading</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">case</span> <span class="n">file</span>
+<span class="o">/</span><span class="n">rc</span> <span class="n">fullcase</span><span class="o">.</span><span class="n">cas</span><span class="o">.</span><span class="n">gz</span>
+<span class="p">;</span> <span class="n">an</span> <span class="n">alternative</span> <span class="n">form</span> <span class="n">of</span> <span class="n">this</span> <span class="ow">is</span> <span class="s2">&quot;/file/read-case fullcase.cas.gz&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="initialisation-of-a-case-file">
+<h3>Initialisation of a case file<a class="headerlink" href="#initialisation-of-a-case-file" title="Link to this heading"></a></h3>
+<p>Choose only one initialisation method.</p>
+<p>Normal Initialisation:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">;</span><span class="n">initialising</span> <span class="n">the</span> <span class="n">system</span>
+<span class="o">/</span><span class="n">solve</span><span class="o">/</span><span class="n">init</span><span class="o">/</span><span class="n">init</span>
+</pre></div>
+</div>
+<p>Hybrid initialisation of a case file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">;</span><span class="n">hybrid</span> <span class="n">initialising</span> <span class="n">the</span> <span class="n">system</span>
+<span class="o">/</span><span class="n">solve</span><span class="o">/</span><span class="n">init</span><span class="o">/</span><span class="n">hyb</span><span class="o">-</span><span class="n">init</span>
+</pre></div>
+</div>
+</section>
+<section id="setting-the-transient-time-step">
+<h3>Setting the transient time step<a class="headerlink" href="#setting-the-transient-time-step" title="Link to this heading"></a></h3>
+<p>Only necessary if you are using a transient model.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">;</span><span class="n">Setting</span> <span class="n">the</span> <span class="n">transient</span> <span class="n">time</span> <span class="n">step</span> <span class="n">size</span>
+<span class="o">/</span><span class="n">solve</span><span class="o">/</span><span class="nb">set</span><span class="o">/</span><span class="n">time</span><span class="o">-</span><span class="n">step</span> <span class="mf">0.01</span>
+</pre></div>
+</div>
+</section>
+<section id="starting-a-solve-process">
+<h3>Starting a solve process<a class="headerlink" href="#starting-a-solve-process" title="Link to this heading"></a></h3>
+<p>Depending on your model type, either solve specifying time steps and iterations, or just iterations.</p>
+<p>Starting a solve process with a number of iteration steps:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">solve</span><span class="o">/</span><span class="nb">iter</span> <span class="mi">2000</span>
+</pre></div>
+</div>
+<p>Starting a solve process with a number of time steps and iteration steps:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">;</span><span class="n">Setting</span> <span class="n">the</span> <span class="n">number</span> <span class="n">of</span> <span class="n">time</span><span class="o">-</span><span class="n">steps</span> <span class="p">(</span><span class="n">first</span> <span class="n">number</span><span class="p">)</span> <span class="ow">and</span> <span class="n">the</span> <span class="nb">max</span>
+<span class="p">;</span><span class="n">number</span> <span class="n">of</span> <span class="n">iterations</span> <span class="n">per</span> <span class="n">step</span> <span class="p">(</span><span class="n">second</span> <span class="n">number</span><span class="p">)</span>
+<span class="o">/</span><span class="n">solve</span><span class="o">/</span><span class="n">dual</span><span class="o">-</span><span class="n">time</span><span class="o">-</span><span class="n">iterate</span> <span class="mi">1000</span> <span class="mi">1000</span>
+</pre></div>
+</div>
+</section>
+<section id="outputting-performance-data-at-model-finish">
+<h3>Outputting performance data at model finish:<a class="headerlink" href="#outputting-performance-data-at-model-finish" title="Link to this heading"></a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">;</span><span class="n">Outputting</span> <span class="n">solver</span> <span class="n">performance</span> <span class="n">data</span> <span class="n">upon</span> <span class="n">completion</span> <span class="n">of</span> <span class="n">the</span> <span class="n">simulation</span>
+<span class="o">/</span><span class="n">parallel</span> <span class="n">timer</span> <span class="n">usage</span>
+</pre></div>
+</div>
+</section>
+<section id="saving-your-model">
+<h3>Saving your model<a class="headerlink" href="#saving-your-model" title="Link to this heading"></a></h3>
+<p>To save your model you will need to save your data, but you may also choose to save your final case file.</p>
+<p>Saving the final case file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">;</span><span class="n">Writing</span> <span class="n">the</span> <span class="n">final</span> <span class="n">case</span> <span class="n">file</span> <span class="p">(</span><span class="n">overwriting</span> <span class="k">if</span> <span class="n">required</span><span class="p">)</span>
+<span class="o">/</span><span class="n">wc</span> <span class="n">fullcase</span><span class="o">.</span><span class="n">cas</span><span class="o">.</span><span class="n">gz</span>
+<span class="n">yes</span>
+<span class="p">;</span> <span class="n">an</span> <span class="n">alternative</span> <span class="n">form</span> <span class="n">of</span> <span class="n">this</span> <span class="ow">is</span> <span class="s2">&quot;/file/write-case output_results.cas ok&quot;</span>
+</pre></div>
+</div>
+<p>Saving the final data file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">;</span><span class="n">Writing</span> <span class="n">the</span> <span class="n">final</span> <span class="n">data</span> <span class="n">file</span> <span class="p">(</span><span class="n">overwriting</span> <span class="k">if</span> <span class="n">required</span><span class="p">)</span>
+<span class="o">/</span><span class="n">wd</span> <span class="n">fullcase</span><span class="o">.</span><span class="n">dat</span><span class="o">.</span><span class="n">gz</span>
+<span class="n">yes</span>
+<span class="p">;</span> <span class="n">an</span> <span class="n">alternative</span> <span class="n">form</span> <span class="n">of</span> <span class="n">this</span> <span class="ow">is</span> <span class="s2">&quot;/file/write-data output_results.data ok&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="exit-fluent">
+<h3>Exit fluent<a class="headerlink" href="#exit-fluent" title="Link to this heading"></a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">;</span><span class="n">Exiting</span> <span class="n">Fluent</span>
+<span class="o">/</span><span class="n">exit</span>
+<span class="n">yes</span>
+<span class="p">;</span> <span class="n">an</span> <span class="n">alternative</span> <span class="n">form</span> <span class="n">of</span> <span class="n">this</span> <span class="ow">is</span> <span class="s2">&quot;/exit ok&quot;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="autosaving-and-saving-intermediate-state-models">
+<h2>Autosaving and saving intermediate state models<a class="headerlink" href="#autosaving-and-saving-intermediate-state-models" title="Link to this heading"></a></h2>
+<section id="autosaving">
+<h3>Autosaving<a class="headerlink" href="#autosaving" title="Link to this heading"></a></h3>
+<p>Using a journal file you can instruct Fluent to automatically save every X iterations or timesteps.</p>
+<p>To do this you can add the following to your Fluent journal file (where 1 is the number of iterations between each autosave):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">file</span><span class="o">/</span><span class="n">autosave</span><span class="o">/</span><span class="n">data</span><span class="o">-</span><span class="n">frequency</span> <span class="mi">1</span>
+</pre></div>
+</div>
+<p>You can also use the following to choose the root name/path of the auto saves file names:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">file</span><span class="o">/</span><span class="n">auto</span><span class="o">-</span><span class="n">save</span><span class="o">/</span><span class="n">root</span><span class="o">-</span><span class="n">name</span> <span class="s2">&quot;path/mysaved/checkpoints&quot;</span>
+</pre></div>
+</div>
+<p>If you have many iterations / time steps to complete you may also wish to add the following to retain only the 5 most recent iterations:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">file</span><span class="o">/</span><span class="n">auto</span><span class="o">-</span><span class="n">save</span><span class="o">/</span><span class="n">retain</span><span class="o">-</span><span class="n">most</span><span class="o">-</span><span class="n">recent</span><span class="o">-</span><span class="n">files</span> <span class="n">yes</span>
+</pre></div>
+</div>
+<p>You can then subsequently resume your model if needed by changing to load the last data file in your journal file. Unfortunately this autosave method will not save state immediately before your job runs out of time as it is only by a fixed interval. Please follow the instructions below to save an intermediate state model immediately before your job is terminated.</p>
+</section>
+<section id="saving-intermediate-state-models">
+<h3>Saving intermediate state models<a class="headerlink" href="#saving-intermediate-state-models" title="Link to this heading"></a></h3>
+<p>For some models, you may need to request multiple jobs in order to finish the convergence process and as detailed above the autosaving process will not save state immediately prior to your job being terminated by the scheduler thus losing some progress. To address this there is an complimentary method which will save before your job finishes.</p>
+<p>Place the following commands in your journal file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>(set! checkpoint/check-filename &quot;./check-fluent&quot;)
+(set! checkpoint/exit-filename &quot;./exit-fluent&quot;)
+</pre></div>
+</div>
+<p>This is instructing Fluent to check for files called <code class="docutils literal notranslate"><span class="pre">check-fluent</span></code> and <code class="docutils literal notranslate"><span class="pre">exit-fluent</span></code> in the current working directory for your Fluent job. The presence of <code class="docutils literal notranslate"><span class="pre">check-fluent</span></code> file will instruct Fluent to conduct a save and then resume computation. The presence of <code class="docutils literal notranslate"><span class="pre">exit-fluent</span></code> file will instruct Fluent to conduct a save and then exit.
+The <code class="docutils literal notranslate"><span class="pre">exit-fluent</span></code> command will also automatically generate a <code class="docutils literal notranslate"><span class="pre">#restart.inp</span></code> file (a fluent journal) which can be used to restart the job from where it stopped.</p>
+<p>We can write a small timer trigger script which will place the <code class="docutils literal notranslate"><span class="pre">exit-fluent</span></code> file prior to your job ending which is ran and forked as part of your main batch submission script.</p>
+<p>Where <code class="docutils literal notranslate"><span class="pre">/home/username/fluent_wait_then_save_and_exit.sh</span></code> is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>#!/bin/bash
+#Sleep for the length supplied as arguments
+sleep $*
+#Add the file to save and stop fluent in the current working directory.
+touch exit-fluent
+exit
+</pre></div>
+</div>
+<p>Ensure that you set this script executable with:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">chmod</span> <span class="o">+</span><span class="n">x</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">username</span><span class="o">/</span><span class="n">fluent_wait_then_save_and_exit</span><span class="o">.</span><span class="n">sh</span>
+</pre></div>
+</div>
+<p>Take care with the supplied arguments as <strong>$*</strong> supplies all arguments after the script command - sleep understands the following format:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>s - seconds (default)</p></li>
+<li><p>m - minutes</p></li>
+<li><p>h - hours</p></li>
+<li><p>d - days</p></li>
+</ul>
+</div></blockquote>
+<p>These can be added together like so: 1h 55m</p>
+<p>You would fork this script into the background by using the &amp; symbol at the end in your batch submission script e.g. :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">username</span><span class="o">/</span><span class="n">fluent_wait_then_save_and_exit</span><span class="o">.</span><span class="n">sh</span> <span class="mi">1</span><span class="n">h</span> <span class="mi">55</span><span class="n">m</span> <span class="o">&amp;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="example-simple-journal-file-load-case-initialise-run-save-data-and-exit">
+<h2>Example: Simple journal file - load case, initialise, run, save data and exit<a class="headerlink" href="#example-simple-journal-file-load-case-initialise-run-save-data-and-exit" title="Link to this heading"></a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">;</span><span class="n">Reading</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">case</span> <span class="n">file</span>
+<span class="o">/</span><span class="n">rc</span> <span class="n">fullcase</span><span class="o">.</span><span class="n">cas</span><span class="o">.</span><span class="n">gz</span>
+<span class="p">;</span>
+<span class="p">;</span> <span class="n">initialising</span> <span class="n">the</span> <span class="n">system</span>
+<span class="o">/</span><span class="n">solve</span><span class="o">/</span><span class="n">init</span><span class="o">/</span><span class="n">init</span>
+<span class="p">;</span>
+<span class="p">;</span><span class="n">Setting</span> <span class="n">the</span> <span class="n">number</span> <span class="n">of</span> <span class="n">iterations</span> <span class="ow">and</span> <span class="n">solving</span>
+<span class="o">/</span><span class="n">solve</span><span class="o">/</span><span class="nb">iter</span> <span class="mi">2000</span>
+<span class="p">;</span>
+<span class="p">;</span><span class="n">Writing</span> <span class="n">the</span> <span class="n">final</span> <span class="n">data</span> <span class="n">file</span> <span class="p">(</span><span class="n">overwriting</span> <span class="k">if</span> <span class="n">required</span><span class="p">)</span>
+<span class="o">/</span><span class="n">wd</span> <span class="n">fullcase</span><span class="o">.</span><span class="n">dat</span><span class="o">.</span><span class="n">gz</span>
+<span class="p">;</span>
+<span class="p">;</span><span class="n">Exit</span> <span class="n">Fluent</span>
+<span class="o">/</span><span class="n">exit</span> <span class="n">ok</span>
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="example-complex-journal-file-submerged-vegetation-benchmark">
+<h2>Example: Complex journal file - submerged vegetation benchmark<a class="headerlink" href="#example-complex-journal-file-submerged-vegetation-benchmark" title="Link to this heading"></a></h2>
+<p>The following <code class="docutils literal notranslate"><span class="pre">runbenchmark.jou</span></code> journal file manually loads the mesh specifies many parameters. The model being ran is a benchmark test case of submerged vegetation and is writing out a benchmarktimes.txt file with the start and end time of the model.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>; Benchmark 1000 iteration test case for ANSYS Fluent 17 and up
+; Created by Fred Sonnenwald at the University of Sheffield
+; This benchmark may work with older Fluent versions, but some of the TUI commands may need to be changed
+; This simulation is of submerged vegetation in an infinitely long flume
+
+; To run locally, execute the following command in a shell where X is the number of cores
+; fluent 3ddp -tX -i runbenchmark.jou -g
+
+; Larger meshes (smaller cells) are suitable for testing more nodes and will use more RAM
+; Expected memory usage (sum of all cores) is approximately 256(?), 120, 30, 4, and 1 GB
+; Expected core count for reasonable solution time of &lt;1 hour is 128(?), 32, 16, 8, and 2 Broadwell cores
+; Limitations for this problem are guessed to be:
+;  * CPU Bound for the larger meshes;
+;  * Memory I/O bound for mid-size meshes; and
+;  * Interconnect bound for the smaller meshes
+; Load the mesh (change which mesh by commenting,uncommenting - comments start with ;)
+;f rc ./3d_0.0025.msh
+;f rc ./3d_0.0030.msh
+;f rc ./3d_0.0050.msh
+f rc ./3d_0.0100.msh
+;f rc ./3d_0.0200.msh
+
+; Define water
+/define/materials/copy fluid water-liquid
+/define/boundary-conditions/fluid vegetation yes water-liquid n n n n 0 n 0 n 0 n 0 n 0 n 0 n n n n n
+/define/boundary-conditions/fluid water yes water-liquid n n n n 0 n 0 n 0 n 0 n 0 n 0 n n n n n
+/define/materials/delete air
+
+; Setup periodic flow
+mesh mz mp inlet-vegetation outlet-vegetation n y y
+mesh mz mp inlet-water outlet-water n y y
+/define/periodic-conditions massflow 50 , , , , , ,
+
+; Zero-shear surface boundary condition
+/define/boundary-conditions/set/wall surface () shear-bc yes shear-bc-spec-shear q
+
+; Use the Reynolds Stress Model
+/define/models/viscous/ke-rng y
+
+; Use the Enhanced Wall Treatment near wall boundary conditions
+/define/models/viscous/nwt ewt yes
+
+; Setup drag within the vegetation with Cd=1 &amp; a=4
+/define/boundary-conditions/fluid vegetation yes water-liquid n n n n 0 n 0 n 0 n 0 n 0 n 0 n n n
+y n n 1 n 0 n 0 n 0 n 1 n 0 n n 0 n 0 n 0 n n 4 n 4 n 0 0 0 n 1 , 1
+n
+
+; Set the Coupled Pressure-Velocity Coupling and second order discritisation
+/solve/set/pv-coupling 21
+/solve/set/disc/pres 14
+/solve/set/disc/mom 4
+/solve/set/disc/k 1
+/solve/set/disc/e 1
+/solve/set/disc/drsm 1
+
+; Set initial flow conditions and initialise
+/solve/initialize/set-defaults/pressure 0
+/solve/initialize/set-defaults/x-velocity 0.0265625
+/solve/initialize/set-defaults/y-velocity 0
+/solve/initialize/set-defaults/k 1e-5
+/solve/initialize/set-defaults/eps 1e-5
+/solve/initialize/initialize-flow
+
+; Record the start time in a txt file
+!date &gt;&gt; benchmarktimes.txt
+
+; Run for 1000 iterations
+/so it 1000
+
+; Record the end time in a txt file
+!date &gt;&gt; benchmarktimes.txt
+
+; Save, overwriting the previous run if it exists
+/f wcd benchmark ok
+
+; Exit
+exit ok
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="ANSYS Fluent Reference Info" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="export-fluent-plots-while-using-batch-jobs.html" class="btn btn-neutral float-right" title="Exporting GUI Fluent plots in batch submission jobs" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, The University of Sheffield.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<footer class="footer">
+  <div class="container">
+    <div class="left-footer">
+         &copy; 2024, The University of Sheffield
+       <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" /></a>
+    </div>
+   
+    <div class="centre-footer">
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.3.7
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

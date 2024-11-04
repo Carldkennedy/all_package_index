@@ -1,0 +1,354 @@
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stanage Specifications &mdash; Sheffield HPC Documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=a5c4661c" />
+      <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=0a35405e" />
+
+  
+    <link rel="canonical" href="https://docs.hpc.shef.ac.uk/stanage/cluster_specs.html" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../_static/copybutton.js?v=f281be69"></script>
+        <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Slurm Scheduler Job Submission info" href="slurm.html" />
+    <link rel="prev" title="xprop" href="software/stubs/el9-icelake-znver-stanage/Vis/xprop.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Sheffield HPC Documentation
+              <img src="../_static/UOSLogo_Primary_Violet_RGB_small.png" class="logo" alt="Logo"/>
+          </a><div>
+    <h3>Quick search</h3>
+    <!--Setup by JKWM via https://cse.google.com/cse/all-->
+    <script async src="https://cse.google.com/cse.js?cx=243e6cd4be08b404b">
+    </script>
+    <div class="gcse-search"></div>
+ </div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../hpc/index.html">Using the HPC Systems</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Stanage</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="stanage-FAQ-gotchas.html">Stanage FAQ and Gotchas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="software/index.html">Software on Stanage</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Stanage Specifications</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#operating-system-and-software">Operating System and software</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#networking">Networking</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#general-cpu-node-specifications">General CPU node specifications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#large-memory-node-specifications">Large memory node specifications</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#large-memory-nodes">Large memory nodes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#very-large-memory-nodes">Very large memory nodes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#gpu-nodes">GPU nodes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#a100-gpu-node-specifications">A100 GPU node specifications</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#h100-gpu-node-specifications">H100 GPU node specifications</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#non-worker-nodes">Non-worker nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#total-capacity">Total capacity</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="slurm.html">Slurm Scheduler Job Submission info</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stanage-mfa-setup.html">Stanage TOTP multifactor authentication setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="GPUComputingStanage.html">Using GPUs on Stanage</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../bessemer/index.html">Bessemer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../parallel/index.html">Parallel Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../newsletter/index.html">News</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary of Terms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../other-uk-hpc-resources.html">Access to External UK HPC Facilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../help.html">Need help?</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://rcgsheffield.github.io/TUoS-RIT-training-resources/training.html">Courses / Training Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../FAQs.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cheatsheets/index.html">Quick Reference (Cheat Sheets)</a></li>
+<li class="toctree-l1"><a class="reference external" href="http://changelog.hpc.shef.ac.uk/">Latest Software / HPC changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../referenceinfo/index.html">Reference Information Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../citing.html">Suggested text for citations and letters of support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../decommissioned/index.html">Decommissioned Clusters</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Sheffield HPC Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+<!-- <a class="forkme" href="https://github.com/rcgsheffield/sheffield_hpc">
+<img alt="Fork me on GitHub" src="../_static/img/forkme.png"> 
+</a> -->
+
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Stanage</a></li>
+      <li class="breadcrumb-item active">Stanage Specifications</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="toctree-wrapper compound">
+</div>
+<section id="stanage-specifications">
+<span id="stanage-specs"></span><h1>Stanage Specifications<a class="headerlink" href="#stanage-specifications" title="Link to this heading"></a></h1>
+<section id="operating-system-and-software">
+<span id="stanage-os-software-specs"></span><h2>Operating System and software<a class="headerlink" href="#operating-system-and-software" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>OS: CentOS 7.x (binary compatible with RedHat Enterprise Linux 7.x) on all nodes.</p></li>
+<li><p>Interactive and batch job scheduling software: Slurm.</p></li>
+<li><p>Many applications, compilers, libraries and parallel processing tools. See <a class="reference internal" href="software/index.html#stanage-software"><span class="std std-ref">Software on Stanage</span></a>.</p></li>
+</ul>
+</section>
+<section id="networking">
+<span id="stanage-network-specs"></span><h2>Networking<a class="headerlink" href="#networking" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Intel OmniPath Architecture (OPA) (100 Gb/s) to all public nodes.</p></li>
+<li><p>Gigabit Ethernet.</p></li>
+</ul>
+</section>
+<section id="general-cpu-node-specifications">
+<span id="stanage-cpu-specs"></span><h2>General CPU node specifications<a class="headerlink" href="#general-cpu-node-specifications" title="Link to this heading"></a></h2>
+<p>152 nodes are publicly available (not exclusive to research groups).</p>
+<ul class="simple">
+<li><p>Machine: <a class="reference external" href="https://www.dell.com/en-us/shop/productdetailstxn/poweredge-r650">Dell PowerEdge R650</a>.</p></li>
+<li><p>CPUs: 2 x 32 core <a class="reference external" href="https://www.intel.co.uk/content/www/uk/en/products/sku/212282/intel-xeon-platinum-8358-processor-48m-cache-2-60-ghz/specifications.html">Intel Xeon Platinum 8358</a>:</p>
+<ul>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Ice_Lake_(microprocessor)">Ice Lake</a> processor microarchitecture;</p></li>
+<li><p>Base clock 2.60 GHz; Boost clock 3.40 GHz;</p></li>
+<li><p>Support for <a class="reference external" href="https://en.wikipedia.org/wiki/AVX-512">AVX-512</a> vectorisation instructions (simultaneously apply the same operation to multiple values in hardware);</p></li>
+<li><p>Support for <a class="reference external" href="https://en.wikipedia.org/wiki/Multiply%E2%80%93accumulate_operation#Fused_multiply.E2.80.93add">Fused Multiply-Add</a> instructions (expedites operations involving the accumulation of products e.g. matrix multiplication);</p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Hyper-threading">Hyperthreading</a> is disabled on all nodes.</p></li>
+</ul>
+</li>
+</ul>
+<ul class="simple">
+<li><p>RAM: 256 GB (i.e. 4.0 GiB / core):</p>
+<ul>
+<li><p>3200 MT/s;</p></li>
+<li><p>DDR4.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="large-memory-node-specifications">
+<h2>Large memory node specifications<a class="headerlink" href="#large-memory-node-specifications" title="Link to this heading"></a></h2>
+<p>To complement the standard nodes with 256GB of memory per node (4GB/core), there are 12 large memory
+nodes with 1TB  (16GB/core), and a further 12 very large nodes with 2TB (32GB/core).</p>
+<section id="large-memory-nodes">
+<h3>Large memory nodes<a class="headerlink" href="#large-memory-nodes" title="Link to this heading"></a></h3>
+<p>12 nodes are publicly available (not exclusive to research groups).</p>
+<ul class="simple">
+<li><p>Machine: <a class="reference external" href="https://www.dell.com/en-us/shop/productdetailstxn/poweredge-r650">Dell PowerEdge R650</a>.</p></li>
+<li><p>CPUs: 2 x 32 core <a class="reference external" href="https://www.intel.co.uk/content/www/uk/en/products/sku/212282/intel-xeon-platinum-8358-processor-48m-cache-2-60-ghz/specifications.html">Intel Xeon Platinum 8358</a>:</p>
+<ul>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Ice_Lake_(microprocessor)">Ice Lake</a> processor microarchitecture;</p></li>
+<li><p>Base clock 2.60 GHz; Boost clock 3.40 GHz;</p></li>
+<li><p>Support for <a class="reference external" href="https://en.wikipedia.org/wiki/AVX-512">AVX-512</a> vectorisation instructions (simultaneously apply the same operation to multiple values in hardware);</p></li>
+<li><p>Support for <a class="reference external" href="https://en.wikipedia.org/wiki/Multiply%E2%80%93accumulate_operation#Fused_multiply.E2.80.93add">Fused Multiply-Add</a> instructions (expedites operations involving the accumulation of products e.g. matrix multiplication);</p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Hyper-threading">Hyperthreading</a> is disabled on all nodes.</p></li>
+</ul>
+</li>
+</ul>
+<ul class="simple">
+<li><p>RAM: 1024 GB (i.e. 16.0 GiB / core):</p>
+<ul>
+<li><p>3200 MT/s;</p></li>
+<li><p>DDR4.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="very-large-memory-nodes">
+<h3>Very large memory nodes<a class="headerlink" href="#very-large-memory-nodes" title="Link to this heading"></a></h3>
+<p>12 nodes are publicly available (not exclusive to research groups).</p>
+<ul class="simple">
+<li><p>Machine: <a class="reference external" href="https://www.dell.com/en-us/shop/productdetailstxn/poweredge-r650">Dell PowerEdge R650</a>.</p></li>
+<li><p>CPUs: 2 x 32 core <a class="reference external" href="https://www.intel.co.uk/content/www/uk/en/products/sku/212282/intel-xeon-platinum-8358-processor-48m-cache-2-60-ghz/specifications.html">Intel Xeon Platinum 8358</a>:</p>
+<ul>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Ice_Lake_(microprocessor)">Ice Lake</a> processor microarchitecture;</p></li>
+<li><p>Base clock 2.60 GHz; Boost clock 3.40 GHz;</p></li>
+<li><p>Support for <a class="reference external" href="https://en.wikipedia.org/wiki/AVX-512">AVX-512</a> vectorisation instructions (simultaneously apply the same operation to multiple values in hardware);</p></li>
+<li><p>Support for <a class="reference external" href="https://en.wikipedia.org/wiki/Multiply%E2%80%93accumulate_operation#Fused_multiply.E2.80.93add">Fused Multiply-Add</a> instructions (expedites operations involving the accumulation of products e.g. matrix multiplication);</p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Hyper-threading">Hyperthreading</a> is disabled on all nodes.</p></li>
+</ul>
+</li>
+</ul>
+<ul class="simple">
+<li><p>RAM: 2048 GB (i.e. 32.0 GiB / core):</p>
+<ul>
+<li><p>3200 MT/s;</p></li>
+<li><p>DDR4.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="gpu-nodes">
+<span id="stanage-gpu-specs"></span><h2>GPU nodes<a class="headerlink" href="#gpu-nodes" title="Link to this heading"></a></h2>
+<section id="a100-gpu-node-specifications">
+<h3>A100 GPU node specifications<a class="headerlink" href="#a100-gpu-node-specifications" title="Link to this heading"></a></h3>
+<p>15 nodes are publicly available (not exclusive to research groups).
+Prior to December 2022 these were temporarily available in the Bessemer cluster.</p>
+<ul class="simple">
+<li><p>Machine: <a class="reference external" href="https://www.delltechnologies.com/asset/en-id/products/servers/technical-support/dell-emc-poweredge-xe8545-spec-sheet.pdf">Dell PowerEdge XE8545</a>.</p></li>
+<li><p>CPUs: 2 x 24 core <a class="reference external" href="https://www.amd.com/en/products/cpu/amd-epyc-7413">AMD EPYC 7413</a>:</p>
+<ul>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Zen_3">Zen 3</a> processor microarchitecture;</p></li>
+<li><p>Base clock 2.65 GHz; Boost clock 3.60 GHz;</p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Hyper-threading">Hyperthreading</a> is disabled on all nodes.</p></li>
+</ul>
+</li>
+<li><p>RAM: 512 GB (i.e. 32.0 GiB / core):</p>
+<ul>
+<li><p>3200 MHz;</p></li>
+<li><p>DDR4.</p></li>
+</ul>
+</li>
+<li><p>Local storage: 460 GB boot device (SSD) plus 2.88 TB <a class="reference internal" href="../hpc/filestore.html#scratch-dir"><span class="std std-ref">‘/scratch’ temporary storage</span></a> (RAID 0 on SSDs).</p></li>
+<li><p>GPUs: 4x <a class="reference external" href="https://www.nvidia.com/en-gb/data-center/a100/">NVIDIA A100</a>, each with:</p>
+<ul>
+<li><p>High-bandwidth, low-latency <a class="reference external" href="https://www.nvidia.com/en-gb/design-visualization/nvlink-bridges/">NVLink</a> GPU interconnects (3-4x the bandwidth of PCIe for inter-GPU comms)</p></li>
+<li><p>80GB memory (HBM2e).</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="h100-gpu-node-specifications">
+<h3>H100 GPU node specifications<a class="headerlink" href="#h100-gpu-node-specifications" title="Link to this heading"></a></h3>
+<p>6 nodes are publicly available (not exclusive to research groups).</p>
+<ul class="simple">
+<li><p>Machine: <a class="reference external" href="https://i.dell.com/sites/csdocuments/Product_Docs/en/PowerEdge-R7525-Spec-Sheet.pdf">Dell PowerEdge R7525</a>.</p></li>
+<li><p>CPUs: 2 x 24 core <a class="reference external" href="https://www.amd.com/en/products/cpu/amd-epyc-7413">AMD EPYC 7413</a>:</p>
+<ul>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Zen_3">Zen 3</a> processor microarchitecture;</p></li>
+<li><p>Base clock 2.65 GHz; Boost clock 3.60 GHz;</p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Hyper-threading">Hyperthreading</a> is disabled on all nodes.</p></li>
+</ul>
+</li>
+<li><p>RAM: 512 GB (i.e. 32.0 GiB / core):</p>
+<ul>
+<li><p>3200 MHz;</p></li>
+<li><p>DDR4.</p></li>
+</ul>
+</li>
+<li><p>Local storage: 460 GB boot device (SSD) plus 960 GB <a class="reference internal" href="../hpc/filestore.html#scratch-dir"><span class="std std-ref">‘/scratch’ temporary storage</span></a> (SSD).</p></li>
+<li><p>GPUs: 2x <a class="reference external" href="https://www.nvidia.com/en-gb/data-center/h100/">NVIDIA H100</a>, each with:</p>
+<ul>
+<li><p>PCIe connectivity (NB 3-4x <em>less</em> bandwidth than NVLink for inter-GPU comms)</p></li>
+<li><p>80GB memory (HBM2e).</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="non-worker-nodes">
+<h2>Non-worker nodes<a class="headerlink" href="#non-worker-nodes" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Two login nodes (for resilience).</p></li>
+<li><p>Other nodes to provide:</p>
+<ul>
+<li><p>Lustre parallel filesystem.</p></li>
+<li><p>Slurm scheduler ‘head’ nodes.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="total-capacity">
+<h2>Total capacity<a class="headerlink" href="#total-capacity" title="Link to this heading"></a></h2>
+<p>With all workers including GPU and large memory nodes:</p>
+<ul class="simple">
+<li><p>Worker nodes: 204.</p></li>
+<li><p>CPU cores: 12608.</p>
+<ul>
+<li><p>Intel Cores: 11264.</p></li>
+<li><p>AMD Cores: 1344.</p></li>
+</ul>
+</li>
+<li><p>Total memory:  90112 GiB.</p></li>
+<li><p>GPUs: 76.</p></li>
+<li><p>Fast network filesystem (<a class="reference external" href="http://lustre.org/">Lustre</a>):  2 PiB.</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="software/stubs/el9-icelake-znver-stanage/Vis/xprop.html" class="btn btn-neutral float-left" title="xprop" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="slurm.html" class="btn btn-neutral float-right" title="Slurm Scheduler Job Submission info" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, The University of Sheffield.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<footer class="footer">
+  <div class="container">
+    <div class="left-footer">
+         &copy; 2024, The University of Sheffield
+       <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" /></a>
+    </div>
+   
+    <div class="centre-footer">
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.3.7
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

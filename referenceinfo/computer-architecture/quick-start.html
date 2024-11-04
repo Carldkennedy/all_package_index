@@ -1,0 +1,343 @@
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>General Computer Architecture Quick Start &mdash; Sheffield HPC Documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/tabs.css?v=a5c4661c" />
+      <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=0a35405e" />
+
+  
+    <link rel="canonical" href="https://docs.hpc.shef.ac.uk/referenceinfo/computer-architecture/quick-start.html" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../_static/copybutton.js?v=f281be69"></script>
+        <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Connecting via SSH Reference Info" href="../connecting-ssh/index.html" />
+    <link rel="prev" title="Computer Architecture Reference Info" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Sheffield HPC Documentation
+              <img src="../../_static/UOSLogo_Primary_Violet_RGB_small.png" class="logo" alt="Logo"/>
+          </a><div>
+    <h3>Quick search</h3>
+    <!--Setup by JKWM via https://cse.google.com/cse/all-->
+    <script async src="https://cse.google.com/cse.js?cx=243e6cd4be08b404b">
+    </script>
+    <div class="gcse-search"></div>
+ </div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../hpc/index.html">Using the HPC Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../stanage/index.html">Stanage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../bessemer/index.html">Bessemer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../parallel/index.html">Parallel Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../newsletter/index.html">News</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html">Glossary of Terms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../other-uk-hpc-resources.html">Access to External UK HPC Facilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../help.html">Need help?</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://rcgsheffield.github.io/TUoS-RIT-training-resources/training.html">Courses / Training Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../FAQs.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cheatsheets/index.html">Quick Reference (Cheat Sheets)</a></li>
+<li class="toctree-l1"><a class="reference external" href="http://changelog.hpc.shef.ac.uk/">Latest Software / HPC changelog</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Reference Information Index</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../ANSYS/index.html">ANSYS Packages Reference Info</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../environment-modules/index.html">Environment Modules Reference Info</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linux-shell/index.html">Linux shell Reference Info</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scheduler/index.html">Scheduler Reference Info</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Computer Architecture Reference Info</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">General Computer Architecture Quick Start</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#computer-architecture-as-a-concept">Computer architecture as a concept</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#physical-architecture">Physical architecture</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#cpu">CPU</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#cpu-cache">CPU cache</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#core">Core</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#socket">Socket</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#motherboard">Motherboard</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#system-bus-buses">System bus / buses</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#memory-slot">Memory slot</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#memory">Memory</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#memory-bus">Memory Bus</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#pci-or-pcie-bus">PCI or PCIe Bus</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#pci-or-pcie-slot">PCI or PCIe slot</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#gpu">GPU</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#cpu-microarchitecture">CPU Microarchitecture</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#virtual-architecture">Virtual architecture</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#threads-hyperthreading">Threads / Hyperthreading</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#virtual-memory">Virtual memory</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#id1">Instruction sets</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../connecting-ssh/index.html">Connecting via SSH Reference Info</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mfa/index.html">Multifactor Authentication Reference Info</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../admins/index.html">Documentation Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../citing.html">Suggested text for citations and letters of support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../decommissioned/index.html">Decommissioned Clusters</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Sheffield HPC Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+<!-- <a class="forkme" href="https://github.com/rcgsheffield/sheffield_hpc">
+<img alt="Fork me on GitHub" src="../../_static/img/forkme.png"> 
+</a> -->
+
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Reference Information Index</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Computer Architecture Reference Info</a></li>
+      <li class="breadcrumb-item active">General Computer Architecture Quick Start</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="toctree-wrapper compound" id="general-computer-architecture-quickstart">
+</div>
+<section id="general-computer-architecture-quick-start">
+<h1>General Computer Architecture Quick Start<a class="headerlink" href="#general-computer-architecture-quick-start" title="Link to this heading"></a></h1>
+<p>This page details the parts of a modern computer and their connectivity that
+we need to understand to apply to running jobs on a HPC cluster.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>These descriptions are drastically simplified in order to give a basic
+overview which users can use to better understand requesting cluster
+resources.</p>
+</div>
+<hr class="docutils" />
+<section id="computer-architecture-as-a-concept">
+<h2>Computer architecture as a concept<a class="headerlink" href="#computer-architecture-as-a-concept" title="Link to this heading"></a></h2>
+<p>Before discussing aspects of “computer architecture” we must first define what this means. In short:</p>
+<blockquote>
+<div><p>Computer architecture refers to how a computer system is designed and what technologies
+it is compatible with.</p>
+</div></blockquote>
+<p>This can also be roughly subdivided into, system (physical) design, instruction set architecture and
+microarchitecture.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Further info on these subdivisions can be found at the following link:
+<a class="reference external" href="https://online.sunderland.ac.uk/what-is-computer-architecture/">https://online.sunderland.ac.uk/what-is-computer-architecture/</a></p>
+</div>
+</section>
+<hr class="docutils" />
+<section id="physical-architecture">
+<h2>Physical architecture<a class="headerlink" href="#physical-architecture" title="Link to this heading"></a></h2>
+<p>Physical architecture refers to the real physical components and structures used by computers.</p>
+<hr class="hr-mid-section-separator-dashed"><section id="cpu">
+<h3>CPU<a class="headerlink" href="#cpu" title="Link to this heading"></a></h3>
+<blockquote>
+<div><p>A central processing unit (CPU), the most common processing device in a computer which performs calculations in order to run applications and coordinate work with other components. Also known as a microprocessor.</p>
+</div></blockquote>
+<hr class="hr-mid-section-separator-dashed"></section>
+<section id="cpu-cache">
+<h3>CPU cache<a class="headerlink" href="#cpu-cache" title="Link to this heading"></a></h3>
+<blockquote>
+<div><p>CPU cache refers to smaller, faster memory which is located on the CPU itself. CPUs usually have multiple caches at different “levels” with higher levels able to store larger amounts of data but going slower.
+These caches are used to speed up computation by keeping the most frequently accessed data located in faster memory close to the CPU and its cores.</p>
+</div></blockquote>
+<hr class="hr-mid-section-separator-dashed"></section>
+<section id="core">
+<h3>Core<a class="headerlink" href="#core" title="Link to this heading"></a></h3>
+<blockquote>
+<div><p>A CPU core or processor core is a single subprocessing unit capable of one task at a time. Modern CPUs are made of multiple processor cores which share system memory.</p>
+</div></blockquote>
+<hr class="hr-mid-section-separator-dashed"></section>
+<section id="socket">
+<h3>Socket<a class="headerlink" href="#socket" title="Link to this heading"></a></h3>
+<blockquote>
+<div><p>A physical socket on a motherboard in which a CPU is inserted. Physical sockets are usually connected to their own groups of memory slots.</p>
+</div></blockquote>
+<hr class="hr-mid-section-separator-dashed"></section>
+<section id="motherboard">
+<h3>Motherboard<a class="headerlink" href="#motherboard" title="Link to this heading"></a></h3>
+<blockquote>
+<div><p>A motherboard is the main electronic board in which computer components reside and connect to one another. They contain one or more sockets, memory slots, PCIe slots and buses.</p>
+</div></blockquote>
+<hr class="hr-mid-section-separator-dashed"></section>
+<section id="system-bus-buses">
+<h3>System bus / buses<a class="headerlink" href="#system-bus-buses" title="Link to this heading"></a></h3>
+<blockquote>
+<div><p>A system bus or motherboard bus is a physical pathway of electronic circuits which enable discrete components within a computer to communicate with one another via the motherboard.</p>
+</div></blockquote>
+<hr class="hr-mid-section-separator-dashed"></section>
+<section id="memory-slot">
+<h3>Memory slot<a class="headerlink" href="#memory-slot" title="Link to this heading"></a></h3>
+<blockquote>
+<div><p>A memory slot is a physical slot in which physical memory sticks are inserted to provide the system memory.</p>
+</div></blockquote>
+<hr class="hr-mid-section-separator-dashed"></section>
+<section id="memory">
+<h3>Memory<a class="headerlink" href="#memory" title="Link to this heading"></a></h3>
+<blockquote>
+<div><p>Memory, system memory or RAM is a computer’s low latency, extremely high bandwidth short term data storage. It is used to store the data which the CPU currently requires to perform the computations to run applications.</p>
+</div></blockquote>
+<hr class="hr-mid-section-separator-dashed"></section>
+<section id="memory-bus">
+<h3>Memory Bus<a class="headerlink" href="#memory-bus" title="Link to this heading"></a></h3>
+<blockquote>
+<div><p>This is the communication bus between system memory and a Socket/CPU.</p>
+</div></blockquote>
+<hr class="hr-mid-section-separator-dashed"></section>
+<section id="pci-or-pcie-bus">
+<h3>PCI or PCIe Bus<a class="headerlink" href="#pci-or-pcie-bus" title="Link to this heading"></a></h3>
+<blockquote>
+<div><p>A communication bus between a Socket/CPU and input/output controllers connected to storage such as hard drives or solid state disks, network adaptors, GPUs or other compatible devices.</p>
+</div></blockquote>
+<hr class="hr-mid-section-separator-dashed"></section>
+<section id="pci-or-pcie-slot">
+<h3>PCI or PCIe slot<a class="headerlink" href="#pci-or-pcie-slot" title="Link to this heading"></a></h3>
+<blockquote>
+<div><p>A physical slot on the motherboard in which additional compatible components like a GPU can be inserted to connect with the PCIe Bus.</p>
+</div></blockquote>
+<hr class="hr-mid-section-separator-dashed"></section>
+<section id="gpu">
+<h3>GPU<a class="headerlink" href="#gpu" title="Link to this heading"></a></h3>
+<blockquote>
+<div><p>A graphical processing unit (GPU) is the second most common processing unit in a computer which is designed to perform specific graphical calculations very quickly and is normally used to drive a computer’s displays.
+These are commonly connected via a PCIe slot and bus. More recently GPUs have been used to perform similar graphical calculations but for other purposes such as AI or machine learning.</p>
+</div></blockquote>
+<hr class="hr-mid-section-separator-dashed"></section>
+<section id="cpu-microarchitecture">
+<h3>CPU Microarchitecture<a class="headerlink" href="#cpu-microarchitecture" title="Link to this heading"></a></h3>
+<blockquote>
+<div><p>CPU Microarchitecture refers to the fundamental design of a CPU including the physical layout, components and methods which enables the CPU to execute desired instructions or instruction sets.</p>
+</div></blockquote>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>One of the most important things about a CPU microarchitecture is which instruction sets it enables.
+Using purpose optimised instruction sets for our software can enable enhanced performance if the
+<a class="reference internal" href="../../hpc/installing-software.html#what-is-compiling"><span class="std std-ref">software is compiled</span></a> with these in mind.</p>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="virtual-architecture">
+<h2>Virtual architecture<a class="headerlink" href="#virtual-architecture" title="Link to this heading"></a></h2>
+<p>In this case, virtual architecture refers to the virtual components, concepts or structures used by computers.</p>
+<hr class="hr-mid-section-separator-dashed"><section id="threads-hyperthreading">
+<h3>Threads / Hyperthreading<a class="headerlink" href="#threads-hyperthreading" title="Link to this heading"></a></h3>
+<blockquote>
+<div><p>A thread can be considered a flow of instructions to be executed. A modern CPU core can normally execute 2 threads, or conceptually, 2 flows of instructions at the same time for
+additional performance. This is called hyperthreading. Performance improvements are usually modest but hyperthreading can decrease performance for some programs. Hyperthreading
+is disabled on the University of Sheffield HPC clusters.</p>
+</div></blockquote>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Multiple threads running on one core can be thought of like a single human (core) using both hands (two threads) to complete tasks. Simple tasks like carrying and moving items can be completed quicker by moving more items at
+once. More complex tasks like throwing darts accurately could be detrimentally affected by attempting to do so with both hands at the same time.</p>
+</div>
+<hr class="hr-mid-section-separator-dashed"></section>
+<section id="virtual-memory">
+<h3>Virtual memory<a class="headerlink" href="#virtual-memory" title="Link to this heading"></a></h3>
+<blockquote>
+<div><p>Virtual memory is a memory management technique where storage can be used as if it were a part of the main memory  to compensate for physical memory shortages,
+temporarily transferring data from random access memory (RAM) to disk storage. You may also hear this mentioned as virtual memory paging or paged virtual memory.</p>
+</div></blockquote>
+<hr class="hr-mid-section-separator-dashed"></section>
+<section id="id1">
+<h3>Instruction sets<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+<blockquote>
+<div><p>Instruction sets or instruction set architecture are the part of the computer architecture
+that provide the commands or instructions that a processor can execute.  <br/></p>
+</div></blockquote>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>An example of an instruction could be the ADD or SUBTRACT instructions which follow their
+namesake operation on numbers.</p>
+<p>Examples of instruction sets could include general sets such as x86 (common to 32bit and 64 bit processors) or x64 (common to 64bit processors) but can also be very specific such as AES-NI which is designed to specifically accelerate cryptographic algorithms.</p>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Computer Architecture Reference Info" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../connecting-ssh/index.html" class="btn btn-neutral float-right" title="Connecting via SSH Reference Info" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, The University of Sheffield.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<footer class="footer">
+  <div class="container">
+    <div class="left-footer">
+         &copy; 2024, The University of Sheffield
+       <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" /></a>
+    </div>
+   
+    <div class="centre-footer">
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.3.7
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

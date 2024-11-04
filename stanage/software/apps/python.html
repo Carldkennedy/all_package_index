@@ -1,0 +1,430 @@
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Python &mdash; Sheffield HPC Documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=a5c4661c" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=0a35405e" />
+
+  
+    <link rel="canonical" href="https://docs.hpc.shef.ac.uk/stanage/software/apps/python.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../../_static/copybutton.js?v=f281be69"></script>
+        <script src="../../../_static/tabs.js?v=3030b3cb"></script>
+        <script src="../../../_static/design-tabs.js?v=36754332"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="PyTorch" href="pytorch.html" />
+    <link rel="prev" title="OpenFOAM" href="openfoam.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Sheffield HPC Documentation
+              <img src="../../../_static/UOSLogo_Primary_Violet_RGB_small.png" class="logo" alt="Logo"/>
+          </a><div>
+    <h3>Quick search</h3>
+    <!--Setup by JKWM via https://cse.google.com/cse/all-->
+    <script async src="https://cse.google.com/cse.js?cx=243e6cd4be08b404b">
+    </script>
+    <div class="gcse-search"></div>
+ </div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../hpc/index.html">Using the HPC Systems</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Stanage</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../stanage-FAQ-gotchas.html">Stanage FAQ and Gotchas</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Software on Stanage</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Applications on Stanage</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="ansys/index.html">ANSYS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="R.html">R</a></li>
+<li class="toctree-l4"><a class="reference internal" href="abaqus.html">Abaqus</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ansysem.html">ANSYSEM</a></li>
+<li class="toctree-l4"><a class="reference internal" href="apptainer.html">Apptainer/Singularity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="castep.html">CASTEP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="git-lfs.html">Git LFS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gmp.html">GnuMP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gromacs.html">GROMACS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="java.html">Java (Temurin/OpenJDK)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="julia.html">Julia</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lammps.html">LAMMPS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mathematica.html">Mathematica</a></li>
+<li class="toctree-l4"><a class="reference internal" href="matlab.html">MATLAB</a></li>
+<li class="toctree-l4"><a class="reference internal" href="maven.html">Maven</a></li>
+<li class="toctree-l4"><a class="reference internal" href="molpro.html">Molpro</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ncdu.html">ncdu</a></li>
+<li class="toctree-l4"><a class="reference internal" href="netlogo.html">NetLogo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nextflow.html">Nextflow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="openfoam.html">OpenFOAM</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Python</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#using-conda-python">Using Conda Python</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#creating-a-conda-environment">Creating a Conda Environment</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#how-to-avoid-large-conda-environments-filling-up-your-home-directory">How to avoid large conda environments filling up your home directory</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#installing-packages-inside-a-conda-environment">Installing Packages Inside a Conda Environment</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#using-conda-environments">Using conda Environments</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#using-conda-and-python-in-a-batch-job">Using Conda and Python in a batch job</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#further-conda-python-learning-resources">Further Conda Python Learning Resources</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#installation-notes">Installation notes</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#anaconda-2022-10-easybuild-install">Anaconda 2022.10 (EasyBuild install):</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#anaconda-2022-05-easybuild-install">Anaconda 2022.05 (EasyBuild install):</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#anaconda-2021-11-easybuild-install">Anaconda 2021.11 (EasyBuild install):</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#anaconda-2020-11-easybuild-install">Anaconda 2020.11 (EasyBuild install):</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#anaconda-2019-7-easybuild-install">Anaconda 2019.7 (EasyBuild install):</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="pytorch.html">PyTorch</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rosetta.html">Rosetta</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rstudio.html">RStudio</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sox.html">SoX</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tensorflow.html">TensorFlow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="vasp.html">VASP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="xvfb.html">Xvfb</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../development/index.html">Developing on Stanage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../libs/index.html">Libraries on Stanage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../parallel/index.html">Parallel Systems on Stanage</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../cluster_specs.html">Stanage Specifications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../slurm.html">Slurm Scheduler Job Submission info</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../stanage-mfa-setup.html">Stanage TOTP multifactor authentication setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../GPUComputingStanage.html">Using GPUs on Stanage</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../bessemer/index.html">Bessemer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../parallel/index.html">Parallel Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../newsletter/index.html">News</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary.html">Glossary of Terms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../other-uk-hpc-resources.html">Access to External UK HPC Facilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../help.html">Need help?</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://rcgsheffield.github.io/TUoS-RIT-training-resources/training.html">Courses / Training Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../FAQs.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cheatsheets/index.html">Quick Reference (Cheat Sheets)</a></li>
+<li class="toctree-l1"><a class="reference external" href="http://changelog.hpc.shef.ac.uk/">Latest Software / HPC changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../referenceinfo/index.html">Reference Information Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../citing.html">Suggested text for citations and letters of support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../decommissioned/index.html">Decommissioned Clusters</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Sheffield HPC Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+<!-- <a class="forkme" href="https://github.com/rcgsheffield/sheffield_hpc">
+<img alt="Fork me on GitHub" src="../../../_static/img/forkme.png"> 
+</a> -->
+
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Stanage</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Software on Stanage</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Applications on Stanage</a></li>
+      <li class="breadcrumb-item active">Python</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="python">
+<span id="python-stanage"></span><h1>Python<a class="headerlink" href="#python" title="Link to this heading"></a></h1>
+<aside class="sidebar">
+<p class="sidebar-title">Python</p>
+<dl class="field-list simple">
+<dt class="field-odd">Versions<span class="colon">:</span></dt>
+<dd class="field-odd"><p>2019.7,2020.11,2021.11,2022.05,2022.10</p>
+</dd>
+<dt class="field-even">Documentation<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://www.python.org/doc/">https://www.python.org/doc/</a></p>
+</dd>
+<dt class="field-odd">URL<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://python.org">https://python.org</a></p>
+</dd>
+</dl>
+</aside>
+<p>This page documents the “anaconda” installation on Stanage. This is the
+recommended way of using Python, and the best way to be able to configure custom
+sets of packages for your use.</p>
+<p>“conda” a Python package manager, allows you to create “environments” which are
+sets of packages that you can modify. It does this by installing them in your
+home area. This page will guide you through loading conda and then creating and
+modifying environments so you can install and use whatever Python packages you
+need.</p>
+<section id="using-conda-python">
+<h2>Using Conda Python<a class="headerlink" href="#using-conda-python" title="Link to this heading"></a></h2>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p><strong>We recommend that you use the following 2022 (sub)version of Anaconda3:</strong> <code class="docutils literal notranslate"><span class="pre">Anaconda3/2022.05</span></code></p>
+<p><em>The latest module,</em> <code class="docutils literal notranslate"><span class="pre">Anaconda3/2022.10</span></code> <em>, is under investigation as this has demonstrated odd
+behaviour on conda environment exit (for some users). We will investigate this, and advise in due course.</em></p>
+</div>
+<p>After connecting to Stanage (see <a class="reference internal" href="../../../hpc/connecting.html#ssh"><span class="std std-ref">Establishing a SSH connection</span></a>),  start an interactive session with the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>srun<span class="w"> </span>--pty<span class="w"> </span>bash<span class="w"> </span>-i
+</pre></div>
+</div>
+<p>Anaconda Python can be loaded with one of the following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">load</span> <span class="n">Anaconda3</span><span class="o">/</span><span class="mf">2019.07</span>
+<span class="n">module</span> <span class="n">load</span> <span class="n">Anaconda3</span><span class="o">/</span><span class="mf">2020.11</span>
+<span class="n">module</span> <span class="n">load</span> <span class="n">Anaconda3</span><span class="o">/</span><span class="mf">2021.11</span>
+<span class="n">module</span> <span class="n">load</span> <span class="n">Anaconda3</span><span class="o">/</span><span class="mf">2022.05</span>
+<span class="n">module</span> <span class="n">load</span> <span class="n">Anaconda3</span><span class="o">/</span><span class="mf">2022.10</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">root</span></code> conda environment (the default) provides Python 3 and no extra
+modules, it is automatically updated, and not recommended for general use, just
+as a base for your own environments.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Due to Anaconda being installed in a module you must use the <code class="docutils literal notranslate"><span class="pre">source</span></code> command instead of <code class="docutils literal notranslate"><span class="pre">conda</span></code>
+when activating or deactivating environments!</p>
+</div>
+</section>
+<section id="creating-a-conda-environment">
+<h2>Creating a Conda Environment<a class="headerlink" href="#creating-a-conda-environment" title="Link to this heading"></a></h2>
+<p>Every user can create their own environments, and packages shared with the
+system-wide environments will not be reinstalled or copied to your file store,
+they will be <em>symlinked</em>, this reduces the space you need in your <code class="docutils literal notranslate"><span class="pre">/users/$USER</span></code>
+directory to install many different Python environments.</p>
+<p>To create a clean environment with just Python 3.8 and numpy you can run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">create</span> <span class="o">-</span><span class="n">n</span> <span class="n">mynumpy</span> <span class="n">python</span><span class="o">=</span><span class="mf">3.8</span> <span class="n">numpy</span>
+</pre></div>
+</div>
+<p>This will download the latest release of Python 3.8 and numpy, and create an
+environment named <code class="docutils literal notranslate"><span class="pre">mynumpy</span></code>.</p>
+<p>Any version of Python or list of packages can be installed:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">create</span> <span class="o">-</span><span class="n">n</span> <span class="n">myscience</span> <span class="n">python</span><span class="o">=</span><span class="mf">3.5</span> <span class="n">numpy</span><span class="o">=</span><span class="mf">1.15.2</span> <span class="n">scipy</span>
+</pre></div>
+</div>
+<p>If you wish to modify an existing environment, such as one of the anaconda
+installations, you can <code class="docutils literal notranslate"><span class="pre">clone</span></code> that environment:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">create</span> <span class="o">--</span><span class="n">clone</span> <span class="n">myscience</span> <span class="o">-</span><span class="n">n</span> <span class="n">myexperiment</span>
+</pre></div>
+</div>
+<p>This will create an environment called <code class="docutils literal notranslate"><span class="pre">myexperiment</span></code> which has all the
+same conda packages as the <code class="docutils literal notranslate"><span class="pre">myscience</span></code> environment.</p>
+</section>
+<section id="how-to-avoid-large-conda-environments-filling-up-your-home-directory">
+<h2>How to avoid large conda environments filling up your home directory<a class="headerlink" href="#how-to-avoid-large-conda-environments-filling-up-your-home-directory" title="Link to this heading"></a></h2>
+<p>Home directories have limited space and can often reach their quota limit. Conda environments exponentionally take up space, if you have or want to create one or more large Conda environments
+(e.g. containing bulky Deep Learning packages such as TensorFlow or PyTorch)
+then there’s a risk you’ll quickly use up your home directory’s <a class="reference internal" href="../../../hpc/filestore.html#home-dir"><span class="std std-ref">storage quota</span></a>.</p>
+<p>To avoid this, build your conda environments in a <a class="reference internal" href="../../../hpc/filestore.html#fastdata-dir"><span class="std std-ref">fastdata area</span></a></p>
+<ol class="arabic simple">
+<li><p>Create a <code class="docutils literal notranslate"><span class="pre">.condarc</span></code> file in your home directory if it does not already exist.</p></li>
+<li><p>Add an <code class="docutils literal notranslate"><span class="pre">envs_dirs:</span></code> and <code class="docutils literal notranslate"><span class="pre">pkgs_dirs:</span></code> section to your <code class="docutils literal notranslate"><span class="pre">.condarc</span></code> file as shown below:</p></li>
+</ol>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" role="tablist"><button aria-controls="panel-0-U3RhbmFnZQ==" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-0-U3RhbmFnZQ==" name="U3RhbmFnZQ==" role="tab" tabindex="0">Stanage</button><button aria-controls="panel-0-QmVzc2VtZXI=" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-QmVzc2VtZXI=" name="QmVzc2VtZXI=" role="tab" tabindex="-1">Bessemer</button></div><div aria-labelledby="tab-0-U3RhbmFnZQ==" class="sphinx-tabs-panel group-tab" id="panel-0-U3RhbmFnZQ==" name="U3RhbmFnZQ==" role="tabpanel" tabindex="0"><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>pkgs_dirs:
+- /mnt/parscratch/users/$USER/anaconda/.pkg-cache/
+
+envs_dirs:
+- /mnt/parscratch/users/$USER/anaconda/.envs
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-0-QmVzc2VtZXI=" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-0-QmVzc2VtZXI=" name="QmVzc2VtZXI=" role="tabpanel" tabindex="0"><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>pkgs_dirs:
+- /fastdata/$USER/anaconda/.pkg-cache/
+
+envs_dirs:
+- /fastdata/$USER/anaconda/.envs
+</pre></div>
+</div>
+</div></div>
+<ol class="arabic simple" start="3">
+<li><p>We recommend users create their own personal folder in the /fastdata area. As this doesn’t exist by default, you can create it with safe permissions. See <a class="reference internal" href="../../../hpc/filestore.html#fastdata-dir"><span class="std std-ref">fastdata area</span></a></p></li>
+<li><p>Then create <code class="docutils literal notranslate"><span class="pre">.envs</span></code> and <code class="docutils literal notranslate"><span class="pre">.pkg-cache</span></code> directories in your fastdata area as shown below:</p></li>
+</ol>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" role="tablist"><button aria-controls="panel-1-U3RhbmFnZQ==" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-1-U3RhbmFnZQ==" name="U3RhbmFnZQ==" role="tab" tabindex="0">Stanage</button><button aria-controls="panel-1-QmVzc2VtZXI=" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-1-QmVzc2VtZXI=" name="QmVzc2VtZXI=" role="tab" tabindex="-1">Bessemer</button></div><div aria-labelledby="tab-1-U3RhbmFnZQ==" class="sphinx-tabs-panel group-tab" id="panel-1-U3RhbmFnZQ==" name="U3RhbmFnZQ==" role="tabpanel" tabindex="0"><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>mkdir -p /mnt/parscratch/users/$USER/anaconda/.pkg-cache/  /mnt/parscratch/users/$USER/anaconda/.envs
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-1-QmVzc2VtZXI=" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-1-QmVzc2VtZXI=" name="QmVzc2VtZXI=" role="tabpanel" tabindex="0"><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>mkdir -p /fastdata/$USER/anaconda/.pkg-cache/  /fastdata/$USER/anaconda/.envs
+</pre></div>
+</div>
+</div></div>
+<p>Installations of environments and package caching should now occur in your fastdata area</p>
+</section>
+<section id="installing-packages-inside-a-conda-environment">
+<h2>Installing Packages Inside a Conda Environment<a class="headerlink" href="#installing-packages-inside-a-conda-environment" title="Link to this heading"></a></h2>
+<p>Once you have created your own environment you can install additional packages
+or different versions of packages into it. There are two methods for doing
+this, <code class="docutils literal notranslate"><span class="pre">conda</span></code> and <code class="docutils literal notranslate"><span class="pre">pip</span></code>, if a package is available through conda it is
+strongly recommended that you use conda to install packages. You can search for
+packages using conda:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">search</span> <span class="n">pandas</span>
+</pre></div>
+</div>
+<p>then install the package using:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">install</span> <span class="n">pandas</span>
+</pre></div>
+</div>
+<p>if you are not in your environment you will get a permission denied error
+when trying to install packages, if this happens, create or activate an
+environment you own.</p>
+<p>If a package is not available through conda you can search for and install it
+using pip, <em>i.e.</em>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">search</span> <span class="n">colormath</span>
+
+<span class="n">pip</span> <span class="n">install</span> <span class="n">colormath</span>
+</pre></div>
+</div>
+</section>
+<section id="using-conda-environments">
+<h2>Using conda Environments<a class="headerlink" href="#using-conda-environments" title="Link to this heading"></a></h2>
+<p>Once the conda module is loaded you have to load or create the desired
+conda environments. For the documentation on conda environments see
+<a class="reference external" href="http://conda.pydata.org/docs/using/envs.html">the conda documentation</a>.</p>
+<p>You can load a conda environment with:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="n">activate</span> <span class="n">myexperiment</span>
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">myexperiment</span></code> is the name of the environment, and unload one with:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="n">deactivate</span>
+</pre></div>
+</div>
+<p>which will return you to the <code class="docutils literal notranslate"><span class="pre">root</span></code> environment.</p>
+<p>It is possible to list all the available environments with:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">env</span> <span class="nb">list</span>
+</pre></div>
+</div>
+<p>Provided system-wide are a set of anaconda environments, these will be
+installed with the anaconda version number in the environment name, and never
+modified. They will therefore provide a static base for derivative environments
+or for using directly.</p>
+</section>
+<section id="using-conda-and-python-in-a-batch-job">
+<h2>Using Conda and Python in a batch job<a class="headerlink" href="#using-conda-and-python-in-a-batch-job" title="Link to this heading"></a></h2>
+<p>Create a batch job submission script called <code class="docutils literal notranslate"><span class="pre">myscript.slurm</span></code> that is similar to the following:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<span class="c1">#SBATCH --ntasks=1</span>
+<span class="c1">#SBATCH --time=10:00</span>
+<span class="c1">#SBATCH --mem-per-cpu=100</span>
+
+<span class="nb">export</span><span class="w"> </span><span class="nv">SLURM_EXPORT_ENV</span><span class="o">=</span>ALL
+module<span class="w"> </span>load<span class="w"> </span>Anaconda3/2022.10
+
+<span class="c1"># We assume that the conda environment &#39;myexperiment&#39; has already been created</span>
+<span class="nb">source</span><span class="w"> </span>activate<span class="w"> </span>myexperiment
+srun<span class="w"> </span>python<span class="w"> </span>mywork.py
+</pre></div>
+</div>
+<p>Then submit this to Slurm by running:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sbatch<span class="w"> </span>myscript.slurm
+</pre></div>
+</div>
+</section>
+<section id="further-conda-python-learning-resources">
+<h2>Further Conda Python Learning Resources<a class="headerlink" href="#further-conda-python-learning-resources" title="Link to this heading"></a></h2>
+<p>The resources and training courses below may be of interest:</p>
+<ul class="simple">
+<li><p>IT Services provide RIT-301 to RIT-303 Intro to Advanced Python courses which you can find details for at <a class="reference external" href="https://sites.google.com/sheffield.ac.uk/research-training/">https://sites.google.com/sheffield.ac.uk/research-training/</a></p></li>
+<li><p>The <a class="reference external" href="https://docs.conda.io/projects/conda/en/4.6.0/_downloads/52a95608c49671267e40c689e0bc00ca/conda-cheatsheet.pdf">Anaconda cheatsheet</a></p></li>
+<li><p><a class="reference external" href="https://conda.io/projects/conda/en/latest/user-guide/getting-started.html">Getting started with conda</a>, a 20-minute guide.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="installation-notes">
+<h2>Installation notes<a class="headerlink" href="#installation-notes" title="Link to this heading"></a></h2>
+<section id="anaconda-2022-10-easybuild-install">
+<h3>Anaconda 2022.10 (EasyBuild install):<a class="headerlink" href="#anaconda-2022-10-easybuild-install" title="Link to this heading"></a></h3>
+<p>Anaconda was installed using Easybuild 4.7.1, build details can be found in folder <code class="docutils literal notranslate"><span class="pre">$EBROOTANACONDA3/easybuild</span></code> with the module loaded.</p>
+</section>
+<section id="anaconda-2022-05-easybuild-install">
+<h3>Anaconda 2022.05 (EasyBuild install):<a class="headerlink" href="#anaconda-2022-05-easybuild-install" title="Link to this heading"></a></h3>
+<p>Anaconda was installed using Easybuild 4.7.1, build details can be found in folder <code class="docutils literal notranslate"><span class="pre">$EBROOTANACONDA3/easybuild</span></code> with the module loaded.</p>
+</section>
+<section id="anaconda-2021-11-easybuild-install">
+<h3>Anaconda 2021.11 (EasyBuild install):<a class="headerlink" href="#anaconda-2021-11-easybuild-install" title="Link to this heading"></a></h3>
+<p>Anaconda was installed using Easybuild 4.7.1, build details can be found in folder <code class="docutils literal notranslate"><span class="pre">$EBROOTANACONDA3/easybuild</span></code> with the module loaded.</p>
+</section>
+<section id="anaconda-2020-11-easybuild-install">
+<h3>Anaconda 2020.11 (EasyBuild install):<a class="headerlink" href="#anaconda-2020-11-easybuild-install" title="Link to this heading"></a></h3>
+<p>Anaconda was installed using Easybuild 4.7.1, build details can be found in folder <code class="docutils literal notranslate"><span class="pre">$EBROOTANACONDA3/easybuild</span></code> with the module loaded.</p>
+</section>
+<section id="anaconda-2019-7-easybuild-install">
+<h3>Anaconda 2019.7 (EasyBuild install):<a class="headerlink" href="#anaconda-2019-7-easybuild-install" title="Link to this heading"></a></h3>
+<p>Anaconda was installed using Easybuild 4.7.1, build details can be found in folder <code class="docutils literal notranslate"><span class="pre">$EBROOTANACONDA3/easybuild</span></code> with the module loaded.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="openfoam.html" class="btn btn-neutral float-left" title="OpenFOAM" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="pytorch.html" class="btn btn-neutral float-right" title="PyTorch" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, The University of Sheffield.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<footer class="footer">
+  <div class="container">
+    <div class="left-footer">
+         &copy; 2024, The University of Sheffield
+       <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" /></a>
+    </div>
+   
+    <div class="centre-footer">
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.3.7
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

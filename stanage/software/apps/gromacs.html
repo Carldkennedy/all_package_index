@@ -1,0 +1,326 @@
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GROMACS &mdash; Sheffield HPC Documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=a5c4661c" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=0a35405e" />
+
+  
+    <link rel="canonical" href="https://docs.hpc.shef.ac.uk/stanage/software/apps/gromacs.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../../_static/copybutton.js?v=f281be69"></script>
+        <script src="../../../_static/design-tabs.js?v=36754332"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Java (Temurin/OpenJDK)" href="java.html" />
+    <link rel="prev" title="GnuMP" href="gmp.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Sheffield HPC Documentation
+              <img src="../../../_static/UOSLogo_Primary_Violet_RGB_small.png" class="logo" alt="Logo"/>
+          </a><div>
+    <h3>Quick search</h3>
+    <!--Setup by JKWM via https://cse.google.com/cse/all-->
+    <script async src="https://cse.google.com/cse.js?cx=243e6cd4be08b404b">
+    </script>
+    <div class="gcse-search"></div>
+ </div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../hpc/index.html">Using the HPC Systems</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Stanage</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../stanage-FAQ-gotchas.html">Stanage FAQ and Gotchas</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Software on Stanage</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Applications on Stanage</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="ansys/index.html">ANSYS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="R.html">R</a></li>
+<li class="toctree-l4"><a class="reference internal" href="abaqus.html">Abaqus</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ansysem.html">ANSYSEM</a></li>
+<li class="toctree-l4"><a class="reference internal" href="apptainer.html">Apptainer/Singularity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="castep.html">CASTEP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="git-lfs.html">Git LFS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gmp.html">GnuMP</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">GROMACS</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#usage">Usage</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#interactive-usage">Interactive usage</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#batch-jobs">Batch jobs</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#using-gmx">Using GMX</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#using-gmx-mpi">Using GMX_MPI</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#using-gpus">Using GPUs</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#installation-notes">Installation notes</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="java.html">Java (Temurin/OpenJDK)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="julia.html">Julia</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lammps.html">LAMMPS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mathematica.html">Mathematica</a></li>
+<li class="toctree-l4"><a class="reference internal" href="matlab.html">MATLAB</a></li>
+<li class="toctree-l4"><a class="reference internal" href="maven.html">Maven</a></li>
+<li class="toctree-l4"><a class="reference internal" href="molpro.html">Molpro</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ncdu.html">ncdu</a></li>
+<li class="toctree-l4"><a class="reference internal" href="netlogo.html">NetLogo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nextflow.html">Nextflow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="openfoam.html">OpenFOAM</a></li>
+<li class="toctree-l4"><a class="reference internal" href="python.html">Python</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pytorch.html">PyTorch</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rosetta.html">Rosetta</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rstudio.html">RStudio</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sox.html">SoX</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tensorflow.html">TensorFlow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="vasp.html">VASP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="xvfb.html">Xvfb</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../development/index.html">Developing on Stanage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../libs/index.html">Libraries on Stanage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../parallel/index.html">Parallel Systems on Stanage</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../cluster_specs.html">Stanage Specifications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../slurm.html">Slurm Scheduler Job Submission info</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../stanage-mfa-setup.html">Stanage TOTP multifactor authentication setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../GPUComputingStanage.html">Using GPUs on Stanage</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../bessemer/index.html">Bessemer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../parallel/index.html">Parallel Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../newsletter/index.html">News</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary.html">Glossary of Terms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../other-uk-hpc-resources.html">Access to External UK HPC Facilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../help.html">Need help?</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://rcgsheffield.github.io/TUoS-RIT-training-resources/training.html">Courses / Training Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../FAQs.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cheatsheets/index.html">Quick Reference (Cheat Sheets)</a></li>
+<li class="toctree-l1"><a class="reference external" href="http://changelog.hpc.shef.ac.uk/">Latest Software / HPC changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../referenceinfo/index.html">Reference Information Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../citing.html">Suggested text for citations and letters of support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../decommissioned/index.html">Decommissioned Clusters</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Sheffield HPC Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+<!-- <a class="forkme" href="https://github.com/rcgsheffield/sheffield_hpc">
+<img alt="Fork me on GitHub" src="../../../_static/img/forkme.png"> 
+</a> -->
+
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Stanage</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Software on Stanage</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Applications on Stanage</a></li>
+      <li class="breadcrumb-item active">GROMACS</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="gromacs">
+<h1>GROMACS<a class="headerlink" href="#gromacs" title="Link to this heading"></a></h1>
+<aside class="sidebar">
+<p class="sidebar-title">GROMACS</p>
+<dl class="field-list simple">
+<dt class="field-odd">Version<span class="colon">:</span></dt>
+<dd class="field-odd"><p>2021, 2019.3</p>
+</dd>
+<dt class="field-even">Dependencies<span class="colon">:</span></dt>
+<dd class="field-even"><p>GCC 10.2 and OpenMPI 4.0.5 (MPI support).</p>
+</dd>
+<dt class="field-odd">URL<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="http://www.gromacs.org/">http://www.gromacs.org/</a></p>
+</dd>
+<dt class="field-even">Documentation<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="http://manual.gromacs.org/documentation/">http://manual.gromacs.org/documentation/</a></p>
+</dd>
+<dt class="field-odd">Tutorials<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="http://www.gromacs.org/Documentation/Tutorials">http://www.gromacs.org/Documentation/Tutorials</a></p>
+</dd>
+</dl>
+</aside>
+<p>GROMACS is a versatile package to perform molecular dynamics, i.e. simulate the Newtonian equations of motion for systems with hundreds to millions of particles.
+It is primarily designed for biochemical molecules like proteins, lipids and nucleic acids that have a lot of complicated bonded interactions, but since GROMACS
+is extremely fast at calculating the nonbonded interactions (that usually dominate simulations) many groups are also using it for research on non-biological systems, e.g. polymers.</p>
+<hr class="docutils" />
+<section id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Link to this heading"></a></h2>
+<p>GROMACS software can be loaded using one of the following module load commands:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ module load GROMACS/2021-foss-2020b
+$ module load GROMACS/2019.3-foss-2019b
+</pre></div>
+</div>
+<p>The GROMACS executable is <code class="docutils literal notranslate"><span class="pre">gmx</span></code> or <code class="docutils literal notranslate"><span class="pre">gmx_mpi</span></code> if using an OpenMPI module. Typing <code class="docutils literal notranslate"><span class="pre">gmx</span> <span class="pre">help</span> <span class="pre">commands</span></code> will display a list of commands for <code class="docutils literal notranslate"><span class="pre">gmx</span></code> and their function.</p>
+</section>
+<hr class="docutils" />
+<section id="interactive-usage">
+<h2>Interactive usage<a class="headerlink" href="#interactive-usage" title="Link to this heading"></a></h2>
+<p>For interactive usage during testing etc… we recommend using a non-GPU, non-MPI module e.g. <code class="docutils literal notranslate"><span class="pre">GROMACS/2021-foss-2020b</span></code>. You can load this and run <code class="docutils literal notranslate"><span class="pre">gmx</span></code> commands as follows:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>module<span class="w"> </span>load<span class="w"> </span>GROMACS/2021-foss-2020b
+<span class="gp">$ </span>gmx<span class="w"> </span><span class="nb">help</span><span class="w"> </span>commands
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="batch-jobs">
+<h2>Batch jobs<a class="headerlink" href="#batch-jobs" title="Link to this heading"></a></h2>
+<p>Users are encouraged to write their own batch submission scripts. The following are example batch submission scripts, <code class="docutils literal notranslate"><span class="pre">my_job.sh</span></code>, to run <code class="docutils literal notranslate"><span class="pre">gmx</span></code> or <code class="docutils literal notranslate"><span class="pre">gmx_mpi</span></code> which are
+submitted to the queue by typing <code class="docutils literal notranslate"><span class="pre">sbatch</span> <span class="pre">my_job.sh</span></code>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>To get optimal parallelisation of GROMACS sub-commands, users should consult the
+<a class="reference external" href="https://manual.gromacs.org/documentation/">GROMACS documentation</a>
+to determine which of the commands have parallelisation enabled. For example, <code class="docutils literal notranslate"><span class="pre">mdrun</span></code> is parallelisable where <code class="docutils literal notranslate"><span class="pre">grompp</span></code> and many others are not.</p>
+<p>Please also ensure you consult the right version of the documentation as more modern versions of GROMACS are likely to have numerous differences.</p>
+</div>
+<p>GROMACS can run using in <code class="docutils literal notranslate"><span class="pre">smp</span></code> parallel environment, in addition to being able to use GPU acceleration. Examples of these
+types of batch submission can be seen below.</p>
+<section id="using-gmx">
+<h3>Using GMX<a class="headerlink" href="#using-gmx" title="Link to this heading"></a></h3>
+<p>The following is an example batch submission script, my_job.sh, to run the gromacs executable <code class="docutils literal notranslate"><span class="pre">gmx</span></code> with input files grompp.mdp, conf.gro and topol.top. The script requests 5 GB of real memory.</p>
+<p>The GROMACS input line beginning with <code class="docutils literal notranslate"><span class="pre">gmx</span> <span class="pre">grompp</span></code> is to make a run input file; <code class="docutils literal notranslate"><span class="pre">gmx</span> <span class="pre">mdrun</span></code> is to perform a simulation, do a normal mode analysis or an energy minimization.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">export</span></code> command sets the correct number of GROMACS threads based on the requested number of cores from the scheduler (important if requesting more than a single core).</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">#</span>!/bin/bash
+<span class="gp"># </span>Request<span class="w"> </span><span class="m">5</span><span class="w"> </span>gigabytes<span class="w"> </span>of<span class="w"> </span>real<span class="w"> </span>memory<span class="w"> </span><span class="o">(</span>mem<span class="o">)</span>
+<span class="gp">#</span>SBATCH<span class="w"> </span>--mem<span class="o">=</span>5G
+<span class="gp">#</span>SBATCH<span class="w"> </span>--time<span class="o">=</span><span class="m">00</span>:30:00
+<span class="gp"># </span>Email<span class="w"> </span>notifications<span class="w"> </span>to<span class="w"> </span>me@somedomain.com
+<span class="gp">#</span>SBATCH<span class="w"> </span>--mail-user<span class="o">=</span>me@somedomain.com
+<span class="gp"># </span>Email<span class="w"> </span>notifications<span class="w"> </span><span class="k">if</span><span class="w"> </span>the<span class="w"> </span>job<span class="w"> </span>fails
+<span class="gp">#</span>SBATCH<span class="w"> </span>--mail-type<span class="o">=</span>FAIL
+
+<span class="go">module load GROMACS/2021-foss-2020b</span>
+
+<span class="gp"># </span>Set<span class="w"> </span>the<span class="w"> </span>OPENMP_NUM_THREADS<span class="w"> </span>environment<span class="w"> </span>variable<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>number<span class="w"> </span>of<span class="w"> </span>available<span class="w"> </span>cores.
+<span class="gp"># </span>The<span class="w"> </span>line<span class="w"> </span>ensures<span class="w"> </span>that<span class="w"> </span>OpenMP<span class="w"> </span>uses<span class="w"> </span>all<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>CPUs<span class="w"> </span>allocated<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>task
+<span class="gp"># </span><span class="k">for</span><span class="w"> </span>parallel<span class="w"> </span>processing.<span class="w"> </span>This<span class="w"> </span>can<span class="w"> </span>improve<span class="w"> </span>the<span class="w"> </span>performance<span class="w"> </span>of<span class="w"> </span>parallelised
+<span class="gp"># </span>code<span class="w"> </span>by<span class="w"> </span>fully<span class="w"> </span>utilising<span class="w"> </span>the<span class="w"> </span>available<span class="w"> </span>resources.
+<span class="go">export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK</span>
+
+<span class="go">gmx grompp -f grompp.mdp -c conf.gro -p topol.top -o topol.tpr</span>
+<span class="go">gmx mdrun -s topol.tpr</span>
+</pre></div>
+</div>
+</section>
+<section id="using-gmx-mpi">
+<h3>Using GMX_MPI<a class="headerlink" href="#using-gmx-mpi" title="Link to this heading"></a></h3>
+<p>This script requests four CPU cores and a runtime of 30 minutes.
+The GROMACS input line beginning with <code class="docutils literal notranslate"><span class="pre">gmx_mpi</span> <span class="pre">grompp</span></code> is to make a run input file; <code class="docutils literal notranslate"><span class="pre">srun</span> <span class="pre">-np</span> <span class="pre">$NSLOTS</span> <span class="pre">gmx_mpi</span> <span class="pre">mdrun</span></code> is to perform a simulation, to do a normal mode analysis or an energy minimization
+with the correct number of MPI threads.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Note <code class="docutils literal notranslate"><span class="pre">gmx_mpi</span></code> is used when using OpenMPI functionality and should not be used on interactive sessions.</p>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">#</span>!/bin/bash
+<span class="gp">#</span>SBATCH<span class="w"> </span>--mem<span class="o">=</span>5G
+<span class="gp">#</span>SBATCH<span class="w"> </span>--time<span class="o">=</span><span class="m">00</span>:30:00
+<span class="gp">#</span>SBATCH<span class="w"> </span>--cpus-per-task<span class="o">=</span><span class="m">4</span>
+<span class="gp"># </span>Email<span class="w"> </span>notifications<span class="w"> </span>to<span class="w"> </span>me@somedomain.com
+<span class="gp">#</span>SBATCH<span class="w"> </span>--mail-user<span class="o">=</span>me@somedomain.com
+<span class="gp"># </span>Email<span class="w"> </span>notifications<span class="w"> </span><span class="k">if</span><span class="w"> </span>the<span class="w"> </span>job<span class="w"> </span>fails
+<span class="gp">#</span>SBATCH<span class="w"> </span>--mail-type<span class="o">=</span>FAIL
+
+<span class="go">module load GROMACS/2021-foss-2020b</span>
+
+<span class="go">gmx_mpi grompp -f grompp.mdp -c conf.gro -p topol.top -o topol.tpr</span>
+<span class="go">srun -np $SLURM_NTASKS gmx_mpi mdrun -s topol.tpr</span>
+</pre></div>
+</div>
+</section>
+<section id="using-gpus">
+<h3>Using GPUs<a class="headerlink" href="#using-gpus" title="Link to this heading"></a></h3>
+<p>Currently none of the gromacs installations have the CUDA modules. If you need access to them please contact <code class="docutils literal notranslate"><span class="pre">research-it&#64;sheffield.ac.uk</span></code></p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="installation-notes">
+<h2>Installation notes<a class="headerlink" href="#installation-notes" title="Link to this heading"></a></h2>
+<p>GROMACS was installed using Easybuild 4.7.0, build details can be found in <code class="docutils literal notranslate"><span class="pre">$EBROOTGROMACS/easybuild</span></code> with the module loaded.
+GROMACS should just be installed using a batch session otherwise the installation will crash when it comes to build <code class="docutils literal notranslate"><span class="pre">gmx_mpi</span></code>.</p>
+<p>Testing was done using the example on <a class="reference external" href="http://www.mdtutorials.com/gmx/lysozyme/index.html">Lysozyme in Water</a></p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="gmp.html" class="btn btn-neutral float-left" title="GnuMP" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="java.html" class="btn btn-neutral float-right" title="Java (Temurin/OpenJDK)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, The University of Sheffield.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<footer class="footer">
+  <div class="container">
+    <div class="left-footer">
+         &copy; 2024, The University of Sheffield
+       <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" /></a>
+    </div>
+   
+    <div class="centre-footer">
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.3.7
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

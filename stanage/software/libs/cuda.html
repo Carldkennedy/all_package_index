@@ -1,0 +1,503 @@
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CUDA &mdash; Sheffield HPC Documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=a5c4661c" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=0a35405e" />
+
+  
+    <link rel="canonical" href="https://docs.hpc.shef.ac.uk/stanage/software/libs/cuda.html" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../../_static/copybutton.js?v=f281be69"></script>
+        <script src="../../../_static/tabs.js?v=3030b3cb"></script>
+        <script src="../../../_static/design-tabs.js?v=36754332"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="cuDNN" href="cudnn.html" />
+    <link rel="prev" title="cfitsio" href="cfitsio.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Sheffield HPC Documentation
+              <img src="../../../_static/UOSLogo_Primary_Violet_RGB_small.png" class="logo" alt="Logo"/>
+          </a><div>
+    <h3>Quick search</h3>
+    <!--Setup by JKWM via https://cse.google.com/cse/all-->
+    <script async src="https://cse.google.com/cse.js?cx=243e6cd4be08b404b">
+    </script>
+    <div class="gcse-search"></div>
+ </div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../hpc/index.html">Using the HPC Systems</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Stanage</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../stanage-FAQ-gotchas.html">Stanage FAQ and Gotchas</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Software on Stanage</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../apps/index.html">Applications on Stanage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../development/index.html">Developing on Stanage</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Libraries on Stanage</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="PETSc.html">PETSc</a></li>
+<li class="toctree-l4"><a class="reference internal" href="blas.html">BLAS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="boost.html">Boost C++ Library</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cfitsio.html">cfitsio</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">CUDA</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#usage">Usage</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#compiling-a-simple-cuda-program">Compiling a simple CUDA program</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#compiling-the-sample-programs">Compiling the sample programs</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#gpu-code-generation-options">GPU Code Generation Options</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#documentation">Documentation</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#nsight-systems">Nsight Systems</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#nsight-compute">Nsight Compute</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#profiling-using-nvprof">Profiling using nvprof</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#cuda-training">CUDA Training</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#determining-the-nvidia-driver-version">Determining the NVIDIA Driver version</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#installation-notes">Installation notes</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#cuda-12-0-0">CUDA 12.0.0</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#cuda-11-8-0">CUDA 11.8.0</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#cuda-11-7-0">CUDA 11.7.0</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="cudnn.html">cuDNN</a></li>
+<li class="toctree-l4"><a class="reference internal" href="fftw.html">fftw</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gdal.html">Geospatial Data Abstraction Library (GDAL)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="geos.html">geos</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gsl.html">GSL</a></li>
+<li class="toctree-l4"><a class="reference internal" href="hdf5.html">HDF5</a></li>
+<li class="toctree-l4"><a class="reference internal" href="imkl.html">Intel MKL</a></li>
+<li class="toctree-l4"><a class="reference internal" href="libsndfile.html">libsndfile</a></li>
+<li class="toctree-l4"><a class="reference internal" href="libunistring.html">libunistring</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nag.html">NAG Fortran and C Library</a></li>
+<li class="toctree-l4"><a class="reference internal" href="netcdf.html">netCDF</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nlopt.html">NLopt</a></li>
+<li class="toctree-l4"><a class="reference internal" href="openblas.html">OpenBLAS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="proj.html">PROJ</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scalapack.html">ScaLAPACK</a></li>
+<li class="toctree-l4"><a class="reference internal" href="udunits.html">udunits</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../parallel/index.html">Parallel Systems on Stanage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../stubs/index.html">All Packages Index</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../cluster_specs.html">Stanage Specifications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../slurm.html">Slurm Scheduler Job Submission info</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../stanage-mfa-setup.html">Stanage TOTP multifactor authentication setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../GPUComputingStanage.html">Using GPUs on Stanage</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../bessemer/index.html">Bessemer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../parallel/index.html">Parallel Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../newsletter/index.html">News</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary.html">Glossary of Terms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../other-uk-hpc-resources.html">Access to External UK HPC Facilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../help.html">Need help?</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://rcgsheffield.github.io/TUoS-RIT-training-resources/training.html">Courses / Training Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../FAQs.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cheatsheets/index.html">Quick Reference (Cheat Sheets)</a></li>
+<li class="toctree-l1"><a class="reference external" href="http://changelog.hpc.shef.ac.uk/">Latest Software / HPC changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../referenceinfo/index.html">Reference Information Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../citing.html">Suggested text for citations and letters of support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../decommissioned/index.html">Decommissioned Clusters</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Sheffield HPC Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+<!-- <a class="forkme" href="https://github.com/rcgsheffield/sheffield_hpc">
+<img alt="Fork me on GitHub" src="../../../_static/img/forkme.png"> 
+</a> -->
+
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Stanage</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Software on Stanage</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Libraries on Stanage</a></li>
+      <li class="breadcrumb-item active">CUDA</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="cuda">
+<span id="cuda-stanage"></span><h1>CUDA<a class="headerlink" href="#cuda" title="Link to this heading"></a></h1>
+<p>CUDA (<em>Compute Unified Device Architecture</em>)
+is a parallel computing platform and application programming interface (API) model
+created by NVIDIA.
+It allows software developers to use a CUDA-enabled graphics processing unit (GPU)
+for general purpose processing,
+an approach known as <em>General Purpose GPU</em> (GPGPU) computing.</p>
+<hr class="docutils" />
+<section id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Link to this heading"></a></h2>
+<p>You need to first request one or more GPUs within an
+<a class="reference internal" href="../../../hpc/scheduler/index.html#submit-interactive-stanage"><span class="std std-ref">interactive session or batch job on a worker node</span></a>.</p>
+<p>To request three of any available public GPUs for a batch job
+you would include <em>all</em> the following in the header of your submission script:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1">#SBATCH --partition=gpu</span>
+<span class="c1">#SBATCH --qos=gpu</span>
+<span class="c1">#SBATCH --nodes=1</span>
+<span class="c1">#SBATCH --gres=gpu:3</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>See <a class="reference internal" href="../../GPUComputingStanage.html#gpu-computing-stanage"><span class="std std-ref">Using GPUs on Stanage</span></a> for more information on how to request a
+GPU-enabled node for an interactive session or job submission.</p>
+</div>
+<p>You then need to ensure a version of the CUDA library (and compiler) is loaded.
+As with much software installed on the cluster,
+versions of CUDA are activated via the <a class="reference internal" href="../../../hpc/modules.html#env-modules"><span class="std std-ref">‘module load’ command</span></a>.</p>
+<p>To load one of the currently available CUDA versions you can run
+one of the following commands:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>module<span class="w"> </span>load<span class="w"> </span>CUDA/12.4.0
+module<span class="w"> </span>load<span class="w"> </span>CUDA/12.1.1
+module<span class="w"> </span>load<span class="w"> </span>CUDA/12.0.0
+module<span class="w"> </span>load<span class="w"> </span>CUDA/11.8.0
+module<span class="w"> </span>load<span class="w"> </span>CUDA/11.7.0
+module<span class="w"> </span>load<span class="w"> </span>CUDA/11.1.1-GCC-10.2.0
+module<span class="w"> </span>load<span class="w"> </span>CUDA/10.2.89-GCC-8.3.0
+module<span class="w"> </span>load<span class="w"> </span>CUDA/10.1.243-GCC-8.3.0
+module<span class="w"> </span>load<span class="w"> </span>CUDA/10.1.243
+module<span class="w"> </span>load<span class="w"> </span>CUDA/10.1.105-GCC-8.2.0-2.31.1
+module<span class="w"> </span>load<span class="w"> </span>CUDA/10.0.130
+</pre></div>
+</div>
+<p>Note that the older versions of CUDA may implicitly load the GCC compiler.
+For newer versions you will also need to explicitly load a compiler e.g. <a class="reference internal" href="../development/gcc.html#gcc-stanage"><span class="std std-ref">GCC</span></a>.</p>
+<p>Confirm which version of CUDA you are using via <code class="docutils literal notranslate"><span class="pre">nvcc</span> <span class="pre">--version</span></code> e.g.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ nvcc --version
+nvcc: NVIDIA (R) Cuda compiler driver
+Copyright (c) 2005-2022 NVIDIA Corporation
+Built on Mon_Oct_24_19:12:58_PDT_2022
+Cuda compilation tools, release 12.0, V12.0.76
+Build cuda_12.0.r12.0/compiler.31968024_0
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="compiling-a-simple-cuda-program">
+<h2>Compiling a simple CUDA program<a class="headerlink" href="#compiling-a-simple-cuda-program" title="Link to this heading"></a></h2>
+<p>An example of the use of <code class="docutils literal notranslate"><span class="pre">nvcc</span></code> (the CUDA compiler):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">nvcc</span> <span class="n">filename</span><span class="o">.</span><span class="n">cu</span>
+</pre></div>
+</div>
+<p>This will compile the CUDA program contained in the file <code class="docutils literal notranslate"><span class="pre">filename.cu</span></code>.</p>
+</section>
+<hr class="docutils" />
+<section id="compiling-the-sample-programs">
+<h2>Compiling the sample programs<a class="headerlink" href="#compiling-the-sample-programs" title="Link to this heading"></a></h2>
+<p>You do not need to be using a GPU-enabled node
+to compile the sample programs
+but you do need at least one GPU to run them.</p>
+<p>In this demonstration, we create a batch job that</p>
+<ol class="arabic simple">
+<li><p>Request one GPU, a single CPU core and 8GB RAM</p></li>
+<li><p>Loads a module to provide CUDA 11.8</p></li>
+<li><p>Downloads compatible NVIDIA CUDA sample programs</p></li>
+<li><p>Compiles and runs an example that performs a matrix multiplication</p></li>
+</ol>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<span class="c1">#SBATCH --partition=gpu</span>
+<span class="c1">#SBATCH --qos=gpu</span>
+<span class="c1">#SBATCH --gres=gpu:1         # Number of GPUs</span>
+<span class="c1">#SBATCH --mem=8G</span>
+<span class="c1">#SBATCH --time=0-00:05       # time (DD-HH:MM)</span>
+<span class="c1">#SBATCH --job-name=gputest</span>
+
+module<span class="w"> </span>load<span class="w"> </span>CUDA/12.0.0
+
+mkdir<span class="w"> </span>-p<span class="w"> </span><span class="nv">$HOME</span>/examples
+<span class="nb">cd</span><span class="w"> </span><span class="nv">$HOME</span>/examples
+<span class="k">if</span><span class="w"> </span>!<span class="w"> </span><span class="o">[[</span><span class="w"> </span>-f<span class="w"> </span>cuda-samples/.git<span class="w"> </span><span class="o">]]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">    </span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/NVIDIA/cuda-samples.git<span class="w"> </span>cuda-samples
+<span class="k">fi</span>
+<span class="nb">cd</span><span class="w"> </span>cuda-samples
+git<span class="w"> </span>checkout<span class="w"> </span>tags/v12.0<span class="w">  </span><span class="c1"># use sample programs compatible with CUDA 12.0</span>
+<span class="nb">cd</span><span class="w"> </span>Samples/0_Introduction/matrixMul/
+make<span class="w"> </span><span class="nv">SMS</span><span class="o">=</span><span class="s2">&quot;80&quot;</span>
+./matrixMul
+</pre></div>
+</div>
+<hr class="docutils" />
+</section>
+<section id="gpu-code-generation-options">
+<span id="stanage-gpu-code-gen-opts"></span><h2>GPU Code Generation Options<a class="headerlink" href="#gpu-code-generation-options" title="Link to this heading"></a></h2>
+<p>To achieve the best possible performance whilst being portable,
+GPU code should be generated for the architecture(s) it will be executed upon.</p>
+<p>This is controlled by specifying <code class="docutils literal notranslate"><span class="pre">-gencode</span></code> arguments to NVCC which,
+unlike the <code class="docutils literal notranslate"><span class="pre">-arch</span></code> and <code class="docutils literal notranslate"><span class="pre">-code</span></code> arguments,
+allows for ‘fatbinary’ executables that are optimised for multiple device architectures.</p>
+<p>Each <code class="docutils literal notranslate"><span class="pre">-gencode</span></code> argument requires two values,
+the <em>virtual architecture</em> and <em>real architecture</em>,
+for use in NVCC’s <a class="reference external" href="https://docs.nvidia.com/cuda/cuda-compiler-driver-nvcc/index.html#virtual-architectures">two-stage compilation</a>.
+For example, <code class="docutils literal notranslate"><span class="pre">-gencode=arch=compute_70,code=sm_70</span></code> specifies a virtual architecture of <code class="docutils literal notranslate"><span class="pre">compute_70</span></code> and real architecture <code class="docutils literal notranslate"><span class="pre">sm_70</span></code>.</p>
+<p>To support future hardware of higher compute capability,
+an additional <code class="docutils literal notranslate"><span class="pre">-gencode</span></code> argument can be used to enable Just in Time (JIT) compilation of embedded intermediate PTX code.
+This argument should use the highest virtual architecture specified in other gencode arguments
+for both the <code class="docutils literal notranslate"><span class="pre">arch</span></code> and <code class="docutils literal notranslate"><span class="pre">code</span></code>
+i.e. <code class="docutils literal notranslate"><span class="pre">-gencode=arch=compute_80,code=compute_80</span></code>.</p>
+<p>The minimum specified virtual architecture must be less than or equal to the <a class="reference external" href="https://developer.nvidia.com/cuda-gpus">Compute Capability</a> of the GPU used to execute the code.</p>
+<p>At present, Stanage contains <a class="reference external" href="https://www.nvidia.com/en-gb/data-center/a100/">NVIDIA A100</a> GPUs, and <a class="reference external" href="https://www.nvidia.com/en-gb/data-center/h100/">NVIDIA H100</a> GPUs which are Compute Capability 80 and 90 respectively.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>CUDA 10.x is not aware of compute capability 80, and CUDA &lt; 11.8 is not aware of compute capability 90. PTX for an older architecture should be embedded instead to avoid compilation errors.</p>
+</div>
+<p>To build a CUDA application which targets both H100 and A100 GPUs, use the following <code class="docutils literal notranslate"><span class="pre">-gencode</span></code> arguments:</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" role="tablist"><button aria-controls="panel-0-Q1VEQSAxMS44Kw==" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-0-Q1VEQSAxMS44Kw==" name="Q1VEQSAxMS44Kw==" role="tab" tabindex="0">CUDA 11.8+</button><button aria-controls="panel-0-Q1VEQSAxMS4wKw==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-Q1VEQSAxMS4wKw==" name="Q1VEQSAxMS4wKw==" role="tab" tabindex="-1">CUDA 11.0+</button><button aria-controls="panel-0-Q1VEQSAxMC54" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-Q1VEQSAxMC54" name="Q1VEQSAxMC54" role="tab" tabindex="-1">CUDA 10.x</button></div><div aria-labelledby="tab-0-Q1VEQSAxMS44Kw==" class="sphinx-tabs-panel group-tab" id="panel-0-Q1VEQSAxMS44Kw==" name="Q1VEQSAxMS44Kw==" role="tabpanel" tabindex="0"><div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>nvcc<span class="w"> </span>filename.cu<span class="w"> </span><span class="se">\</span>
+<span class="w">   </span>-gencode<span class="o">=</span><span class="nv">arch</span><span class="o">=</span>compute_80,code<span class="o">=</span>sm_80<span class="w"> </span><span class="se">\</span>
+<span class="w">   </span>-gencode<span class="o">=</span><span class="nv">arch</span><span class="o">=</span>compute_90,code<span class="o">=</span>sm_90<span class="w"> </span><span class="se">\</span>
+<span class="w">   </span>-gencode<span class="o">=</span><span class="nv">arch</span><span class="o">=</span>compute_90,code<span class="o">=</span>compute_90
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-0-Q1VEQSAxMS4wKw==" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-0-Q1VEQSAxMS4wKw==" name="Q1VEQSAxMS4wKw==" role="tabpanel" tabindex="0"><div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>nvcc<span class="w"> </span>filename.cu<span class="w"> </span><span class="se">\</span>
+<span class="w">   </span>-gencode<span class="o">=</span><span class="nv">arch</span><span class="o">=</span>compute_80,code<span class="o">=</span>sm_80<span class="w"> </span><span class="se">\</span>
+<span class="w">   </span>-gencode<span class="o">=</span><span class="nv">arch</span><span class="o">=</span>compute_80,code<span class="o">=</span>compute_80
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-0-Q1VEQSAxMC54" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-0-Q1VEQSAxMC54" name="Q1VEQSAxMC54" role="tabpanel" tabindex="0"><div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>nvcc<span class="w"> </span>filename.cu<span class="w"> </span><span class="se">\</span>
+<span class="w">   </span>-gencode<span class="o">=</span><span class="nv">arch</span><span class="o">=</span>compute_70,code<span class="o">=</span>compute_70
+</pre></div>
+</div>
+</div></div>
+<p>Further details of these compiler flags can be found in the <a class="reference external" href="https://docs.nvidia.com/cuda/cuda-compiler-driver-nvcc/index.html#options-for-steering-gpu-code-generation">NVCC Documentation</a>,
+along with details of the supported <a class="reference external" href="https://docs.nvidia.com/cuda/cuda-compiler-driver-nvcc/index.html#virtual-architecture-feature-list">virtual architectures</a> and <a class="reference external" href="https://docs.nvidia.com/cuda/cuda-compiler-driver-nvcc/index.html#gpu-feature-list">real architectures</a>.</p>
+</section>
+<hr class="docutils" />
+<section id="documentation">
+<h2>Documentation<a class="headerlink" href="#documentation" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.nvidia.com/cuda/index.html#axzz3uLoSltnh">CUDA Toolkit Documentation</a></p></li>
+<li><p><a class="reference external" href="http://devblogs.nvidia.com/parallelforall/power-cpp11-cuda-7/">The power of C++11 in CUDA 7</a></p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="nsight-systems">
+<h2>Nsight Systems<a class="headerlink" href="#nsight-systems" title="Link to this heading"></a></h2>
+<p>Nsight Systems is a system-wide performance analysis tool designed to
+visualize an application’s algorithms and
+identify the largest opportunities to optimize.
+It supports Pascal (SM 60) and newer GPUs.</p>
+<p>A common use-case for Nsight Systems is to generate application timelines via the command line,
+which can later be visualised on a local computer using the GUI component.
+The Nsight Systems executable, <code class="docutils literal notranslate"><span class="pre">nsys</span></code>, is provided by loading a version of CUDA using a module file.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p>You should use a version of nsys that is at least as new as the CUDA toolkit used to compile your application (if appropriate).</p></li>
+<li><p>However, be aware that the nsys provided with CUDA &gt;= 11.8 (and &lt;= 12.0) is buggy and should not be used.</p></li>
+</ul>
+</div>
+<p>To generate an application timeline with Nsight Systems CLI (nsys):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">nsys</span> <span class="n">profile</span> <span class="o">-</span><span class="n">o</span> <span class="n">timeline</span> <span class="o">./</span><span class="n">myapplication</span> <span class="o">&lt;</span><span class="n">arguments</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>Nsight systems can trace mulitple APIs, such as CUDA and OpenACC. The <code class="docutils literal notranslate"><span class="pre">--trace</span></code> argument to specify which APIs should be traced.
+See the <a class="reference external" href="https://docs.nvidia.com/nsight-systems/profiling/index.html#cli-profile-command-switch-options">nsys profiling command switch options</a> for further information.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">nsys</span> <span class="n">profile</span> <span class="o">-</span><span class="n">o</span> <span class="n">timeline</span> <span class="o">--</span><span class="n">trace</span> <span class="n">cuda</span><span class="p">,</span><span class="n">nvtx</span><span class="p">,</span><span class="n">osrt</span><span class="p">,</span><span class="n">openacc</span> <span class="o">./</span><span class="n">myapplication</span> <span class="o">&lt;</span><span class="n">arguments</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>Once this file has been downloaded to your local machine,
+it can be opened in <code class="docutils literal notranslate"><span class="pre">nsys-ui</span></code>/<code class="docutils literal notranslate"><span class="pre">nsight-sys</span></code> via File &gt; Open &gt; <code class="docutils literal notranslate"><span class="pre">timeline.qdrep</span></code></p>
+</section>
+<section id="nsight-compute">
+<h2>Nsight Compute<a class="headerlink" href="#nsight-compute" title="Link to this heading"></a></h2>
+<p>Nsight Compute is a kernel profiler for CUDA applications, which can also be used for API debugging. It supports Volta (SM 70) and newer GPUs.</p>
+<p>A common use-case for using Nsight Compute is to capture all available profiling metrics via the command line, which can later be analysed on a local computer using the GUI component.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you want to perform CUDA kernel profiling on this cluster
+you need to explicitly request (via <a class="reference external" href="mailto:research-it&#37;&#52;&#48;sheffield&#46;ac&#46;uk">research-it<span>&#64;</span>sheffield<span>&#46;</span>ac<span>&#46;</span>uk</a>) for
+that to be enabled for you for a certain number of GPUs over a certain time period,
+otherwise attempts to use tools like Nsight Compute will result in permissions errors (<code class="docutils literal notranslate"><span class="pre">ERR_NVGPUCTRPERM</span></code>).</p>
+</div>
+<p>Nsight Compute, <code class="docutils literal notranslate"><span class="pre">ncu</span></code>, is provided by loading a version of CUDA using a module file.
+You should use a versions of <code class="docutils literal notranslate"><span class="pre">ncu</span></code> that is at least as new as the CUDA toolkit used to compile your application.</p>
+<p>To generate the default set of profile metrics with Nsight Compute CLI (<code class="docutils literal notranslate"><span class="pre">ncu</span></code>):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ncu</span> <span class="o">-</span><span class="n">o</span> <span class="n">metrics</span> <span class="o">./</span><span class="n">myapplication</span> <span class="o">&lt;</span><span class="n">arguments</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>Nsight compute can capture many different metrics which are used to generate the different sections of the profiling report. The <code class="docutils literal notranslate"><span class="pre">--set</span></code> argument can be used to control which set of metrics and sections are captured. See the <a class="reference external" href="https://docs.nvidia.com/nsight-compute/NsightComputeCli/index.html#command-line-options-profile">Nsight Compute CLI Command Line Options</a> for further information.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ncu</span> <span class="o">-</span><span class="n">o</span> <span class="n">metrics</span> <span class="o">--</span><span class="nb">set</span> <span class="n">full</span> <span class="o">./</span><span class="n">myapplication</span> <span class="o">&lt;</span><span class="n">arguments</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>Once this file has been downloaded to your local machine, it can be opened in <code class="docutils literal notranslate"><span class="pre">ncu-ui</span></code>/<code class="docutils literal notranslate"><span class="pre">nv-nsight-cu</span></code> via File &gt; Open File &gt; metrics.ncu-rep</p>
+</section>
+<section id="profiling-using-nvprof">
+<h2>Profiling using nvprof<a class="headerlink" href="#profiling-using-nvprof" title="Link to this heading"></a></h2>
+<p>nvprof is not supported on the GPUs in Stanage
+(it <a class="reference external" href="https://docs.nvidia.com/cuda/profiler-users-guide/#changelog">does not support NVIDIA architectures &gt;= SM80</a>);
+please use Nsight Systems and Nsight Compute instead.</p>
+</section>
+<hr class="docutils" />
+<section id="cuda-training">
+<h2>CUDA Training<a class="headerlink" href="#cuda-training" title="Link to this heading"></a></h2>
+<p>The Research Software Engineering team have developed an undergraduate teaching module on CUDA;
+<a class="reference external" href="https://rse.shef.ac.uk/training/com4521">lecture notes and lecture recordings for that module are accessible here</a> for anyone with a University account.</p>
+</section>
+<hr class="docutils" />
+<section id="determining-the-nvidia-driver-version">
+<h2>Determining the NVIDIA Driver version<a class="headerlink" href="#determining-the-nvidia-driver-version" title="Link to this heading"></a></h2>
+<p>Run the command:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>cat<span class="w"> </span>/proc/driver/nvidia/version
+</pre></div>
+</div>
+<p>Example output is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">NVRM</span> <span class="n">version</span><span class="p">:</span> <span class="n">NVIDIA</span> <span class="n">UNIX</span> <span class="n">x86_64</span> <span class="n">Kernel</span> <span class="n">Module</span>  <span class="mf">525.105.17</span>  <span class="n">Tue</span> <span class="n">Mar</span> <span class="mi">28</span> <span class="mi">18</span><span class="p">:</span><span class="mi">02</span><span class="p">:</span><span class="mi">59</span> <span class="n">UTC</span> <span class="mi">2023</span>
+<span class="n">GCC</span> <span class="n">version</span><span class="p">:</span>  <span class="n">gcc</span> <span class="n">version</span> <span class="mf">4.8.5</span> <span class="mi">20150623</span> <span class="p">(</span><span class="n">Red</span> <span class="n">Hat</span> <span class="mf">4.8.5</span><span class="o">-</span><span class="mi">44</span><span class="p">)</span> <span class="p">(</span><span class="n">GCC</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="installation-notes">
+<h2>Installation notes<a class="headerlink" href="#installation-notes" title="Link to this heading"></a></h2>
+<p>These are primarily for system administrators.</p>
+<section id="cuda-12-0-0">
+<h3>CUDA 12.0.0<a class="headerlink" href="#cuda-12-0-0" title="Link to this heading"></a></h3>
+<p>Installed as a dependency of the <code class="docutils literal notranslate"><span class="pre">cuDNN-8.8.0.121-CUDA-12.0.0.eb</span></code> easyconfig.</p>
+<p>Single GPU and compiler testing was conducted as above in the <code class="docutils literal notranslate"><span class="pre">matrixMul</span></code> batch job.</p>
+</section>
+<section id="cuda-11-8-0">
+<h3>CUDA 11.8.0<a class="headerlink" href="#cuda-11-8-0" title="Link to this heading"></a></h3>
+<p>Installed as a dependency of the <code class="docutils literal notranslate"><span class="pre">cuDNN-8.6.0.163-CUDA-11.8.0.eb</span></code> easyconfig.</p>
+<p>Single GPU and compiler testing was conducted as above in the <code class="docutils literal notranslate"><span class="pre">matrixMul</span></code> batch job.</p>
+</section>
+<section id="cuda-11-7-0">
+<h3>CUDA 11.7.0<a class="headerlink" href="#cuda-11-7-0" title="Link to this heading"></a></h3>
+<p>Installed as a dependency of the <code class="docutils literal notranslate"><span class="pre">cuDNN-8.4.1.50-CUDA-11.7.0.eb</span></code> easyconfig.</p>
+<p>Single GPU and compiler testing was conducted as above in the <code class="docutils literal notranslate"><span class="pre">matrixMul</span></code> batch job.</p>
+<p>Inter-GPU performance was tested on all 4x A100 devices in <code class="docutils literal notranslate"><span class="pre">gpu01</span></code>
+using the <a class="reference external" href="https://github.com/NVIDIA/nccl-tests">NCCL</a> <code class="docutils literal notranslate"><span class="pre">all_reduce_perf</span></code> benchmark test
+(provided by the <code class="docutils literal notranslate"><span class="pre">NCCL-tests/2.13.6-GCC-11.3.0-CUDA-11.7.0</span></code> module), which was run using:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">all_reduce_perf</span> <span class="o">-</span><span class="n">b</span> <span class="mi">8</span> <span class="o">-</span><span class="n">e</span> <span class="mi">128</span><span class="n">M</span> <span class="o">-</span><span class="n">f</span> <span class="mi">2</span> <span class="o">-</span><span class="n">g</span> <span class="mi">4</span>
+</pre></div>
+</div>
+<p>Results:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># nThread 1 nGpus 4 minBytes 8 maxBytes 134217728 step: 2(factor) warmup iters: 5 iters: 20 agg iters: 1 validation: 1 graph: 0</span>
+<span class="c1">#</span>
+<span class="c1"># Using devices</span>
+<span class="c1">#  Rank  0 Group  0 Pid  29697 on      gpu01 device  0 [0x01] NVIDIA A100-SXM4-80GB</span>
+<span class="c1">#  Rank  1 Group  0 Pid  29697 on      gpu01 device  1 [0x41] NVIDIA A100-SXM4-80GB</span>
+<span class="c1">#  Rank  2 Group  0 Pid  29697 on      gpu01 device  2 [0x81] NVIDIA A100-SXM4-80GB</span>
+<span class="c1">#  Rank  3 Group  0 Pid  29697 on      gpu01 device  3 [0xc1] NVIDIA A100-SXM4-80GB</span>
+<span class="c1">#</span>
+<span class="c1">#                                                              out-of-place                       in-place</span>
+<span class="c1">#       size         count      type   redop    root     time   algbw   busbw #wrong     time   algbw   busbw #wrong</span>
+<span class="c1">#        (B)    (elements)                               (us)  (GB/s)  (GB/s)            (us)  (GB/s)  (GB/s)</span>
+           <span class="mi">8</span>             <span class="mi">2</span>     <span class="nb">float</span>     <span class="nb">sum</span>      <span class="o">-</span><span class="mi">1</span>    <span class="mf">15.29</span>    <span class="mf">0.00</span>    <span class="mf">0.00</span>      <span class="mi">0</span>    <span class="mf">14.64</span>    <span class="mf">0.00</span>    <span class="mf">0.00</span>      <span class="mi">0</span>
+          <span class="mi">16</span>             <span class="mi">4</span>     <span class="nb">float</span>     <span class="nb">sum</span>      <span class="o">-</span><span class="mi">1</span>    <span class="mf">14.72</span>    <span class="mf">0.00</span>    <span class="mf">0.00</span>      <span class="mi">0</span>    <span class="mf">14.96</span>    <span class="mf">0.00</span>    <span class="mf">0.00</span>      <span class="mi">0</span>
+          <span class="mi">32</span>             <span class="mi">8</span>     <span class="nb">float</span>     <span class="nb">sum</span>      <span class="o">-</span><span class="mi">1</span>    <span class="mf">14.48</span>    <span class="mf">0.00</span>    <span class="mf">0.00</span>      <span class="mi">0</span>    <span class="mf">14.67</span>    <span class="mf">0.00</span>    <span class="mf">0.00</span>      <span class="mi">0</span>
+          <span class="mi">64</span>            <span class="mi">16</span>     <span class="nb">float</span>     <span class="nb">sum</span>      <span class="o">-</span><span class="mi">1</span>    <span class="mf">15.52</span>    <span class="mf">0.00</span>    <span class="mf">0.01</span>      <span class="mi">0</span>    <span class="mf">14.51</span>    <span class="mf">0.00</span>    <span class="mf">0.01</span>      <span class="mi">0</span>
+         <span class="mi">128</span>            <span class="mi">32</span>     <span class="nb">float</span>     <span class="nb">sum</span>      <span class="o">-</span><span class="mi">1</span>    <span class="mf">14.73</span>    <span class="mf">0.01</span>    <span class="mf">0.01</span>      <span class="mi">0</span>    <span class="mf">14.81</span>    <span class="mf">0.01</span>    <span class="mf">0.01</span>      <span class="mi">0</span>
+         <span class="mi">256</span>            <span class="mi">64</span>     <span class="nb">float</span>     <span class="nb">sum</span>      <span class="o">-</span><span class="mi">1</span>    <span class="mf">14.85</span>    <span class="mf">0.02</span>    <span class="mf">0.03</span>      <span class="mi">0</span>    <span class="mf">14.20</span>    <span class="mf">0.02</span>    <span class="mf">0.03</span>      <span class="mi">0</span>
+         <span class="mi">512</span>           <span class="mi">128</span>     <span class="nb">float</span>     <span class="nb">sum</span>      <span class="o">-</span><span class="mi">1</span>    <span class="mf">14.89</span>    <span class="mf">0.03</span>    <span class="mf">0.05</span>      <span class="mi">0</span>    <span class="mf">14.91</span>    <span class="mf">0.03</span>    <span class="mf">0.05</span>      <span class="mi">0</span>
+        <span class="mi">1024</span>           <span class="mi">256</span>     <span class="nb">float</span>     <span class="nb">sum</span>      <span class="o">-</span><span class="mi">1</span>    <span class="mf">14.50</span>    <span class="mf">0.07</span>    <span class="mf">0.11</span>      <span class="mi">0</span>    <span class="mf">14.58</span>    <span class="mf">0.07</span>    <span class="mf">0.11</span>      <span class="mi">0</span>
+        <span class="mi">2048</span>           <span class="mi">512</span>     <span class="nb">float</span>     <span class="nb">sum</span>      <span class="o">-</span><span class="mi">1</span>    <span class="mf">15.01</span>    <span class="mf">0.14</span>    <span class="mf">0.20</span>      <span class="mi">0</span>    <span class="mf">14.43</span>    <span class="mf">0.14</span>    <span class="mf">0.21</span>      <span class="mi">0</span>
+        <span class="mi">4096</span>          <span class="mi">1024</span>     <span class="nb">float</span>     <span class="nb">sum</span>      <span class="o">-</span><span class="mi">1</span>    <span class="mf">14.75</span>    <span class="mf">0.28</span>    <span class="mf">0.42</span>      <span class="mi">0</span>    <span class="mf">15.19</span>    <span class="mf">0.27</span>    <span class="mf">0.40</span>      <span class="mi">0</span>
+        <span class="mi">8192</span>          <span class="mi">2048</span>     <span class="nb">float</span>     <span class="nb">sum</span>      <span class="o">-</span><span class="mi">1</span>    <span class="mf">14.93</span>    <span class="mf">0.55</span>    <span class="mf">0.82</span>      <span class="mi">0</span>    <span class="mf">14.81</span>    <span class="mf">0.55</span>    <span class="mf">0.83</span>      <span class="mi">0</span>
+       <span class="mi">16384</span>          <span class="mi">4096</span>     <span class="nb">float</span>     <span class="nb">sum</span>      <span class="o">-</span><span class="mi">1</span>    <span class="mf">16.29</span>    <span class="mf">1.01</span>    <span class="mf">1.51</span>      <span class="mi">0</span>    <span class="mf">15.35</span>    <span class="mf">1.07</span>    <span class="mf">1.60</span>      <span class="mi">0</span>
+       <span class="mi">32768</span>          <span class="mi">8192</span>     <span class="nb">float</span>     <span class="nb">sum</span>      <span class="o">-</span><span class="mi">1</span>    <span class="mf">19.80</span>    <span class="mf">1.66</span>    <span class="mf">2.48</span>      <span class="mi">0</span>    <span class="mf">19.43</span>    <span class="mf">1.69</span>    <span class="mf">2.53</span>      <span class="mi">0</span>
+       <span class="mi">65536</span>         <span class="mi">16384</span>     <span class="nb">float</span>     <span class="nb">sum</span>      <span class="o">-</span><span class="mi">1</span>    <span class="mf">21.48</span>    <span class="mf">3.05</span>    <span class="mf">4.58</span>      <span class="mi">0</span>    <span class="mf">20.99</span>    <span class="mf">3.12</span>    <span class="mf">4.68</span>      <span class="mi">0</span>
+      <span class="mi">131072</span>         <span class="mi">32768</span>     <span class="nb">float</span>     <span class="nb">sum</span>      <span class="o">-</span><span class="mi">1</span>    <span class="mf">25.64</span>    <span class="mf">5.11</span>    <span class="mf">7.67</span>      <span class="mi">0</span>    <span class="mf">25.36</span>    <span class="mf">5.17</span>    <span class="mf">7.75</span>      <span class="mi">0</span>
+      <span class="mi">262144</span>         <span class="mi">65536</span>     <span class="nb">float</span>     <span class="nb">sum</span>      <span class="o">-</span><span class="mi">1</span>    <span class="mf">35.04</span>    <span class="mf">7.48</span>   <span class="mf">11.22</span>      <span class="mi">0</span>    <span class="mf">34.06</span>    <span class="mf">7.70</span>   <span class="mf">11.55</span>      <span class="mi">0</span>
+      <span class="mi">524288</span>        <span class="mi">131072</span>     <span class="nb">float</span>     <span class="nb">sum</span>      <span class="o">-</span><span class="mi">1</span>    <span class="mf">44.89</span>   <span class="mf">11.68</span>   <span class="mf">17.52</span>      <span class="mi">0</span>    <span class="mf">44.45</span>   <span class="mf">11.80</span>   <span class="mf">17.69</span>      <span class="mi">0</span>
+     <span class="mi">1048576</span>        <span class="mi">262144</span>     <span class="nb">float</span>     <span class="nb">sum</span>      <span class="o">-</span><span class="mi">1</span>    <span class="mf">63.16</span>   <span class="mf">16.60</span>   <span class="mf">24.90</span>      <span class="mi">0</span>    <span class="mf">63.08</span>   <span class="mf">16.62</span>   <span class="mf">24.94</span>      <span class="mi">0</span>
+     <span class="mi">2097152</span>        <span class="mi">524288</span>     <span class="nb">float</span>     <span class="nb">sum</span>      <span class="o">-</span><span class="mi">1</span>    <span class="mf">69.09</span>   <span class="mf">30.35</span>   <span class="mf">45.53</span>      <span class="mi">0</span>    <span class="mf">69.25</span>   <span class="mf">30.28</span>   <span class="mf">45.42</span>      <span class="mi">0</span>
+     <span class="mi">4194304</span>       <span class="mi">1048576</span>     <span class="nb">float</span>     <span class="nb">sum</span>      <span class="o">-</span><span class="mi">1</span>    <span class="mf">86.22</span>   <span class="mf">48.65</span>   <span class="mf">72.97</span>      <span class="mi">0</span>    <span class="mf">86.73</span>   <span class="mf">48.36</span>   <span class="mf">72.54</span>      <span class="mi">0</span>
+     <span class="mi">8388608</span>       <span class="mi">2097152</span>     <span class="nb">float</span>     <span class="nb">sum</span>      <span class="o">-</span><span class="mi">1</span>    <span class="mf">132.7</span>   <span class="mf">63.21</span>   <span class="mf">94.81</span>      <span class="mi">0</span>    <span class="mf">130.3</span>   <span class="mf">64.40</span>   <span class="mf">96.60</span>      <span class="mi">0</span>
+    <span class="mi">16777216</span>       <span class="mi">4194304</span>     <span class="nb">float</span>     <span class="nb">sum</span>      <span class="o">-</span><span class="mi">1</span>    <span class="mf">188.7</span>   <span class="mf">88.91</span>  <span class="mf">133.36</span>      <span class="mi">0</span>    <span class="mf">187.8</span>   <span class="mf">89.35</span>  <span class="mf">134.02</span>      <span class="mi">0</span>
+    <span class="mi">33554432</span>       <span class="mi">8388608</span>     <span class="nb">float</span>     <span class="nb">sum</span>      <span class="o">-</span><span class="mi">1</span>    <span class="mf">284.9</span>  <span class="mf">117.76</span>  <span class="mf">176.64</span>      <span class="mi">0</span>    <span class="mf">282.3</span>  <span class="mf">118.85</span>  <span class="mf">178.28</span>      <span class="mi">0</span>
+    <span class="mi">67108864</span>      <span class="mi">16777216</span>     <span class="nb">float</span>     <span class="nb">sum</span>      <span class="o">-</span><span class="mi">1</span>    <span class="mf">537.4</span>  <span class="mf">124.88</span>  <span class="mf">187.32</span>      <span class="mi">0</span>    <span class="mf">538.8</span>  <span class="mf">124.56</span>  <span class="mf">186.83</span>      <span class="mi">0</span>
+   <span class="mi">134217728</span>      <span class="mi">33554432</span>     <span class="nb">float</span>     <span class="nb">sum</span>      <span class="o">-</span><span class="mi">1</span>    <span class="mf">974.9</span>  <span class="mf">137.67</span>  <span class="mf">206.51</span>      <span class="mi">0</span>    <span class="mf">962.4</span>  <span class="mf">139.46</span>  <span class="mf">209.20</span>      <span class="mi">0</span>
+<span class="c1"># Out of bounds values : 0 OK</span>
+<span class="c1"># Avg bus bandwidth    : 39.6794</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="cfitsio.html" class="btn btn-neutral float-left" title="cfitsio" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="cudnn.html" class="btn btn-neutral float-right" title="cuDNN" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, The University of Sheffield.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+<footer class="footer">
+  <div class="container">
+    <div class="left-footer">
+         &copy; 2024, The University of Sheffield
+       <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" /></a>
+    </div>
+   
+    <div class="centre-footer">
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.3.7
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
