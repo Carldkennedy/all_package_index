@@ -6,21 +6,21 @@ copy:
     to: slurm.sh
     overwrite: true
 
-  - from: .
-    to: all-package-index/
+  - from: mods2docs
+    to: mods2docs
     overwrite: true
 
 collect:
-  - from: all-package-index/log-collect-data.log
-    to: log-collect-data.log
+  - from: data/log-collect-data.log
+    to: data/log-collect-data.log
     overwrite: true
 
-  - from: all-package-index/collected-data.pkl
-    to: collected-data.pkl
+  - from: data/collected-data.pkl
+    to: data/collected-data.pkl
     overwrite: true
   
-  - from: all-package-index/broken-symlinks.log
-    to: broken-symlinks.log
+  - from: data/broken-symlinks.log
+    to: data/broken-symlinks.log
     overwrite: true
 
   - from: slurm.out 
