@@ -2,7 +2,8 @@ All Package Index
 =================
 
 This repository contains scripts for parsing module files, generating documentation, and syncing with the HPC documentation repository.
-These scripts automate the documentation process for an All Package Index section of our HPC Stanage cluster documentation.
+These scripts automate the documentation process for an "All Package Index" section of the HPC Stanage cluster documentation, including
+configuration and handling dependencies for various architectures.
 
 The generated files for each package found on the given module paths includes:
 
@@ -20,42 +21,19 @@ TODO
 
 - [ ] Support any number of architectures
  
+Setup and Usage
+---------------
 
-Scripts
---------
-.. code-block::
+Configuration
+^^^^^^^^^^^^^
+To configure the necessary parameters, use config.py and config.yml:
 
-    |____ README
-    |____ run-hpc-rocket.sh    initiates slurm job on cluster
-    |____ setup_local.sh       activates required environment, generating it if doesn't exist
-    |____ slurm.sh             job script run collect_data.py on hpc cluster
-    |____ sync_stacks.sh       syncs *rst files into hpc docs repo
-    |____ mods2docs
-    | |____ config.py          configuration file
-    | |____ config.yml         configuration for hpc-rocket
-    | |____ collect_data.py    parses module files in modulepaths for each arch
-    | |____ utils.py           commonly used functions
-    | |____ start_pipeline.py  produces *.rst files, running collect_data.py if not already run today
-    | |____ writer
-    | | |____ common.py        commonly used writer functions
-    | | |____ obsidian.py      creates markdown files for force directed graph in Obsidian
-    | | |____ rest.py          produces *.rst files for sphinx documentation
-    | |____ parser
-    | | |____ common.py
-    | | |____ lmod.py          parses lua module files on modulepath
+config.py defines output directories for generated documentation and other key paths.
+config.yml includes HPC-Rocket configuration for starting a batch job on cluster.
 
+``config.py`` defines output directories for generated documentation and other key paths. 
 
-.. code-block:: bash 
- 
- chmod +x run-hpc-rocket.sh setup_local.sh sync_stacks.sh
- ./setup_local.sh
- ./sync_stacks.sh
-
-config.py
----------
-The configuration setup in config.py includes: 
-
-Output directories which will later be synced with the documentation repo:
+Output directories: Directories synced with the documentation repo:
 
 .. code-block:: python
 
@@ -63,7 +41,7 @@ Output directories which will later be synced with the documentation repo:
     IMPORTS_DIR = "results/referenceinfo/imports/stanage/packages/"
     CUSTOM_DIR = "results/referenceinfo/imports/stanage/packages/custom/"
 
-Input parameters such as the modulepaths which we wish to parse, title(s) for the stack(s) and output directories for each stack: 
+Module Paths and Titles: Paths for module files to parse, titles for stacks, and output directories:
 
 .. code-block:: python
  
@@ -88,8 +66,61 @@ The title of the stack is 'Icelake and Znver (OS: Rocky 9) Package Versions'.
 
 The module files which are located in modulepaths are parsed, in this case one set for each architecture.
 
-Functions
-^^^^^^^^^
+Scripts Overview
+^^^^^^^^^^^^^^^^
+
+The repository includes several scripts and modules organised under mods2docs, each with a specific role in the pipeline:
+
+.. code-block::
+
+    |____ README
+    |____ run-hpc-rocket.sh    initiates slurm job on cluster
+    |____ setup_local.sh       activates required environment, generating it if doesn't exist
+    |____ slurm.sh             job script run collect_data.py on hpc cluster
+    |____ sync_stacks.sh       syncs *rst files into hpc docs repo
+    |____ mods2docs
+    | |____ config.py          configuration file
+    | |____ config.yml         configuration for hpc-rocket
+    | |____ collect_data.py    parses module files in modulepaths for each arch
+    | |____ utils.py           commonly used functions
+    | |____ start_pipeline.py  produces *.rst files, running collect_data.py if not already run today
+    | |____ writer
+    | | |____ common.py        commonly used writer functions
+    | | |____ obsidian.py      creates markdown files for force directed graph in Obsidian
+    | | |____ rest.py          produces *.rst files for sphinx documentation
+    | |____ parser
+    | | |____ common.py
+    | | |____ lmod.py          parses lua module files on modulepath
+
+
+
+Setting Up and Running Scripts
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: bash 
+ 
+   #Make scripts executable
+   chmod +x run-hpc-rocket.sh setup_local.sh sync_stacks.sh
+   # Set up local environment
+   ./setup_local.sh
+   # This script completes pipeline and pushes changes from a new branch to the remote repository
+   ./sync_stacks.sh
+
+Pipeline Overview
+-----------------
+
+The primary script, start_pipeline.py, orchestrates the data parsing and documentation generation pipeline:
+.
+.
+.
+.
+.
+.
+.
+
+
+Writer modules
+^^^^^^^^^^^^^^
 Below are some of the mods2docs functions, which we may wish to customise:
 
 .. code-block:: python
@@ -105,11 +136,18 @@ Below are some of the mods2docs functions, which we may wish to customise:
  write_dependencies(dependencies, output_dir, category, package, package_ref)
  write_ml_file(package, package_infos, output_dir)
 
-Below are some of the main collect_data.py functions:
+Parser Modules
+^^^^^^^^^^^^^^
 
-.. code-block:: python
+Contributing
+------------
+We welcome contributions to the All Package Index project! Whether you’d like to report a bug, suggest new features,
+or improve the documentation, your help is invaluable to the project’s success. 
+Please follow the guidelines below to ensure a smooth collaboration process.
 
- collect_data():
- process_broken_symlinks():
- extract_lua_info(lua_file_path):
- extract_installer(file_path):
+.
+.
+.
+.
+.
+.
