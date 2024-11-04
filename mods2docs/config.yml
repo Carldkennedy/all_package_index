@@ -1,0 +1,34 @@
+host: $REMOTE_HOST
+user: $REMOTE_USER 
+
+copy:
+  - from: slurm.sh
+    to: slurm.sh
+    overwrite: true
+
+  - from: mods2docs
+    to: mods2docs
+    overwrite: true
+
+collect:
+  - from: data/log-collect-data.log
+    to: data/log-collect-data.log
+    overwrite: true
+
+  - from: data/collected-data.pkl
+    to: data/collected-data.pkl
+    overwrite: true
+  
+  - from: data/broken-symlinks.log
+    to: data/broken-symlinks.log
+    overwrite: true
+
+  - from: slurm.out 
+    to: slurm.out
+    overwrite: true
+
+clean:
+  - slurm.sh
+
+sbatch: slurm.sh
+continue_if_job_fails: true

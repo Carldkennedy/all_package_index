@@ -8,15 +8,17 @@ IMPORTS="referenceinfo/imports/stanage/packages/"
 SOFTWARE="stanage/software/stubs/"
 CUSTOM="referenceinfo/imports/stanage/packages/custom/"
 
-IMPORTS_NEW="${IMPORTS}"
-SOFTWARE_NEW="${SOFTWARE}"
-CUSTOM_NEW="${CUSTOM}"
+DATA_FOLDER="data"
+
+IMPORTS_NEW="${DATA_FOLDER}/${IMPORTS}"
+SOFTWARE_NEW="${DATA_FOLDER}/${SOFTWARE}"
+CUSTOM_NEW="${DATA_FOLDER}/${CUSTOM}"
 IMPORTS_EXISTING="${REPO_DIR}/${IMPORTS}"
 SOFTWARE_EXISTING="${REPO_DIR}/${SOFTWARE}"
 CUSTOM_EXISTING="${REPO_DIR}/${CUSTOM}"
 
 # Run automatic build to generate new files
-# ./run.sh
+./run-hpc-rocket.sh
 
 # Clone the repository if it doesn't exist
 if [ ! -d "$REPO_DIR/.git" ]; then
@@ -60,14 +62,15 @@ rsync -a --delete "$SOFTWARE_NEW/" "$SOFTWARE_EXISTING/"
 # Sync new custom to existing custom directory
 rsync -a --ignore-existing "$CUSTOM_NEW/" "$CUSTOM_EXISTING/"
 
-pushd "$REPO_DIR"
-# Add changes to git
-git add .
-
-# Commit changes with a message
-git commit -m "Updated files with automatic build changes on $(date +%Y-%m-%d)"
-
-# Push the new branch to the remote repository and set upstream
-git push --set-upstream origin "$BRANCH_NAME"
-popd
+## Uncomment to push to remote
+#pushd "$REPO_DIR"
+## Add changes to git
+#git add .
+#
+## Commit changes with a message
+#git commit -m "Updated files with automatic build changes on $(date +%Y-%m-%d)"
+#
+## Push the new branch to the remote repository and set upstream
+#git push --set-upstream origin "$BRANCH_NAME"
+#popd
 

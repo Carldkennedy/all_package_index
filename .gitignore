@@ -1,9 +1,9 @@
 __pycache__/
-backups/
-referenceinfo/
-stanage/
 .ssh/
-__init__.py
+# Keep data folder but not contents
+data/*
+!data/.gitkeep
 *.pkl
 *.seff
 *.log
+*.out
