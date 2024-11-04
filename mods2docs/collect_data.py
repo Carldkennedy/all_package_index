@@ -10,7 +10,7 @@ def load_module(module_type, module_name):
     Dynamically loads a module from the specified type (writer or parser) and name.
     """
     try:
-        return importlib.import_module(f"{module_type}.{module_name}")
+        return importlib.import_module(f"mods2docs.{module_type}.{module_name}")
     except ImportError as e:
         logging.error(f"mods2docs.{module_type}.{module_name} module not found.")
         raise e
