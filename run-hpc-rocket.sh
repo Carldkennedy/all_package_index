@@ -14,9 +14,9 @@ export DATESTAMP=$(date +"%Y-%m-%d")
 hpc-rocket launch --watch mods2docs/config.yml
 
 # Run post-processing script on the returned data
-mkdir -p backups/
+mkdir -p data/backups/
 # Backup pkl
 for file in *.{pkl,log}; do cp "$file" "${file}-$(date +%Y%m%d).bk" && echo "Backed up $file" ; done
-mv *.bk backups/
+mv data/*.bk data/backups/
 
 python -m mods2docs.start_pipeline --parser lmod --writer rest
