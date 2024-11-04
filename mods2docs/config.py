@@ -5,13 +5,18 @@ from pathlib import Path
 current_date = datetime.datetime.now().strftime("%Y-%m-%d")
 
 DATA_FOLDER = Path("data")
+
 broken_symlinks_file = DATA_FOLDER / "broken-symlinks.log"
 log_file_path = DATA_FOLDER / "log-collect-data.log"
 main_log_file = DATA_FOLDER / "main-update-packages.log"
+
 DATA_FILE = DATA_FOLDER / "collected-data.pkl"
-STACKS_DIR = DATA_FOLDER / "stanage/software/stubs/"
-IMPORTS_DIR = DATA_FOLDER / "referenceinfo/imports/stanage/packages/"
-CUSTOM_DIR = DATA_FOLDER / "referenceinfo/imports/stanage/packages/custom/"
+stacks_dir = "stanage/software/stubs/"
+imports_dir = "referenceinfo/imports/stanage/packages/"
+custom_dir = "referenceinfo/imports/stanage/packages/custom/"
+STACKS_DIR = DATA_FOLDER / stacks_dir 
+IMPORTS_DIR = DATA_FOLDER / imports_dir
+CUSTOM_DIR = DATA_FOLDER / custom_dir
 
 # Inputs
 modulepaths = {
