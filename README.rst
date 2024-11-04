@@ -25,20 +25,25 @@ Scripts
 --------
 .. code-block::
 
- ├── README
- ├── collect_data.py    parses module files in modulepaths for each arch
- ├── config.py          configuration file
- ├── config.yml         configuration for hpc-rocket
- ├── graph.py           creates markdown files for force directed graph in Obsidian
- ├── start_pipeline.py  produces *.rst files, running collect_data.py if not already run today
- ├── run.sh
- ├── setup_local.sh     activates required environment, generating it if doesn't exist
- ├── slurm.sh           job script run collect_data.py on hpc cluster
- └── sync_stacks.sh     syncs *rst files into hpc docs repo
- 
-Usage
------
-After modifying config.py and config.yml file for your system:
+    |____ README
+    |____ run-hpc-rocket.sh    initiates slurm job on cluster
+    |____ setup_local.sh       activates required environment, generating it if doesn't exist
+    |____ slurm.sh             job script run collect_data.py on hpc cluster
+    |____ sync_stacks.sh       syncs *rst files into hpc docs repo
+    |____ mods2docs
+    | |____ config.py          configuration file
+    | |____ config.yml         configuration for hpc-rocket
+    | |____ collect_data.py    parses module files in modulepaths for each arch
+    | |____ utils.py           commonly used functions
+    | |____ start_pipeline.py  produces *.rst files, running collect_data.py if not already run today
+    | |____ writer
+    | | |____ common.py        commonly used writer functions
+    | | |____ obsidian.py      creates markdown files for force directed graph in Obsidian
+    | | |____ rest.py          produces *.rst files for sphinx documentation
+    | |____ parser
+    | | |____ common.py
+    | | |____ lmod.py          parses lua module files on modulepath
+
 
 .. code-block:: bash 
  
