@@ -12,7 +12,7 @@ def load_module(module_type, module_name):
     try:
         return importlib.import_module(f"{module_type}.{module_name}")
     except ImportError as e:
-        logging.error(f"{module_type}.{module_name} module not found.")
+        logging.error(f"mods2docs.{module_type}.{module_name} module not found.")
         raise e
 
 def collect_data(parser_module):
