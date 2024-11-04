@@ -53,16 +53,16 @@ def write_package_file(category_dir, category, package, output_dir):
     content = (
         f".. _{utils.make_reference(package, category, output_dir)}:\n\n"
         f"{package}\n{'=' * len(package)}\n\n"
-        f".. include:: /{config.IMPORTS_DIR}/{utils.make_filename(package, 'sdbr', output_dir)}.rst\n\n"
-        f".. include:: /{config.IMPORTS_DIR}/{utils.make_filename(package, 'dscr', output_dir)}.rst\n\n"
-        f".. include:: /{config.IMPORTS_DIR}/packages_note.rst\n\n"
+        f".. include:: /{config.imports_dir}/{utils.make_filename(package, 'sdbr', output_dir)}.rst\n\n"
+        f".. include:: /{config.imports_dir}/{utils.make_filename(package, 'dscr', output_dir)}.rst\n\n"
+        f".. include:: /{config.imports_dir}/packages_note.rst\n\n"
         f".. include:: /{config.SLURM_INTERACTIVE_SESSION_IMPORT}\n\n"
         f"A version of {package} can then be made available with *one* of the following:\n\n"
-        f".. include:: /{config.IMPORTS_DIR}/{utils.make_filename(package, 'ml', output_dir)}.rst\n\n"
-        f".. include:: /{config.CUSTOM_DIR}/{utils.make_filename(package, 'cust', output_dir)}.rst\n\n"
+        f".. include:: /{config.imports_dir}/{utils.make_filename(package, 'ml', output_dir)}.rst\n\n"
+        f".. include:: /{config.custom_dir}/{utils.make_filename(package, 'cust', output_dir)}.rst\n\n"
         f"Notes\n-----\n\n"
-        f".. include:: /{config.IMPORTS_DIR}/{utils.make_filename(package, 'inst', output_dir)}.rst\n\n"
-        f".. include:: /{config.IMPORTS_DIR}/{utils.make_filename(package, 'dpnd', output_dir)}.rst\n\n"
+        f".. include:: /{config.imports_dir}/{utils.make_filename(package, 'inst', output_dir)}.rst\n\n"
+        f".. include:: /{config.imports_dir}/{utils.make_filename(package, 'dpnd', output_dir)}.rst\n\n"
     )
     utils.write_file(package_file, content)
 
@@ -140,7 +140,7 @@ def write_installation_file(package, latest_info, output_dir):
         content = (
             f"{package} was installed using Easybuild, build details can be found in ``${ebroot_var}/easybuild`` with a given module loaded."
         )
-    utils.append_file(inst_file, content + "\n")
+    utils.write_file(inst_file, content + "\n")
 
 def write_custom_file(package, output_dir):
     cust_file = os.path.join(config.CUSTOM_DIR, f"{utils.make_filename(package, 'cust', output_dir)}.rst")
