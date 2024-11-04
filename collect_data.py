@@ -1,7 +1,7 @@
 import os
 import pickle
 import argparse
-from utils import append_file, append_log, write_log
+import utils 
 import config
 import importlib
 import logging
@@ -43,11 +43,11 @@ def collect_data(parser_module):
         'latest_version_info': latest_version_info_str_keys
     }
 
-    parser.common.save_collected_data(config.DATA_FILE, collected_data)
+    utils.save_collected_data(config.DATA_FILE, collected_data)
 
 def main(parser_module):
-    write_log(config.log_file_path)
-    write_log(config.broken_symlinks_file)
+    utils.write_log(config.log_file_path)
+    utils.write_log(config.broken_symlinks_file)
 
     collect_data(parser_module)
     parser_module.process_broken_symlinks()
