@@ -1,20 +1,11 @@
+import logging
 import argparse
 import importlib
 from mods2docs import config, utils
-import logging
 
-def load_module(module_type, module_name):
-    """
-    Dynamically loads a module from the specified type (writer or parser) and name.
-    """
-    try:
-        return importlib.import_module(f"mods2docs.{module_type}.{module_name}")
-    except ImportError as e:
-        logging.error(f"mods2docs.{module_type}.{module_name} module not found.")
-        raise e
 
-def main(writer_module, parser_module):
-    logging.info("Starting main process")
+def run_pipeline(writer_module, parser_module):
+    logging.info("Starting process")
     utils.write_log(config.main_log_file)
     writer_module.setup_writer_directories()
 
@@ -42,8 +33,8 @@ if __name__ == "__main__":
     utils.setup_logging(args.verbose)
 
     # Dynamically load writer and parser modules
-    writer_module = load_module("writer", args.writer)
-    parser_module = load_module("parser", args.parser)
+    writer_module = utils.load_module("writer", args.writer)
+    parser_module = utils.load_module("parser", args.parser)
 
     # Run main
-    main(writer_module, parser_module)
+    run_pipeline(writer_module, parser_module)

@@ -1,5 +1,5 @@
-import subprocess
 import pickle
+import subprocess
 
 def extract_installer(file_path):
     try:

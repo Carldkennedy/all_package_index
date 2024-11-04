@@ -1,11 +1,11 @@
 import os
 import re
 import glob
-from mods2docs import config, utils
 import pickle
 import datetime
 import subprocess
 from lupa import LuaRuntime
+from mods2docs import config, utils
 from mods2docs.parser.common import extract_installer
 
 
