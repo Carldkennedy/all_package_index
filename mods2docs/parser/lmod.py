@@ -11,10 +11,10 @@ from mods2docs.parser.common import extract_installer
 
 def run_collect_data_script():
     try:
-        result = subprocess.run(['python', 'collect_data.py'], check=True)
+        result = subprocess.run(['python', '-m', 'mods2docs.collect_data'], check=True)
         return result.returncode == 0
     except subprocess.CalledProcessError as e:
-        utils.append_log(f"Failed to run collect_data.py: {e}", config.main_log_file)
+        utils.append_log(f"Failed to run mods2docs.collect_data: {e}", config.main_log_file)
         print(f"Failed to run collect_data.py: {e}")
         return False
 
