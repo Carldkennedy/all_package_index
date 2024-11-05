@@ -5,7 +5,7 @@ BUILD_DIR="${HOME}/.build-all-package-index/"
 REPO_DIR="${BUILD_DIR}/sheffield_hpc"
 BRANCH_NAME="all-packages-update-$(date +%Y%m%d)"
 IMPORTS="referenceinfo/imports/stanage/packages/"
-SOFTWARE="stanage/software/stubs/"
+SOFTWARE="stanage/software/stacks/"
 CUSTOM="referenceinfo/imports/stanage/packages/custom/"
 
 DATA_FOLDER="data"
