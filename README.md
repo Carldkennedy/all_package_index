@@ -2,7 +2,7 @@ All Package Index
 =================
 
 This repository contains scripts for parsing module files, generating documentation, and syncing with the HPC documentation repository.
-These scripts automate the documentation process for an "All Package Index" section of the HPC Stanage cluster documentation, including
+These scripts automate the documentation process for an "All Package Index" section of an HPC cluster documentation, including
 configuration and handling dependencies for various architectures.
 
 ### TODO
