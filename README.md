@@ -46,6 +46,9 @@ The repository includes several scripts and modules organised under mods2docs, e
    # This script completes pipeline and pushes changes from a new branch to the remote repository
    ./sync_stacks.sh
 ```
+sync_stacks calls run-hpc-rocket.sh and if uncommented will push changes on a new branch to the remote documentation repo.
+Consequently it assumes you have set up ssh keys for access to the cluster and github tokens or ssh keys for the remote repo.
+
 ### Configuration
 
 To configure the necessary parameters, use config.py and config.yml:
