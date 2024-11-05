@@ -10,11 +10,12 @@ broken_symlinks_file = DATA_FOLDER / "broken-symlinks.log"
 log_file_path = DATA_FOLDER / "log-collect-data.log"
 main_log_file = DATA_FOLDER / "main-update-packages.log"
 
-DATA_FILE = DATA_FOLDER / "collected-data.pkl"
-stacks_dir = "stanage/software/stubs/"
+stacks_dir = "stanage/software/stacks/"
 imports_dir = "referenceinfo/imports/stanage/packages/"
 custom_dir = "referenceinfo/imports/stanage/packages/custom/"
-STACKS_DIR = DATA_FOLDER / stacks_dir 
+
+DATA_FILE = DATA_FOLDER / "collected-data.pkl"
+STACKS_DIR = DATA_FOLDER / stacks_dir
 IMPORTS_DIR = DATA_FOLDER / imports_dir
 CUSTOM_DIR = DATA_FOLDER / custom_dir
 
@@ -25,7 +26,7 @@ modulepaths = {
 }
 
 titles = [
-    "Icelake and Znver (OS: Rocky 9) Package Versions"
+    "Icelake and Znver (OS: Rocky 9) Packages"
 ]
 
 output_dirs = [

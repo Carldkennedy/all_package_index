@@ -316,7 +316,7 @@ def process_paths_for_architecture(paths, arch, parser_module, latest_version_in
 
     Args:
         paths (list): List of (lua_file_path, extracted_path) tuples for the architecture.
-        arch (str): The architecture name (e.g., 'x86_64', 'arm64').
+        arch (str): The architecture name (e.g., 'znver3', 'icelake').
         parser_module (module): The parser module used to extract Lua information.
         latest_version_info (dict): Dictionary to store the latest version info by category and package.
         package_infos (dict): Dictionary to store package information by architecture.
