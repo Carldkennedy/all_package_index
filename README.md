@@ -106,6 +106,7 @@ python -m mods2docs.start_pipeline --parser lmod --writer rest.py
 ### Writer modules
 
 ``mods2docs.writer.rest``
+
 ``mods2docs.writer.obsidian`` 
 
 Below are some of the functions in ``mods2docs.writer.rest``, which we may wish to customise:
@@ -169,6 +170,8 @@ Local graph example for CUDA:
 
 
 ### Parser Modules
+
+``mods2docs.parser.lmod`` 
 
 There is currently one parser module ``mods2docs.parser.lmod`` which utilises LuaRuntime to extract all information 
 from module files, and stores data in a pickle.
