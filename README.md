@@ -129,7 +129,7 @@ We recommend copying ``mods2docs/writer/rest.py`` to for example ``mods2docs/wri
 Edit as required then you can use this module for writing your documentation.
 
 ```python
-python -m mods2docs.start_pipeline --parser lmod --writer rest-shef.py
+python -m mods2docs.start_pipeline --parser lmod --writer rest-shef
 ```
 
 The generated files for each package found on the given module paths includes:
