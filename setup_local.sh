@@ -1,5 +1,12 @@
 #!/bin/bash
-source ~/.bashrc
+# This script sets up a Conda environment named 'lmod_env' for the required Python packages.
+# It assumes Conda is initialized (via ~/.bashrc) and the environment does not already exist.
+# If 'lmod_env' is missing, the script will create it with Python 3.9 and install necessary packages:
+# - lupa: for embedding Lua in Python, often used in HPC modules
+# - packaging: for parsing and comparing version numbers
+# - hpc-rocket: for handling HPC job submissions
+source ~/.bashrc  # Assumes Conda is initialised
+
 ENV_NAME="lmod_env"
 
 # Activate the Conda environment
@@ -18,4 +25,5 @@ if [ $? -ne 0 ]; then
 fi
 
 echo "Environment setup is complete."
+
 

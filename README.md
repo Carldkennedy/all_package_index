@@ -16,7 +16,7 @@ The repository includes several scripts and modules organised under mods2docs, e
 
     |____ README
     |____ run-hpc-rocket.sh    initiates slurm job on cluster
-    |____ setup_local.sh       activates required environment, generating it if doesn't exist
+    |____ setup_local.sh       activates required conda environment, generating it if doesn't exist
     |____ slurm.sh             job script run collect_data.py on hpc cluster
     |____ sync_stacks.sh       syncs *rst files into hpc docs repo
     |____ mods2docs
