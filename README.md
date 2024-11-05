@@ -159,7 +159,7 @@ An example of built output is available [here](https://carldkennedy.github.io/al
 
 The ``mods2docs.writer.obsidian`` module will output markdown files into a directory which we can open with [Obsidian](https://obsidian.md/) 
 to leverage it's built-in force-directed-graph functionality to visualise the relationships between the latest versions of all packages.
-We can use the global graph to see all connections between packages or a local graph to focus on specific packages and their immediate connections. 
+We can use the [global graph](https://help.obsidian.md/Plugins/Graph+view) to see all connections between packages or a [local graph](https://help.obsidian.md/Plugins/Graph+view#Local+Graph) to focus on specific packages and their immediate connections. 
 
 ```python
 python -m mods2docs.start_pipeline --parser lmod --writer obsidian
