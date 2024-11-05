@@ -100,7 +100,7 @@ The primary script, start_pipeline.py, orchestrates the data parsing and documen
 This example usess the lmod parser and ReST writer to generate documentation:
 
 ```python
-python -m mods2docs.start_pipeline --parser lmod --writer rest.py
+python -m mods2docs.start_pipeline --parser lmod --writer rest
 ```
 
 ### Writer modules
