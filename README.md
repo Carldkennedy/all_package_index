@@ -140,7 +140,17 @@ The generated files for each package found on the given module paths includes:
 * Dependencies - Shows the dependencies for the latest version (across architectures), each is a link to it's respective page.
 
 Each of the above is imported into a package's page when built, this allows re-use of these imports
-elsewhere in the documentation.
+elsewhere in the documentation. 
+
+```bash
+# A list of files generated in imports_dir for CUDA
+$ls referenceinfo/imports/stanage/packages/cuda-*
+cuda-dpnd-el9-icelake-znver-stanage.rst
+cuda-dscr-el9-icelake-znver-stanage.rst
+cuda-inst-el9-icelake-znver-stanage.rst
+cuda-ml-el9-icelake-znver-stanage.rst
+cuda-sdbr-el9-icelake-znver-stanage.rst
+```
 
 An example of built output is available [here](https://carldkennedy.github.io/all_package_index/stanage/software/stubs/index.html)
 
