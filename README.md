@@ -153,7 +153,7 @@ cuda-ml-el9-icelake-znver-stanage.rst
 cuda-sdbr-el9-icelake-znver-stanage.rst
 ```
 
-An example of built output is available [here](https://carldkennedy.github.io/all_package_index/stanage/software/stubs/index.html)
+An example of built output is available [here](https://carldkennedy.github.io/all_package_index/stanage/software/stubs/el9-icelake-znver-stanage/index.html)
 
 ![Example package page](docs/images/Example-package-page.jpg)
 
