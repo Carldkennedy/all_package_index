@@ -26,9 +26,6 @@ elsewhere in the documentation.
 
 To configure the necessary parameters, use config.py and config.yml:
 
-config.py defines output directories for generated documentation and other key paths.
-config.yml includes HPC-Rocket configuration for starting a batch job on cluster.
-
 ``config.py`` defines output directories for generated documentation and other key paths. 
 
 Output directories: Directories synced with the documentation repo:
@@ -65,6 +62,10 @@ In this example, the directory which the category directories and package files 
 The title of the stack is 'Icelake and Znver (OS: Rocky 9) Package Versions'.
 
 The module files which are located in modulepaths are parsed, in this case one set for each architecture.
+
+``config.yml`` includes [HPC-Rocket](https://github.com/SvenMarcus/hpc-rocket/ "https://github.com/SvenMarcus/hpc-rocket/") configuration for starting a batch job on cluster.
+
+
 
 ### Scripts Overview
 
