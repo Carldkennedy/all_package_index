@@ -97,28 +97,25 @@ This is especially useful in environments where documentation needs to be kept u
 or code changes, as mods2docs extracts information directly from the source and formats it into easy-to-read documents.
 
 The primary script, start_pipeline.py, orchestrates the data parsing and documentation generation pipeline.
-This example usess the lmod parser and ReST writer to generate documenation:
+This example usess the lmod parser and ReST writer to generate documentation:
 
 ```python
 python -m mods2docs.start_pipeline --parser lmod --writer rest.py
 ```
 
-
-```python
-python -m mods2docs.start_pipeline --parser lmod --writer rest-shef.py
-```
-
 ### Writer modules
+
+``mods2docs.writer.rest``
+``mods2docs.writer.obsidian`` 
 
 Below are some of the functions in ``mods2docs.writer.rest``, which we may wish to customise:
 
 ```python
-
 # Processes data parsed from modulepaths 
 process_modulepath(modulepaths, title, output_dir)
 # which is then passed to the write_package_file 
 write_package_file(category_dir, category, package, output_dir)
-# all the following fucntions write files which are imported into the package file
+# all the following functions write files which are imported into the package file
 write_sidebar_file(package, category, latest_version_info, output_dir)
 write_description_file(package, latest_info, output_dir)
 write_installation_file(package, latest_info, output_dir)
@@ -129,6 +126,10 @@ write_ml_file(package, package_infos, output_dir)
 
 We recommend copying ``mods2docs/writer/rest.py`` to for example ``mods2docs/writer/rest-shef.py``
 Edit as required then you can use this module for writing your documentation.
+
+```python
+python -m mods2docs.start_pipeline --parser lmod --writer rest-shef.py
+```
 
 The generated files for each package found on the given module paths includes:
 
@@ -141,7 +142,21 @@ The generated files for each package found on the given module paths includes:
 Each of the above is imported into a package's page when built, this allows re-use of these imports
 elsewhere in the documentation.
 
-An example output is available at https://carldkennedy.github.io/all_package_index/stanage/software/stubs/index.html
+An example of built output is available [here](https://carldkennedy.github.io/all_package_index/stanage/software/stubs/index.html)
+
+![Example package page](docs/images/Example-package-page.jpg)
+
+The ``mods2docs.writer.obsidian`` module will output markdown files into a directory which we can open with [Obsidian](https://obsidian.md/) 
+to leverage it's built-in force-directed-graph functionality to visualise the relationships between the latest versions of all packages.
+We can use the global graph to see all connections between packages or a local graph to focus on specific packages and their immediate connections. 
+
+```python
+python -m mods2docs.start_pipeline --parser lmod --writer obsidian
+```
+Local graph example for CUDA:
+
+![Local Graph Example](docs/images/local-graph-example.jpg)
+
 
 ### Parser Modules
 
