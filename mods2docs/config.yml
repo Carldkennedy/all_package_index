@@ -11,16 +11,16 @@ copy:
     overwrite: true
 
 collect:
-  - from: data/log-collect-data.log
-    to: data/log-collect-data.log
+  - from: ${DATA_DIR}/log-collect-data.log
+    to: ${DATA_DIR}/log-collect-data.log
     overwrite: true
 
-  - from: data/collected-data.pkl
-    to: data/collected-data.pkl
+  - from: ${DATA_DIR}/collected-data.pkl
+    to: ${DATA_DIR}/collected-data.pkl
     overwrite: true
   
-  - from: data/broken-symlinks.log
-    to: data/broken-symlinks.log
+  - from: ${DATA_DIR}/broken-symlinks.log
+    to: ${DATA_DIR}/broken-symlinks.log
     overwrite: true
 
   - from: slurm.out 

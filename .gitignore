@@ -7,3 +7,4 @@ data/*
 *.seff
 *.log
 *.out
+hpc_rocket_config.yml
