@@ -19,7 +19,7 @@ def write_package_file(package, output_dir, dependencies, moduleclass):
 
 def write_all_files(title, output_dir, package_infos, package_ref, latest_version_info):
 
-    output_dir = os.path.join(config.DATA_FOLDER, output_dir)
+    output_dir = os.path.join(config.DATA_DIR, output_dir)
     current_category = ""
     added_indexes = set()
     all_category_packages = set()
