@@ -12,9 +12,9 @@ current_date = datetime.datetime.now().strftime(os.getenv("CURRENT_DATE_FORMAT")
 
 # Paths
 DATA_DIR = Path(os.getenv("DATA_DIR"))
-STACKS_DIR = DATA_DIR / os.getenv("STACKS_DIR")
-IMPORTS_DIR = DATA_DIR / os.getenv("IMPORTS_DIR")
-CUSTOM_DIR = DATA_DIR / os.getenv("CUSTOM_DIR")
+STACKS_DIR = Path(os.getenv("STACKS_DIR"))
+IMPORTS_DIR = Path(os.getenv("IMPORTS_DIR"))
+CUSTOM_DIR = Path(os.getenv("CUSTOM_DIR"))
 
 # File paths
 broken_symlinks_file = DATA_DIR / os.getenv("BROKEN_SYMLINKS_FILE")

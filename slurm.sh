@@ -1,4 +1,3 @@
-
 #!/bin/bash
 #SBATCH --time=00:15:00              # Set a maximum job run time of 15 minutes
 #SBATCH --mem=1G                      # Request 1 GB of memory

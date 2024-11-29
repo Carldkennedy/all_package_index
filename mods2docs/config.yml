@@ -10,6 +10,10 @@ copy:
     to: mods2docs
     overwrite: true
 
+  - from: config.env
+    to: config.env
+    overwrite: true
+
 collect:
   - from: ${DATA_DIR}/log-collect-data.log
     to: ${DATA_DIR}/log-collect-data.log
