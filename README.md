@@ -15,13 +15,14 @@ Together they automate the documentation process for an "All Package Index" sect
 The repository includes several scripts and modules organised under mods2docs, each with a specific role in the pipeline:
 
     |____ README
+    |____ config.env           configuration file
     |____ run-hpc-rocket.sh    initiates slurm job on cluster
     |____ setup_local.sh       activates required conda environment, generating it if doesn't exist
     |____ slurm.sh             job script run collect_data.py on hpc cluster
     |____ sync_stacks.sh       syncs *rst files into hpc docs repo
     |____ mods2docs
-    | |____ config.py          configuration file
-    | |____ config.yml         configuration for hpc-rocket
+    | |____ config.py          configuration file updated from config.env
+    | |____ config.yml         template configuration for hpc-rocket
     | |____ collect_data.py    parses module files in modulepaths for each arch
     | |____ utils.py           commonly used functions
     | |____ start_pipeline.py  produces *.rst files, running collect_data.py if not already run today
@@ -41,7 +42,7 @@ The repository includes several scripts and modules organised under mods2docs, e
    # clone repository
    git clone https://github.com/Carldkennedy/all_package_index.git
    cd all_package_index
-   # Set up local environment
+   # Set up local conda environment
    ./setup_local.sh
    # This script completes pipeline and pushes changes from a new branch to the remote repository
    ./sync_stacks.sh
@@ -51,17 +52,19 @@ Consequently it assumes you have set up ssh keys for access to the cluster and g
 
 ### Configuration
 
-To configure the necessary parameters, use config.py and config.yml:
+To configure the necessary parameters, use config.env:
 
-``config.py`` defines output directories for generated documentation and other key paths. 
+``config.env`` populates config.py in mods2docs; is used to create a config for [HPC-Rocket](https://github.com/SvenMarcus/hpc-rocket/ "https://github.com/SvenMarcus/hpc-rocket/") (sends a batch job to a cluster) using 
+``config.yml`` as a template; and is sourced in bash scripts.
+It defines output directories for generated documentation and other key paths. 
 
 Output directories: Directories synced with the documentation repo:
 
 ```python
 # These are paths within the documentation repository which we will sync generated docs with
-stacks_dir = "results/stanage/software/stacks/"
-imports_dir = "results/referenceinfo/imports/stanage/packages/"
-custom_dir = "results/referenceinfo/imports/stanage/packages/custom/"
+STACKS_DIR = "stanage/software/stacks/"
+IMPORTS_DIR = "referenceinfo/imports/stanage/packages/"
+CUSTOM_DIR = "referenceinfo/imports/stanage/packages/custom/"
 ```
 
 Module Paths and Titles: Paths for module files to parse, titles for stacks, and output directories:
@@ -90,7 +93,6 @@ The title of the stack is 'Icelake and Znver (OS: Rocky 9) Packages'.
 
 The module files which are located in modulepaths are parsed, in this case one set for each architecture.
 
-``config.yml`` includes [HPC-Rocket](https://github.com/SvenMarcus/hpc-rocket/ "https://github.com/SvenMarcus/hpc-rocket/") configuration for starting a batch job on cluster.
 
 ## mods2docs 
 mods2ocs is a tool designed to automate the process of generating structured documentation from modular data or 
