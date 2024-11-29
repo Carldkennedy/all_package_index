@@ -1,64 +1,36 @@
+import os
+import json
 import datetime
 from pathlib import Path
+from dotenv import load_dotenv
 
-# Outputs
-current_date = datetime.datetime.now().strftime("%Y-%m-%d")
+# Load environment variables from the .env file
+load_dotenv("config.env")
 
-DATA_FOLDER = Path("data")
+# General settings
+current_date = datetime.datetime.now().strftime(os.getenv("CURRENT_DATE_FORMAT"))
 
-broken_symlinks_file = DATA_FOLDER / "broken-symlinks.log"
-log_file_path = DATA_FOLDER / "log-collect-data.log"
-main_log_file = DATA_FOLDER / "main-update-packages.log"
+# Paths
+DATA_DIR = Path(os.getenv("DATA_DIR"))
+STACKS_DIR = Path(os.getenv("STACKS_DIR"))
+IMPORTS_DIR = Path(os.getenv("IMPORTS_DIR"))
+CUSTOM_DIR = Path(os.getenv("CUSTOM_DIR"))
 
-stacks_dir = "stanage/software/stacks/"
-imports_dir = "referenceinfo/imports/stanage/packages/"
-custom_dir = "referenceinfo/imports/stanage/packages/custom/"
+# File paths
+broken_symlinks_file = DATA_DIR / os.getenv("BROKEN_SYMLINKS_FILE")
+log_file_path = DATA_DIR / os.getenv("LOG_FILE")
+main_log_file = DATA_DIR / os.getenv("MAIN_LOG_FILE")
+DATA_FILE = DATA_DIR / os.getenv("DATA_FILE")
 
-DATA_FILE = DATA_FOLDER / "collected-data.pkl"
-STACKS_DIR = DATA_FOLDER / stacks_dir
-IMPORTS_DIR = DATA_FOLDER / imports_dir
-CUSTOM_DIR = DATA_FOLDER / custom_dir
+# SLURM interactive session file
+SLURM_INTERACTIVE_SESSION_IMPORT = os.getenv("SLURM_INTERACTIVE_SESSION_IMPORT")
 
-# Inputs
-modulepaths = {
-    'icelake': "/opt/apps/tuos/el9/modules/live/all:/opt/apps/tuos/common/modules/easybuild-only/all:/opt/apps/tuos/common/modules/live/all",
-    'znver3': "/opt/apps/tuos/el9-znver3/modules/live/all:/opt/apps/tuos/common/modules/easybuild-only/all:/opt/apps/tuos/common/modules/live/all"
-}
+# Module paths (parsed from JSON string)
+modulepaths = json.loads(os.getenv("MODULEPATHS"))
 
-titles = [
-    "Icelake and Znver (OS: Rocky 9) Packages"
-]
+# Titles and output directories (parsed from JSON strings)
+titles = json.loads(os.getenv("TITLES"))
+output_dirs = json.loads(os.getenv("OUTPUT_DIRS"))
 
-output_dirs = [
-    "el9-icelake-znver-stanage"
-]
-
-# Define the path for the SLURM interactive session include file
-SLURM_INTERACTIVE_SESSION_IMPORT = "referenceinfo/imports/scheduler/SLURM/common_commands/srun_start_interactive_session_import_stanage.rst"
-
-module_classes = {
-    "base": "Default module class",
-    "ai": "Artificial Intelligence (incl. Machine Learning)",
-    "astro": "Astronomy, Astrophysics and Cosmology",
-    "bio": "Bioinformatics, biology and biomedical",
-    "cae": "Computer Aided Engineering (incl. CFD)",
-    "chem": "Chemistry, Computational Chemistry and Quantum Chemistry",
-    "compiler": "Compilers",
-    "data": "Data management & processing tools",
-    "debugger": "Debuggers",
-    "devel": "Development tools",
-    "geo": "Earth Sciences",
-    "ide": "Integrated Development Environments (e.g. editors)",
-    "lang": "Languages and programming aids",
-    "lib": "General purpose libraries",
-    "math": "High-level mathematical software",
-    "mpi": "MPI stacks",
-    "numlib": "Numerical Libraries",
-    "perf": "Performance tools",
-    "quantum": "Quantum Computing",
-    "phys": "Physics and physical systems simulations",
-    "system": "System utilities (e.g. highly depending on system OS and hardware)",
-    "toolchain": "EasyBuild toolchains",
-    "tools": "General purpose tools",
-    "vis": "Visualisation, plotting, documentation and typesetting"
-}
+# Module classes (parsed from JSON string)
+module_classes = json.loads(os.getenv("MODULE_CLASSES"))
