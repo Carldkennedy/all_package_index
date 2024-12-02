@@ -53,9 +53,9 @@ popd || exit
 mkdir -p "$IMPORTS_EXISTING" "$SOFTWARE_EXISTING" "$CUSTOM_EXISTING"
 
 # Sync new files to the corresponding directories in the Git repository
-rsync -a --delete "$IMPORTS_NEW/" "$IMPORTS_EXISTING/"        # Overwrite imports
-rsync -a --delete "$SOFTWARE_NEW/" "$SOFTWARE_EXISTING/"      # Overwrite software stack
-rsync -a --ignore-existing "$CUSTOM_NEW/" "$CUSTOM_EXISTING/" # Only add new files in custom
+rsync -a --delete --exclude="custom/" "$IMPORTS_NEW/" "$IMPORTS_EXISTING/"   # Overwrite imports except custom
+rsync -a --delete "$SOFTWARE_NEW/" "$SOFTWARE_EXISTING/"                      # Overwrite software stack
+rsync -a --ignore-existing "$CUSTOM_NEW/" "$CUSTOM_EXISTING/"                 # Only add new files in custom
 
 ## Uncomment these lines to commit and push the changes to the remote repository
 # pushd "$REPO_DIR"
