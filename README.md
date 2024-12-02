@@ -1,12 +1,12 @@
 All Package Index
 =================
 
-This repository contains the [mods2docs](mods2docs) tool for parsing module files and generating documentation
+This repository contains the [mods2docs](#mods2docs) tool for parsing module files and generating documentation
 (including handling dependencies for various architectures). 
 It also contains supporting scripts for syncing generated documentation with a repository.
 Together they automate the documentation process for an "All Package Index" section of a HPC cluster's documentation website. 
 
-See [Contributing](contributing) if you would like to contribute to this project. 
+See [Contributing](#contributing) if you would like to contribute to this project. 
 
 ### TODO
 
