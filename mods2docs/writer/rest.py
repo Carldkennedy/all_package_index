@@ -114,8 +114,8 @@ def write_sidebar_file(package, category, latest_version_info, output_dir):
         f".. sidebar:: {package}\n\n"
         f"   :Latest Version (Icelake): {version_number_icelake}\n"
         f"   :Installed on (Icelake): {creation_date_icelake}\n"
-        f"   :Latest Version (Znver): {version_number_znver}\n"
-        f"   :Installed on (Znver): {creation_date_znver}\n"
+        f"   :Latest Version (Znver3): {version_number_znver}\n"
+        f"   :Installed on (Znver3): {creation_date_znver}\n"
         f"   :URL: {homepage_url}\n"
     )
     utils.write_file(sdbr_file, content)
