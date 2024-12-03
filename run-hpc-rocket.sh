@@ -32,11 +32,12 @@ DATESTAMP="$(date +%Y%m%d-%H%M)"                # Timestamp for backups
 hpc-rocket launch --watch hpc_rocket_config.yml
 
 # Run post-processing on the data returned by the SLURM job
-mkdir -p data/backups/                          # Create backup directory if it doesn't exist
+mkdir -p ${DATA_DIR}/backups/                          # Create backup directory if it doesn't exist
 
 # Back up log and pickle files with a timestamp
 for file in ${DATA_DIR}/*.{pkl,log}; do
-    cp "${file}" "${file}-${DATESTAMP}.bk" && echo "Backed up $file"
+    cp "${file}" "${file}-${DATESTAMP}.bk" && echo "Backed up ${file}"
+    mv ${DATA_DIR}/*bk ${DATA_DIR}/backups/
 done
 
 # Run the data processing pipeline, specifying the parser and writer types
