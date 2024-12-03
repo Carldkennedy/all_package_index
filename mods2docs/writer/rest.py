@@ -262,7 +262,7 @@ def write_all_files(title, output_dir, package_infos, package_ref, latest_versio
     all_category_title = f"{all_category}"
 
     if all_category_index_file not in added_indexes:
-        utils.write_file(all_category_index_file, f".. _{utils.make_reference(output_dir, all_category, '')}:\n\n{all_category_title}\n{'^' * len(all_category_title)}\n\nModule class description: {module_class}\n\n.. toctree::\n    :maxdepth: 1\n    :glob:\n\n    ./*\n\n")
+        utils.write_file(all_category_index_file, f".. _{utils.make_reference(output_dir, all_category, '')}:\n\n{all_category_title}\n{'^' * len(all_category_title)}\n\n**{module_class}**\n\n.. toctree::\n    :maxdepth: 1\n    :glob:\n\n    ./*\n\n")
         utils.append_file(stack_index_file, f"    {all_category}/index.rst\n\n")
         added_indexes.add(all_category_index_file)
 
@@ -278,7 +278,7 @@ def write_all_files(title, output_dir, package_infos, package_ref, latest_versio
             module_class = config.module_classes.get(primary_category.lower(), "")
             category_title = f"{primary_category}"
             if category_index_file not in added_indexes:
-                utils.write_file(category_index_file, f".. _{utils.make_reference(output_dir, primary_category, '')}:\n\n{category_title}\n{'^' * len(category_title)}\n\nModule class description: {module_class}\n\n.. toctree::\n    :maxdepth: 1\n    :glob:\n\n    ./*\n\n")
+                utils.write_file(category_index_file, f".. _{utils.make_reference(output_dir, primary_category, '')}:\n\n{category_title}\n{'^' * len(category_title)}\n\n**{module_class}**\n\n.. toctree::\n    :maxdepth: 1\n    :glob:\n\n    ./*\n\n")
                 #                append_file(stack_index_file, f"    {primary_category}/index.rst\n")
                 link_main_index = f"    {primary_category}/index.rst\n"
                 links_for_main_index.append(link_main_index)
