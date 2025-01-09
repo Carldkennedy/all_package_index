@@ -60,6 +60,6 @@ rsync -a --ignore-existing "$CUSTOM_NEW/" "$CUSTOM_EXISTING/"                 # 
 ## Uncomment these lines to commit and push the changes to the remote repository
 # pushd "$REPO_DIR"
 # git add .
-# git commit -m "Updated files with automatic build changes on $(date +%Y-%m-%d)"
+# git commit -m "Updated API with changes on $(date +%Y-%m-%d)"
 # git push --set-upstream origin "$BRANCH_NAME"
 # popd
