@@ -87,26 +87,31 @@ def write_sidebar_file(package, category, latest_version_info, output_dir):
     if key in latest_version_info:
         # Get information for Icelake architecture
         icelake_info = latest_version_info[key].get('icelake', None)
-        if icelake_info:
+        if icelake_info and len(icelake_info) > 0 and icelake_info[0]:
             version_number_icelake = icelake_info[0].get('EB Version', None)
             if version_number_icelake is None:
                 # Fallback: Extract version from the directory name if EB Version is not available
-                version_number_icelake = extract_version(icelake_info[0].get('Root', 'N/A').split('/')[-1])
-            creation_date_icelake = icelake_info[1]
+                root = icelake_info[0].get('Root', 'N/A')
+                version_number_icelake = extract_version(root.split('/')[-1] if root else 'N/A')
+            creation_date_icelake = icelake_info[1] if len(icelake_info) > 1 else 'N/A'
             # Extract URL from WhatIs Information
-            homepage_url = next((info.split(': ')[1] for info in icelake_info[0].get('WhatIs Information', []) if info.startswith('URL:')), 'N/A')
-
+            whatis_info = icelake_info[0].get('WhatIs Information', [])
+            homepage_url = next((info.split(': ')[1] for info in whatis_info if info.startswith('URL:')), 'N/A')
+    
         # Get information for Znver3 architecture
         znver_info = latest_version_info[key].get('znver3', None)
-        if znver_info:
+        if znver_info and len(znver_info) > 0 and znver_info[0]:
             version_number_znver = znver_info[0].get('EB Version', None)
             if version_number_znver is None:
                 # Fallback: Extract version from the directory name if EB Version is not available
-                version_number_znver = extract_version(znver_info[0].get('Root', 'N/A').split('/')[-1])
-            creation_date_znver = znver_info[1]
+                root = znver_info[0].get('Root', 'N/A')
+                version_number_znver = extract_version(root.split('/')[-1] if root else 'N/A')
+            creation_date_znver = znver_info[1] if len(znver_info) > 1 else 'N/A'
             # Update URL if available in Znver3 info
             if homepage_url == 'N/A':
-                homepage_url = next((info.split(': ')[1] for info in znver_info[0].get('WhatIs Information', []) if info.startswith('URL:')), 'N/A')
+                whatis_info = znver_info[0].get('WhatIs Information', [])
+                homepage_url = next((info.split(': ')[1] for info in whatis_info if info.startswith('URL:')), 'N/A')
+
 
     # Write sidebar file content
     sdbr_file = os.path.join(config.IMPORTS_DIR, f"{utils.make_filename(package, 'sdbr', output_dir)}.rst")
