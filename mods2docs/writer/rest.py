@@ -21,10 +21,11 @@ def write_stacks_index(stacks_dir, current_date, output_dirs):
     stacks_file = os.path.join(stacks_dir, "index.rst")
     initial_content = (
         f"{stacks_title}\n{'=' * len(stacks_title)}\n\n"
-        f"Last updated: {current_date}\n\n"
         ".. toctree::\n"
         "    :maxdepth: 1\n"
         "    :glob:\n\n"
+        ".. note::\n\n"
+        f"   Last updated: {current_date}\n\n"
     )
 
     utils.write_file(stacks_file, initial_content)
