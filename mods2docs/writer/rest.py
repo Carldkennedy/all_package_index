@@ -155,7 +155,7 @@ def write_custom_file(package, output_dir):
 def write_dependencies(dependencies, output_dir, category, package, package_ref):
     dpnd_file = os.path.join(config.IMPORTS_DIR, f"{utils.make_filename(package, 'dpnd', output_dir)}.rst")
     if dependencies:
-        content = f".. dropdown:: Dependencies for latest version of {package}\n\n"
+        content = f".. dropdown:: Direct dependencies for latest version of {package}\n\n"
         def version_key(version):
             return [int(x) if x.isdigit() else x for x in re.split(r'(\d+)', version)]
         
