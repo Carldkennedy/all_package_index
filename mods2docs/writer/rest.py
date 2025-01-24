@@ -20,12 +20,15 @@ def write_stacks_index(stacks_dir, current_date, output_dirs):
     stacks_title = "All Packages Index"
     stacks_file = os.path.join(stacks_dir, "index.rst")
     initial_content = (
+        ".. _all-package-index:\n\n"
         f"{stacks_title}\n{'=' * len(stacks_title)}\n\n"
+        ".. note::\n\n"
+        f"   Last updated: {current_date}\n\n"
+        "This comprehensive index includes all packages installed on Stanage, with content generated automatically. It is updated regularly to reflect the latest installations and mirrors the full range of packages available on Stanage.\n\n"
+        "Each package entry includes minimal documentation, providing key details such as descriptions, version information, direct dependencies for the latest version, URLs, and build log locations.\n\n"
         ".. toctree::\n"
         "    :maxdepth: 1\n"
         "    :glob:\n\n"
-        ".. note::\n\n"
-        f"   Last updated: {current_date}\n\n"
     )
 
     utils.write_file(stacks_file, initial_content)
@@ -253,7 +256,7 @@ def write_all_files(title, output_dir, package_infos, package_ref, latest_versio
     os.makedirs(output_dir_path, exist_ok=True)
     stack_index_file = os.path.join(output_dir_path, "index.rst")
     title_underline = "=" * len(title)
-    utils.write_file(stack_index_file, f".. _{utils.make_reference(output_dir, '', '')}:\n\n{title}\n{title_underline}\n\n.. toctree::\n    :maxdepth: 1\n    :glob:\n\n")
+    utils.write_file(stack_index_file, f".. _{output_dir}:\n\n{title}\n{title_underline}\n\n.. toctree::\n    :maxdepth: 1\n    :glob:\n\n")
 
     # Create All index file
     output_dir_path = os.path.join(config.STACKS_DIR, output_dir)
