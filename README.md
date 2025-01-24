@@ -106,7 +106,7 @@ then syncs with a local docs repo.
 Please ensure you have set up ssh keys for access to the cluster and github tokens or ssh keys for the remote repo.
 
 ```bash
-./sync_stacks.sh
+./sync_stacks.sh --rocket --push
 ```
 
 Note: The code at the end of the script that pushes changes to the new branch on the remote documentation repository has
