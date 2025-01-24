@@ -9,9 +9,10 @@
 if [ $# -eq 0 ] || [[ "$1" =~ ^(--help|-help|-h)$ ]]; then
     echo "Usage: $0 [OPTIONS]"
     echo "Options:"
-    echo "  --rocket, -r  Run run-hpc-rocket.sh script."
-    echo "  --push, -p    Commit and push changes to the remote repository."
-    echo "  --help, -h    Display this help message."
+    echo "  --rocket, -r       Run run-hpc-rocket.sh script."
+    echo "  --writer-rest, -w  Run mods2docs pipeline."
+    echo "  --push, -p         Commit and push changes to the remote repository."
+    echo "  --help, -h         Display this help message."
     exit 0
 fi
 
@@ -22,6 +23,9 @@ for arg in "$@"; do
     case $arg in
         --rocket|-r)
             RUN_HPC=true
+            ;;
+        --writer-rest|-w)
+            RUN_WRITER_REST=true
             ;;
         --push|-p)
             RUN_PUSH=true
@@ -50,12 +54,21 @@ IMPORTS_EXISTING="${REPO_DIR}/${IMPORTS_DIR}"
 SOFTWARE_EXISTING="${REPO_DIR}/${STACKS_DIR}"
 CUSTOM_EXISTING="${REPO_DIR}/${CUSTOM_DIR}"
 
-# Ensure run-hpc-rocket.sh exists and runs
-if [ ! -f ./run-hpc-rocket.sh ]; then
-    echo "Error: run-hpc-rocket.sh not found. Please ensure it exists in the current directory."
-    exit 1
+
+# Optionally run HPC rocket script
+if [ "$RUN_HPC" = true ]; then
+    # Ensure run-hpc-rocket.sh exists and runs
+    if [ ! -f ./run-hpc-rocket.sh ]; then
+        echo "Error: run-hpc-rocket.sh not found. Please ensure it exists in the current directory."
+        exit 1
+    fi
+    ./run-hpc-rocket.sh
 fi
-./run-hpc-rocket.sh
+
+if [ "$RUN_WRITER_REST" = true ]; then
+    # Run the data processing pipeline, specifying the parser and writer types
+    python -m mods2docs.start_pipeline --parser lmod --writer rest
+fi
 
 # Clone the repository if it does not exist locally
 if [ ! -d "$REPO_DIR/.git" ]; then
@@ -83,62 +96,12 @@ popd || exit
 mkdir -p "$IMPORTS_EXISTING" "$SOFTWARE_EXISTING" "$CUSTOM_EXISTING"
 
 # Sync new files to the corresponding directories in the Git repository
-rsync -a --delete --exclude="custom/" "$IMPORTS_NEW/" "$IMPORTS_EXISTING/"   # Overwrite imports except custom
+rsync -a --delete --exclude="custom/" "$IMPORTS_NEW/" "$IMPORTS_EXISTING/"    # Overwrite imports except custom
 rsync -a --delete "$SOFTWARE_NEW/" "$SOFTWARE_EXISTING/"                      # Overwrite software stack
 rsync -a --ignore-existing "$CUSTOM_NEW/" "$CUSTOM_EXISTING/"                 # Only add new files in custom
 
-# Uncomment these lines to commit and push the changes to the remote repository
-pushd "$REPO_DIR"
-
-# Set your header message
-HEADER_MESSAGE="Updated API with changes on $(date +%Y-%m-%d)"
-
-# Get the current commit hash (shortened to 8 characters)
-CURRENT_HASH=$(git rev-parse --short=8 HEAD)
-
-# Check if there are any changes
-if git diff --quiet -- "$IMPORTS_DIR"; then
-    echo "No changes detected in $IMPORTS_DIR. Skipping commit."
-    popd
-    exit 0
-fi
-
-# File pattern to filter
-FILE_PATTERN="*-ml-*"
-
-# Generate a filtered diff for added modules
-MODULES_ADDED=$(git diff -- "$IMPORTS_DIR" | grep -E "^\+" | grep "module load" | sed 's/^+ module load //' | tr '\n' '\n- ' || echo "None")
-
-# Generate a filtered diff for removed modules
-MODULES_REMOVED=$(git diff -- "$IMPORTS_DIR" | grep -E "^\-" | grep "module load" | sed 's/^- module load //' | tr '\n' '\n- ' || echo "None")
-
-# Format the body message
-BODY_MESSAGE="This documentation was generated from commit $CURRENT_HASH of the all_package_index repo.
-
-Modules added:
-$MODULES_ADDED
-
-Modules removed:
-$MODULES_REMOVED"
-
-
 # Optionally push changes
 if [ "$RUN_PUSH" = true ]; then
-    # Show diff output for visual confirmation
-    echo "\nChanges to be committed:\n"
-    git diff 
-
-    read -p "Push changes to remote repository? (y/n): " CONFIRM
-    if [[ "$CONFIRM" != "y" ]]; then
-        echo "Push aborted."
-        popd
-        exit 0
-    fi
-
-    # Commit and push the changes
-    git add .
-    git commit -m "$HEADER_MESSAGE" -m "$BODY_MESSAGE"
-    git push --set-upstream origin "$BRANCH_NAME" || { echo "Error: Failed to push changes."; exit 1; }
+	./push_stacks.sh
 fi
 
-popd
