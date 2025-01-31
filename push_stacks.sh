@@ -32,13 +32,13 @@ fi
 FILE_PATTERN="*-ml-*"
 
 # Generate a filtered diff for added modules
-MODULES_ADDED=$(git diff -- "$IMPORTS_DIR" | grep -E "^\+\s*module load" | sed 's/^+ module load //' | tr '\n' '\n- ')
+MODULES_ADDED=$(git diff -- "$IMPORTS_DIR" | grep -E "^\+\s*module load" | sed 's/^+\s*module load //' | tr '\n' '\n- ')
 if [ -z "$MODULES_ADDED" ]; then
     MODULES_ADDED="None"
 fi
 
 # Generate a filtered diff for removed modules
-MODULES_REMOVED=$(git diff -- "$IMPORTS_DIR" | grep -E "^\-\s*module load" | sed 's/^- module load //' | tr '\n' '\n- ')
+MODULES_REMOVED=$(git diff -- "$IMPORTS_DIR" | grep -E "^\-\s*module load" | sed 's/^-\s*module load //' | tr '\n' '\n- ')
 if [ -z "$MODULES_REMOVED" ]; then
     MODULES_REMOVED="None"
 fi
