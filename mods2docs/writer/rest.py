@@ -250,6 +250,32 @@ def write_ml_file(package, package_infos, output_dir):
     with open(import_file, 'w') as imp_f:
         imp_f.write(new_content)
 
+def clean_all_index_if_needed(all_category_dir):
+    """
+    Checks if the All/ directory contains more than one file. 
+    If not, removes the "    ./*" line from index.rst.
+
+    Args:
+        all_category_dir (str): Path to the "All" category directory.
+    """
+    index_file = os.path.join(all_category_dir, "index.rst")
+    
+    if not os.path.exists(index_file):
+        return  # If index.rst doesn't exist, nothing to do
+
+    # Count the number of files in the All/ directory (excluding index.rst itself)
+    all_files = [f for f in os.listdir(all_category_dir) if f != "index.rst"]
+
+    if len(all_files) <= 1:  # Only index.rst or empty
+        with open(index_file, "r") as file:
+            lines = file.readlines()
+
+        # Remove the "    ./*" line
+        with open(index_file, "w") as file:
+            for line in lines:
+                if not line.strip() == "./*":  # Remove exact match
+                    file.write(line)
+
 def write_all_files(title, output_dir, package_infos, package_ref, latest_version_info):
     # Create stacks index file
     output_dir_path = os.path.join(config.STACKS_DIR, output_dir)
@@ -337,6 +363,8 @@ def write_all_files(title, output_dir, package_infos, package_ref, latest_versio
     links_for_main_index.sort(key=str.casefold)
     with open(stack_index_file, 'a') as file:
         file.writelines(links_for_main_index)
+
+    clean_all_index_if_needed(all_category_dir)
 
 def write_global_files(config):
     """
