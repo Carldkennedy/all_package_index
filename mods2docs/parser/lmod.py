@@ -222,10 +222,22 @@ def process_env_vars(env_vars, lua_globals):
 
 
 def extract_module_info(lua_content, lua_globals):
-    """Extracts and organizes module information from Lua content."""
+    """Extracts and organises module information from Lua content."""
     data = extract_patterns(lua_content)
     env_vars_dict = process_env_vars(data["env_vars"], lua_globals)
-    package_suffix = next((key.split('EBROOT')[-1] for key in env_vars_dict if key.startswith('EBROOT')), '')
+    
+    # Handle multiple EBROOT* vars by prioritising direct 'root' assignments, falling back to the first available one.
+    def extract_package_suffix():
+        for line in lua_content.splitlines():
+            if "setenv(\"EBROOT" in line and "root" in line and "pathJoin" not in line:
+                return line.split("setenv(\"EBROOT")[-1].split('"')[0]  
+        
+        return next(
+            (key.split('EBROOT')[-1] for key in sorted(env_vars_dict) if key.startswith('EBROOT')),
+            ''
+        )
+
+    package_suffix = extract_package_suffix()
 
     eb_vars = {
         k.replace(package_suffix, ''): {
