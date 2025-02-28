@@ -16,7 +16,7 @@ pushd "$REPO_DIR" || exit
 BRANCH_NAME=$(git branch --show-current)
 
 # Set your header message
-HEADER_MESSAGE="Updated API with changes on $(date +%Y-%m-%d)"
+HEADER_MESSAGE="Update All Package Index via mods2docs on $(date +%Y-%m-%d)"
 
 # Check if there are any changes
 if git diff --quiet -- "$IMPORTS_DIR" "$STACKS_DIR"; then
