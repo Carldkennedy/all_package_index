@@ -1,5 +1,6 @@
 import os
 import re
+import logging
 from datetime import datetime
 from mods2docs import config, utils
 from mods2docs.writer.common import setup_writer_directories
@@ -70,6 +71,14 @@ def write_package_file(category_dir, category, package, output_dir):
     )
     utils.write_file(package_file, content)
 
+def extract_url(whatis_info):
+    """Return the first non-empty URL value from module ``whatis`` entries."""
+    for info in whatis_info:
+        label, separator, value = info.partition(':')
+        if separator and label.strip() == 'URL' and value.strip():
+            return value.strip()
+    return 'N/A'
+
 def write_sidebar_file(package, category, latest_version_info, output_dir):
     def extract_version(version_with_toolchain):
         """Extracts the version number from a version string, removing toolchain if present."""
@@ -100,7 +109,7 @@ def write_sidebar_file(package, category, latest_version_info, output_dir):
             creation_date_icelake = icelake_info[1] if len(icelake_info) > 1 else 'N/A'
             # Extract URL from WhatIs Information
             whatis_info = icelake_info[0].get('WhatIs Information', [])
-            homepage_url = next((info.split(': ')[1] for info in whatis_info if info.startswith('URL:')), 'N/A')
+            homepage_url = extract_url(whatis_info)
     
         # Get information for Znver3 architecture
         znver_info = latest_version_info[key].get('znver3', None)
@@ -114,7 +123,7 @@ def write_sidebar_file(package, category, latest_version_info, output_dir):
             # Update URL if available in Znver3 info
             if homepage_url == 'N/A':
                 whatis_info = znver_info[0].get('WhatIs Information', [])
-                homepage_url = next((info.split(': ')[1] for info in whatis_info if info.startswith('URL:')), 'N/A')
+                homepage_url = extract_url(whatis_info)
 
 
     # Write sidebar file content
@@ -337,18 +346,29 @@ def write_all_files(title, output_dir, package_infos, package_ref, latest_versio
         latest_info = latest_version_info.get(key, {}).get(latest_info_arch, (None, None, None))[0]
 
         if latest_info is None:
-            append_log(f"Warning: Missing latest info for {primary_category} | {package}. Skipping.",
-                       config.main_log_file)
+            utils.append_log(
+                f"Warning: Missing latest info for {primary_category} | {package}. Skipping.",
+                config.main_log_file
+            )
             continue
 
         if package not in all_category_packages:
-            write_package_file(category_dir, primary_category, package, output_dir)
-            write_ml_file(package, package_infos, output_dir)
-            write_description_file(package, latest_info, output_dir)
-            write_sidebar_file(package, primary_category, latest_version_info, output_dir)
-            write_installation_file(package, latest_info, output_dir)
-            write_custom_file(package, output_dir)
-            write_dependencies(list(dependencies), output_dir, primary_category, package, package_ref)
+            try:
+                write_package_file(category_dir, primary_category, package, output_dir)
+                write_ml_file(package, package_infos, output_dir)
+                write_description_file(package, latest_info, output_dir)
+                write_sidebar_file(package, primary_category, latest_version_info, output_dir)
+                write_installation_file(package, latest_info, output_dir)
+                write_custom_file(package, output_dir)
+                write_dependencies(list(dependencies), output_dir, primary_category, package, package_ref)
+            except Exception:
+                message = (
+                    f"Failed to write files for {primary_category} | {package}. "
+                    "Skipping this package."
+                )
+                logging.exception(message)
+                utils.append_log(message, config.main_log_file)
+                continue
 
             all_category_packages.add(package)
 

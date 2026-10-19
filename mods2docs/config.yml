@@ -35,4 +35,4 @@ clean:
   - slurm.sh
 
 sbatch: slurm.sh
-continue_if_job_fails: true
+continue_if_job_fails: false

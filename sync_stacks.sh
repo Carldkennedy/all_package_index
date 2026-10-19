@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 # This script automates the process of updating files in a Git repository after an automatic build.
 # It generates new files, creates a new branch, and synchronizes specific directories with updated content.
 # The script also checks if the repository exists locally, clones it if missing, and uses rsync for efficient updates.
@@ -104,4 +106,3 @@ rsync -a --ignore-existing "$CUSTOM_NEW/" "$CUSTOM_EXISTING/"                 # 
 if [ "$RUN_PUSH" = true ]; then
 	./push_stacks.sh
 fi
-

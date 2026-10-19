@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 # This script automates the process of cleaning up old files, submitting a job to SLURM,
 # backing up generated data, and running a post-processing pipeline.
 # The main steps include:
@@ -22,22 +24,27 @@ envsubst < mods2docs/config.yml > hpc_rocket_config.yml
 
 DATESTAMP="$(date +%Y%m%d-%H%M)"                # Timestamp for backups
 
-# Remove previous runs' directories and files to ensure a clean start
-[ -d "${STACKS}/" ] && rm -rf "${STACKS}/"
-[ -d "${IMPORTS}/" ] && rm -rf "${IMPORTS}/"
-[ -f "${DATA_DIR}/*.log" ] && rm -f "${DATA_DIR}/*.log"
-[ -f "${DATA_DIR}/*.pkl" ] && rm -f "${DATA_DIR}/*.pkl"
-
 # Submit job to SLURM via hpc-rocket, using the specified configuration file
-hpc-rocket launch --watch hpc_rocket_config.yml
+if hpc-rocket launch --watch hpc_rocket_config.yml; then
+    :
+else
+    status=$?
+    echo "Error: HPC-Rocket failed; documentation generation stopped." >&2
+    exit "$status"
+fi
+
+# Preserve the previous documentation until remote collection succeeds.
+if [ -d "${STACKS}/" ]; then rm -rf "${STACKS}/"; fi
+if [ -d "${IMPORTS}/" ]; then rm -rf "${IMPORTS}/"; fi
 
 # Run post-processing on the data returned by the SLURM job
 mkdir -p ${DATA_DIR}/backups/                          # Create backup directory if it doesn't exist
 
 # Back up log and pickle files with a timestamp
-for file in ${DATA_DIR}/*.{pkl,log}; do
-    cp "${file}" "${file}-${DATESTAMP}.bk" && echo "Backed up ${file}"
-    mv ${DATA_DIR}/*bk ${DATA_DIR}/backups/
+for file in "${DATA_DIR}"/*.{pkl,log}; do
+    [ -f "$file" ] || continue
+    cp "$file" "${DATA_DIR}/backups/$(basename "$file")-${DATESTAMP}.bk"
+    echo "Backed up ${file}"
 done
 
 # Run the data processing pipeline, specifying the parser and writer types

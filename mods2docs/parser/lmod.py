@@ -159,6 +159,15 @@ def setup_lua_runtime() -> LuaRuntime:
         function remove_property(var) end
         function isloaded(module) return false end
         function pathJoin(...) return table.concat({...}, "/") end
+        function mode() return "load" end
+        function LmodVersion() return "999.0.0" end
+        function convertToCanonical(version)
+            local canonical = {}
+            for component in string.gmatch(tostring(version or "0"), "%d+") do
+                table.insert(canonical, string.format("%09d", tonumber(component)))
+            end
+            return table.concat(canonical, "")
+        end
 
         setmetatable(_G, {
             __index = function(_, key)
@@ -204,7 +213,7 @@ def extract_patterns(lua_content):
     patterns = {
         "help_info": re.compile(r'help\(\[\=\=\[(.*?)\]\=\=\]\)', re.DOTALL),
         "whatis_info": re.compile(r'whatis\(\[\=\=\[(.*?)\]\=\=\]\)', re.DOTALL),
-        "loaded_modules": re.compile(r'load\("(.*?)"\)'),
+        "loaded_modules": re.compile(r'(?:load|depends_on)\(\s*["\']([^"\']+)["\']\s*\)'),
         "env_vars": re.compile(r'setenv\("([^"]+)",\s*"([^"]+)"\)'),
         "root": re.compile(r'local root = "(.*?)"')
     }
@@ -278,8 +287,9 @@ def extract_lua_info(lua_file_path):
         return None, None, None
 
     lua = setup_lua_runtime()
-    if not execute_lua(lua, lua_content, lua_file_path):
-        return None, None, None
+    # Static extraction below can still recover literal declarations when an
+    # unusual expression is unsupported by the lightweight Lua sandbox.
+    execute_lua(lua, lua_content, lua_file_path)
 
     module_info = extract_module_info(lua_content, lua.globals().env_vars)
     log_module_info(module_info)
